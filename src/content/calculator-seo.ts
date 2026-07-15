@@ -63,6 +63,10 @@ export const CALCULATOR_SEO: Record<
         href: "/blog/safe-withdrawal-rate-3-vs-4-percent",
         label: "3% vs 3.5% vs 4% SWR",
       },
+      {
+        href: "/blog/realistic-fire-numbers-2026",
+        label: "Realistic FIRE numbers 2026",
+      },
       { href: "/methodology", label: "Methodology" },
     ],
     faq: [
@@ -110,7 +114,7 @@ export const CALCULATOR_SEO: Record<
       "You want a simple growth chart to share with a partner or co-planner.",
     ],
     limitations: [
-      "Constant real returns ignore sequence risk, crashes, and valuation regimes.",
+      "Constant real returns ignore crashes and valuation regimes; use the free sequence stress test for ranges.",
       "Does not model raises, job loss, windfalls, or changing savings capacity.",
       "Contributions are simplified; payroll timing and tax-advantaged accounts can differ.",
     ],
@@ -120,6 +124,10 @@ export const CALCULATOR_SEO: Record<
       {
         href: "/blog/how-many-years-until-fire",
         label: "How many years until FIRE?",
+      },
+      {
+        href: "/blog/why-simple-fire-calculators-fail",
+        label: "Why simple FIRE calculators fail",
       },
       { href: "/methodology", label: "Methodology" },
     ],
@@ -170,12 +178,20 @@ export const CALCULATOR_SEO: Record<
     limitations: [
       "Not early retirement — coasters usually still need earned income for years.",
       "Healthcare, emergency funds, and debt plans still matter.",
-      "Constant real returns are not guaranteed; lower r and extend the horizon when unsure.",
+      "Constant real returns are not guaranteed; use return sensitivity, age tables, and the free sequence stress test for ranges.",
     ],
     related: [
       { href: "/calculators/fire-number", label: "FIRE number calculator" },
       { href: "/calculators/barista-fire", label: "Barista FIRE calculator" },
       { href: "/blog/coast-fire-explained", label: "Coast FIRE explained" },
+      {
+        href: "/blog/coast-fire-by-age-tables",
+        label: "Coast FIRE by age tables",
+      },
+      {
+        href: "/blog/coast-fire-sequence-of-returns-risk",
+        label: "Coast FIRE + sequence risk",
+      },
       {
         href: "/blog/coast-fire-number-formula-examples",
         label: "Coast FIRE formula + examples",
@@ -197,6 +213,11 @@ export const CALCULATOR_SEO: Record<
         question: "How is Coast FIRE different from Barista FIRE?",
         answer:
           "Coast focuses on stopping contributions while still working full-time (or not). Barista FIRE uses ongoing part-time income to shrink the portfolio needed to cover spending.",
+      },
+      {
+        question: "Do you include a sequence-of-returns stress test?",
+        answer:
+          "Yes — a free basic Monte Carlo stress test (1,000 paths) is available on the Coast FIRE calculator. It is educational, not a forecast or historical backtest. See Methodology for the model.",
       },
     ],
   },

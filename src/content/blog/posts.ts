@@ -11,6 +11,121 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "coast-fire-by-age-tables",
+    title: "Coast FIRE by age: tables and worked examples",
+    description:
+      "Age-by-age Coast FIRE numbers for common spending levels, with 4% vs 5% real return stress columns and clear assumptions — plus how to run your own table.",
+    date: "2026-07-17",
+    readingMinutes: 12,
+    tags: ["coast-fire", "tables", "linkable"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Coast FIRE is mostly a function of three inputs: your full FIRE target (spending ÷ withdrawal rate), years until a traditional retirement age, and an assumed real return. That makes age-by-age tables useful — if every assumption is listed. Below are transparent tables you can re-run in the calculator.",
+      },
+      {
+        type: "h2",
+        content: "Assumptions for all tables on this page",
+      },
+      {
+        type: "ul",
+        content: [
+          "Traditional retirement age = 65",
+          "Withdrawal rate for full FIRE = 4% (25× spending)",
+          "Primary real return = 5%; stress column = 4%",
+          "No future contributions after the coast number is held",
+          "No taxes, fees, sequence risk, or Social Security in the table itself",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Formula: coast ≈ FIRE ÷ (1+r)^n where n = 65 − current age. Educational only — not advice and not a promise markets deliver a constant real return.",
+      },
+      {
+        type: "h2",
+        content: "Table A — $60,000 spending → FIRE $1,500,000",
+      },
+      {
+        type: "ul",
+        content: [
+          "Age 25 (40y): ~$213k @ 5% · ~$304k @ 4%",
+          "Age 30 (35y): ~$272k @ 5% · ~$370k @ 4%",
+          "Age 35 (30y): ~$347k @ 5% · ~$450k @ 4%",
+          "Age 40 (25y): ~$443k @ 5% · ~$547k @ 4%",
+          "Age 45 (20y): ~$565k @ 5% · ~$684k @ 4%",
+          "Age 50 (15y): ~$722k @ 5% · ~$833k @ 4%",
+          "Age 55 (10y): ~$921k @ 5% · ~$1.01M @ 4%",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Table B — $40,000 spending → FIRE $1,000,000",
+      },
+      {
+        type: "ul",
+        content: [
+          "Age 30: ~$181k @ 5% · ~$247k @ 4%",
+          "Age 35: ~$231k @ 5% · ~$300k @ 4%",
+          "Age 40: ~$295k @ 5% · ~$365k @ 4%",
+          "Age 45: ~$377k @ 5% · ~$456k @ 4%",
+          "Age 50: ~$481k @ 5% · ~$555k @ 4%",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Table C — $100,000 spending → FIRE $2,500,000",
+      },
+      {
+        type: "ul",
+        content: [
+          "Age 30: ~$453k @ 5% · ~$617k @ 4%",
+          "Age 35: ~$578k @ 5% · ~$750k @ 4%",
+          "Age 40: ~$738k @ 5% · ~$912k @ 4%",
+          "Age 45: ~$942k @ 5% · ~$1.14M @ 4%",
+          "Age 50: ~$1.20M @ 5% · ~$1.39M @ 4%",
+        ],
+      },
+      {
+        type: "h2",
+        content: "How to read these without fooling yourself",
+      },
+      {
+        type: "ul",
+        content: [
+          "Coast is not early retirement. You still need income for spending until traditional retirement age (or you switch to a different plan).",
+          "Lower r always raises the coast bar — if only 5% “works,” the plan is fragile.",
+          "If spending rises, every cell in the table scales up with FIRE.",
+          "Sequence risk is not in the table. Use the free stress test on the Coast calculator for dispersion of terminal wealth.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Worked example — age 35, $60k lifestyle",
+      },
+      {
+        type: "p",
+        content:
+          "Full FIRE at 4% is $1.5M. With 30 years to age 65 and 5% real, coast ≈ $347k. At 4% real, coast ≈ $450k. If you hold $300k today, you are short on both columns — more savings, lower spending, or a longer horizon closes the gap. If you hold $500k, the constant-return model says you are past coast at 5% real, but you should still keep emergency funds and healthcare planned separately.",
+      },
+      {
+        type: "h2",
+        content: "Build your own live table",
+      },
+      {
+        type: "p",
+        content:
+          "Open the Coast FIRE calculator, set spending, withdrawal rate, and retirement age. The interactive age table updates from shared assumptions and can be exported as CSV. Compare Barista FIRE if your question is semi-retirement cash flow rather than stopping contributions. Methodology documents formulas; Approach documents limits.",
+      },
+      {
+        type: "p",
+        content:
+          "Educational illustration only — not financial, tax, or investment advice.",
+      },
+    ],
+  },
+  {
     slug: "why-simple-fire-calculators-fail",
     title: "Why most simple FIRE calculators fail long-term planners",
     description:

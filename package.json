@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:calc": "npx tsx src/lib/calculations.test.ts && npx tsx src/lib/monte-carlo.test.ts"
+    "test:calc": "npx tsx src/lib/calculations.test.ts && npx tsx src/lib/monte-carlo.test.ts && npx tsx src/lib/coast-tables.test.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { GrowthChart } from "@/components/ui/chart";
 import { usePlanner } from "@/components/planner/PlannerProvider";
 import { StressTestPanel } from "@/components/calculators/StressTestPanel";
+import { SensitivityStrip } from "@/components/calculators/SensitivityStrip";
 import { buildProjectionSeries } from "@/lib/calculations";
 import { formatCurrency, formatPercent, formatYears } from "@/lib/format";
 
@@ -120,6 +121,8 @@ export function YearsToFireCalculator() {
             height={180}
           />
         </div>
+
+        <SensitivityStrip mode="years" />
 
         <p className="text-xs leading-relaxed text-zinc-500">
           End-of-year contributions and constant return. Markets are volatile;

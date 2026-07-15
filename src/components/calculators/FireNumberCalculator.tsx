@@ -12,6 +12,7 @@ import { Tabs } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { MoneyInput } from "@/components/ui/money-input";
 import { usePlanner } from "@/components/planner/PlannerProvider";
+import { SensitivityStrip } from "@/components/calculators/SensitivityStrip";
 import { FIRE_STYLES, type FireStyleId } from "@/lib/constants";
 import { formatCurrency, formatPercent } from "@/lib/format";
 
@@ -73,6 +74,8 @@ export function FireNumberCalculator() {
             value={formatCurrency(fire.monthlyExpenses)}
           />
         </div>
+
+        <SensitivityStrip mode="fire" />
 
         <p className="text-xs leading-relaxed text-zinc-500">
           Formula:{" "}

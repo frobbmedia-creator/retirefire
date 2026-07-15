@@ -12,6 +12,8 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { usePlanner } from "@/components/planner/PlannerProvider";
 import { StressTestPanel } from "@/components/calculators/StressTestPanel";
+import { SensitivityStrip } from "@/components/calculators/SensitivityStrip";
+import { CoastAgeTable } from "@/components/calculators/CoastAgeTable";
 import { formatCurrency, formatPercent, formatYears } from "@/lib/format";
 
 export function CoastFireCalculator() {
@@ -146,6 +148,9 @@ export function CoastFireCalculator() {
           . Coast FIRE means you could stop <em>saving</em> — not that early
           retirement is funded yet. Educational only.
         </p>
+
+        <SensitivityStrip mode="coast" />
+        <CoastAgeTable />
 
         <StressTestPanel
           tool="coast"
