@@ -20,7 +20,6 @@ export function FeedbackWidget() {
   const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
-  const [config, setConfig] = useState<FeedbackConfig | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
   const messageId = useId();
@@ -46,35 +45,53 @@ export function FeedbackWidget() {
   }, [open, close]);
 
   useEffect(() => {
-    if (!open) return;
-    const el = dialogRef.current?.querySelector<HTMLTextAreaElement>("textarea");
-    el?.focus();
+    if (open) {
+      dialogRef.current?.querySelector<HTMLTextAreaElement>("textarea")?.focus();
+    }
   }, [open]);
 
-  useEffect(() => {
-    if (!open || config) return;
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch("/api/feedback");
-        const data = (await res.json()) as FeedbackConfig;
-        if (!cancelled) setConfig(data);
-      } catch {
-        if (!cancelled) {
-          setConfig({
-            configured: false,
-            error: "Could not load feedback settings.",
-          });
-        }
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [open, config]);
+  async function loadConfig(): Promise<FeedbackConfig> {
+    const res = await fetch("/api/feedback");
+    return (await res.json()) as FeedbackConfig;
+  }
 
-  async function sendFormSubmit(to: string) {
-    const res = await fetch(`https://formsubmit.co/ajax/${to}`, {
+  async function sendClientFallback() {
+    const cfg = await loadConfig();
+    if (!cfg.configured) {
+      throw new Error(
+        cfg.error || "Feedback is not configured (FEEDBACK_TO_EMAIL).",
+      );
+    }
+
+    if (cfg.provider === "web3forms") {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: cfg.accessKey,
+          subject: email.trim()
+            ? `RetireFire feedback from ${email.trim()}`
+            : "RetireFire feedback",
+          from_name: "RetireFire",
+          email: email.trim() || "anonymous@retirefire.net",
+          message: message.trim(),
+          ...(email.trim() ? { replyto: email.trim() } : {}),
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        success?: boolean;
+        message?: string;
+      };
+      if (!res.ok || data.success === false) {
+        throw new Error(data.message || "Could not send feedback.");
+      }
+      return;
+    }
+
+    const res = await fetch(`https://formsubmit.co/ajax/${cfg.to}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +100,7 @@ export function FeedbackWidget() {
       body: JSON.stringify({
         name: "RetireFire visitor",
         email: email.trim() || "noreply@retirefire.net",
-        _replyto: email.trim() || to,
+        _replyto: email.trim() || cfg.to,
         _subject: email.trim()
           ? `RetireFire feedback from ${email.trim()}`
           : "RetireFire feedback",
@@ -105,39 +122,10 @@ export function FeedbackWidget() {
     if (!res.ok || data.success === false || data.success === "false") {
       if (/activate|confirm|check your email/i.test(`${data.message ?? ""} ${raw}`)) {
         throw new Error(
-          "Check your inbox for a FormSubmit activation link (one-time), then send again.",
+          "Check the FEEDBACK_TO_EMAIL inbox for a one-time FormSubmit activation link, then send again.",
         );
       }
-      throw new Error(data.message || "Could not send. Please try again.");
-    }
-  }
-
-  async function sendWeb3Forms(accessKey: string) {
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        access_key: accessKey,
-        subject: email.trim()
-          ? `RetireFire feedback from ${email.trim()}`
-          : "RetireFire feedback",
-        from_name: "RetireFire",
-        email: email.trim() || "anonymous@retirefire.net",
-        message: message.trim(),
-        ...(email.trim() ? { replyto: email.trim() } : {}),
-      }),
-    });
-
-    const data = (await res.json().catch(() => ({}))) as {
-      success?: boolean;
-      message?: string;
-    };
-
-    if (!res.ok || data.success === false) {
-      throw new Error(data.message || "Could not send. Please try again.");
+      throw new Error(data.message || "Could not send feedback.");
     }
   }
 
@@ -155,33 +143,59 @@ export function FeedbackWidget() {
     setStatus("submitting");
     setError(null);
 
+    const payload = {
+      message: message.trim(),
+      email: email.trim(),
+      website: honeypot,
+    };
+
     try {
-      let cfg = config;
-      if (!cfg) {
-        const res = await fetch("/api/feedback");
-        cfg = (await res.json()) as FeedbackConfig;
-        setConfig(cfg);
+      // Prefer server (Resend / ntfy)
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+        fallback?: string;
+      };
+
+      if (res.ok && data.ok) {
+        setStatus("success");
+        setMessage("");
+        setEmail("");
+        return;
       }
 
-      if (!cfg.configured) {
-        throw new Error(
-          cfg.error ||
-            "Feedback is not configured. Set FEEDBACK_TO_EMAIL in Vercel.",
+      // Server asked for client fallback, or failed — try FormSubmit/Web3Forms in browser
+      if (data.fallback === "client" || res.status === 502 || res.status === 503) {
+        await sendClientFallback();
+        setStatus("success");
+        setMessage("");
+        setEmail("");
+        return;
+      }
+
+      throw new Error(data.error || "Could not send feedback.");
+    } catch (err) {
+      // Last resort: pure client path
+      try {
+        await sendClientFallback();
+        setStatus("success");
+        setMessage("");
+        setEmail("");
+      } catch (fallbackErr) {
+        setStatus("error");
+        setError(
+          fallbackErr instanceof Error
+            ? fallbackErr.message
+            : err instanceof Error
+              ? err.message
+              : "Something went wrong.",
         );
       }
-
-      if (cfg.provider === "web3forms") {
-        await sendWeb3Forms(cfg.accessKey);
-      } else {
-        await sendFormSubmit(cfg.to);
-      }
-
-      setStatus("success");
-      setMessage("");
-      setEmail("");
-    } catch (err) {
-      setStatus("error");
-      setError(err instanceof Error ? err.message : "Something went wrong.");
     }
   }
 
@@ -307,12 +321,6 @@ export function FeedbackWidget() {
                 {error && (
                   <p className="text-sm text-red-400" role="alert">
                     {error}
-                  </p>
-                )}
-
-                {config && !config.configured && (
-                  <p className="text-sm text-amber-400/90" role="status">
-                    {config.error || "Feedback inbox is not configured yet."}
                   </p>
                 )}
 
