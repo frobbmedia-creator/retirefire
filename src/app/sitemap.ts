@@ -51,7 +51,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${base}/resources`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
       url: `${base}/resources/coast-fire-checklist`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${base}/resources/sequence-risk-guide`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,

@@ -193,6 +193,14 @@ export const CALCULATOR_SEO: Record<
         label: "Coast FIRE + sequence risk",
       },
       {
+        href: "/resources/sequence-risk-guide",
+        label: "Sequence risk guide",
+      },
+      {
+        href: "/resources/coast-fire-checklist",
+        label: "Coast FIRE checklist",
+      },
+      {
         href: "/blog/coast-fire-number-formula-examples",
         label: "Coast FIRE formula + examples",
       },
@@ -256,6 +264,10 @@ export const CALCULATOR_SEO: Record<
       { href: "/calculators/fire-number", label: "FIRE number calculator" },
       { href: "/calculators/coast-fire", label: "Coast FIRE calculator" },
       {
+        href: "/blog/barista-fire-vs-coast-fire",
+        label: "Barista FIRE vs Coast FIRE",
+      },
+      {
         href: "/blog/barista-fire-and-semi-retirement",
         label: "Barista FIRE and semi-retirement",
       },
@@ -263,6 +275,7 @@ export const CALCULATOR_SEO: Record<
         href: "/blog/barista-fire-number-formula-examples",
         label: "Barista FIRE formula + examples",
       },
+      { href: "/resources", label: "Free resources" },
       { href: "/methodology", label: "Methodology" },
     ],
     faq: [

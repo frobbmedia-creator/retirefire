@@ -11,6 +11,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { MoneyInput } from "@/components/ui/money-input";
 import { usePlanner } from "@/components/planner/PlannerProvider";
+import { SensitivityStrip } from "@/components/calculators/SensitivityStrip";
 import { formatCurrency, formatPercent, formatYears } from "@/lib/format";
 
 /**
@@ -97,13 +98,16 @@ export function BaristaFireCalculator() {
           </p>
         </div>
 
+        <SensitivityStrip mode="barista" />
+
         <p className="text-xs leading-relaxed text-zinc-500">
           Formula:{" "}
           <span className="font-mono text-zinc-400">
             barista = max(0, expenses − work income) ÷ withdrawal rate
           </span>
           . Healthcare, taxes, and job reliability are not modeled. Educational
-          only.
+          only. Compare with Coast if your question is stopping contributions,
+          not partial work income.
         </p>
       </CardContent>
     </Card>

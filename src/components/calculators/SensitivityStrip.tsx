@@ -2,6 +2,7 @@
 
 import { usePlanner } from "@/components/planner/PlannerProvider";
 import {
+  calculateBaristaFire,
   calculateCoastFire,
   calculateFireNumber,
   calculateYearsToFire,
@@ -11,8 +12,9 @@ import { cn } from "@/lib/utils";
 
 const SWR_PRESETS = [0.03, 0.035, 0.04, 0.045] as const;
 const RETURN_PRESETS = [0.03, 0.04, 0.05, 0.06] as const;
+const WORK_INCOME_PRESETS = [0, 15_000, 25_000, 40_000] as const;
 
-type Mode = "fire" | "years" | "coast";
+type Mode = "fire" | "years" | "coast" | "barista";
 
 /**
  * One-click sensitivity chips — educational ranges without hiding the main result.
@@ -113,6 +115,93 @@ export function SensitivityStrip({ mode }: { mode: Mode }) {
               </button>
             );
           })}
+        </div>
+      </div>
+    );
+  }
+
+  if (mode === "barista") {
+    return (
+      <div className="space-y-3">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/40 p-3 sm:p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+            Sensitivity — work income
+          </p>
+          <p className="mt-1 text-xs text-zinc-500">
+            Same spending ({formatCurrency(state.annualExpenses)}) at{" "}
+            {formatPercent(withdrawalRate)}. Tap to set part-time income.
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {WORK_INCOME_PRESETS.map((income) => {
+              const b = calculateBaristaFire({
+                annualExpenses: state.annualExpenses,
+                partTimeIncome: income,
+                withdrawalRate,
+                currentPortfolio: state.currentPortfolio,
+                annualContribution: state.annualContribution,
+                annualReturn: realReturn,
+              });
+              const active = Math.abs(state.partTimeIncome - income) < 0.5;
+              return (
+                <button
+                  key={income}
+                  type="button"
+                  onClick={() => setField("partTimeIncome", income)}
+                  className={cn(
+                    "rounded-xl px-2 py-2.5 text-left ring-1 transition",
+                    active
+                      ? "bg-orange-500/15 ring-orange-500/40"
+                      : "bg-zinc-900/80 ring-zinc-800 hover:ring-zinc-600",
+                  )}
+                >
+                  <p className="text-[11px] font-medium text-zinc-500">
+                    {income === 0 ? "No work $" : formatCurrency(income, { compact: true })}
+                  </p>
+                  <p className="mt-0.5 font-mono text-sm font-semibold tabular-nums text-zinc-100">
+                    {formatCurrency(b.baristaNumber, { compact: true })}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950/40 p-3 sm:p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+            Sensitivity — withdrawal rate
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {SWR_PRESETS.map((rate) => {
+              const b = calculateBaristaFire({
+                annualExpenses: state.annualExpenses,
+                partTimeIncome: state.partTimeIncome,
+                withdrawalRate: rate,
+                currentPortfolio: state.currentPortfolio,
+                annualContribution: state.annualContribution,
+                annualReturn: realReturn,
+              });
+              const active = Math.abs(withdrawalRate - rate) < 0.0005;
+              return (
+                <button
+                  key={rate}
+                  type="button"
+                  onClick={() => setField("withdrawalRatePct", rate * 100)}
+                  className={cn(
+                    "rounded-xl px-2 py-2.5 text-left ring-1 transition",
+                    active
+                      ? "bg-orange-500/15 ring-orange-500/40"
+                      : "bg-zinc-900/80 ring-zinc-800 hover:ring-zinc-600",
+                  )}
+                >
+                  <p className="text-[11px] font-medium text-zinc-500">
+                    {formatPercent(rate)}
+                  </p>
+                  <p className="mt-0.5 font-mono text-sm font-semibold tabular-nums text-zinc-100">
+                    {formatCurrency(b.baristaNumber, { compact: true })}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     );

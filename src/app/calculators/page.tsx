@@ -3,13 +3,13 @@ import Link from "next/link";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/calculators", {
-  title: "All FIRE Calculators",
+  title: "All FIRE Calculators — Coast, Barista, Number & Years",
   description:
-    "Free FIRE Number, Years to FIRE, Coast FIRE, Barista FIRE, and savings-rate tools — evidence-based retirement calculators with published methodology.",
+    "Free Coast FIRE, Barista FIRE, FIRE number, and years-to-FI calculators with sequence stress tests, age tables, scenario compare, and published methodology.",
   openGraph: {
     title: "All FIRE Calculators · RetireFire",
     description:
-      "FIRE Number, Years to FIRE, Coast FIRE, Barista FIRE — free and transparent.",
+      "Coast, Barista, FIRE number, years — free stress tests and transparent math.",
   },
 });
 
@@ -17,22 +17,27 @@ const TOOLS = [
   {
     href: "/calculators/fire-number",
     title: "FIRE Number",
-    body: "How large a portfolio you need for Lean, Regular, or Fat FIRE.",
+    body: "How large a portfolio you need for Lean, Regular, or Fat FIRE — with SWR sensitivity.",
   },
   {
     href: "/calculators/years-to-fire",
     title: "Years to FIRE",
-    body: "Timeline to financial independence with a growth chart.",
+    body: "Timeline to FI with growth chart and free sequence stress test.",
   },
   {
     href: "/calculators/coast-fire",
     title: "Coast FIRE",
-    body: "When you can stop saving and let compound growth finish.",
+    body: "Coast number, age table, sensitivity, and free sequence stress test.",
   },
   {
     href: "/calculators/barista-fire",
     title: "Barista FIRE",
-    body: "Semi-retirement: part-time income + a smaller nest egg.",
+    body: "Semi-retirement: part-time income + smaller nest egg, with income sensitivity.",
+  },
+  {
+    href: "/#scenario-compare",
+    title: "Scenario A/B compare",
+    body: "Pin a baseline and compare FIRE, years, Coast, and Barista side by side.",
   },
   {
     href: "/#savings-rate",

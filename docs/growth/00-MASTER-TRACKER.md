@@ -49,8 +49,8 @@
 | Task | Status |
 |------|--------|
 | 3.1 Backlink / outreach | `[~]` | 30-day list + pitch templates in `13-outreach-30day.md` |
-| 3.2 Email list + lead magnets | `[~]` | Coast checklist live free (no email gate yet) |
-| 3.3 Technical SEO scale | `[ ]` |
+| 3.2 Email list + lead magnets | `[~]` | Checklist + sequence guide live; welcome copy in `14-email-welcome-sequence.md` |
+| 3.3 Technical SEO scale | `[~]` | Audit in `15-technical-seo-audit.md`; resources hub + internal links improved |
 
 ---
 

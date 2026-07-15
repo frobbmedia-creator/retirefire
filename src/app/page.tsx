@@ -140,7 +140,14 @@ export default function HomePage() {
               >
                 Approach &amp; roadmap
               </Link>
-              . Guides:{" "}
+              . Free guides:{" "}
+              <Link
+                href="/resources"
+                className="font-medium text-emerald-400 underline-offset-2 hover:underline"
+              >
+                Resources
+              </Link>
+              . Blog:{" "}
               <Link
                 href="/blog"
                 className="font-medium text-emerald-400 underline-offset-2 hover:underline"

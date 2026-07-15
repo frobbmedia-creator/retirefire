@@ -29,6 +29,38 @@ const TAG_CALCULATOR: Record<string, { href: string; label: string }> = {
     href: "/calculators/years-to-fire",
     label: "Years to FIRE calculator",
   },
+  "sequence-risk": {
+    href: "/calculators/coast-fire",
+    label: "Coast FIRE + free stress test",
+  },
+  "stress-test": {
+    href: "/resources/sequence-risk-guide",
+    label: "Sequence risk guide",
+  },
+  tables: {
+    href: "/calculators/coast-fire",
+    label: "Coast FIRE age table",
+  },
+  linkable: {
+    href: "/calculators/coast-fire",
+    label: "Coast FIRE calculator",
+  },
+  methodology: {
+    href: "/methodology",
+    label: "Methodology",
+  },
+  comparison: {
+    href: "/#scenario-compare",
+    label: "Scenario A/B compare",
+  },
+  "semi-retirement": {
+    href: "/calculators/barista-fire",
+    label: "Barista FIRE calculator",
+  },
+  "2026": {
+    href: "/calculators/fire-number",
+    label: "FIRE Number calculator",
+  },
   swr: {
     href: "/calculators/fire-number",
     label: "FIRE Number calculator",
@@ -154,6 +186,32 @@ export default async function BlogPostPage({ params }: Props) {
               Open {relatedCalc.label} →
             </Link>
           </p>
+          <ul className="mt-4 flex flex-wrap gap-2 text-xs">
+            <li>
+              <Link
+                href="/resources/coast-fire-checklist"
+                className="rounded-full bg-zinc-950/50 px-2.5 py-1 text-zinc-400 ring-1 ring-zinc-800 hover:text-emerald-400"
+              >
+                Coast checklist
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/resources/sequence-risk-guide"
+                className="rounded-full bg-zinc-950/50 px-2.5 py-1 text-zinc-400 ring-1 ring-zinc-800 hover:text-emerald-400"
+              >
+                Sequence risk guide
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/#scenario-compare"
+                className="rounded-full bg-zinc-950/50 px-2.5 py-1 text-zinc-400 ring-1 ring-zinc-800 hover:text-emerald-400"
+              >
+                Compare A/B
+              </Link>
+            </li>
+          </ul>
         </div>
         <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 text-sm text-zinc-400">
           <p>
@@ -163,12 +221,30 @@ export default async function BlogPostPage({ params }: Props) {
             </Link>
             .
           </p>
-          <p className="mt-3">
+          <p className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
             <Link
               href="/methodology"
               className="font-medium text-emerald-400 hover:underline"
             >
-              Read methodology →
+              Methodology
+            </Link>
+            <Link
+              href="/approach"
+              className="font-medium text-emerald-400 hover:underline"
+            >
+              Approach
+            </Link>
+            <Link
+              href="/resources"
+              className="font-medium text-emerald-400 hover:underline"
+            >
+              All resources
+            </Link>
+            <Link
+              href="/blog"
+              className="font-medium text-emerald-400 hover:underline"
+            >
+              More guides
             </Link>
           </p>
         </div>
