@@ -258,20 +258,12 @@ export default function MethodologyPage() {
             <li>Investment fees and advisory costs</li>
             <li>Social Security, pensions, and annuities</li>
             <li>Healthcare and ACA subsidy cliffs</li>
-            <li>
-              Sequence-of-returns risk and Monte Carlo paths (stress-test MVP
-              on the roadmap — see{" "}
-              <Link href="/approach" className="text-emerald-400 hover:underline">
-                Approach
-              </Link>
-              )
-            </li>
+            <li>Taxes on withdrawals, account types, and rebalancing rules inside stress tests</li>
+            <li>Historical cycle backtesting (cFIREsim-style overlapping periods)</li>
             <li>Inflation shocks, currency risk, and home equity strategies</li>
           </ul>
           <p className="mt-3 text-zinc-400">
-            Omitting these keeps the tools understandable. Adding them later
-            will always ship with the same transparency standard. Product
-            philosophy and free-core commitments live on the{" "}
+            Product philosophy and free-core commitments live on the{" "}
             <Link href="/approach" className="text-emerald-400 hover:underline">
               Approach, Limitations &amp; Roadmap
             </Link>{" "}
@@ -280,7 +272,62 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-zinc-50">10. Further reading</h2>
+          <h2 className="text-xl font-semibold text-zinc-50">
+            10. Monte Carlo stress test (illustrative)
+          </h2>
+          <p className="mt-3 text-zinc-400">
+            Coast FIRE and Years to FIRE include an optional{" "}
+            <strong className="text-zinc-200">sequence-of-returns stress test</strong>.
+            It does <em>not</em> replace the deterministic formulas above. It
+            samples many random return paths so you can see a range of terminal
+            outcomes under a transparent toy model.
+          </p>
+          <pre className="mt-4 overflow-x-auto rounded-xl bg-zinc-900 p-4 font-mono text-sm text-emerald-300 ring-1 ring-zinc-800">
+            Each year:{"\n"}
+            {"  "}Z ~ Normal(0, 1){"\n"}
+            {"  "}r = max(−0.95, mean_return + σ · Z){"\n"}
+            {"  "}wealth = wealth × (1 + r) + contribution{"\n"}
+            {"\n"}
+            Success = terminal wealth ≥ target{"\n"}
+            Free tier: 1,000 paths · fixed σ presets · seed 42
+          </pre>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-zinc-400">
+            <li>
+              <strong className="text-zinc-200">Mean return</strong> comes from
+              shared assumptions (same real return as the main calculators).
+            </li>
+            <li>
+              <strong className="text-zinc-200">Volatility σ</strong> is an
+              illustrative annual standard deviation (12% / 15% / 18% presets) —
+              not a fitted estimate of your portfolio.
+            </li>
+            <li>
+              <strong className="text-zinc-200">Independence</strong>: year shocks
+              are i.i.d. There is no autocorrelation, regime switching, or crash
+              clustering in the free model.
+            </li>
+            <li>
+              <strong className="text-zinc-200">Not historical backtesting</strong>:
+              this is not overlapping historical market sequences. Those tools
+              answer a related but different question.
+            </li>
+            <li>
+              Reported statistics (success rate, p10 / p50 / p90, sample paths)
+              are educational ranges — not probabilities of your life outcomes.
+            </li>
+          </ul>
+          <p className="mt-3 text-zinc-400">
+            Coast stress tests use{" "}
+            <strong className="text-zinc-200">zero contributions</strong> over
+            the coast horizon and compare terminal wealth to full FIRE. Years
+            stress tests keep your annual contributions and compare to the FIRE
+            number over the modeled years-to-FIRE horizon (or a fallback horizon
+            if unreachable).
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-zinc-50">11. Further reading</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-zinc-400">
             <li>
               Bengen (1994) and Trinity Study papers (library / journal access)

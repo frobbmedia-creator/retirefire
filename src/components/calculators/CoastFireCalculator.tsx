@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { usePlanner } from "@/components/planner/PlannerProvider";
+import { StressTestPanel } from "@/components/calculators/StressTestPanel";
 import { formatCurrency, formatPercent, formatYears } from "@/lib/format";
 
 export function CoastFireCalculator() {
@@ -145,6 +146,22 @@ export function CoastFireCalculator() {
           . Coast FIRE means you could stop <em>saving</em> — not that early
           retirement is funded yet. Educational only.
         </p>
+
+        <StressTestPanel
+          tool="coast"
+          startPortfolio={state.currentPortfolio}
+          annualContribution={0}
+          meanReturn={realReturn}
+          years={ageValid ? coast.yearsToRetirement : 0}
+          target={fire.fireNumber}
+          targetLabel="Full FIRE"
+          enabled={ageValid && coast.yearsToRetirement > 0}
+          disabledReason={
+            !ageValid
+              ? "Set retirement age above current age to stress-test the coast horizon."
+              : "Horizon must be at least one year."
+          }
+        />
       </CardContent>
     </Card>
   );

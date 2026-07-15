@@ -11,6 +11,204 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "why-simple-fire-calculators-fail",
+    title: "Why most simple FIRE calculators fail long-term planners",
+    description:
+      "Constant returns, missing sequence risk, taxes, and lifestyle — what simple FIRE math gets right, what it quietly omits, and how to use tools without false confidence.",
+    date: "2026-07-16",
+    readingMinutes: 11,
+    tags: ["basics", "sequence-risk", "methodology"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Simple FIRE calculators are not scams. Most of them implement clear formulas: spending ÷ withdrawal rate, compound growth with constant contributions, a Coast discount, a Barista gap. The failure mode is subtler: long-term planners treat a single smooth path as a plan, then discover markets, taxes, and life do not follow the chart.",
+      },
+      {
+        type: "h2",
+        content: "What simple calculators get right",
+      },
+      {
+        type: "ul",
+        content: [
+          "They force you to name spending, savings, and a withdrawal rate.",
+          "They show leverage: savings rate often moves the timeline more than optimistic return assumptions.",
+          "They make Coast vs full FIRE vs Barista distinctions computable.",
+          "When formulas are published, you can audit the math in minutes.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Failure mode 1: constant returns as destiny",
+      },
+      {
+        type: "p",
+        content:
+          "A 5% real return every year is an illustration, not a forecast. Two sequences with the same average return can leave very different portfolios — especially if you withdraw, but also if you stop contributing after “hitting Coast” with no cushion. Sequence of returns is the order problem: bad years early hurt more when cash flows are fragile.",
+      },
+      {
+        type: "h2",
+        content: "Failure mode 2: one withdrawal rate forever",
+      },
+      {
+        type: "p",
+        content:
+          "The 4% starting point is research history, not a warranty. Early retirement horizons (40–50+ years), high equity concentration, inflexible spending, and concentrated human-capital risk all argue for stress-testing lower rates (3–3.5%) or flexible spending rules. A calculator that only highlights 4% invites overconfidence.",
+      },
+      {
+        type: "h2",
+        content: "Failure mode 3: taxes, fees, and account plumbing",
+      },
+      {
+        type: "ul",
+        content: [
+          "Effective withdrawal rates after tax differ from pre-tax spreadsheet rates.",
+          "Fees compound against you silently.",
+          "401(k)/IRA/taxable withdrawal order changes longevity in ways a single “portfolio” box cannot see.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Failure mode 4: lifestyle and optionality",
+      },
+      {
+        type: "p",
+        content:
+          "Healthcare cliffs, housing, kids, career shocks, and lifestyle creep can dominate the gap between a pretty chart and a durable plan. Semi-retirement income is rarely a flat annuity. Coast FIRE is not early retirement. If the tool’s copy does not say that, the user often invents a friendlier story.",
+      },
+      {
+        type: "h2",
+        content: "How to use simple tools without lying to yourself",
+      },
+      {
+        type: "ul",
+        content: [
+          "Run ranges: lower r, lower SWR, higher spending.",
+          "Prefer surplus cushions over exact “I hit the number today” narratives.",
+          "Separate emergency funds and healthcare from the FIRE multiple.",
+          "Use a sequence stress test (even a simple Monte Carlo) to see dispersion — not to claim a true probability of life success.",
+          "Read what the model omits before you change jobs or savings rate.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "How RetireFire is designed around this",
+      },
+      {
+        type: "p",
+        content:
+          "We keep deterministic calculators primary and transparent. Shared assumptions sync across FIRE number, years, Coast, and Barista. Share links and CSV export keep scenarios honest offline. Coast and Years include a free basic stress test (1,000 paths, fixed volatility presets) with success rate and percentile terminals — labeled as educational, not prophecy. Methodology and Approach pages list formulas and limits in plain language.",
+      },
+      {
+        type: "p",
+        content:
+          "Educational only — not financial advice. Tools inform judgment; they do not replace it. See the disclaimer.",
+      },
+    ],
+  },
+  {
+    slug: "realistic-fire-numbers-2026",
+    title: "Realistic FIRE numbers in 2026 (with stress-test context)",
+    description:
+      "Worked FIRE, Coast, and Barista numbers for common spending levels in 2026 — plus how lower SWR and sequence stress tests change the story.",
+    date: "2026-07-16",
+    readingMinutes: 12,
+    tags: ["fire-number", "coast-fire", "2026"],
+    body: [
+      {
+        type: "p",
+        content:
+          "“What’s a realistic FIRE number in 2026?” is really three questions: how much do you spend, what withdrawal rate are you willing to plan with, and how much path risk can you tolerate? Below are transparent worked examples — not benchmarks you must match, and not advice.",
+      },
+      {
+        type: "h2",
+        content: "Full FIRE at common spending levels (4% and 3.5%)",
+      },
+      {
+        type: "ul",
+        content: [
+          "$40k spend → $1.0M at 4% · ~$1.14M at 3.5%",
+          "$60k spend → $1.5M at 4% · ~$1.71M at 3.5%",
+          "$80k spend → $2.0M at 4% · ~$2.29M at 3.5%",
+          "$100k spend → $2.5M at 4% · ~$2.86M at 3.5%",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "The jump from 4% to 3.5% is large in dollars because the multiplier moves from 25× to about 28.6×. Early retirees often explore that band precisely because horizons are long and sequence risk is less forgiving.",
+      },
+      {
+        type: "h2",
+        content: "Coast examples (age 35 → 65, 5% real)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Full FIRE $1.5M → coast ≈ $1.5M ÷ (1.05)^30 ≈ $347k",
+          "Full FIRE $2.0M → coast ≈ $463k",
+          "Same $1.5M target at 4% real → coast ≈ $462k (lower r raises today’s bar)",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Coast numbers look “small” next to full FIRE because they are not funding early retirement spending from the portfolio. They only ask whether growth may finish the nest egg by a traditional retirement age if contributions stop.",
+      },
+      {
+        type: "h2",
+        content: "Barista examples ($60k spend, 4% SWR)",
+      },
+      {
+        type: "ul",
+        content: [
+          "$0 work income → $1.5M (full FIRE)",
+          "$15k work income → gap $45k → $1.125M",
+          "$25k work income → gap $35k → $875k",
+          "$40k work income → gap $20k → $500k",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Barista math only helps if the work income is realistic after taxes, benefits cliffs, and dry spells. Semi-retirement is a cash-flow design, not a slogan.",
+      },
+      {
+        type: "h2",
+        content: "Add stress-test context",
+      },
+      {
+        type: "p",
+        content:
+          "A constant 5% real path to a $1.5M target can look tidy while a 1,000-path stress test with 15% volatility shows a wide band of terminal wealth. Success rate is the share of simulated paths that finish at or above target under the toy model — not the probability that your life works out. Use it to see whether you need more surplus, more savings years, or a lower lifestyle assumption.",
+      },
+      {
+        type: "h2",
+        content: "A 2026 planning checklist",
+      },
+      {
+        type: "ul",
+        content: [
+          "Write annual spending in today’s dollars (include healthcare realistically).",
+          "Compute FIRE at 3%, 3.5%, and 4%.",
+          "Compute Coast with 4% and 5% real over your true horizon.",
+          "If semi-retiring, stress work income at 50% of the hopeful number.",
+          "Run the free sequence stress test on Coast/Years and note p10 vs median.",
+          "Export CSV or share the URL so a partner sees the same assumptions.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Run the numbers",
+      },
+      {
+        type: "p",
+        content:
+          "Use the free FIRE Number, Years to FIRE, Coast FIRE, and Barista FIRE calculators on RetireFire with shared assumptions. Read Methodology for formulas and the stress-test model. Educational only — not advice.",
+      },
+    ],
+  },
+  {
     slug: "coast-fire-sequence-of-returns-risk",
     title: "Coast FIRE with sequence of returns risk",
     description:

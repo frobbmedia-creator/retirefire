@@ -12,6 +12,7 @@ Evidence-based FIRE (Financial Independence, Retire Early) calculators — clean
 - **Coast FIRE** — Nest egg that can grow alone to full FIRE by a chosen age
 - **Barista FIRE** — Semi-retirement: work income shrinks the target
 - **Savings-rate table** — Years to FI across savings rates
+- **Sequence stress test** — Free 1,000-path Monte Carlo on Coast & Years (educational)
 
 ### Product polish
 - **Shared assumptions** across every tool (one source of truth)

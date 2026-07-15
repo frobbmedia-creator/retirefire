@@ -37,9 +37,9 @@
 
 | Task | Status | Notes |
 |------|--------|-------|
-| 2.1 Monte Carlo stress-test MVP | `[ ]` | Spec in `04-monte-carlo-spec.md` — implement Week 3 |
-| 2.2 UX backlog (export, scenarios, Pro labels) | `[~]` | CSV export shipped; backlog prioritized |
-| 2.3 Content engine (8–12 pieces / 6 weeks) | `[~]` | Calendar ready; first pillars drafted |
+| 2.1 Monte Carlo stress-test MVP | `[x]` | Free 1k-path stress test on Coast + Years; methodology updated |
+| 2.2 UX backlog (export, scenarios, Pro labels) | `[~]` | CSV + Pro path teaser labels; scenarios still later |
+| 2.3 Content engine (8–12 pieces / 6 weeks) | `[~]` | 4 new pillars in posts.ts (+ prior posts) |
 | 2.4 Social amplification daily | `[ ]` | System designed; needs account ownership |
 
 ---

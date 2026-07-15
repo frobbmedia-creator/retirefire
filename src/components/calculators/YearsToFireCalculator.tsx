@@ -12,6 +12,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { GrowthChart } from "@/components/ui/chart";
 import { usePlanner } from "@/components/planner/PlannerProvider";
+import { StressTestPanel } from "@/components/calculators/StressTestPanel";
 import { buildProjectionSeries } from "@/lib/calculations";
 import { formatCurrency, formatPercent, formatYears } from "@/lib/format";
 
@@ -122,8 +123,27 @@ export function YearsToFireCalculator() {
 
         <p className="text-xs leading-relaxed text-zinc-500">
           End-of-year contributions and constant return. Markets are volatile;
-          sequence risk, fees, and taxes are not modeled. Educational only.
+          fees and taxes are not modeled. Use the stress test below for an
+          educational sequence-of-returns range. Educational only.
         </p>
+
+        <StressTestPanel
+          tool="years"
+          startPortfolio={state.currentPortfolio}
+          annualContribution={state.annualContribution}
+          meanReturn={realReturn}
+          years={
+            years.alreadyThere
+              ? 10
+              : years.years != null && !years.unreachable
+                ? Math.max(1, Math.ceil(years.years))
+                : 30
+          }
+          target={fire.fireNumber}
+          targetLabel="FIRE number"
+          enabled={fire.fireNumber > 0}
+          disabledReason="Set a positive FIRE target (spending and withdrawal rate) to run the stress test."
+        />
       </CardContent>
     </Card>
   );

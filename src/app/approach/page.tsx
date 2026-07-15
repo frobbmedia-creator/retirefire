@@ -96,8 +96,9 @@ export default function ApproachPage() {
             <li>Social Security, pensions, or annuities</li>
             <li>Healthcare premiums and subsidy cliffs</li>
             <li>
-              Sequence-of-returns risk and Monte Carlo paths (in progress —
-              see roadmap)
+              Historical market cycles, taxes inside simulations, and advanced
+              regimes (a free basic Monte Carlo stress test is available on
+              Coast and Years tools)
             </li>
             <li>Currency risk, home equity strategies, and behavioral spending</li>
           </ul>
@@ -125,25 +126,17 @@ export default function ApproachPage() {
                 <tr>
                   <td className="px-4 py-3">Now</td>
                   <td className="px-4 py-3 text-zinc-400">
-                    Deterministic suite, share URLs, CSV export, methodology
+                    Deterministic suite, share URLs, CSV export, methodology, and
+                    free basic sequence stress test (1,000 paths) on Coast &amp;
+                    Years
                   </td>
                   <td className="px-4 py-3 font-medium text-emerald-400">Free</td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-3">Near-term</td>
-                  <td className="px-4 py-3 text-zinc-400">
-                    Monte Carlo / sequence stress-test MVP (success bands,
-                    path samples)
-                  </td>
-                  <td className="px-4 py-3 font-medium text-emerald-400">
-                    Free basic
-                  </td>
-                </tr>
-                <tr>
                   <td className="px-4 py-3">Later</td>
                   <td className="px-4 py-3 text-zinc-400">
-                    More paths, regimes, saved scenarios, detailed reports,
-                    optional tax/SS modules
+                    More paths, regimes, historical cycles, saved scenarios,
+                    detailed reports, optional tax/SS modules
                   </td>
                   <td className="px-4 py-3 text-zinc-400">
                     Free core + optional Pro

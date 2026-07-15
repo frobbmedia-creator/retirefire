@@ -36,7 +36,7 @@ export const FAQ_ITEMS = [
   {
     question: "Do you model sequence-of-returns risk?",
     answer:
-      "The core calculators use constant-return illustrations. A transparent Monte Carlo / stress-test mode is on the roadmap so you can see success-rate ranges and bad-sequence outcomes. Until then, stress-test by lowering assumed returns and withdrawal rates. See Our Approach for the roadmap.",
+      "Core calculators still use constant-return illustrations. Coast FIRE and Years to FIRE also include a free basic stress test: 1,000 random return paths with fixed volatility, success rate, p10/p50/p90 terminals, and sample paths. It is educational — not a forecast or historical backtest. See Methodology for the model.",
   },
   {
     question: "Will the calculators stay free?",
