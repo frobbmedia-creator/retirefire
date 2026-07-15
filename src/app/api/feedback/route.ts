@@ -14,86 +14,78 @@ function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-function parseResendError(status: number, raw: string): string {
-  try {
-    const parsed = JSON.parse(raw) as {
-      message?: string;
-      name?: string;
-      error?: string;
-    };
-    const msg = parsed.message || parsed.error || raw;
-    if (
-      /only send testing emails|verify a domain|not authorized|from address/i.test(
-        msg,
-      )
-    ) {
-      return (
-        "Email provider rejected the send. With Resend’s free test sender, " +
-        "FEEDBACK_TO_EMAIL must be the same email as your Resend account, " +
-        "or verify retirefire.net and set FEEDBACK_FROM_EMAIL to an address on that domain."
-      );
-    }
-    if (/api key|unauthorized|invalid.*key/i.test(msg) || status === 401) {
-      return "Resend API key is invalid or revoked. Check RESEND_API_KEY in Vercel.";
-    }
-    return typeof msg === "string" && msg.length < 280
-      ? msg
-      : "Could not send feedback. Please try again.";
-  } catch {
-    if (status === 401 || status === 403) {
-      return "Email provider rejected the request (auth or recipient). Check Resend setup.";
-    }
-    return "Could not send feedback. Please try again.";
-  }
-}
-
-async function sendViaResend(opts: {
-  apiKey: string;
+/**
+ * FormSubmit — only needs FEEDBACK_TO_EMAIL (no API key, no domain verify).
+ * First submission sends an activation link to that inbox; after confirm, mail flows.
+ * https://formsubmit.co/ajax-documentation
+ */
+async function sendViaFormSubmit(opts: {
   to: string;
-  from: string;
   email: string;
   message: string;
 }): Promise<{ ok: true } | { ok: false; status: number; error: string }> {
-  const text = [
-    "New feedback from retirefire.net",
-    "",
-    `Email: ${opts.email || "(not provided)"}`,
-    `Time: ${new Date().toISOString()}`,
-    "",
-    "Message:",
-    opts.message,
-  ].join("\n");
+  const endpoint = `https://formsubmit.co/ajax/${encodeURIComponent(opts.to)}`;
 
-  const res = await fetch("https://api.resend.com/emails", {
+  const res = await fetch(endpoint, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${opts.apiKey}`,
       "Content-Type": "application/json",
+      Accept: "application/json",
     },
     body: JSON.stringify({
-      from: opts.from,
-      to: [opts.to],
-      ...(opts.email ? { reply_to: opts.email } : {}),
-      subject: opts.email
+      name: "RetireFire visitor",
+      email: opts.email || "noreply@retirefire.net",
+      _replyto: opts.email || opts.to,
+      _subject: opts.email
         ? `RetireFire feedback from ${opts.email}`
         : "RetireFire feedback",
-      text,
+      _template: "table",
+      _captcha: "false",
+      message: opts.message,
+      source: "retirefire.net",
+      submitted_at: new Date().toISOString(),
     }),
   });
 
+  const raw = await res.text().catch(() => "");
+  let data: { success?: string | boolean; message?: string } = {};
+  try {
+    data = JSON.parse(raw) as typeof data;
+  } catch {
+    /* non-JSON */
+  }
+
   if (!res.ok) {
-    const detail = await res.text().catch(() => "");
-    console.error("Resend error", res.status, detail);
+    console.error("FormSubmit error", res.status, raw.slice(0, 500));
+    // Common first-time / blocked cases
+    if (/activate|confirm|check your email/i.test(raw)) {
+      return {
+        ok: false,
+        status: 502,
+        error:
+          "Check the FEEDBACK_TO_EMAIL inbox for a FormSubmit activation link, then try again.",
+      };
+    }
     return {
       ok: false,
       status: 502,
-      error: parseResendError(res.status, detail),
+      error: data.message || "Could not send feedback. Please try again.",
     };
   }
+
+  // FormSubmit returns 200 with success: false in some cases
+  if (data.success === false || data.success === "false") {
+    console.error("FormSubmit rejected", data);
+    return {
+      ok: false,
+      status: 502,
+      error: data.message || "Could not send feedback. Please try again.",
+    };
+  }
+
   return { ok: true };
 }
 
-/** Web3Forms — no domain verify; emails whatever address you set on their dashboard. */
 async function sendViaWeb3Forms(opts: {
   accessKey: string;
   email: string;
@@ -110,7 +102,6 @@ async function sendViaWeb3Forms(opts: {
       from_name: "RetireFire",
       email: opts.email || "anonymous@retirefire.net",
       message: opts.message,
-      // Reply path when visitor left an email
       ...(opts.email ? { replyto: opts.email } : {}),
     }),
   });
@@ -139,7 +130,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  // Bots fill hidden fields
   if (body.website) {
     return NextResponse.json({ ok: true });
   }
@@ -160,13 +150,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "That email looks invalid." }, { status: 400 });
   }
 
-  const resendKey = process.env.RESEND_API_KEY;
-  const to = process.env.FEEDBACK_TO_EMAIL;
-  const from =
-    process.env.FEEDBACK_FROM_EMAIL ?? "RetireFire <onboarding@resend.dev>";
-  const web3Key = process.env.WEB3FORMS_ACCESS_KEY;
+  const to = (process.env.FEEDBACK_TO_EMAIL ?? "").trim();
+  const web3Key = (process.env.WEB3FORMS_ACCESS_KEY ?? "").trim();
 
-  // Prefer Web3Forms when configured (simpler; no domain verification)
+  // Prefer Web3Forms when explicitly configured
   if (web3Key) {
     const result = await sendViaWeb3Forms({
       accessKey: web3Key,
@@ -182,14 +169,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  if (resendKey && to) {
-    const result = await sendViaResend({
-      apiKey: resendKey,
-      to,
-      from,
-      email,
-      message,
-    });
+  // Default: FormSubmit with FEEDBACK_TO_EMAIL only (no Resend domain/API limits)
+  if (to && isValidEmail(to)) {
+    const result = await sendViaFormSubmit({ to, email, message });
     if (!result.ok) {
       return NextResponse.json(
         { error: result.error },
@@ -200,12 +182,12 @@ export async function POST(request: Request) {
   }
 
   console.error(
-    "Feedback API missing WEB3FORMS_ACCESS_KEY, or RESEND_API_KEY + FEEDBACK_TO_EMAIL",
+    "Feedback API missing FEEDBACK_TO_EMAIL (valid email) or WEB3FORMS_ACCESS_KEY",
   );
   return NextResponse.json(
     {
       error:
-        "Feedback is not configured yet. Add WEB3FORMS_ACCESS_KEY (easiest) or RESEND_API_KEY + FEEDBACK_TO_EMAIL in Vercel.",
+        "Feedback is not configured. Set FEEDBACK_TO_EMAIL in Vercel to a real inbox, then redeploy.",
     },
     { status: 503 },
   );

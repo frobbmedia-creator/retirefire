@@ -28,17 +28,17 @@ git push -u origin main
 4. Output: default (no override)
 5. **Environment variables** (optional for core site; required for feedback).
 
-   **Easiest (recommended):** [Web3Forms](https://web3forms.com) — free, no domain verify.
-   - Create an access key (enter the inbox you want feedback in)
-   - Add `WEB3FORMS_ACCESS_KEY` = that key (Production)
+   **Default (simple):** only one var:
+   - `FEEDBACK_TO_EMAIL` — inbox that should receive feedback (must be a real email)
 
-   **Or Resend:**
-   - `RESEND_API_KEY` — from [resend.com](https://resend.com)
-   - `FEEDBACK_TO_EMAIL` — must be **the same email as your Resend account** while using the free test sender
-   - `FEEDBACK_FROM_EMAIL` — optional; defaults to `RetireFire <onboarding@resend.dev>`  
-     Custom from-addresses only work after you verify a domain in Resend.
+   Delivery uses [FormSubmit](https://formsubmit.co). The **first** submission emails that
+   address an activation link — open it once, then feedback flows normally.
+   `RESEND_API_KEY` is no longer required for feedback.
 
-   If both are set, **Web3Forms is used**. Redeploy after changing env vars (new deploy, not prebuilt redeploy).
+   **Optional:** `WEB3FORMS_ACCESS_KEY` from [web3forms.com](https://web3forms.com) —
+   if set, Web3Forms is used instead of FormSubmit.
+
+   After changing env vars, create a **new deploy** (not a prebuilt redeploy).
 6. Deploy
 
 ## 3. Attach retirefire.net
