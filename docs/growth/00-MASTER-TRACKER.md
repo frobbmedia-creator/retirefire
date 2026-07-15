@@ -40,7 +40,7 @@
 | 2.1 Monte Carlo stress-test MVP | `[x]` | Free 1k-path stress test on Coast + Years; methodology updated |
 | 2.2 UX backlog (export, scenarios, Pro labels) | `[x]` | A/B compare + educational Pro teaser strips; saved accounts still later |
 | 2.3 Content engine (8–12 pieces / 6 weeks) | `[x]` | 14+ pillars; W1–6 calendar complete; human methodology + semi-retirement math |
-| 2.4 Social amplification daily | `[ ]` | System designed; needs account ownership |
+| 2.4 Social amplification daily | `[~]` | Foundation + stress launch + content-wave batches ready; needs account ownership |
 
 ---
 
@@ -48,7 +48,7 @@
 
 | Task | Status |
 |------|--------|
-| 3.1 Backlink / outreach | `[~]` | 30-day list + pitch templates in `13-outreach-30day.md` |
+| 3.1 Backlink / outreach | `[~]` | 30-day list + wave-2 pitches (`13`, `17`); send after deploy |
 | 3.2 Email list + lead magnets | `[~]` | Checklist + sequence guide + print/PDF; welcome copy drafted; capture wiring later |
 | 3.3 Technical SEO scale | `[~]` | Breadcrumbs on resources, blog, approach, methodology, disclaimer; hub internal links |
 
@@ -98,4 +98,11 @@
 | `09-weekly-metrics-template.md` | Monday report template |
 | `10-lead-magnets-email.md` | Phase 3 prep (drafted early) |
 | `11-freemium-pricing-draft.md` | Phase 4 design (needs approval) |
+| `12-stress-test-social-launch.md` | Stress-test launch social batch |
+| `13-outreach-30day.md` | Outreach targets + base pitches |
+| `14-email-welcome-sequence.md` | Welcome email copy (pre-capture) |
+| `15-technical-seo-audit.md` | Technical SEO checklist |
+| `16-social-batch-content-wave.md` | Social posts for new pillars |
+| `17-outreach-pitch-wave2.md` | Personalized pitch pack wave 2 |
+| `docs/reports/` | Weekly Monday metrics |
 | `EXECUTION-SPEC-v1.md` | Full handoff spec snapshot |

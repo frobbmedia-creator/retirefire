@@ -33,7 +33,7 @@ Building transparent FIRE calculators at retirefire.net | Coast FIRE, Barista FI
 ```
 RetireFire makes free, evidence-based FIRE calculators — FIRE number, years to FI, Coast FIRE, and Barista FIRE — with published formulas and conservative defaults.
 
-We care about the assumptions behind the number: withdrawal rates, real returns, and (soon) sequence-of-returns stress tests. Educational tools only — not financial advice.
+We care about the assumptions behind the number: withdrawal rates, real returns, and free sequence-of-returns stress tests (1,000-path educational Monte Carlo on Coast & Years). Educational tools only — not financial advice.
 
 If you plan early retirement or semi-retirement, run the numbers with your own inputs: https://retirefire.net
 ```
@@ -159,7 +159,8 @@ We publish:
 • Years-to-FI closed form
 • Coast discount formula
 • Barista gap formula
-• What’s deliberately omitted (taxes, MC — for now)
+• Free basic Monte Carlo stress test (documented)
+• What’s deliberately omitted (taxes, full historical engines, …)
 
 retirefire.net/methodology
 ```
@@ -193,7 +194,8 @@ A constant 5% real return is an illustration.
 
 Two paths with the *same average* return can end in very different places if bad years hit early while you’re withdrawing — or even while “coasting” with a fragile plan.
 
-We’re building a transparent stress-test mode for this. Core calculators stay free.
+Free sequence stress test (1,000 paths) on Coast & Years — educational ranges, not a forecast. Core calculators stay free.
+retirefire.net/calculators/coast-fire
 ```
 
 ### Post 9 — Age table hook
@@ -270,3 +272,9 @@ Dark zinc background, emerald accent, clean sans-serif typography, minimal finan
 - [ ] Optional Instagram  
 - [ ] Consistent avatar: flame/mark from site (export from `/public`)  
 - [ ] Buffer or native scheduling (engagement still manual)
+
+## Newer ready-to-publish batches
+
+- Stress-test launch: `12-stress-test-social-launch.md`
+- Content wave (stop-saving, levers, Lean/Fat, healthcare, print checklist): `16-social-batch-content-wave.md`
+- Outreach pitch pack wave 2: `17-outreach-pitch-wave2.md`

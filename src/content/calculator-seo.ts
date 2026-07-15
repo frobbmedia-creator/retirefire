@@ -64,8 +64,16 @@ export const CALCULATOR_SEO: Record<
         label: "3% vs 3.5% vs 4% SWR",
       },
       {
+        href: "/blog/lean-regular-fat-fire-numbers-2026",
+        label: "Lean / Regular / Fat FIRE 2026",
+      },
+      {
         href: "/blog/realistic-fire-numbers-2026",
         label: "Realistic FIRE numbers 2026",
+      },
+      {
+        href: "/blog/retirefire-methodology-explained",
+        label: "Methodology (human tour)",
       },
       { href: "/methodology", label: "Methodology" },
     ],
@@ -78,12 +86,22 @@ export const CALCULATOR_SEO: Record<
       {
         question: "Is the 4% rule safe for early retirement?",
         answer:
-          "The 4% starting point comes from historical U.S. research on multi-decade retirements. It is not a guarantee, especially for 40–50+ year early-retirement horizons. Many planners prefer 3–3.5% for longer plans.",
+          "The 4% starting point comes from historical U.S. research on multi-decade retirements. It is not a guarantee, especially for 40–50+ year early-retirement horizons. Many planners prefer 3–3.5% for longer plans. Pair this calculator with the SWR deep-dive guide.",
       },
       {
         question: "What is Lean, Regular, and Fat FIRE?",
         answer:
-          "They are informal spending labels, not academic categories. Lean targets a frugal budget, Regular a middle-class lifestyle, and Fat higher discretionary spending. Always substitute your real expenses.",
+          "They are informal spending labels, not academic categories. RetireFire’s example presets use about $40k / $60k / $100k annual spending — always substitute your real expenses, including healthcare.",
+      },
+      {
+        question: "Does the FIRE number include taxes and fees?",
+        answer:
+          "No. This is a pre-tax planning illustration. Effective after-tax spending needs, investment fees, and account types can require a larger portfolio than the simple formula suggests.",
+      },
+      {
+        question: "How should I stress-test my FIRE number?",
+        answer:
+          "Re-run at lower withdrawal rates and higher spending, compare Lean/Regular/Fat lifestyle bands, then use Years and Coast tools under the same shared assumptions. Sequence stress tests on Coast/Years show accumulation path ranges — not a full withdrawal backtest.",
       },
     ],
   },
@@ -126,6 +144,10 @@ export const CALCULATOR_SEO: Record<
         label: "How many years until FIRE?",
       },
       {
+        href: "/blog/years-to-fire-which-lever-moves-the-needle",
+        label: "Which lever moves years to FIRE?",
+      },
+      {
         href: "/blog/why-simple-fire-calculators-fail",
         label: "Why simple FIRE calculators fail",
       },
@@ -146,6 +168,16 @@ export const CALCULATOR_SEO: Record<
         question: "Why does a higher savings rate help so much?",
         answer:
           "You add more capital each year and you often reduce the FIRE target if spending falls. Both effects compound: more fuel and a shorter distance to the finish line.",
+      },
+      {
+        question: "Which lever moves the timeline most?",
+        answer:
+          "For most mid-journey planners, spending and savings dominate; withdrawal-rate choice moves the finish line; assumed return is powerful but least controllable. Use Scenario compare to change one lever at a time.",
+      },
+      {
+        question: "Does Years to FIRE include a stress test?",
+        answer:
+          "Yes. Besides the constant-return timeline, a free basic Monte Carlo (1,000 paths) estimates path dispersion around the target while contributions continue. It is educational, not a calendar guarantee.",
       },
     ],
   },
@@ -204,6 +236,14 @@ export const CALCULATOR_SEO: Record<
         href: "/blog/coast-fire-number-formula-examples",
         label: "Coast FIRE formula + examples",
       },
+      {
+        href: "/blog/how-to-stress-test-coast-fire-number",
+        label: "How to stress-test your Coast number",
+      },
+      {
+        href: "/blog/when-can-you-stop-saving-for-retirement",
+        label: "When can you stop saving?",
+      },
       { href: "/methodology", label: "Methodology" },
     ],
     faq: [
@@ -225,7 +265,17 @@ export const CALCULATOR_SEO: Record<
       {
         question: "Do you include a sequence-of-returns stress test?",
         answer:
-          "Yes — a free basic Monte Carlo stress test (1,000 paths) is available on the Coast FIRE calculator. It is educational, not a forecast or historical backtest. See Methodology for the model.",
+          "Yes — a free basic Monte Carlo stress test (1,000 paths) is available on the Coast FIRE calculator. It is educational, not a forecast or historical backtest. See Methodology and the how-to stress-test guide.",
+      },
+      {
+        question: "When can I stop saving for retirement?",
+        answer:
+          "Under Coast math, when portfolio ≥ coast number and life gates pass (healthcare, emergency fund, partner alignment, stress cases). Prefer keeping a savings floor and re-running after major life changes. Use the free Coast checklist.",
+      },
+      {
+        question: "Why does a lower assumed return raise my coast number?",
+        answer:
+          "Coast discounts full FIRE over n years at rate r. Lower r means less expected compounding, so you need more capital today for the same future target. Stress-test 4% real if your base case is 5%.",
       },
     ],
   },
@@ -268,6 +318,14 @@ export const CALCULATOR_SEO: Record<
         label: "Barista FIRE vs Coast FIRE",
       },
       {
+        href: "/blog/semi-retirement-math-portfolio-part-time-income",
+        label: "Semi-retirement math deep dive",
+      },
+      {
+        href: "/blog/barista-fire-healthcare-benefits-cliffs",
+        label: "Healthcare & benefits cliffs",
+      },
+      {
         href: "/blog/barista-fire-and-semi-retirement",
         label: "Barista FIRE and semi-retirement",
       },
@@ -282,7 +340,7 @@ export const CALCULATOR_SEO: Record<
       {
         question: "How do you calculate a Barista FIRE number?",
         answer:
-          "Subtract expected annual work income from annual spending, then divide the remaining gap by your withdrawal rate. At 4%, that is gap expenses × 25.",
+          "Subtract expected annual work income from annual spending, then divide the remaining gap by your withdrawal rate. At 4%, that is gap expenses × 25. Every durable $10k of work income reduces the 4% target by about $250k.",
       },
       {
         question: "Is Barista FIRE the same as Coast FIRE?",
@@ -292,7 +350,17 @@ export const CALCULATOR_SEO: Record<
       {
         question: "What should I watch out for with semi-retirement?",
         answer:
-          "Income volatility, healthcare and benefits cliffs, taxes on side work, and lifestyle inflation. Stress-test lower income and higher spending than your base case.",
+          "Income volatility, healthcare and benefits cliffs, taxes on side work, and lifestyle inflation. Stress-test lower income and higher spending than your base case. See the healthcare cliffs educational guide.",
+      },
+      {
+        question: "Should healthcare premiums go in spending or income?",
+        answer:
+          "Usually put realistic premiums and out-of-pocket costs in annual spending, and put cash wages in work income. That keeps the gap honest when benefits change.",
+      },
+      {
+        question: "Can Barista FIRE be more expensive than full FIRE?",
+        answer:
+          "The portfolio target is usually smaller, but total life cost can rise if coverage becomes expensive or work income is unreliable. Compare full FIRE, Coast, and Barista under the same assumptions before cutting hours.",
       },
     ],
   },
