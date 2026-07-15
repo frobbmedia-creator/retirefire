@@ -1,4 +1,6 @@
 import { SITE } from "@/lib/constants";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqPageJsonLd } from "@/lib/seo";
 
 export const FAQ_ITEMS = [
   {
@@ -63,23 +65,5 @@ export function FaqSection() {
 
 /** JSON-LD for FAQPage rich results */
 export function FaqJsonLd() {
-  const data = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  );
+  return <JsonLd data={faqPageJsonLd(FAQ_ITEMS)} />;
 }

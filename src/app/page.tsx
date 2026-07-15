@@ -4,7 +4,25 @@ import { TrustStrip } from "@/components/home/TrustStrip";
 import { FaqSection, FaqJsonLd } from "@/components/home/FaqSection";
 import { PlannerShell } from "@/components/planner/PlannerShell";
 import { CalculatorHub } from "@/components/calculators/CalculatorHub";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE } from "@/lib/constants";
+import {
+  pageMeta,
+  webApplicationJsonLd,
+  websiteJsonLd,
+} from "@/lib/seo";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = pageMeta("/", {
+  title: {
+    absolute: `${SITE.title} · ${SITE.name}`,
+  },
+  description: SITE.description,
+  openGraph: {
+    title: `${SITE.title} · ${SITE.name}`,
+    description: SITE.description,
+  },
+});
 
 const CALC_LINKS = [
   {
@@ -33,20 +51,13 @@ export default function HomePage() {
   return (
     <>
       <FaqJsonLd />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            name: SITE.name,
-            url: `https://${SITE.domain}`,
-            applicationCategory: "FinanceApplication",
-            operatingSystem: "Any",
-            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-            description: SITE.description,
-          }),
-        }}
+      <JsonLd data={websiteJsonLd()} />
+      <JsonLd
+        data={webApplicationJsonLd({
+          name: SITE.name,
+          description: SITE.description,
+          url: `https://${SITE.domain}`,
+        })}
       />
 
       <Hero />

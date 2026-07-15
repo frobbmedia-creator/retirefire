@@ -2,9 +2,42 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPost } from "@/content/blog/posts";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE } from "@/lib/constants";
+import {
+  blogPostingJsonLd,
+  breadcrumbJsonLd,
+  pageMeta,
+} from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
+
+const TAG_CALCULATOR: Record<string, { href: string; label: string }> = {
+  "fire-number": {
+    href: "/calculators/fire-number",
+    label: "FIRE Number calculator",
+  },
+  "coast-fire": {
+    href: "/calculators/coast-fire",
+    label: "Coast FIRE calculator",
+  },
+  "barista-fire": {
+    href: "/calculators/barista-fire",
+    label: "Barista FIRE calculator",
+  },
+  "years-to-fire": {
+    href: "/calculators/years-to-fire",
+    label: "Years to FIRE calculator",
+  },
+  swr: {
+    href: "/calculators/fire-number",
+    label: "FIRE Number calculator",
+  },
+  basics: {
+    href: "/calculators",
+    label: "All calculators",
+  },
+};
 
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -14,7 +47,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return { title: "Post not found" };
-  return {
+  const path = `/blog/${post.slug}`;
+  return pageMeta(path, {
     title: post.title,
     description: post.description,
     openGraph: {
@@ -22,8 +56,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.description,
       type: "article",
       publishedTime: post.date,
+      authors: [SITE.name],
     },
-  };
+    authors: [{ name: SITE.name, url: `https://${SITE.domain}` }],
+  });
 }
 
 export default async function BlogPostPage({ params }: Props) {
@@ -31,9 +67,31 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPost(slug);
   if (!post) notFound();
 
+  const path = `/blog/${post.slug}`;
+  const relatedCalc =
+    post.tags.map((t) => TAG_CALCULATOR[t]).find(Boolean) ??
+    TAG_CALCULATOR.basics;
+
   return (
     <article className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16">
-      <nav className="text-xs text-zinc-500">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path },
+        ])}
+      />
+      <JsonLd
+        data={blogPostingJsonLd({
+          title: post.title,
+          description: post.description,
+          path,
+          date: post.date,
+          readingMinutes: post.readingMinutes,
+        })}
+      />
+
+      <nav className="text-xs text-zinc-500" aria-label="Breadcrumb">
         <Link href="/blog" className="hover:text-emerald-400">
           Blog
         </Link>
@@ -82,19 +140,38 @@ export default async function BlogPostPage({ params }: Props) {
         })}
       </div>
 
-      <footer className="mt-12 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 text-sm text-zinc-400">
-        <p>
-          Educational content only — not financial advice.{" "}
-          <Link href="/disclaimer" className="text-emerald-400 hover:underline">
-            Disclaimer
-          </Link>
-          .
-        </p>
-        <p className="mt-3">
-          <Link href="/#calculators" className="font-medium text-emerald-400 hover:underline">
-            Open calculators →
-          </Link>
-        </p>
+      <footer className="mt-12 space-y-4">
+        <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5 text-sm text-zinc-300">
+          <p className="font-medium text-emerald-300">Try the related tool</p>
+          <p className="mt-2 text-zinc-400">
+            Pair this guide with a free, transparent calculator.
+          </p>
+          <p className="mt-3">
+            <Link
+              href={relatedCalc.href}
+              className="font-medium text-emerald-400 hover:underline"
+            >
+              Open {relatedCalc.label} →
+            </Link>
+          </p>
+        </div>
+        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 text-sm text-zinc-400">
+          <p>
+            Educational content only — not financial advice.{" "}
+            <Link href="/disclaimer" className="text-emerald-400 hover:underline">
+              Disclaimer
+            </Link>
+            .
+          </p>
+          <p className="mt-3">
+            <Link
+              href="/methodology"
+              className="font-medium text-emerald-400 hover:underline"
+            >
+              Read methodology →
+            </Link>
+          </p>
+        </div>
       </footer>
     </article>
   );

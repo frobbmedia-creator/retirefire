@@ -26,7 +26,10 @@ git push -u origin main
 2. Framework: **Next.js** (auto-detected)
 3. Build command: `npm run build` (default)
 4. Output: default (no override)
-5. **Environment variables:** none required for MVP
+5. **Environment variables** (optional for core site; required for feedback):
+   - `RESEND_API_KEY` — from [resend.com](https://resend.com)
+   - `FEEDBACK_TO_EMAIL` — inbox that receives visitor feedback
+   - `FEEDBACK_FROM_EMAIL` — optional; defaults to `RetireFire <onboarding@resend.dev>` (Resend test sender; only delivers to your Resend account email until you verify a domain)
 6. Deploy
 
 ## 3. Attach retirefire.net
@@ -54,12 +57,23 @@ git push -u origin main
 - [ ] `/sitemap.xml` and `/robots.txt` OK
 - [ ] Share link copies a URL with query params after changing inputs
 - [ ] Lighthouse (Chrome DevTools): Performance / Accessibility / SEO ≥ 90 target
+- [ ] **www → apex:** In Vercel → Domains, set `www.retirefire.net` to redirect to `retirefire.net` (301). Confirm `curl -sI https://www.retirefire.net` shows Location to apex.
+- [ ] View source on `/` and a calculator page: self-referencing `rel="canonical"` present
+
+### SEO / Search Console (ops)
+
+1. [Google Search Console](https://search.google.com/search-console) → add `retirefire.net` (Domain property preferred)
+2. Verify via DNS TXT (or HTML file in `public/` if needed)
+3. Submit sitemap: `https://retirefire.net/sitemap.xml`
+4. Optional: Bing Webmaster Tools → import from GSC
+5. After indexation: Rich Results Test on home (FAQ) and a blog post (Article)
 
 ### Quick Lighthouse pass tips (already addressed in code)
 
 - Static generation for marketing pages
 - Dark theme, large touch targets on mobile inputs
-- Semantic headings, FAQ JSON-LD, OG image
+- Semantic headings, FAQ / SoftwareApplication / BlogPosting JSON-LD, OG image
+- Per-page canonicals; calculator pages include crawlable how-to copy
 - No layout-blocking third-party scripts beyond Analytics
 
 ## 6. Optional: CLI deploy

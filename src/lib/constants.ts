@@ -76,6 +76,8 @@ export const SITE = {
   name: "RetireFire",
   domain: "retirefire.net",
   tagline: "Evidence-based FIRE calculators",
+  /** Default <title> for homepage / root layout */
+  title: "Free FIRE Calculators — Number, Years, Coast & Barista",
   description:
-    "Free, transparent FIRE and retirement calculators. FIRE number, years to FI, Coast FIRE, Barista FIRE — with shareable scenarios, clear methodology, and conservative defaults.",
+    "Free FIRE calculators for your FIRE number, years to financial independence, Coast FIRE, and Barista FIRE. Transparent math, conservative defaults, no paywall.",
 } as const;

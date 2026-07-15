@@ -1,24 +1,27 @@
 import type { Metadata } from "next";
 import { CalculatorPageLayout } from "@/components/calculators/CalculatorPageLayout";
+import { CALCULATOR_SEO } from "@/content/calculator-seo";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Years to FIRE Calculator",
-  description:
-    "Project how many years until you reach financial independence based on portfolio, savings, and expected real return. Includes growth chart.",
+const seo = CALCULATOR_SEO["years-to-fire"];
+
+export const metadata: Metadata = pageMeta(seo.path, {
+  title: seo.metaTitle,
+  description: seo.metaDescription,
   openGraph: {
-    title: "Years to FIRE Calculator · RetireFire",
-    description:
-      "Timeline to financial independence with transparent compound-growth math.",
+    title: `${seo.metaTitle} · RetireFire`,
+    description: seo.metaDescription,
   },
-};
+});
 
 export default function YearsToFirePage() {
   return (
     <CalculatorPageLayout
-      title="Years to FIRE Calculator"
-      description="Solve for years until your nest egg hits your FIRE number. Uses constant real returns and end-of-year contributions, with an illustrative growth chart."
-      sharePath="/calculators/years-to-fire"
+      title={seo.title}
+      description={seo.description}
+      sharePath={seo.path}
       tools={["years", "fire", "savings"]}
+      seo={seo}
     />
   );
 }

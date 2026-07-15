@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/content/blog/posts";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta("/blog", {
   title: "Blog",
   description:
-    "Educational guides on FIRE numbers, Coast FIRE, Barista FIRE, and transparent retirement math.",
-};
+    "Educational guides on FIRE numbers, Coast FIRE, Barista FIRE, safe withdrawal rates, and transparent retirement math.",
+  openGraph: {
+    title: "Blog · RetireFire",
+    description:
+      "Evidence-oriented FIRE explainers — pair with free calculators.",
+  },
+});
 
 export default function BlogIndexPage() {
   const posts = getAllPosts();

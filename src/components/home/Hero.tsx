@@ -28,8 +28,10 @@ export function Hero() {
           </p>
 
           <h1 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
-            Know your number.
-            <span className="mt-1 block text-emerald-400">Plan with clarity.</span>
+            Free FIRE calculators
+            <span className="mt-1 block text-emerald-400">
+              Know your number. Plan with clarity.
+            </span>
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">

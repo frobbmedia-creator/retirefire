@@ -1,24 +1,27 @@
 import type { Metadata } from "next";
 import { CalculatorPageLayout } from "@/components/calculators/CalculatorPageLayout";
+import { CALCULATOR_SEO } from "@/content/calculator-seo";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Coast FIRE Calculator",
-  description:
-    "Find your Coast FIRE number: the portfolio that can grow to full FIRE by traditional retirement age with no further contributions.",
+const seo = CALCULATOR_SEO["coast-fire"];
+
+export const metadata: Metadata = pageMeta(seo.path, {
+  title: seo.metaTitle,
+  description: seo.metaDescription,
   openGraph: {
-    title: "Coast FIRE Calculator · RetireFire",
-    description:
-      "coast = FIRE ÷ (1+r)^years. Free calculator with clear methodology.",
+    title: `${seo.metaTitle} · RetireFire`,
+    description: seo.metaDescription,
   },
-};
+});
 
 export default function CoastFirePage() {
   return (
     <CalculatorPageLayout
-      title="Coast FIRE Calculator"
-      description="Calculate how much you need today so compound growth alone may reach full FIRE by a chosen traditional retirement age — then you can “coast” on savings rate."
-      sharePath="/calculators/coast-fire"
+      title={seo.title}
+      description={seo.description}
+      sharePath={seo.path}
       tools={["coast", "fire"]}
+      seo={seo}
     />
   );
 }

@@ -1,24 +1,27 @@
 import type { Metadata } from "next";
 import { CalculatorPageLayout } from "@/components/calculators/CalculatorPageLayout";
+import { CALCULATOR_SEO } from "@/content/calculator-seo";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Barista FIRE Calculator",
-  description:
-    "Barista FIRE / semi-retirement calculator: part-time income covers some spending so your portfolio only funds the gap.",
+const seo = CALCULATOR_SEO["barista-fire"];
+
+export const metadata: Metadata = pageMeta(seo.path, {
+  title: seo.metaTitle,
+  description: seo.metaDescription,
   openGraph: {
-    title: "Barista FIRE Calculator · RetireFire",
-    description:
-      "Shrink your FIRE number when work income covers part of lifestyle spending.",
+    title: `${seo.metaTitle} · RetireFire`,
+    description: seo.metaDescription,
   },
-};
+});
 
 export default function BaristaFirePage() {
   return (
     <CalculatorPageLayout
-      title="Barista FIRE Calculator"
-      description="Semi-retirement math: set expected work income and see the smaller portfolio needed to cover the remaining spending gap at your withdrawal rate."
-      sharePath="/calculators/barista-fire"
+      title={seo.title}
+      description={seo.description}
+      sharePath={seo.path}
       tools={["barista", "fire", "years"]}
+      seo={seo}
     />
   );
 }

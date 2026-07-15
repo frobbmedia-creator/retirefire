@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta("/methodology", {
   title: "Methodology",
   description:
     "Formulas, assumptions, and research sources behind RetireFire calculators — FIRE number, years to FIRE, Coast FIRE, Barista FIRE, and savings-rate tables.",
-};
+  openGraph: {
+    title: "Methodology · RetireFire",
+    description:
+      "Published formulas and sources for free FIRE calculators — not a black box.",
+  },
+});
 
 export default function MethodologyPage() {
   return (

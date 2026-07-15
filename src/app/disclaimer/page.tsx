@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta("/disclaimer", {
   title: "Disclaimer",
   description:
     "Legal and educational disclaimer for RetireFire calculators. Not financial, investment, tax, or legal advice.",
-};
+});
 
 export default function DisclaimerPage() {
   return (

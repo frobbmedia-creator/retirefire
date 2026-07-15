@@ -2,6 +2,13 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { PlannerShell } from "@/components/planner/PlannerShell";
 import { CalculatorHub } from "@/components/calculators/CalculatorHub";
+import { CalculatorSeoSection } from "@/components/calculators/CalculatorSeoSection";
+import { JsonLd } from "@/components/seo/JsonLd";
+import type { CalculatorSeoContent } from "@/content/calculator-seo";
+import {
+  breadcrumbJsonLd,
+  softwareApplicationJsonLd,
+} from "@/lib/seo";
 
 type Tool = "fire" | "years" | "coast" | "barista" | "savings";
 
@@ -10,17 +17,38 @@ export function CalculatorPageLayout({
   description,
   sharePath,
   tools,
+  seo,
   children,
 }: {
   title: string;
   description: string;
   sharePath: string;
   tools: Tool[];
+  seo?: CalculatorSeoContent;
   children?: ReactNode;
 }) {
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
-      <nav className="text-xs text-zinc-500">
+      {seo && (
+        <>
+          <JsonLd
+            data={breadcrumbJsonLd([
+              { name: "Home", path: "/" },
+              { name: "Calculators", path: "/calculators" },
+              { name: seo.title, path: seo.path },
+            ])}
+          />
+          <JsonLd
+            data={softwareApplicationJsonLd({
+              name: seo.title,
+              description: seo.metaDescription,
+              path: seo.path,
+            })}
+          />
+        </>
+      )}
+
+      <nav className="text-xs text-zinc-500" aria-label="Breadcrumb">
         <Link href="/" className="hover:text-emerald-400">
           Home
         </Link>
@@ -48,6 +76,8 @@ export function CalculatorPageLayout({
           <CalculatorHub showHeading={false} tools={tools} />
         </PlannerShell>
       </div>
+
+      {seo && <CalculatorSeoSection content={seo} />}
 
       <p className="mt-10 text-sm text-zinc-500">
         <Link href="/methodology" className="text-emerald-400 hover:underline">

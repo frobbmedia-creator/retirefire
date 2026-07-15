@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "All calculators",
+export const metadata: Metadata = pageMeta("/calculators", {
+  title: "All FIRE Calculators",
   description:
-    "FIRE Number, Years to FIRE, Coast FIRE, Barista FIRE, and savings-rate table — free evidence-based retirement tools.",
-};
+    "Free FIRE Number, Years to FIRE, Coast FIRE, Barista FIRE, and savings-rate tools — evidence-based retirement calculators with published methodology.",
+  openGraph: {
+    title: "All FIRE Calculators · RetireFire",
+    description:
+      "FIRE Number, Years to FIRE, Coast FIRE, Barista FIRE — free and transparent.",
+  },
+});
 
 const TOOLS = [
   {
@@ -39,7 +45,7 @@ export default function CalculatorsIndexPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <h1 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
-        Calculators
+        Free FIRE calculators
       </h1>
       <p className="mt-3 text-zinc-400">
         Every tool shares assumptions and can be linked via URL. Or use the{" "}

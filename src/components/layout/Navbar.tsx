@@ -8,11 +8,11 @@ import { SITE } from "@/lib/constants";
 
 const links = [
   { href: "/calculators", label: "Calculators" },
+  { href: "/calculators/fire-number", label: "FIRE Number" },
   { href: "/calculators/coast-fire", label: "Coast" },
   { href: "/calculators/barista-fire", label: "Barista" },
   { href: "/blog", label: "Blog" },
   { href: "/methodology", label: "Methodology" },
-  { href: "/disclaimer", label: "Disclaimer" },
 ];
 
 export function Navbar() {

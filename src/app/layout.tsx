@@ -5,7 +5,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { DisclaimerBanner } from "@/components/home/DisclaimerBanner";
+import { FeedbackWidget } from "@/components/feedback/FeedbackWidget";
 import { SITE } from "@/lib/constants";
+import { absoluteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,15 +22,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE.name} — ${SITE.tagline}`,
+    default: `${SITE.title} · ${SITE.name}`,
     template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
-  metadataBase: new URL(`https://${SITE.domain}`),
+  metadataBase: new URL(absoluteUrl("/")),
+  alternates: {
+    canonical: absoluteUrl("/"),
+  },
   openGraph: {
-    title: `${SITE.name} — ${SITE.tagline}`,
+    title: `${SITE.title} · ${SITE.name}`,
     description: SITE.description,
-    url: `https://${SITE.domain}`,
+    url: absoluteUrl("/"),
     siteName: SITE.name,
     locale: "en_US",
     type: "website",
@@ -37,13 +42,13 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: `${SITE.name} — ${SITE.tagline}`,
+        alt: `${SITE.name} — free FIRE calculators`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} — ${SITE.tagline}`,
+    title: `${SITE.title} · ${SITE.name}`,
     description: SITE.description,
     images: ["/og.png"],
   },
@@ -51,6 +56,16 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  keywords: [
+    "FIRE calculator",
+    "FIRE number calculator",
+    "Coast FIRE calculator",
+    "Barista FIRE calculator",
+    "years to FIRE",
+    "financial independence",
+    "4% rule",
+    "safe withdrawal rate",
+  ],
 };
 
 export const viewport: Viewport = {
@@ -74,6 +89,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <FeedbackWidget />
         {/* Privacy-friendly first-party analytics + performance (no cookies); no-ops off Vercel */}
         <Analytics />
         <SpeedInsights />
