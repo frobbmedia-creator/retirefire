@@ -11,6 +11,98 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "monte-carlo-vs-historical-cycles-fire",
+    title: "Monte Carlo vs historical cycles: what free FIRE tools can teach",
+    description:
+      "How simple Monte Carlo stress tests differ from historical cycle backtests — success rates, limitations, and how to use each without false precision.",
+    date: "2026-07-17",
+    readingMinutes: 11,
+    tags: ["sequence-risk", "stress-test", "methodology"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Once you leave constant-return FIRE math, two families of tools dominate: historical cycle backtests and Monte Carlo simulations. Both are useful. Neither is a crystal ball. This guide explains what free tools can honestly teach — and how RetireFire’s free stress test fits.",
+      },
+      {
+        type: "h2",
+        content: "Historical cycles (the cFIREsim / FIRECalc tradition)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Replay overlapping periods of real market history (and often inflation) through your plan.",
+          "Strength: paths come from markets that actually happened, with real sequence clusters.",
+          "Limit: the future will not be a shuffle of 1871–present; sample size of independent long retirements is smaller than it looks; US-centric history is common.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Monte Carlo (random paths from a model)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Draw many return sequences from a statistical model (e.g. mean + volatility shocks).",
+          "Strength: easy to explore “what if volatility is higher?” and to produce percentile bands.",
+          "Limit: garbage-in assumptions (mean, σ, independence) dominate the pretty success rate; i.i.d. years miss regime crashes and autocorrelation unless the model adds them.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "What “success rate” means (and does not)",
+      },
+      {
+        type: "p",
+        content:
+          "In accumulation stress tests, success often means terminal wealth ≥ target. In withdrawal tests, it often means the portfolio lasts N years. That percentage is the share of simulated or historical paths meeting the definition — not the probability that your life, taxes, and healthcare work out. If the definition is wrong for your question, the percentage is theater.",
+      },
+      {
+        type: "h2",
+        content: "How RetireFire’s free stress test works",
+      },
+      {
+        type: "ul",
+        content: [
+          "1,000 paths, fixed volatility presets (12% / 15% / 18%).",
+          "Mean return = the same shared real return as the main calculators.",
+          "Annual independent shocks: r = mean + σ·Z (clipped), end-of-year contributions.",
+          "Coast: contributions = 0; target = full FIRE. Years: keep contributions; target = FIRE number.",
+          "Reports success rate, p10/p50/p90, sample paths, terminal histogram.",
+          "Documented on Methodology; labeled educational, not historical backtesting.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "A practical workflow",
+      },
+      {
+        type: "ul",
+        content: [
+          "Start with transparent constant-return Coast / FIRE / Barista numbers.",
+          "Sensitivity: lower r and SWR before you celebrate.",
+          "Run the free Monte Carlo for dispersion under a stated toy model.",
+          "If the plan is high-stakes, graduate to a historical-cycle tool (cFIREsim lineage, etc.) and/or a planner.",
+          "Never skip taxes, healthcare, and flexibility — tools omit them for a reason.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "What we are not claiming",
+      },
+      {
+        type: "p",
+        content:
+          "We are not claiming Monte Carlo is “better” than history, or that 1,000 paths equal truth. We are claiming that a free, documented range next to a deterministic number beats a single green checkmark. Advanced paths, regimes, and historical engines may appear later as optional depth — core tools and a useful free stress test stay free.",
+      },
+      {
+        type: "p",
+        content:
+          "Try Coast and Years stress tests on RetireFire, read Methodology, and use the Coast checklist before changing savings behavior. Educational only — not advice.",
+      },
+    ],
+  },
+  {
     slug: "coast-fire-by-age-tables",
     title: "Coast FIRE by age: tables and worked examples",
     description:

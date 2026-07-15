@@ -65,6 +65,14 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link
+                    href="/resources/coast-fire-checklist"
+                    className="hover:text-emerald-400"
+                  >
+                    Coast checklist
+                  </Link>
+                </li>
+                <li>
                   <Link href="/#faq" className="hover:text-emerald-400">
                     FAQ
                   </Link>

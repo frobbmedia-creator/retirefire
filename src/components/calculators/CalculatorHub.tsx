@@ -6,12 +6,14 @@ import { YearsToFireCalculator } from "./YearsToFireCalculator";
 import { CoastFireCalculator } from "./CoastFireCalculator";
 import { BaristaFireCalculator } from "./BaristaFireCalculator";
 import { SavingsRateTable } from "./SavingsRateTable";
+import { ScenarioCompare } from "./ScenarioCompare";
 
 const JUMP = [
   { href: "#fire-number", label: "FIRE Number" },
   { href: "#years-to-fire", label: "Years to FIRE" },
   { href: "#coast-fire", label: "Coast FIRE" },
   { href: "#barista-fire", label: "Barista FIRE" },
+  { href: "#scenario-compare", label: "Compare A/B" },
   { href: "#savings-rate", label: "Savings rate" },
 ] as const;
 
@@ -22,10 +24,12 @@ export function CalculatorHub({
   showHeading?: boolean;
   /** Which tools to show; default all */
   tools?: Array<
-    "fire" | "years" | "coast" | "barista" | "savings"
+    "fire" | "years" | "coast" | "barista" | "savings" | "compare"
   >;
 }) {
-  const set = new Set(tools ?? ["fire", "years", "coast", "barista", "savings"]);
+  const set = new Set(
+    tools ?? ["fire", "years", "coast", "barista", "compare", "savings"],
+  );
 
   return (
     <div className="flex flex-col gap-8 lg:gap-10">
@@ -47,6 +51,7 @@ export function CalculatorHub({
               if (j.href === "#years-to-fire") return set.has("years");
               if (j.href === "#coast-fire") return set.has("coast");
               if (j.href === "#barista-fire") return set.has("barista");
+              if (j.href === "#scenario-compare") return set.has("compare");
               if (j.href === "#savings-rate") return set.has("savings");
               return true;
             }).map((item) => (
@@ -68,6 +73,7 @@ export function CalculatorHub({
       {set.has("years") && <YearsToFireCalculator />}
       {set.has("coast") && <CoastFireCalculator />}
       {set.has("barista") && <BaristaFireCalculator />}
+      {set.has("compare") && <ScenarioCompare />}
       {set.has("savings") && <SavingsRateTable />}
     </div>
   );

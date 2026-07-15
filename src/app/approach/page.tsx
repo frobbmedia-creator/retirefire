@@ -196,6 +196,12 @@ export default function ApproachPage() {
           Methodology
         </Link>
         <Link
+          href="/resources/coast-fire-checklist"
+          className="font-medium text-zinc-400 hover:text-emerald-400 hover:underline"
+        >
+          Coast checklist
+        </Link>
+        <Link
           href="/blog"
           className="font-medium text-zinc-400 hover:text-emerald-400 hover:underline"
         >

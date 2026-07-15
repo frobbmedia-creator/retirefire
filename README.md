@@ -13,6 +13,9 @@ Evidence-based FIRE (Financial Independence, Retire Early) calculators — clean
 - **Barista FIRE** — Semi-retirement: work income shrinks the target
 - **Savings-rate table** — Years to FI across savings rates
 - **Sequence stress test** — Free 1,000-path Monte Carlo on Coast & Years (educational)
+- **Coast by age table** — Linkable table + CSV; sensitivity chips on key tools
+- **Scenario A/B compare** — Pin baseline assumptions vs live edits
+- **Coast checklist** — Free resource at `/resources/coast-fire-checklist`
 
 ### Product polish
 - **Shared assumptions** across every tool (one source of truth)
