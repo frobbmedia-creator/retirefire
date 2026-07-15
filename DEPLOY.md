@@ -75,12 +75,28 @@ Leave unset to keep Vercel-only analytics. Custom events (`share_link_copy`, `cs
 
 - [ ] `https://retirefire.net` loads over HTTPS
 - [ ] Calculators work on mobile
-- [ ] `/methodology`, `/disclaimer`, `/blog` resolve
+- [ ] `/methodology`, `/approach`, `/disclaimer`, `/blog`, `/resources` resolve
+- [ ] Coast / Years: free stress-test panel runs (success rate + paths)
+- [ ] `/resources/coast-fire-checklist` Print / Save PDF works
 - [ ] `/sitemap.xml` and `/robots.txt` OK
 - [ ] Share link copies a URL with query params after changing inputs
+- [ ] CSV export downloads from a calculator
 - [ ] Lighthouse (Chrome DevTools): Performance / Accessibility / SEO ≥ 90 target
 - [ ] **www → apex:** In Vercel → Domains, set `www.retirefire.net` to redirect to `retirefire.net` (301). Confirm `curl -sI https://www.retirefire.net` shows Location to apex.
 - [ ] View source on `/` and a calculator page: self-referencing `rel="canonical"` present
+- [ ] GSC: submit sitemap; request index on `/`, Coast, checklist, top blog pillars
+- [ ] Optional launch: social pin + Show HN draft in `docs/growth/18-show-hn-launch.md`
+
+### Current local status (ops)
+
+If `git status` shows `main` ahead of `origin/main`, production is behind the offline roadmap until:
+
+```bash
+cd /Users/frobbclaw/retirefire
+git push origin main
+```
+
+Do **not** force-push. Confirm Vercel redeploy after push.
 
 ### SEO / Search Console (ops)
 

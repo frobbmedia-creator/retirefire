@@ -38,7 +38,7 @@ const CALC_LINKS = [
   {
     href: "/calculators/coast-fire",
     title: "Coast FIRE",
-    body: "Nest egg so growth alone may finish FI by traditional retirement age",
+    body: "Coast number, age table, and free sequence stress test",
   },
   {
     href: "/calculators/barista-fire",

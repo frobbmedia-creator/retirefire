@@ -24,7 +24,7 @@ export function Hero() {
         <div className="max-w-2xl">
           <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-500/25">
             <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
-            Transparent math · Risk-aware · Free core
+            Transparent math · Free stress test · Free core
           </p>
 
           <h1 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
@@ -35,25 +35,29 @@ export function Hero() {
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            {SITE.description} Built for people who want published formulas,
-            conservative defaults, and honest limits — not hype.
+            {SITE.description} Shared assumptions, scenario A/B, and free
+            sequence stress tests on Coast and Years — published formulas, not
+            hype.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
             <Link href="/#calculators" className={btnPrimary}>
               Open calculators
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
+            <Link href="/calculators/coast-fire" className={btnSecondary}>
+              Coast + stress test
+            </Link>
             <Link href="/methodology" className={btnSecondary}>
               <BookOpen className="h-4 w-4" aria-hidden />
-              Read methodology
+              Methodology
             </Link>
           </div>
 
           <dl className="mt-12 grid grid-cols-3 gap-3 sm:max-w-lg sm:gap-4">
             {[
-              { label: "Tools", value: "Coast+" },
-              { label: "Paywall", value: "None" },
+              { label: "Core tools", value: "Free" },
+              { label: "Stress test", value: "1k paths" },
               { label: "Advice?", value: "No" },
             ].map((stat) => (
               <div

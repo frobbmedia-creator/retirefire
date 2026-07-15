@@ -39,8 +39,9 @@ export function CalculatorHub({
             Calculators
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-zinc-400 sm:text-base">
-            Shared assumptions, live charts, and shareable URLs. Every tool uses
-            the same transparent math.
+            Shared assumptions, shareable URLs, CSV export, and scenario A/B.
+            Coast and Years include a free 1,000-path sequence stress test —
+            educational ranges, not forecasts. Same transparent math everywhere.
           </p>
           <nav
             aria-label="Jump to calculator"

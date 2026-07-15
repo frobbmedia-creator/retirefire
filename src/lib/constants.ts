@@ -79,5 +79,5 @@ export const SITE = {
   /** Default <title> for homepage / root layout */
   title: "Free Coast FIRE & FIRE Calculators — Transparent Math",
   description:
-    "Free Coast FIRE, Barista FIRE, FIRE number, and years-to-FI calculators. Published formulas, conservative defaults, shareable scenarios — educational only, no paywall.",
+    "Free Coast FIRE, Barista FIRE, FIRE number, and years-to-FI calculators with free sequence stress tests. Published formulas, shareable scenarios — educational only, no paywall.",
 } as const;

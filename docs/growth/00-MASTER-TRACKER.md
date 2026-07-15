@@ -17,7 +17,7 @@
 |------|--------|-------|
 | 1.1 Analytics & measurement | `[~]` | Vercel Analytics live. GA4/GSC/Plausible setup guide shipped. Event hooks in code. User must complete GSC DNS + optional GA4/Plausible keys. |
 | 1.2 Competitor & keyword baseline | `[x]` | See `01-competitor-keyword-baseline.md` |
-| 1.3 Site polish & authority | `[~]` | Approach page, CSV export, event tracking, hero/copy, schema notes shipped. Deploy pending. |
+| 1.3 Site polish & authority | `[x]` | Approach, hero, hub, resources, breadcrumbs, FAQ — offline complete. Deploy pending. |
 | 1.4 Social foundation | `[x]` | Profiles copy + first 10 posts + 30-day system in `03-social-foundation.md` |
 | Content wave 1 outlines | `[x]` | Calendar + 2 pillar drafts in content docs |
 
@@ -104,5 +104,6 @@
 | `15-technical-seo-audit.md` | Technical SEO checklist |
 | `16-social-batch-content-wave.md` | Social posts for new pillars |
 | `17-outreach-pitch-wave2.md` | Personalized pitch pack wave 2 |
+| `18-show-hn-launch.md` | Show HN / eng launch draft |
 | `docs/reports/` | Weekly Monday metrics |
 | `EXECUTION-SPEC-v1.md` | Full handoff spec snapshot |

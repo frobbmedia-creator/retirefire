@@ -10,7 +10,7 @@ export const metadata: Metadata = pageMeta("/approach", {
   openGraph: {
     title: "Our Approach, Limitations & Roadmap · RetireFire",
     description:
-      "Transparency-first FIRE tools — published math, clear limits, educational stress tests ahead.",
+      "Transparency-first FIRE tools — published math, clear limits, free educational stress tests, free core forever.",
   },
 });
 

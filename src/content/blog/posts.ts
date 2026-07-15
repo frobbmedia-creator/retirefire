@@ -1709,7 +1709,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Run your own numbers in the Coast FIRE calculator, compare with full FIRE and Barista FIRE, and read the Methodology page for model details.",
+          "Run your own numbers in the Coast FIRE calculator (age table + free sequence stress test), walk the Coast checklist, compare full FIRE and Barista, and read Methodology for model details. Guides: how to stress-test Coast, when can you stop saving. Educational only.",
       },
     ],
   },
@@ -1886,7 +1886,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Use the Coast FIRE calculator at /calculators/coast-fire to compare shortfall vs surplus under conservative returns. When in doubt, lower r and extend your horizon.",
+          "Use the Coast FIRE calculator to compare shortfall vs surplus under conservative returns, run the free sequence stress test for ranges, and walk the Coast assumptions checklist before you change savings behavior. When in doubt, lower r and extend your horizon. Deeper: when can you stop saving, how to stress-test your Coast number, and Coast by age tables. Educational only.",
       },
     ],
   },
@@ -1933,7 +1933,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Try the free FIRE Number calculator at /calculators/fire-number, then stress-test withdrawal rates on the Methodology page and the SWR guide on this blog.",
+          "Try the free FIRE Number calculator, compare Lean/Regular/Fat 2026 tables, and stress withdrawal rates with the SWR deep dive. Pair with Years, Coast, and Barista under shared assumptions. Methodology and Approach explain formulas and free-core limits. Educational only.",
       },
     ],
   },

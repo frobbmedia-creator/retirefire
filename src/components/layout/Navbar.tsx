@@ -11,6 +11,7 @@ const links = [
   { href: "/calculators/fire-number", label: "FIRE Number" },
   { href: "/calculators/coast-fire", label: "Coast" },
   { href: "/calculators/barista-fire", label: "Barista" },
+  { href: "/resources", label: "Resources" },
   { href: "/blog", label: "Blog" },
   { href: "/methodology", label: "Methodology" },
   { href: "/approach", label: "Approach" },
