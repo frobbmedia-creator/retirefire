@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RetireFire
 
-## Getting Started
+Evidence-based FIRE (Financial Independence, Retire Early) calculators — clean, transparent, and free.
 
-First, run the development server:
+**Site:** [retirefire.net](https://retirefire.net)
+
+## Features
+
+### Calculators
+- **FIRE Number** — Lean / Regular / Fat presets + adjustable withdrawal rate
+- **Years to FIRE** — Portfolio path with SVG growth chart
+- **Coast FIRE** — Nest egg that can grow alone to full FIRE by a chosen age
+- **Barista FIRE** — Semi-retirement: work income shrinks the target
+- **Savings-rate table** — Years to FI across savings rates
+
+### Product polish
+- **Shared assumptions** across every tool (one source of truth)
+- **Shareable URL state** — copy link with your scenario encoded
+- **Real / nominal return toggle** with inflation conversion
+- **Mobile-first** money inputs (numeric keyboard, larger tap targets)
+- **Methodology** + strong **disclaimer** + **FAQ** (JSON-LD)
+- **Blog** skeleton with 3 educational posts
+- **Dedicated landing pages** under `/calculators/*`
+- **OG / Twitter image** via `opengraph-image.tsx`
+- **Vercel Analytics** (privacy-friendly, no cookies)
+
+## Stack
+
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS v4
+- `@vercel/analytics`
+- Lightweight shadcn-style UI (no heavy chart library)
+
+## Local development
 
 ```bash
+cd retirefire
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start
+npm run lint
+npm run test:calc   # pure math sanity checks
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```
+src/
+  app/                   # Routes, OG image, sitemap, robots
+  components/
+    calculators/         # FIRE tools + hub
+    planner/             # Shared state, assumptions bar, URL sync
+    home/                # Hero, FAQ, trust
+    layout/              # Navbar, footer
+    ui/                  # Input, chart, money-input, …
+  content/blog/          # Blog posts (typed content)
+  lib/
+    calculations.ts      # Pure financial math
+    planner-state.ts     # URL serialization
+    constants.ts
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Core formulas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Tool | Formula |
+|------|---------|
+| FIRE number | `spending ÷ withdrawal_rate` |
+| Years to FIRE | Solve `T = P(1+r)^n + C((1+r)^n−1)/r` for `n` |
+| Coast number | `FIRE ÷ (1+r)^years` |
+| Barista number | `max(0, expenses − work income) ÷ withdrawal_rate` |
+| Nominal → real | `(1+nom)/(1+inf) − 1` |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Defaults: **4%** withdrawal, **5%** real return. Details: `/methodology`.
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+See **[DEPLOY.md](./DEPLOY.md)** for GitHub → Vercel → `retirefire.net` DNS, analytics, and Lighthouse checklist.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# After GitHub remote exists:
+git push origin main
+# Then import repo in Vercel and attach domain
+```
+
+## Principles
+
+1. Accuracy and clarity over gimmicks  
+2. Transparent assumptions  
+3. Mobile-first, dark, professional UI  
+4. Educational, non-salesy  
+
+## License
+
+Private / TBD — add a license before open-sourcing.
