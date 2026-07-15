@@ -25,6 +25,21 @@ const RESOURCES = [
     body: "How to read path risk, success rates, and free stress tests without false precision.",
   },
   {
+    href: "/blog/how-to-stress-test-coast-fire-number",
+    title: "How to stress-test your Coast number",
+    body: "Deterministic baseline → sensitivity → free Monte Carlo → go/no-go gates.",
+  },
+  {
+    href: "/blog/lean-regular-fat-fire-numbers-2026",
+    title: "Lean / Regular / Fat FIRE numbers (2026)",
+    body: "Transparent spending presets × 3% / 3.5% / 4% SWR tables you can re-run.",
+  },
+  {
+    href: "/blog/barista-fire-healthcare-benefits-cliffs",
+    title: "Barista FIRE healthcare & benefits cliffs",
+    body: "Why insurance and hour thresholds can dominate simple gap math.",
+  },
+  {
     href: "/methodology",
     title: "Methodology",
     body: "Published formulas, defaults, and the Monte Carlo model notes.",
@@ -36,8 +51,8 @@ const RESOURCES = [
   },
   {
     href: "/blog",
-    title: "Blog guides",
-    body: "Coast, Barista, SWR, age tables, and stress-test education.",
+    title: "All blog guides",
+    body: "Coast, Barista, SWR, age tables, levers, and stress-test education.",
   },
   {
     href: "/calculators",

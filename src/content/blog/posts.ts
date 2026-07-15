@@ -11,6 +11,224 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "barista-fire-healthcare-benefits-cliffs",
+    title: "Barista FIRE healthcare & benefits cliffs (education)",
+    description:
+      "How employer hours, insurance eligibility, and benefit cliffs can dominate Barista FIRE math — what simple portfolio gap calculators omit, and a practical planning checklist.",
+    date: "2026-07-19",
+    readingMinutes: 11,
+    tags: ["barista-fire", "semi-retirement", "basics"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Barista FIRE math is seductively clean: portfolio only needs to cover the gap between spending and part-time income. In real households, healthcare and benefits often dwarf that gap. A “cheap” semi-retirement that loses affordable coverage can be more expensive than full FIRE with a larger pile. This guide is educational framing for the cliffs calculators deliberately omit — not tax, legal, or benefits advice.",
+      },
+      {
+        type: "h2",
+        content: "What Barista FIRE calculators measure",
+      },
+      {
+        type: "ul",
+        content: [
+          "Gap spending = max(0, annual expenses − part-time / work income).",
+          "Barista number ≈ gap ÷ withdrawal rate (same SWR dial as full FIRE).",
+          "They usually ignore premiums, subsidies, payroll taxes, job reliability, and hour thresholds.",
+          "They assume work income is a flat annuity. Real gigs are lumpy.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "The major cliff categories (conceptual)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Hours eligibility: many employer medical plans require a minimum hours threshold. Dropping below it can mean full retail premiums or marketplace plans.",
+          "Household income tests: some subsidies and program eligibility phase out as modified income rises — more work can raise coverage cost nonlinearly.",
+          "Age gates: Medicare-era coverage (when eligible) changes the bridge problem; early semi-retirement often means decades before that.",
+          "Family structure: partner coverage, dependents, and COBRA-style bridges (time-limited, often expensive) change the math year by year.",
+          "Tax treatment of premiums and HSA eligibility can differ by plan type and employment status — model outside the simple gap formula.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Why “just earn $25k part-time” is incomplete",
+      },
+      {
+        type: "p",
+        content:
+          "Suppose spending is $60k and part-time pay is $25k. Gap = $35k. At 4% SWR, barista portfolio ≈ $875k vs full FIRE $1.5M — a big reduction on paper. If leaving full-time work raises healthcare costs by $12k/year, true gap becomes $47k and barista number ≈ $1.175M. If a partner’s plan covers you only while they stay employed, the plan is contingent on their job. The calculator’s gap is not wrong; the spending input was incomplete.",
+      },
+      {
+        type: "h2",
+        content: "A practical workflow (still not advice)",
+      },
+      {
+        type: "ul",
+        content: [
+          "1. Write full lifestyle spending including a realistic healthcare line (premiums + out-of-pocket estimate), not “medical = $0 because employer paid it.”",
+          "2. Run Barista FIRE at that all-in spend and your expected work income.",
+          "3. Re-run with healthcare +20–50% (premium shock) and with work income −25% (hours cut / dry spell).",
+          "4. Compare to full FIRE and Coast: sometimes Coast + continued benefits job is safer than thin Barista + expensive coverage.",
+          "5. Use Scenario compare to pin “full-time benefits job” vs “semi-retirement + marketplace-style costs.”",
+          "6. Stress SWR (3.5% / 3%) — semi-retirement often still has multi-decade portfolio risk.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Benefits that are not only health insurance",
+      },
+      {
+        type: "ul",
+        content: [
+          "Employer match / stock purchase — walking away can be a high opportunity cost even if you “have enough.”",
+          "Disability and life insurance through work — replacing privately can be expensive or underwritten.",
+          "Paid leave, training, and network effects — hard to price, easy to miss until gone.",
+          "Visa / professional licensing requirements — career-specific constraints calculators never see.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Integrity rules for Barista planning",
+      },
+      {
+        type: "ul",
+        content: [
+          "Never treat part-time income as risk-free forever.",
+          "Model coverage separately from portfolio gap for at least two ages (now and 5–10 years out).",
+          "If the plan only works with a perfect cheap insurance outcome, it is fragile.",
+          "RetireFire will not invent fake precision about your country’s subsidy schedule — you must bring real quotes.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Is Barista always cheaper than full FIRE? Portfolio target yes; total life cost including benefits maybe not.",
+          "Should I count employer healthcare as “income”? Better: put true total spend (with premiums) in expenses and leave pay as cash income.",
+          "Does stress test cover healthcare cliffs? No — Monte Carlo is market path risk, not benefits policy.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Run numbers in the Barista FIRE calculator, compare Coast vs Barista guides, and read Approach for what models omit. Rules and programs change by jurisdiction and year — verify with official sources or a licensed professional. Educational only — not financial, tax, or insurance advice.",
+      },
+    ],
+  },
+  {
+    slug: "lean-regular-fat-fire-numbers-2026",
+    title: "Lean vs Regular vs Fat FIRE numbers (2026)",
+    description:
+      "Transparent 2026 FIRE number tables for Lean, Regular, and Fat spending presets at 3%, 3.5%, and 4% withdrawal rates — plus Coast and Barista sketches and stress context.",
+    date: "2026-07-19",
+    readingMinutes: 10,
+    tags: ["fire-number", "2026", "basics"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Lean, Regular, and Fat FIRE are community labels for lifestyle spending bands — not research standards and not moral ranks. In 2026 they remain useful as transparent presets: pick a spending level, divide by a withdrawal rate, and you have a starting FIRE number. Below uses RetireFire’s published example presets ($40k / $60k / $100k annual spend) so you can re-run every cell yourself.",
+      },
+      {
+        type: "h2",
+        content: "Presets (illustrative USD spending)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Lean FIRE example: $40,000/year lifestyle spend.",
+          "Regular FIRE example: $60,000/year.",
+          "Fat FIRE example: $100,000/year.",
+          "Your real number is your budget, not the label. Housing, healthcare, and family can move you across bands overnight.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FIRE number table (spending ÷ SWR)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Lean $40k: 4% → $1.0M · 3.5% → ≈ $1.14M · 3% → ≈ $1.33M",
+          "Regular $60k: 4% → $1.5M · 3.5% → ≈ $1.71M · 3% → $2.0M",
+          "Fat $100k: 4% → $2.5M · 3.5% → ≈ $2.86M · 3% → ≈ $3.33M",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Moving from 4% to 3% raises the target by one-third for the same lifestyle. That is the core trade-off: lower planned withdrawal rate means more accumulation (or lower spending), and often more buffer for long early-retirement horizons.",
+      },
+      {
+        type: "h2",
+        content: "Coast sketch (constant-return illustration)",
+      },
+      {
+        type: "p",
+        content:
+          "Coast ≈ full FIRE ÷ (1+r)^n. Example: Regular $1.5M full FIRE, n = 25 years to traditional retirement age, r = 5% real → coast ≈ $443k. At 4% real → coast ≈ $563k. Lean and Fat scale linearly with full FIRE. Use the Coast calculator age table and free stress test; do not treat a single coast number as a green light.",
+      },
+      {
+        type: "h2",
+        content: "Barista sketch (gap only)",
+      },
+      {
+        type: "p",
+        content:
+          "If Regular spend is $60k and part-time income is $25k, gap = $35k. At 4% → barista pile ≈ $875k; at 3.5% → ≈ $1.0M. Healthcare cliffs can erase the “savings” versus full FIRE — see the Barista healthcare guide. Labels still apply: Lean Barista vs Fat Barista is still about total lifestyle spend, not virtue.",
+      },
+      {
+        type: "h2",
+        content: "2026 planning context (no hype)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Inflation and local housing mean $60k “Regular” is not the same lifestyle in every city.",
+          "Taxes, fees, and account types are outside these pre-tax illustrations.",
+          "Long horizons still argue for SWR sensitivity and sequence awareness.",
+          "RetireFire defaults (example): 4% SWR starting point, 5% real return — change them; they are not forecasts.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "How to use the calculators",
+      },
+      {
+        type: "ul",
+        content: [
+          "FIRE Number: set spend + SWR; try Lean/Regular/Fat style hints if offered.",
+          "Years to FIRE: see which lever (spend vs save) closes your band faster.",
+          "Coast / Barista: answer different questions with the same shared assumptions.",
+          "Scenario compare: pin Regular 4% vs Fat 3.5% side by side.",
+          "Export CSV / share URL so labels stay attached to numbers, not vibes.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Is Fat FIRE “better”? Only if it matches your values and funding path — it is a spending choice.",
+          "Can I be Lean FIRE in a HCOL city? Maybe with roommates/geo arbitrage; the label does not override rent.",
+          "Should I plan Fat spend at Lean SWR? That is a large pile; run ranges honestly rather than marketing a number.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Educational tables only — not financial advice and not a claim that these spends fit you in 2026. Start at the FIRE Number calculator; read Methodology and the disclaimer.",
+      },
+    ],
+  },
+  {
     slug: "how-to-stress-test-coast-fire-number",
     title: "How to stress-test your Coast FIRE number (practical guide)",
     description:
@@ -969,69 +1187,138 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "safe-withdrawal-rate-3-vs-4-percent",
-    title: "Safe withdrawal rate: 3% vs 3.5% vs 4%",
+    title: "Safe withdrawal rate: 3% vs 3.5% vs 4% (early retirement deep dive)",
     description:
-      "How to choose a starting withdrawal rate for FIRE planning — and why early retirees often stress-test below 4%.",
+      "SWR for FIRE and early retirees: research lineage of 4%, why 3–3.5% is common for long horizons, worked multiples, flexibility rules, and how to stress-test without false precision.",
     date: "2026-07-14",
-    readingMinutes: 8,
-    tags: ["swr", "fire-number", "basics"],
+    readingMinutes: 12,
+    tags: ["swr", "fire-number", "sequence-risk"],
     body: [
       {
         type: "p",
         content:
-          "A safe withdrawal rate (SWR) is the percentage of your portfolio you plan to spend in year one of retirement, typically adjusted for inflation afterward. Combined with annual spending, it sets your FIRE number: spending ÷ withdrawal rate.",
+          "A safe withdrawal rate (SWR) is the percentage of your portfolio you plan to spend in year one of retirement, often adjusted for inflation afterward. Combined with annual spending, it sets your FIRE number: spending ÷ withdrawal rate. For early retirees, that single dial can move the finish line by hundreds of thousands of dollars — and it still does not capture taxes, fees, or sequence risk by itself.",
       },
       {
         type: "h2",
-        content: "Where 4% comes from",
+        content: "Where 4% comes from (and what it is not)",
       },
       {
         type: "p",
         content:
-          "The classic 4% starting point is associated with William Bengen’s research and the Trinity Study lineage on historical U.S. stock/bond portfolios. It is a research-based rule of thumb for multi-decade retirements — not a guarantee that markets will behave the same way for the next 30–50 years.",
+          "The classic 4% starting point is associated with William Bengen’s research and the Trinity Study lineage on historical U.S. stock/bond portfolios. It is a research-based rule of thumb for multi-decade retirements under historical market paths — not a warranty that global markets, valuations, or your personal spending will behave the same way for the next 30–50 years. “4% worked in many past U.S. samples” is not the same as “4% is safe for you.”",
       },
       {
         type: "h2",
-        content: "Why early retirees often use 3–3.5%",
+        content: "Why early retirees often plan at 3–3.5%",
       },
       {
         type: "ul",
         content: [
-          "Longer horizon: retiring at 40 can mean 50+ years of withdrawals.",
-          "Sequence-of-returns risk: poor markets early in retirement hurt more when the plan is longer.",
-          "Flexibility trade-offs: lower SWR means a larger nest egg, but more buffer if returns disappoint.",
+          "Longer horizon: retiring at 40 can mean 45–55+ years of withdrawals vs a classic 30-year study window.",
+          "Sequence-of-returns risk: poor markets early hurt more when you cannot easily return to peak earnings.",
+          "Less flexibility if identity and budget are rigid (“I already retired”).",
+          "Higher equity concentration and valuation risk than mid-century samples assumed.",
+          "Healthcare and family shocks can force higher spending exactly when markets are down.",
         ],
       },
       {
         type: "h2",
-        content: "A simple comparison at $60,000 spending",
+        content: "Multiples table (portfolio ÷ annual spending)",
       },
       {
         type: "ul",
         content: [
-          "4.0% → FIRE number $1,500,000 (25×)",
-          "3.5% → FIRE number about $1,714,000 (~28.6×)",
-          "3.0% → FIRE number $2,000,000 (~33.3×)",
+          "4.0% SWR → 25× spending",
+          "3.5% SWR → ≈ 28.6× spending",
+          "3.0% SWR → ≈ 33.3× spending",
+          "2.5% SWR → 40× spending (very conservative / large buffer illustrations)",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Worked comparison at $60,000 spending",
+      },
+      {
+        type: "ul",
+        content: [
+          "4.0% → FIRE number $1,500,000",
+          "3.5% → FIRE number about $1,714,000",
+          "3.0% → FIRE number $2,000,000",
         ],
       },
       {
         type: "p",
         content:
-          "That is a $500,000 spread between 4% and 3% for the same lifestyle. The “right” rate depends on your flexibility to cut spending, other income (Social Security, part-time work), asset allocation, and risk tolerance — none of which a single percentage captures perfectly.",
+          "That is a $500,000 spread between 4% and 3% for the same lifestyle. Scale it: at $100k spend (Fat-style preset), the same rates imply $2.5M / ≈ $2.86M / ≈ $3.33M. The “right” rate depends on flexibility to cut spending, other income (Social Security later, pensions, Barista work), asset allocation, and risk tolerance — none of which a single percentage captures perfectly.",
+      },
+      {
+        type: "h2",
+        content: "Horizon intuition (not a formula guarantee)",
+      },
+      {
+        type: "ul",
+        content: [
+          "≈30-year traditional retirement windows: 4% is the common historical starting conversation.",
+          "40–50+ year early retirement windows: many planners stress 3–3.5% or flexible spending rules.",
+          "Very long horizons with no cut flexibility: lower starting rates or larger cash buffers often appear in stress discussions.",
+          "Always re-check with your actual spend — including healthcare — not a blog example.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Fixed SWR vs flexible spending (concept)",
+      },
+      {
+        type: "p",
+        content:
+          "A fixed inflation-adjusted withdrawal is easy to model and hard to live when markets crash. Flexible approaches (cut discretionary spend after bad years, raise after good years, guardrails) can improve sustainability in research discussions — but they require behavior you will actually execute. Calculators that only show a constant SWR hide that behavioral requirement.",
+      },
+      {
+        type: "h2",
+        content: "What SWR does not include",
+      },
+      {
+        type: "ul",
+        content: [
+          "Taxes and account withdrawal ordering",
+          "Investment fees and advisory costs",
+          "Sequence risk explicitly (use stress tests / historical tools)",
+          "Healthcare cliffs and long-term care",
+          "Legacy goals or large one-time expenses",
+        ],
       },
       {
         type: "h2",
         content: "How to use SWR in RetireFire",
       },
       {
-        type: "p",
-        content:
-          "Treat SWR as a dial, not a destiny. Run your FIRE number at 3%, 3.5%, and 4%. If only the optimistic case works, the plan is fragile. Pair the number with the years-to-FIRE and Coast/Barista tools to see whether work income or a longer accumulation period closes the gap.",
+        type: "ul",
+        content: [
+          "Treat SWR as a dial: run FIRE number at 3%, 3.5%, and 4% every time.",
+          "If only the optimistic case “works,” the plan is fragile — say so.",
+          "Pair with Years to FIRE (finish line moves when SWR drops).",
+          "Coast and Barista inherit the same SWR via shared assumptions — keep them consistent.",
+          "Sensitivity chips and Scenario compare make A/B honest.",
+          "Accumulation stress tests (Coast/Years) are not full retirement withdrawal backtests; read Monte Carlo vs historical cycles.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Is 4% dead? No — it remains a historical reference. It is not a personal guarantee.",
+          "Is 3% always safer? It buys more buffer for the same spend, at the cost of more capital or lower lifestyle.",
+          "Should I change SWR every year? Planning rate vs actual annual spend decision can differ; this site models the planning dial.",
+        ],
       },
       {
         type: "p",
         content:
-          "Educational illustration only — not financial advice. See the Methodology page for formula notes and the disclaimer before making decisions.",
+          "Educational illustration only — not financial advice. See Methodology for formula notes, the sequence-risk guide for path concepts, Lean/Regular/Fat tables for 2026 presets, and the disclaimer before decisions.",
       },
     ],
   },
@@ -1039,9 +1326,9 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "how-many-years-until-fire",
     title: "How many years until FIRE?",
     description:
-      "The levers that move your timeline to financial independence: savings rate, spending, portfolio, and return assumptions.",
+      "The levers that move your timeline to financial independence: savings rate, spending, portfolio, and return assumptions — plus links to deeper lever analysis and stress tests.",
     date: "2026-07-13",
-    readingMinutes: 7,
+    readingMinutes: 8,
     tags: ["years-to-fire", "basics"],
     body: [
       {
@@ -1069,7 +1356,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Raising savings often does double duty: more money invested each year and, if spending falls, a lower FIRE number. Assuming a higher return shortens the timeline on a spreadsheet but does not put cash in your brokerage account. Conservative planners stress-test lower returns rather than banking on bull markets.",
+          "Raising savings often does double duty: more money invested each year and, if spending falls, a lower FIRE number. Assuming a higher return shortens the timeline on a spreadsheet but does not put cash in your brokerage account. Conservative planners stress-test lower returns rather than banking on bull markets. For a ranked lever deep-dive with Scenario compare workflow, see “Years to FIRE: which lever moves the needle most?”",
       },
       {
         type: "h2",
@@ -1096,7 +1383,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Use the free Years to FIRE calculator on RetireFire for an interactive timeline, then cross-check the target with the FIRE Number tool and Methodology notes.",
+          "Use the free Years to FIRE calculator for an interactive timeline, Scenario compare to pin lever experiments, and the free stress test on Years for path dispersion around a smooth date. Cross-check the target with the FIRE Number tool and Methodology notes. Educational only.",
       },
     ],
   },

@@ -78,6 +78,14 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link
+                    href="/resources/sequence-risk-guide"
+                    className="hover:text-emerald-400"
+                  >
+                    Sequence risk guide
+                  </Link>
+                </li>
+                <li>
                   <Link href="/#faq" className="hover:text-emerald-400">
                     FAQ
                   </Link>

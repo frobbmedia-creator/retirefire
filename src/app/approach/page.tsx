@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/approach", {
@@ -16,7 +17,13 @@ export const metadata: Metadata = pageMeta("/approach", {
 export default function ApproachPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-      <p className="text-sm font-medium text-emerald-400">Authority &amp; trust</p>
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Approach", path: "/approach" },
+        ]}
+      />
+      <p className="mt-6 text-sm font-medium text-emerald-400">Authority &amp; trust</p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
         Our approach, limitations &amp; roadmap
       </h1>

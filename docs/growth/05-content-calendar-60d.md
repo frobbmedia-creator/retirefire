@@ -23,16 +23,16 @@
 |---|-------|------------|------|--------|
 | 6 | Age-by-Age Coast FIRE Tables + Worked Examples | coast fire by age | Linkable data | Done |
 | 7 | How to Stress-Test Your Coast Number (Guide) | coast fire calculator + SOR | Guide | Done |
-| 8 | Safe Withdrawal Rate for Early Retirees (Deep Dive) | safe withdrawal rate early retirement | Pillar | Existing SWR post; deepen later |
+| 8 | Safe Withdrawal Rate for Early Retirees (Deep Dive) | safe withdrawal rate early retirement | Pillar | Done (expanded SWR post) |
 | 9 | Years to FIRE: Which Lever Moves the Needle Most | years to fire calculator | Support | Done |
-| 10 | Barista FIRE Healthcare & Benefits Cliffs (Education) | barista fire | Support | Todo |
+| 10 | Barista FIRE Healthcare & Benefits Cliffs (Education) | barista fire | Support | Done |
 
 ## Week 5–6
 
 | # | Title | Primary KW | Type | Status |
 |---|-------|------------|------|--------|
 | 11 | Monte Carlo vs Historical Cycles: What Free Tools Can Teach | fire calculator monte carlo | Differentiator | Done |
-| 12 | Lean vs Regular vs Fat FIRE Numbers (2026) | lean fire number | Support | Todo |
+| 12 | Lean vs Regular vs Fat FIRE Numbers (2026) | lean fire number | Support | Done |
 | 13 | When Can You Stop Saving for Retirement? | when can I stop saving | Coast cluster | Done |
 | 14 | Semi-Retirement Math: Portfolio + Part-Time Income | semi retirement calculator | Barista | Partial (existing semi-retirement post) |
 | 15 | RetireFire Methodology Explained (Human Version) | — | Trust | Partial (/methodology page) |

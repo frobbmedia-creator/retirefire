@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { getAllPosts } from "@/content/blog/posts";
 import { pageMeta } from "@/lib/seo";
 
@@ -19,7 +20,13 @@ export default function BlogIndexPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-      <h1 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ]}
+      />
+      <h1 className="mt-6 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
         Blog
       </h1>
       <p className="mt-3 text-zinc-400">
