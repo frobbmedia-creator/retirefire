@@ -16,13 +16,17 @@ Evidence-based FIRE (Financial Independence, Retire Early) calculators — clean
 ### Product polish
 - **Shared assumptions** across every tool (one source of truth)
 - **Shareable URL state** — copy link with your scenario encoded
+- **CSV export** of the current scenario
 - **Real / nominal return toggle** with inflation conversion
 - **Mobile-first** money inputs (numeric keyboard, larger tap targets)
-- **Methodology** + strong **disclaimer** + **FAQ** (JSON-LD)
-- **Blog** skeleton with 3 educational posts
+- **Methodology** + **Approach / roadmap** + strong **disclaimer** + **FAQ** (JSON-LD)
+- **Blog** with educational pillars (Coast, Barista, SWR, …)
 - **Dedicated landing pages** under `/calculators/*`
 - **OG / Twitter image** via `opengraph-image.tsx`
-- **Vercel Analytics** (privacy-friendly, no cookies)
+- **Vercel Analytics** (privacy-friendly) + optional GA4/Plausible
+
+### Growth ops
+- Roadmap and weekly reports under `docs/growth/` and `docs/reports/`
 
 ## Stack
 

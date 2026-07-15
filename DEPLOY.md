@@ -54,11 +54,22 @@ git push -u origin main
 
 ## 4. Analytics
 
-`@vercel/analytics` is already wired in `src/app/layout.tsx`.
+`@vercel/analytics` + Speed Insights are wired in `src/app/layout.tsx`.
 
 1. Vercel project → **Analytics** → enable **Web Analytics**
 2. No cookies / no personal data collection by default
 3. Works only on Vercel production (no-ops locally)
+
+### Optional: GA4 + Plausible
+
+Full steps: `docs/growth/02-analytics-setup.md`.
+
+| Env var | Purpose |
+|---------|---------|
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | GA4 Measurement ID (`G-…`) |
+| `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | e.g. `retirefire.net` |
+
+Leave unset to keep Vercel-only analytics. Custom events (`share_link_copy`, `csv_export`) fire to any provider present via `src/lib/analytics.ts`.
 
 ## 5. Post-deploy checklist
 

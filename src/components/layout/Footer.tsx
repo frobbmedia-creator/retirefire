@@ -60,6 +60,11 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/approach" className="hover:text-emerald-400">
+                    Approach &amp; roadmap
+                  </Link>
+                </li>
+                <li>
                   <Link href="/#faq" className="hover:text-emerald-400">
                     FAQ
                   </Link>
@@ -72,6 +77,11 @@ export function Footer() {
                 <li>
                   <Link href="/disclaimer" className="hover:text-emerald-400">
                     Disclaimer
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/approach" className="hover:text-emerald-400">
+                    Limitations
                   </Link>
                 </li>
                 <li>

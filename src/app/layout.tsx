@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { DisclaimerBanner } from "@/components/home/DisclaimerBanner";
 import { FeedbackWidget } from "@/components/feedback/FeedbackWidget";
+import { AnalyticsScripts } from "@/components/analytics/AnalyticsScripts";
 import { SITE } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/seo";
 import "./globals.css";
@@ -93,6 +94,8 @@ export default function RootLayout({
         {/* Privacy-friendly first-party analytics + performance (no cookies); no-ops off Vercel */}
         <Analytics />
         <SpeedInsights />
+        {/* Optional GA4 / Plausible — only load when NEXT_PUBLIC_* env vars are set */}
+        <AnalyticsScripts />
       </body>
     </html>
   );

@@ -38,7 +38,7 @@ const CALC_LINKS = [
   {
     href: "/calculators/coast-fire",
     title: "Coast FIRE",
-    body: "Stop saving when growth alone can finish the job",
+    body: "Nest egg so growth alone may finish FI by traditional retirement age",
   },
   {
     href: "/calculators/barista-fire",
@@ -118,6 +118,12 @@ export default function HomePage() {
                 Discount full FIRE for coasting, or shrink the target when work
                 income covers part of spending.
               </li>
+              <li>
+                <strong className="text-zinc-200">Honest limits</strong> —
+                Constant-return models omit sequence risk, taxes, and healthcare.
+                We publish what we leave out — and are adding transparent
+                stress tests.
+              </li>
             </ul>
             <p className="mt-6 text-sm text-zinc-500">
               Full sources:{" "}
@@ -126,6 +132,13 @@ export default function HomePage() {
                 className="font-medium text-emerald-400 underline-offset-2 hover:underline"
               >
                 Methodology
+              </Link>
+              . Philosophy:{" "}
+              <Link
+                href="/approach"
+                className="font-medium text-emerald-400 underline-offset-2 hover:underline"
+              >
+                Approach &amp; roadmap
               </Link>
               . Guides:{" "}
               <Link

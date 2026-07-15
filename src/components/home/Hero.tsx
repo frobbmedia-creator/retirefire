@@ -24,19 +24,19 @@ export function Hero() {
         <div className="max-w-2xl">
           <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-500/25">
             <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
-            Evidence-based · Transparent · Free
+            Transparent math · Risk-aware · Free core
           </p>
 
           <h1 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
             Free FIRE calculators
             <span className="mt-1 block text-emerald-400">
-              Know your number. Plan with clarity.
+              Coast, Barista &amp; your number — with clear assumptions.
             </span>
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            {SITE.description} Conservative defaults, published formulas, and no
-            product pitches.
+            {SITE.description} Built for people who want published formulas,
+            conservative defaults, and honest limits — not hype.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -52,7 +52,7 @@ export function Hero() {
 
           <dl className="mt-12 grid grid-cols-3 gap-3 sm:max-w-lg sm:gap-4">
             {[
-              { label: "Calculators", value: "5" },
+              { label: "Tools", value: "Coast+" },
               { label: "Paywall", value: "None" },
               { label: "Advice?", value: "No" },
             ].map((stat) => (

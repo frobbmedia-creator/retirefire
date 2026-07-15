@@ -1,28 +1,62 @@
 "use client";
 
-import { Link2, RotateCcw } from "lucide-react";
+import { Download, Link2, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { usePlanner } from "./PlannerProvider";
 import { Slider } from "@/components/ui/slider";
 import { MoneyInput } from "@/components/ui/money-input";
 import { formatPercent } from "@/lib/format";
 import { buildShareUrl } from "@/lib/planner-state";
+import { buildScenarioCsv, downloadTextFile } from "@/lib/export-scenario";
+import { AnalyticsEvents, trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 export function AssumptionsBar() {
-  const { state, setField, reset, realReturn, sharePath } = usePlanner();
+  const {
+    state,
+    setField,
+    reset,
+    realReturn,
+    sharePath,
+    withdrawalRate,
+    fire,
+    years,
+    coast,
+    barista,
+  } = usePlanner();
   const [copied, setCopied] = useState(false);
+  const [exported, setExported] = useState(false);
 
   async function copyShareLink() {
     const url = buildShareUrl(sharePath, state);
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
+      trackEvent(AnalyticsEvents.SHARE_LINK_COPY, { path: sharePath });
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
       // Fallback
       window.prompt("Copy this link:", url);
     }
+  }
+
+  function exportCsv() {
+    const shareUrl = buildShareUrl(sharePath, state);
+    const csv = buildScenarioCsv({
+      state,
+      realReturn,
+      withdrawalRate,
+      fire,
+      years,
+      coast,
+      barista,
+      shareUrl,
+    });
+    const stamp = new Date().toISOString().slice(0, 10);
+    downloadTextFile(`retirefire-scenario-${stamp}.csv`, csv);
+    trackEvent(AnalyticsEvents.CSV_EXPORT, { path: sharePath });
+    setExported(true);
+    window.setTimeout(() => setExported(false), 2000);
   }
 
   return (
@@ -34,7 +68,7 @@ export function AssumptionsBar() {
           </h2>
           <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
             One set of inputs powers every calculator. Changes sync to the URL
-            for easy sharing.
+            for easy sharing. Export CSV for your notes (educational only).
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -45,6 +79,14 @@ export function AssumptionsBar() {
           >
             <Link2 className="h-3.5 w-3.5" aria-hidden />
             {copied ? "Copied!" : "Copy share link"}
+          </button>
+          <button
+            type="button"
+            onClick={exportCsv}
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-zinc-800 px-3 text-xs font-medium text-zinc-300 ring-1 ring-zinc-700 transition hover:bg-zinc-700"
+          >
+            <Download className="h-3.5 w-3.5" aria-hidden />
+            {exported ? "Exported!" : "Export CSV"}
           </button>
           <button
             type="button"

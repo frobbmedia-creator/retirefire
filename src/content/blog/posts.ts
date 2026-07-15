@@ -11,6 +11,199 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "coast-fire-sequence-of-returns-risk",
+    title: "Coast FIRE with sequence of returns risk",
+    description:
+      "Why a single Coast FIRE number can look safe under constant returns — and how sequence risk, lower return assumptions, and stress testing change the picture.",
+    date: "2026-07-15",
+    readingMinutes: 12,
+    tags: ["coast-fire", "sequence-risk", "stress-test"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Coast FIRE answers a focused question: do you already have enough invested that, with no further contributions, compound growth may reach full FIRE by a traditional retirement age under an assumed real return? The classic answer is a single discounted number. That number is useful — and incomplete — because it usually assumes a smooth return every year.",
+      },
+      {
+        type: "h2",
+        content: "The coast formula (and what it hides)",
+      },
+      {
+        type: "p",
+        content:
+          "If full FIRE is T, real return is r, and years until traditional retirement is n: coast number ≈ T ÷ (1+r)^n. Example: T = $1,500,000, r = 5%, n = 20 → coast ≈ $565,000. Under those assumptions, holding roughly that amount today and never contributing again is modeled as “enough” for full FIRE by the horizon age.",
+      },
+      {
+        type: "p",
+        content:
+          "What the formula hides: markets do not deliver 5% real every calendar year. Some decades are friendly; some open with long drawdowns. Sequence of returns risk is the idea that the order of good and bad years matters — especially when you later withdraw, but also when you treat a point estimate as a green light to change savings behavior.",
+      },
+      {
+        type: "h2",
+        content: "Stress-test the return before you celebrate",
+      },
+      {
+        type: "ul",
+        content: [
+          "Same $1.5M target, 20-year horizon, 5% real → coast ≈ $565k",
+          "Same target and horizon, 4% real → coast ≈ $684k",
+          "Same target and horizon, 3% real → coast ≈ $831k",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Lowering r is a crude but honest stress test available in any transparent calculator. If only the optimistic r “works,” the plan is fragile. Early “coasters” who also reduce savings and increase lifestyle stack multiple risks: lower future contributions, higher spending (higher T), and path-dependent markets.",
+      },
+      {
+        type: "h2",
+        content: "Coast FIRE is not early retirement",
+      },
+      {
+        type: "ul",
+        content: [
+          "You may still need earned income for decades of spending before traditional retirement age.",
+          "Healthcare, housing, and career optionality are outside the discount formula.",
+          "Hitting coast does not immunize you against a bad decade if you later switch to full withdrawals early.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "What simple calculators get right — and wrong",
+      },
+      {
+        type: "p",
+        content:
+          "Simple models get the discount math right and keep assumptions visible. They get long-term decision quality wrong when users treat constant r as a forecast, ignore sequence risk, or skip taxes and fees. Historical cycle tools and Monte Carlo stress tests address path risk with different trade-offs: history is path-rich but not a crystal ball; Monte Carlo is flexible but depends on the return distribution you assume.",
+      },
+      {
+        type: "h2",
+        content: "A practical checklist",
+      },
+      {
+        type: "ul",
+        content: [
+          "Run coast at 3%, 4%, and 5% real with the same spending and SWR.",
+          "Recompute full FIRE at 3–4% SWR; early horizons often warrant lower SWR.",
+          "Keep an emergency fund and healthcare plan separate from the coast number.",
+          "If you stop contributing, track whether lifestyle creep raises T faster than markets help.",
+          "Prefer ranges and surplus cushions over exact “I hit coast today” narratives.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "How to use RetireFire",
+      },
+      {
+        type: "p",
+        content:
+          "Open the Coast FIRE calculator, set your spending, portfolio, ages, withdrawal rate, and real return. Copy a share link or export CSV for your notes. Compare with full FIRE and Barista FIRE under the same shared assumptions. Read Methodology for formulas and Our Approach for what we deliberately omit — including the upcoming transparent stress-test mode.",
+      },
+      {
+        type: "p",
+        content:
+          "Educational illustration only — not financial advice. Past returns do not guarantee future results. See the disclaimer before making decisions.",
+      },
+    ],
+  },
+  {
+    slug: "barista-fire-vs-coast-fire",
+    title: "Barista FIRE vs Coast FIRE: a data-driven comparison",
+    description:
+      "Same spending, different questions: stopping contributions (Coast) versus covering part of spend with work income (Barista). Formulas, tables, and when each frame helps.",
+    date: "2026-07-15",
+    readingMinutes: 11,
+    tags: ["barista-fire", "coast-fire", "comparison"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Coast FIRE and Barista FIRE are often mixed up in headlines. Both can lower pressure versus classic full FIRE, but they answer different planning questions. Confusing them produces the wrong savings target and the wrong lifestyle story.",
+      },
+      {
+        type: "h2",
+        content: "Definitions that actually compute",
+      },
+      {
+        type: "ul",
+        content: [
+          "Full FIRE number ≈ annual spending ÷ withdrawal rate (e.g. $60k ÷ 4% = $1.5M).",
+          "Coast number ≈ full FIRE ÷ (1+r)^years until traditional retirement age — portfolio that may grow to full FIRE with zero future contributions.",
+          "Barista number ≈ max(0, spending − work income) ÷ withdrawal rate — portfolio that funds only the gap while work covers the rest.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Worked comparison at $60k spending, 4% SWR, 5% real",
+      },
+      {
+        type: "ul",
+        content: [
+          "Full FIRE: $1,500,000",
+          "Coast (age 35 → 65, 30 years): coast ≈ $1,500,000 ÷ (1.05)^30 ≈ $347,000",
+          "Barista ($20k work income): gap $40k → barista number $1,000,000",
+          "Barista ($30k work income): gap $30k → barista number $750,000",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Notice the intuition trap: Coast can show a much smaller number than Barista because Coast is not funding early retirement spending from the portfolio — it is only asking whether growth can finish the nest egg by a later age while you still cover life with earnings. Barista is about semi-retirement cash flow now.",
+      },
+      {
+        type: "h2",
+        content: "When Coast is the better frame",
+      },
+      {
+        type: "ul",
+        content: [
+          "You still plan to work (full- or part-time) for many years.",
+          "You want permission to reduce savings rate or career intensity without claiming early retirement.",
+          "Your question is “can compounding finish the job?” not “can I live on withdrawals + side income this year?”",
+        ],
+      },
+      {
+        type: "h2",
+        content: "When Barista is the better frame",
+      },
+      {
+        type: "ul",
+        content: [
+          "You want a near-term semi-retirement lifestyle with intentional work income.",
+          "Benefits, structure, or purpose from work matter as much as the math.",
+          "You need a portfolio target that funds a spending gap, not a distant full FIRE discount.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Shared risks (do not skip)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Work income can be uneven; benefits can cliff.",
+          "Sequence risk still matters if you withdraw from the portfolio.",
+          "Taxes, healthcare, and housing can dominate spreadsheet gaps.",
+          "Lifestyle creep can erase both Coast surplus and Barista gap math.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "How to compare on RetireFire",
+      },
+      {
+        type: "p",
+        content:
+          "Set one spending level and withdrawal rate in shared assumptions. Read Coast FIRE and Barista FIRE side by side. Export CSV or copy a share link so a partner sees the same scenario. Stress-test by lowering r and SWR. Methodology documents formulas; Our Approach documents limits and the roadmap for explicit stress tests.",
+      },
+      {
+        type: "p",
+        content:
+          "Educational only — not advice. Use professionals for personal decisions.",
+      },
+    ],
+  },
+  {
     slug: "safe-withdrawal-rate-3-vs-4-percent",
     title: "Safe withdrawal rate: 3% vs 3.5% vs 4%",
     description:

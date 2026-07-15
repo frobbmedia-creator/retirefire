@@ -258,12 +258,24 @@ export default function MethodologyPage() {
             <li>Investment fees and advisory costs</li>
             <li>Social Security, pensions, and annuities</li>
             <li>Healthcare and ACA subsidy cliffs</li>
-            <li>Sequence-of-returns risk and Monte Carlo paths</li>
+            <li>
+              Sequence-of-returns risk and Monte Carlo paths (stress-test MVP
+              on the roadmap — see{" "}
+              <Link href="/approach" className="text-emerald-400 hover:underline">
+                Approach
+              </Link>
+              )
+            </li>
             <li>Inflation shocks, currency risk, and home equity strategies</li>
           </ul>
           <p className="mt-3 text-zinc-400">
             Omitting these keeps the tools understandable. Adding them later
-            will always ship with the same transparency standard.
+            will always ship with the same transparency standard. Product
+            philosophy and free-core commitments live on the{" "}
+            <Link href="/approach" className="text-emerald-400 hover:underline">
+              Approach, Limitations &amp; Roadmap
+            </Link>{" "}
+            page.
           </p>
         </section>
 

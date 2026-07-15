@@ -31,7 +31,17 @@ export const FAQ_ITEMS = [
   {
     question: "Can I share my scenario?",
     answer:
-      "Yes. Shared assumptions sync to the URL. Use “Copy share link” so others can open the same inputs.",
+      "Yes. Shared assumptions sync to the URL. Use “Copy share link” so others can open the same inputs. You can also export a CSV of the current scenario for your own notes.",
+  },
+  {
+    question: "Do you model sequence-of-returns risk?",
+    answer:
+      "The core calculators use constant-return illustrations. A transparent Monte Carlo / stress-test mode is on the roadmap so you can see success-rate ranges and bad-sequence outcomes. Until then, stress-test by lowering assumed returns and withdrawal rates. See Our Approach for the roadmap.",
+  },
+  {
+    question: "Will the calculators stay free?",
+    answer:
+      "Yes for the core tools. If optional Pro features ship later (advanced stress tests, saved scenarios, detailed reports), the basic calculators and a useful free stress-test tier are intended to remain free. See Our Approach for principles.",
   },
 ] as const;
 

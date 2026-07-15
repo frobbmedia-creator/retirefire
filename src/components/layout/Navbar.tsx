@@ -13,6 +13,7 @@ const links = [
   { href: "/calculators/barista-fire", label: "Barista" },
   { href: "/blog", label: "Blog" },
   { href: "/methodology", label: "Methodology" },
+  { href: "/approach", label: "Approach" },
 ];
 
 export function Navbar() {
