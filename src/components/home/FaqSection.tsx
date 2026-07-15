@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SITE } from "@/lib/constants";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqPageJsonLd } from "@/lib/seo";
@@ -6,37 +7,47 @@ export const FAQ_ITEMS = [
   {
     question: "What is a FIRE number?",
     answer:
-      "Your FIRE number is the invested portfolio size that can support your annual spending at a chosen safe withdrawal rate. At 4%, it is 25× annual spending (spending ÷ 0.04).",
+      "Your FIRE number is the invested portfolio size that can support your annual spending at a chosen safe withdrawal rate. At 4%, it is 25× annual spending (spending ÷ 0.04). Lean, Regular, and Fat are optional spending presets — not research standards.",
   },
   {
     question: "Is the 4% rule guaranteed?",
     answer:
-      "No. The 4% starting point comes from historical U.S. portfolio research (Bengen and the Trinity Study lineage). It is not a guarantee, especially for multi-decade early retirement horizons. Many planners stress-test 3–3.5%.",
+      "No. The 4% starting point comes from historical U.S. portfolio research (Bengen and the Trinity Study lineage). It is not a guarantee, especially for multi-decade early retirement horizons. Many planners stress-test 3–3.5%. Use the FIRE Number calculator and SWR guide to compare multiples.",
   },
   {
     question: "What is Coast FIRE?",
     answer:
-      "Coast FIRE means you have enough invested that, with no further contributions, compound growth may reach full FIRE by a traditional retirement age. You could stop saving aggressively — it does not mean you can stop working yet.",
+      "Coast FIRE means you have enough invested that, with no further contributions, compound growth may reach full FIRE by a traditional retirement age. You could stop saving aggressively — it does not mean you can stop working yet. Use the Coast checklist before changing savings behavior.",
   },
   {
     question: "What is Barista FIRE?",
     answer:
-      "Barista FIRE is semi-retirement: part-time or flexible income covers some spending so your portfolio only needs to fund the remainder. The “barista number” is gap expenses ÷ withdrawal rate.",
+      "Barista FIRE is semi-retirement: part-time or flexible income covers some spending so your portfolio only needs to fund the remainder. The “barista number” is gap expenses ÷ withdrawal rate. Healthcare and hour cliffs often dominate the gap math — see the Barista healthcare guide.",
+  },
+  {
+    question: "Which lever shortens years to FIRE most?",
+    answer:
+      "For most mid-journey planners, spending and savings rate move the timeline more than optimistic return assumptions. Spending cuts often help twice (lower target, higher savings). Use Years to FIRE and Scenario compare to change one lever at a time.",
   },
   {
     question: "Do you give financial advice?",
     answer:
-      "No. RetireFire provides educational calculators only. Results are simplified illustrations. Consult qualified professionals before making financial decisions.",
+      "No. RetireFire provides educational calculators only. Results are simplified illustrations. Consult qualified professionals before making financial decisions. See the full disclaimer.",
   },
   {
-    question: "Can I share my scenario?",
+    question: "Can I share or print my scenario?",
     answer:
-      "Yes. Shared assumptions sync to the URL. Use “Copy share link” so others can open the same inputs. You can also export a CSV of the current scenario for your own notes.",
+      "Yes. Shared assumptions sync to the URL — use “Copy share link.” Export CSV for notes. Free resource pages (Coast checklist, sequence-risk guide) support browser Print / Save as PDF with no account.",
   },
   {
     question: "Do you model sequence-of-returns risk?",
     answer:
-      "Core calculators still use constant-return illustrations. Coast FIRE and Years to FIRE also include a free basic stress test: 1,000 random return paths with fixed volatility, success rate, p10/p50/p90 terminals, and sample paths. It is educational — not a forecast or historical backtest. See Methodology for the model.",
+      "Core calculators still use constant-return illustrations. Coast FIRE and Years to FIRE also include a free basic stress test: 1,000 random return paths with fixed volatility, success rate, p10/p50/p90 terminals, and sample paths. It is educational — not a forecast or historical backtest. See Methodology and the sequence-risk guide.",
+  },
+  {
+    question: "How do I compare two plans side by side?",
+    answer:
+      "Use free Scenario compare on the homepage calculator hub: pin today’s assumptions as baseline A, change shared inputs, and read live B with deltas for FIRE, years, Coast, and Barista. Saved multi-scenario history is a planned Pro depth feature — basic A/B stays free.",
   },
   {
     question: "Will the calculators stay free?",
@@ -68,6 +79,31 @@ export function FaqSection() {
             </div>
           ))}
         </dl>
+        <p className="mt-8 text-sm text-zinc-500">
+          Go deeper:{" "}
+          <Link href="/methodology" className="text-emerald-400 hover:underline">
+            Methodology
+          </Link>
+          {" · "}
+          <Link href="/approach" className="text-emerald-400 hover:underline">
+            Approach
+          </Link>
+          {" · "}
+          <Link href="/resources" className="text-emerald-400 hover:underline">
+            Free resources
+          </Link>
+          {" · "}
+          <Link
+            href="/blog/retirefire-methodology-explained"
+            className="text-emerald-400 hover:underline"
+          >
+            Human methodology tour
+          </Link>
+          {" · "}
+          <Link href="/blog" className="text-emerald-400 hover:underline">
+            Blog
+          </Link>
+        </p>
       </div>
     </section>
   );

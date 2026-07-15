@@ -30,6 +30,16 @@ const RESOURCES = [
     body: "Deterministic baseline → sensitivity → free Monte Carlo → go/no-go gates.",
   },
   {
+    href: "/blog/semi-retirement-math-portfolio-part-time-income",
+    title: "Semi-retirement math: portfolio + part-time income",
+    body: "Gap formula, SWR tables, Coast vs Barista, income volatility workflow.",
+  },
+  {
+    href: "/blog/retirefire-methodology-explained",
+    title: "Methodology explained (human version)",
+    body: "Narrative tour of formulas, free stress tests, defaults, and limits.",
+  },
+  {
     href: "/blog/lean-regular-fat-fire-numbers-2026",
     title: "Lean / Regular / Fat FIRE numbers (2026)",
     body: "Transparent spending presets × 3% / 3.5% / 4% SWR tables you can re-run.",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { PrintButton } from "@/components/ui/print-button";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/resources/sequence-risk-guide", {
@@ -27,14 +28,18 @@ export default function SequenceRiskGuidePage() {
           },
         ]}
       />
-      <p className="mt-6 text-sm font-medium text-emerald-400">Free resource</p>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm font-medium text-emerald-400">Free resource</p>
+        <PrintButton />
+      </div>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
         Sequence of returns risk — a practical guide
       </h1>
       <p className="mt-4 text-base leading-relaxed text-zinc-400">
         Sequence risk is why two plans with the same average return can end in
         very different places. This page is a plain-language field guide for
-        FIRE and Coast FIRE planners. Educational only — not financial advice.
+        FIRE and Coast FIRE planners. Print or save as PDF if useful.
+        Educational only — not financial advice.
       </p>
 
       <div className="prose-invert mt-12 space-y-10 text-[15px] leading-relaxed text-zinc-300">

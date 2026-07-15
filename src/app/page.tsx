@@ -120,9 +120,14 @@ export default function HomePage() {
               </li>
               <li>
                 <strong className="text-zinc-200">Honest limits</strong> —
-                Constant-return models omit sequence risk, taxes, and healthcare.
-                We publish what we leave out — and are adding transparent
-                stress tests.
+                Constant-return models omit taxes and healthcare. Coast and Years
+                include a free basic sequence stress test (1,000 paths); we still
+                publish what advanced engines and life plumbing leave out.
+              </li>
+              <li>
+                <strong className="text-zinc-200">Compare plans</strong> —
+                Scenario A/B compare, sensitivity chips, share links, and CSV
+                export keep assumptions honest without an account.
               </li>
             </ul>
             <p className="mt-6 text-sm text-zinc-500">
@@ -132,6 +137,13 @@ export default function HomePage() {
                 className="font-medium text-emerald-400 underline-offset-2 hover:underline"
               >
                 Methodology
+              </Link>
+              {" · "}
+              <Link
+                href="/blog/retirefire-methodology-explained"
+                className="font-medium text-emerald-400 underline-offset-2 hover:underline"
+              >
+                Human tour
               </Link>
               . Philosophy:{" "}
               <Link
@@ -146,6 +158,13 @@ export default function HomePage() {
                 className="font-medium text-emerald-400 underline-offset-2 hover:underline"
               >
                 Resources
+              </Link>
+              {" · "}
+              <Link
+                href="/resources/coast-fire-checklist"
+                className="font-medium text-emerald-400 underline-offset-2 hover:underline"
+              >
+                Coast checklist
               </Link>
               . Blog:{" "}
               <Link

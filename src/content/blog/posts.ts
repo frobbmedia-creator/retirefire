@@ -11,6 +11,263 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "retirefire-methodology-explained",
+    title: "RetireFire methodology explained (human version)",
+    description:
+      "Plain-language tour of RetireFire math: FIRE number, years, Coast, Barista, shared assumptions, free Monte Carlo stress tests, and deliberate limits — without the jargon wall.",
+    date: "2026-07-20",
+    readingMinutes: 11,
+    tags: ["methodology", "basics", "stress-test"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Methodology pages are often written for people who already trust the product. This post is the human version: what each RetireFire tool computes, which assumptions are shared, what the free stress test does, and what we deliberately leave out. Pair it with the full Methodology page when you want formulas on one screen.",
+      },
+      {
+        type: "h2",
+        content: "The one-sentence product idea",
+      },
+      {
+        type: "p",
+        content:
+          "Show transparent FIRE math under named assumptions, keep core tools free, and prefer ranges over false confidence. If a result cannot be explained in plain language, it should not ship as a green checkmark.",
+      },
+      {
+        type: "h2",
+        content: "Four questions, four tools",
+      },
+      {
+        type: "ul",
+        content: [
+          "FIRE Number — “How large a portfolio for this spending and withdrawal rate?” → spending ÷ SWR.",
+          "Years to FIRE — “How long might accumulation take under constant real return and steady savings?”",
+          "Coast FIRE — “Can growth alone finish full FIRE by a traditional retirement age if I stop contributions?” → full FIRE ÷ (1+r)^n.",
+          "Barista FIRE — “What portfolio covers the gap after part-time income?” → max(0, spend − work income) ÷ SWR.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Shared assumptions (why that matters)",
+      },
+      {
+        type: "p",
+        content:
+          "Spending, portfolio, savings, withdrawal rate, real return, ages, and part-time income live in one planner state. Change SWR once and FIRE, Coast, Barista, and Years stay consistent. Share URLs and CSV export freeze a snapshot so “my plan” is not a vibe.",
+      },
+      {
+        type: "h2",
+        content: "Defaults are starting points, not forecasts",
+      },
+      {
+        type: "ul",
+        content: [
+          "Example default SWR: 4% (historical conversation starter; early retirees often stress 3–3.5%).",
+          "Example default real return: 5% (illustrative; lower it when you want conservatism).",
+          "Lean / Regular / Fat: spending presets ($40k / $60k / $100k examples) — not academic standards.",
+          "Traditional retirement age default: 65 for Coast horizon math — edit it.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Constant return first, then ranges",
+      },
+      {
+        type: "p",
+        content:
+          "Main calculators assume the same real return every year. That is intentional clarity, not a claim markets are smooth. Sensitivity chips and Scenario A/B let you change one lever at a time. Coast and Years also offer a free basic Monte Carlo: 1,000 paths, volatility presets, success rate and p10/p50/p90 terminals under a simple shock model (seed 42). It is educational dispersion — not historical cycle backtesting and not a life success probability.",
+      },
+      {
+        type: "h2",
+        content: "What we leave out on purpose (for now)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Taxes, account types, RMDs, withdrawal ordering",
+          "Fees as a first-class drag model",
+          "Social Security, pensions, annuities",
+          "Healthcare premiums and subsidy cliffs (see Barista healthcare guide)",
+          "Full historical market engines and multi-regime Pro-depth sims (teased, not gated on free core)",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Research lineage we cite carefully",
+      },
+      {
+        type: "p",
+        content:
+          "The 4% conversation tracks Bengen and Trinity Study–style historical U.S. portfolio survival research. We describe it as history-based guidance, not a warranty. Safe withdrawal rate posts and Methodology expand the nuance for early retirement horizons.",
+      },
+      {
+        type: "h2",
+        content: "How to use the suite without lying to yourself",
+      },
+      {
+        type: "ul",
+        content: [
+          "Name spending honestly (including healthcare).",
+          "Run at least two SWR and two return assumptions.",
+          "Use Coast checklist before cutting contributions.",
+          "Read stress-test tails, not only success rate.",
+          "Compare Coast vs Barista when the question is work vs savings.",
+          "Escalate high-stakes plans to full planning tools and professionals.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Free core promise",
+      },
+      {
+        type: "p",
+        content:
+          "If optional Pro features ship later (more paths, regimes, saved scenarios, detailed reports), core calculators and a useful free stress-test tier are intended to remain free. Approach documents that contract in plain language.",
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Is Methodology the same as this post? Methodology is the formula reference; this is the narrative tour.",
+          "Why not taxes first? Complexity that obscures the core identity question ships later, if ever, as optional depth.",
+          "Why seed 42? Reproducibility for the free stress test under the same inputs.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Read the full Methodology page, Approach & roadmap, sequence-risk guide, and disclaimer. Educational only — not financial, tax, or investment advice.",
+      },
+    ],
+  },
+  {
+    slug: "semi-retirement-math-portfolio-part-time-income",
+    title: "Semi-retirement math: portfolio + part-time income",
+    description:
+      "Worked Barista FIRE / semi-retirement math: gap formula, SWR tables, Coast comparison, income volatility, and a practical scenario workflow — educational only.",
+    date: "2026-07-20",
+    readingMinutes: 11,
+    tags: ["barista-fire", "semi-retirement", "fire-number"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Semi-retirement (Barista FIRE) asks a cash-flow question: if intentional work income covers part of spending, how large a portfolio do you still need? The formula is short. The life design is not. This guide works the math with transparent examples and shows where to stress it.",
+      },
+      {
+        type: "h2",
+        content: "Core formula",
+      },
+      {
+        type: "ul",
+        content: [
+          "Gap spending = max(0, annual expenses − annual work income).",
+          "Barista / semi-retirement number = gap ÷ withdrawal rate.",
+          "If work income ≥ expenses, portfolio need for the gap is $0 under this model — you still may want reserves, and the model ignores job risk.",
+          "Full FIRE number remains expenses ÷ SWR for comparison.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Worked table ($60k spend)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Work $0 → gap $60k → 4% = $1.5M · 3.5% ≈ $1.71M · 3% = $2.0M (full FIRE).",
+          "Work $20k → gap $40k → 4% = $1.0M · 3.5% ≈ $1.14M · 3% ≈ $1.33M.",
+          "Work $30k → gap $30k → 4% = $750k · 3.5% ≈ $857k · 3% = $1.0M.",
+          "Work $45k → gap $15k → 4% = $375k · 3.5% ≈ $429k · 3% = $500k.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Every $10k of durable work income at 4% SWR reduces the portfolio target by $250k. That leverage is why Barista is popular — and why fragile income assumptions are dangerous.",
+      },
+      {
+        type: "h2",
+        content: "Barista vs Coast vs full FI",
+      },
+      {
+        type: "ul",
+        content: [
+          "Full FI: portfolio covers spending; work optional.",
+          "Barista: work covers part of spend now; portfolio covers the rest.",
+          "Coast: work still covers full lifestyle spend; portfolio is sized so contributions can stop while compounding toward full FI by traditional retirement age.",
+          "Same person can Coast first (stop maxing retirement savings) then later Barista (cut hours) — different tools for different stages.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Income is not an annuity",
+      },
+      {
+        type: "ul",
+        content: [
+          "Hours get cut; gigs dry up; clients churn.",
+          "Benefits may vanish below hour thresholds (see healthcare cliffs guide).",
+          "Self-employment taxes and irregular cash flow differ from W-2 part-time.",
+          "Stress case: re-run with work income −25% and −50%, and with a year of $0 work income (bridge reserve).",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Spending often rises with free time",
+      },
+      {
+        type: "p",
+        content:
+          "Travel, hobbies, and “I have time now” projects can lift expenses exactly when income falls. Model semi-retirement spend as a separate budget, not last year’s full-time lifestyle with salary deleted.",
+      },
+      {
+        type: "h2",
+        content: "Practical workflow in RetireFire",
+      },
+      {
+        type: "ul",
+        content: [
+          "1. Set true semi-retirement spending (with healthcare).",
+          "2. Enter expected work income in Barista calculator.",
+          "3. Toggle SWR 4% / 3.5% / 3%.",
+          "4. Pin Scenario A (full-time / full FIRE path) vs B (semi-retirement inputs).",
+          "5. Compare Coast if the real question is “stop aggressive saving” not “cut hours.”",
+          "6. Keep emergency reserves outside the barista pile.",
+          "7. Revisit yearly — income and benefits change.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Example story (synthetic)",
+      },
+      {
+        type: "p",
+        content:
+          "Alex spends $70k, holds $900k invested, can earn $28k part-time. Gap $42k → at 4% needs $1.05M (short ~$150k); at 3.5% needs ~$1.2M. Full FIRE at 4% is $1.75M. Coast to 65 may already be green while Barista is not — meaning Alex might reduce retirement contributions but not yet cut to part-time without a larger pile or lower spend. Numbers are illustrations, not advice.",
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Does work income get inflated in the model? Simple tools usually treat it as a constant real amount — edit inputs as your plan changes.",
+          "Should I include employer benefits as income? Better to put full costs in spending and cash pay in income.",
+          "Is semi-retirement safer than full FIRE? Often lower portfolio risk target, higher job and benefits risk — different risk, not free lunch.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Open the Barista FIRE calculator, read Barista vs Coast and healthcare cliffs posts, and see Methodology for formulas. Educational only — not financial, tax, or career advice.",
+      },
+    ],
+  },
+  {
     slug: "barista-fire-healthcare-benefits-cliffs",
     title: "Barista FIRE healthcare & benefits cliffs (education)",
     description:
@@ -1521,9 +1778,9 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "barista-fire-and-semi-retirement",
     title: "Barista FIRE and semi-retirement",
     description:
-      "How part-time income changes the portfolio you need — and what the model leaves out.",
+      "How part-time income changes the portfolio you need, why people choose semi-retirement, model limits, and where to go deeper on math and healthcare cliffs.",
     date: "2026-07-10",
-    readingMinutes: 5,
+    readingMinutes: 8,
     tags: ["barista-fire", "semi-retirement"],
     body: [
       {
@@ -1541,6 +1798,28 @@ export const BLOG_POSTS: BlogPost[] = [
           "Lower savings target than full FIRE.",
           "Structure, community, or health benefits from light work.",
           "Bridge years before Social Security or Medicare eligibility.",
+          "Identity: not “never work,” but “work on purpose.”",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Quick numeric sketch",
+      },
+      {
+        type: "p",
+        content:
+          "Spend $60k, earn $25k part-time, gap $35k. At 4% SWR the barista pile is $875k vs $1.5M full FIRE. At 3.5% those become ≈ $1.0M vs ≈ $1.71M. The gap formula is linear; life is not — healthcare and hours cliffs can erase the paper savings.",
+      },
+      {
+        type: "h2",
+        content: "Barista vs Coast (do not mix them)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Coast: still cover full lifestyle with work; stop aggressive retirement contributions if the pile can compound to full FIRE by traditional age.",
+          "Barista: cut hours or change work; portfolio must fund part of spending now.",
+          "See the Barista vs Coast comparison pillar and the semi-retirement math deep dive for tables.",
         ],
       },
       {
@@ -1548,14 +1827,24 @@ export const BLOG_POSTS: BlogPost[] = [
         content: "Model limitations",
       },
       {
-        type: "p",
-        content:
-          "Simple calculators do not capture job reliability, benefit cliffs, self-employment taxes, or how spending changes when you have more free time. Treat Barista FIRE numbers as a planning conversation starter, not a paycheck replacement plan.",
+        type: "ul",
+        content: [
+          "Job reliability and income volatility",
+          "Benefit and healthcare cliffs",
+          "Self-employment taxes and irregular cash flow",
+          "Spending changes when free time rises",
+          "Sequence risk on the remaining portfolio withdrawals",
+        ],
       },
       {
         type: "p",
         content:
-          "Try the free Barista FIRE calculator at /calculators/barista-fire, then compare with full FIRE and Coast FIRE on RetireFire.",
+          "Treat Barista FIRE numbers as a planning conversation starter, not a paycheck replacement plan. For worked tables and scenario workflow, read “Semi-retirement math: portfolio + part-time income.” For coverage traps, read the healthcare & benefits cliffs guide.",
+      },
+      {
+        type: "p",
+        content:
+          "Try the free Barista FIRE calculator, compare full FIRE and Coast with shared assumptions, and export CSV if you want an offline record. Educational only.",
       },
     ],
   },

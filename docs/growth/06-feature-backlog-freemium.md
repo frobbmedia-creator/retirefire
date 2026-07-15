@@ -29,7 +29,7 @@ Prioritized by **user value × shareability × freemium readiness**. Integrity: 
 
 | Feature | Free/Pro |
 |---------|----------|
-| One-click PDF summary (simple) | Free watermarked / Pro clean |
+| One-click PDF summary (simple) | Free: browser Print on resources; Pro clean reports later |
 | Improved interactive charts | Free |
 | Loading states / empty states polish | Free |
 | Saved scenarios (account) | Pro |

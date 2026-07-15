@@ -86,11 +86,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full dark`}
     >
       <body className="flex min-h-full flex-col bg-zinc-950 text-zinc-50 antialiased">
-        <DisclaimerBanner />
+        <div data-print-hide>
+          <DisclaimerBanner />
+        </div>
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
-        <FeedbackWidget />
+        <div data-print-hide>
+          <FeedbackWidget />
+        </div>
         {/* Privacy-friendly first-party analytics + performance (no cookies); no-ops off Vercel */}
         <Analytics />
         <SpeedInsights />

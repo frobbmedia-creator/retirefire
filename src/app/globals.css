@@ -60,3 +60,90 @@ input[type="number"]::-webkit-outer-spin-button {
     border: 2px solid #09090b;
   }
 }
+
+/* Print / Save-as-PDF for resources & long guides (free, no account) */
+@media print {
+  @page {
+    margin: 1.2cm;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background: #fff !important;
+    color: #18181b !important;
+    font-size: 11pt;
+  }
+
+  header,
+  footer,
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  main {
+    display: block !important;
+  }
+
+  a {
+    color: #18181b !important;
+    text-decoration: none !important;
+  }
+
+  a[href^="http"]::after,
+  a[href^="/"]::after {
+    content: none;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Flatten dark UI chrome for ink-friendly output */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  [class*="bg-zinc-"],
+  [class*="bg-gradient"],
+  [class*="from-zinc"],
+  [class*="to-zinc"],
+  [class*="bg-amber-"],
+  [class*="bg-emerald-"] {
+    background: transparent !important;
+  }
+
+  [class*="border-zinc-"],
+  [class*="border-amber-"],
+  [class*="ring-"] {
+    border-color: #d4d4d8 !important;
+  }
+
+  [class*="text-zinc-50"],
+  [class*="text-zinc-100"],
+  [class*="text-zinc-200"],
+  [class*="text-zinc-300"],
+  h1,
+  h2,
+  h3 {
+    color: #18181b !important;
+  }
+
+  [class*="text-zinc-400"],
+  [class*="text-zinc-500"],
+  [class*="text-zinc-600"],
+  p,
+  li,
+  dd {
+    color: #3f3f46 !important;
+  }
+
+  [class*="text-emerald-"],
+  [class*="text-amber-"],
+  [class*="text-cyan-"] {
+    color: #18181b !important;
+  }
+}

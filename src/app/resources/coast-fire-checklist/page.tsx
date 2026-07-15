@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { PrintButton } from "@/components/ui/print-button";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/resources/coast-fire-checklist", {
@@ -78,13 +79,17 @@ export default function CoastFireChecklistPage() {
           },
         ]}
       />
-      <p className="mt-6 text-sm font-medium text-emerald-400">Free resource</p>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm font-medium text-emerald-400">Free resource</p>
+        <PrintButton />
+      </div>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
         Coast FIRE assumptions checklist
       </h1>
       <p className="mt-4 text-base leading-relaxed text-zinc-400">
         Use this before you change savings behavior based on a single coast
-        number. Print it, copy it, or keep it open next to the{" "}
+        number. Print or save as PDF (browser print), copy it, or keep it open
+        next to the{" "}
         <Link
           href="/calculators/coast-fire"
           className="text-emerald-400 hover:underline"

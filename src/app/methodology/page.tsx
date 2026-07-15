@@ -30,8 +30,15 @@ export default function MethodologyPage() {
       <p className="mt-4 text-base leading-relaxed text-zinc-400">
         RetireFire is built for people who want to understand the math, not just
         a black-box number. Below are the formulas, default assumptions, and
-        primary research traditions we reference. Nothing here is personalized
-        advice — see the{" "}
+        primary research traditions we reference. Prefer a narrative first? Read
+        the{" "}
+        <Link
+          href="/blog/retirefire-methodology-explained"
+          className="text-emerald-400 hover:underline"
+        >
+          human methodology tour
+        </Link>
+        . Nothing here is personalized advice — see the{" "}
         <Link href="/disclaimer" className="text-emerald-400 hover:underline">
           disclaimer
         </Link>

@@ -34,8 +34,8 @@
 | 11 | Monte Carlo vs Historical Cycles: What Free Tools Can Teach | fire calculator monte carlo | Differentiator | Done |
 | 12 | Lean vs Regular vs Fat FIRE Numbers (2026) | lean fire number | Support | Done |
 | 13 | When Can You Stop Saving for Retirement? | when can I stop saving | Coast cluster | Done |
-| 14 | Semi-Retirement Math: Portfolio + Part-Time Income | semi retirement calculator | Barista | Partial (existing semi-retirement post) |
-| 15 | RetireFire Methodology Explained (Human Version) | — | Trust | Partial (/methodology page) |
+| 14 | Semi-Retirement Math: Portfolio + Part-Time Income | semi retirement calculator | Barista | Done |
+| 15 | RetireFire Methodology Explained (Human Version) | — | Trust | Done |
 
 ## Week 7–10 (Scale)
 
