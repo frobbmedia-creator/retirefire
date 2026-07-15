@@ -28,17 +28,19 @@ git push -u origin main
 4. Output: default (no override)
 5. **Environment variables** (optional for core site; required for feedback).
 
-   **Default (simple):** only one var:
-   - `FEEDBACK_TO_EMAIL` — inbox that should receive feedback (must be a real email)
+   **Required for feedback:**
+   - `FEEDBACK_TO_EMAIL` — real inbox (not empty). Must be a valid email string.
 
-   Delivery uses [FormSubmit](https://formsubmit.co). The **first** submission emails that
-   address an activation link — open it once, then feedback flows normally.
-   `RESEND_API_KEY` is no longer required for feedback.
+   The widget submits **from the browser** via [FormSubmit](https://formsubmit.co)
+   (free form APIs block Vercel server IPs).  
+   **First send:** FormSubmit emails that inbox an activation link — click once, then
+   feedback works.  
+   `RESEND_API_KEY` is unused for feedback now (safe to delete).
 
-   **Optional:** `WEB3FORMS_ACCESS_KEY` from [web3forms.com](https://web3forms.com) —
-   if set, Web3Forms is used instead of FormSubmit.
+   **Optional:** `WEB3FORMS_ACCESS_KEY` or `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` —
+   if set, Web3Forms is used instead (also client-side).
 
-   After changing env vars, create a **new deploy** (not a prebuilt redeploy).
+   After changing env vars, create a **new deploy** (Git push or new deployment).
 6. Deploy
 
 ## 3. Attach retirefire.net

@@ -8,6 +8,11 @@ import { cn } from "@/lib/utils";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+type FeedbackConfig =
+  | { configured: false; error?: string }
+  | { configured: true; provider: "formsubmit"; to: string }
+  | { configured: true; provider: "web3forms"; accessKey: string };
+
 export function FeedbackWidget() {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -15,6 +20,7 @@ export function FeedbackWidget() {
   const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [config, setConfig] = useState<FeedbackConfig | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
   const messageId = useId();
@@ -40,44 +46,142 @@ export function FeedbackWidget() {
   }, [open, close]);
 
   useEffect(() => {
-    if (open) {
-      const el = dialogRef.current?.querySelector<HTMLTextAreaElement>("textarea");
-      el?.focus();
-    }
+    if (!open) return;
+    const el = dialogRef.current?.querySelector<HTMLTextAreaElement>("textarea");
+    el?.focus();
   }, [open]);
+
+  useEffect(() => {
+    if (!open || config) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/feedback");
+        const data = (await res.json()) as FeedbackConfig;
+        if (!cancelled) setConfig(data);
+      } catch {
+        if (!cancelled) {
+          setConfig({
+            configured: false,
+            error: "Could not load feedback settings.",
+          });
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [open, config]);
+
+  async function sendFormSubmit(to: string) {
+    const res = await fetch(`https://formsubmit.co/ajax/${to}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: "RetireFire visitor",
+        email: email.trim() || "noreply@retirefire.net",
+        _replyto: email.trim() || to,
+        _subject: email.trim()
+          ? `RetireFire feedback from ${email.trim()}`
+          : "RetireFire feedback",
+        _template: "table",
+        _captcha: false,
+        message: message.trim(),
+        source: "retirefire.net",
+      }),
+    });
+
+    const raw = await res.text();
+    let data: { success?: string | boolean; message?: string } = {};
+    try {
+      data = JSON.parse(raw) as typeof data;
+    } catch {
+      /* ignore */
+    }
+
+    if (!res.ok || data.success === false || data.success === "false") {
+      if (/activate|confirm|check your email/i.test(`${data.message ?? ""} ${raw}`)) {
+        throw new Error(
+          "Check your inbox for a FormSubmit activation link (one-time), then send again.",
+        );
+      }
+      throw new Error(data.message || "Could not send. Please try again.");
+    }
+  }
+
+  async function sendWeb3Forms(accessKey: string) {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: accessKey,
+        subject: email.trim()
+          ? `RetireFire feedback from ${email.trim()}`
+          : "RetireFire feedback",
+        from_name: "RetireFire",
+        email: email.trim() || "anonymous@retirefire.net",
+        message: message.trim(),
+        ...(email.trim() ? { replyto: email.trim() } : {}),
+      }),
+    });
+
+    const data = (await res.json().catch(() => ({}))) as {
+      success?: boolean;
+      message?: string;
+    };
+
+    if (!res.ok || data.success === false) {
+      throw new Error(data.message || "Could not send. Please try again.");
+    }
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (honeypot) {
+      setStatus("success");
+      return;
+    }
+    if (message.trim().length < 3) {
+      setError("Please write a short message.");
+      return;
+    }
+
     setStatus("submitting");
     setError(null);
 
     try {
-      const res = await fetch("/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message,
-          email,
-          website: honeypot,
-        }),
-      });
-      const data = (await res.json().catch(() => ({}))) as {
-        error?: string;
-        ok?: boolean;
-      };
+      let cfg = config;
+      if (!cfg) {
+        const res = await fetch("/api/feedback");
+        cfg = (await res.json()) as FeedbackConfig;
+        setConfig(cfg);
+      }
 
-      if (!res.ok) {
-        setStatus("error");
-        setError(data.error ?? "Something went wrong.");
-        return;
+      if (!cfg.configured) {
+        throw new Error(
+          cfg.error ||
+            "Feedback is not configured. Set FEEDBACK_TO_EMAIL in Vercel.",
+        );
+      }
+
+      if (cfg.provider === "web3forms") {
+        await sendWeb3Forms(cfg.accessKey);
+      } else {
+        await sendFormSubmit(cfg.to);
       }
 
       setStatus("success");
       setMessage("");
       setEmail("");
-    } catch {
+    } catch (err) {
       setStatus("error");
-      setError("Network error. Please try again.");
+      setError(err instanceof Error ? err.message : "Something went wrong.");
     }
   }
 
@@ -149,8 +253,10 @@ export function FeedbackWidget() {
               </div>
             ) : (
               <form onSubmit={onSubmit} className="mt-5 space-y-4">
-                {/* Honeypot */}
-                <div className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden" aria-hidden>
+                <div
+                  className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden"
+                  aria-hidden
+                >
                   <label htmlFor="feedback-website">Website</label>
                   <input
                     id="feedback-website"
@@ -201,6 +307,12 @@ export function FeedbackWidget() {
                 {error && (
                   <p className="text-sm text-red-400" role="alert">
                     {error}
+                  </p>
+                )}
+
+                {config && !config.configured && (
+                  <p className="text-sm text-amber-400/90" role="status">
+                    {config.error || "Feedback inbox is not configured yet."}
                   </p>
                 )}
 
