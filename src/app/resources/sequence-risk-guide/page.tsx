@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/resources/sequence-risk-guide", {
@@ -16,7 +17,17 @@ export const metadata: Metadata = pageMeta("/resources/sequence-risk-guide", {
 export default function SequenceRiskGuidePage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-      <p className="text-sm font-medium text-emerald-400">Free resource</p>
+      <Breadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources" },
+          {
+            name: "Sequence risk guide",
+            path: "/resources/sequence-risk-guide",
+          },
+        ]}
+      />
+      <p className="mt-6 text-sm font-medium text-emerald-400">Free resource</p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
         Sequence of returns risk — a practical guide
       </h1>

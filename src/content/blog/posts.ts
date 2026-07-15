@@ -11,6 +11,365 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "how-to-stress-test-coast-fire-number",
+    title: "How to stress-test your Coast FIRE number (practical guide)",
+    description:
+      "Step-by-step: deterministic Coast math first, then lower return/SWR sensitivity, free Monte Carlo ranges, and a go/no-go checklist before you change savings.",
+    date: "2026-07-18",
+    readingMinutes: 12,
+    tags: ["coast-fire", "stress-test", "sequence-risk"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Hitting a Coast FIRE number on a smooth-return calculator feels decisive. It should not be. Coast math answers: “If returns equal my assumed real rate every year until traditional retirement age, is my pile large enough that contributions can drop?” Sequence risk, lower returns, and life plumbing can still make that “yes” fragile. This guide is a practical stress-test workflow you can run in an afternoon.",
+      },
+      {
+        type: "h2",
+        content: "What you are testing (and what you are not)",
+      },
+      {
+        type: "ul",
+        content: [
+          "You are testing whether a coast decision looks robust under worse assumptions and path noise.",
+          "You are not proving you can retire early, quit healthcare planning, or ignore taxes.",
+          "Success rates from a toy Monte Carlo are model outputs under stated rules — not the probability your life works out.",
+          "Coast ≠ Barista. If part-time income covers a spending gap, use Barista math separately.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Step 1 — Write the deterministic baseline",
+      },
+      {
+        type: "p",
+        content:
+          "Open the Coast FIRE calculator. Set annual spending, withdrawal rate, current age, traditional retirement age, current portfolio, and real return. Write down: full FIRE = spending ÷ SWR; coast ≈ FIRE ÷ (1+r)^n with n = retirement age − current age; shortfall or surplus vs portfolio today. Export CSV or copy the share link so the baseline is recoverable.",
+      },
+      {
+        type: "h2",
+        content: "Step 2 — Sensitivity before simulation",
+      },
+      {
+        type: "ul",
+        content: [
+          "Drop real return by ~1 percentage point (e.g. 5% → 4%). Recompute coast.",
+          "Drop SWR (e.g. 4% → 3.5% or 3%). Full FIRE and coast both rise.",
+          "Raise spending 10% (lifestyle creep or healthcare realism). Recompute.",
+          "Use Scenario compare: pin baseline A, change one lever at a time as B.",
+          "If surplus disappears under two mild stresses, treat “already coasting” as soft, not permanent.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Step 3 — Free sequence stress test (Coast tool)",
+      },
+      {
+        type: "p",
+        content:
+          "On Coast FIRE, open the stress-test panel. It runs 1,000 paths with the same mean real return and a chosen volatility (12% / 15% / 18% presets), contributions = 0, target = full FIRE, seed 42 for reproducibility. Read: success rate (paths with terminal ≥ full FIRE), p10 / median / p90 terminals, sample paths, and the histogram. Prefer interpreting the band of outcomes over a single green success percentage.",
+      },
+      {
+        type: "h2",
+        content: "Step 4 — How to read the results without false precision",
+      },
+      {
+        type: "ul",
+        content: [
+          "High success + p10 still near target → model says more cushion under this toy path model.",
+          "OK median but weak p10 → order risk bites; keep savings, lower spending target, or delay the coast decision.",
+          "Changing σ from 12% to 18% swings results a lot → your conclusion depends on volatility assumptions; say so out loud.",
+          "Never treat 1,000 i.i.d. annual shocks as historical truth. See Monte Carlo vs historical cycles for the other family of tools.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Worked sketch (illustrative only)",
+      },
+      {
+        type: "p",
+        content:
+          "Spending $60k, SWR 4% → FIRE $1.5M. Age 40 → 65 (25 years), r = 5% real → coast ≈ $443k. Portfolio $500k: constant-return model says past coast. Sensitivity at 4% real and 3.5% SWR can erase that surplus. A free stress test may still show a non-trivial share of paths finishing under $1.5M if σ is high and the horizon is long. Decision: maybe reduce contributions gradually, keep emergency funds, re-run yearly — not “markets are guaranteed.”",
+      },
+      {
+        type: "h2",
+        content: "Step 5 — Life gates outside the formula",
+      },
+      {
+        type: "ul",
+        content: [
+          "Healthcare plan for remaining working years and any gap years.",
+          "Emergency fund separate from the invested coast pile.",
+          "High-interest debt and near-term cash needs named, not assumed away.",
+          "Rule against lifestyle creep silently raising full FIRE after you “coast.”",
+          "Partner / co-planner saw the same share link or CSV.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Go / no-go hygiene",
+      },
+      {
+        type: "ul",
+        content: [
+          "Go (cautious): surplus under base + mild stresses; stress-test tails acceptable to you; life gates green.",
+          "Hold: base case coasts but stress cases do not — keep contributing a floor amount.",
+          "No-go: base case only works at optimistic r and SWR — do not change savings on that alone.",
+          "Use the free Coast assumptions checklist as a pre-flight.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Is a 90% success rate “safe”? It is 90% of simulated paths under this model definition — not a warranty.",
+          "Should I coast if stress test is “ugly” but constant return is green? Prefer ranges; often keep a savings floor.",
+          "Does stress test replace historical tools? No — it is complementary and simpler. Use both families when stakes are high.",
+          "Taxes? Not in the model. Effective after-tax plans can need a larger pile.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Run the workflow on the Coast FIRE calculator, read Methodology for formulas, Approach for what stays free, and the sequence-risk guide for path concepts. Educational only — not financial, tax, or investment advice.",
+      },
+    ],
+  },
+  {
+    slug: "years-to-fire-which-lever-moves-the-needle",
+    title: "Years to FIRE: which lever moves the needle most?",
+    description:
+      "Savings rate, spending, returns, and withdrawal rate ranked by impact on years-to-FIRE — with worked examples, sensitivity tips, and how to stress-test the timeline.",
+    date: "2026-07-18",
+    readingMinutes: 11,
+    tags: ["years-to-fire", "fire-number", "basics"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Years-to-FIRE calculators solve a compound-growth question: given portfolio, annual savings, spending, real return, and a withdrawal rate that sets the FIRE target, how long until portfolio ≥ spending ÷ SWR? People often obsess over return assumptions. For most mid-journey plans, the levers that move the timeline hardest are closer to your paycheck and lifestyle.",
+      },
+      {
+        type: "h2",
+        content: "The levers (ranked for typical workers)",
+      },
+      {
+        type: "ul",
+        content: [
+          "1. Annual spending (sets FIRE number and how much you can save).",
+          "2. Annual savings / savings rate (direct fuel into the portfolio).",
+          "3. Withdrawal rate choice (changes the finish line more than people admit).",
+          "4. Starting portfolio (big if you already have a large pile; less if early).",
+          "5. Assumed real return (matters, but is the least controllable and easiest to overfit).",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Why spending punches twice",
+      },
+      {
+        type: "p",
+        content:
+          "Lower spending shrinks full FIRE (spending ÷ SWR) and usually raises how much you can save. That double effect is why “earn more and spend it all” often fails to shorten the timeline as much as a durable spending cut. Raising income only helps years-to-FIRE if the margin becomes invested capital, not lifestyle.",
+      },
+      {
+        type: "h2",
+        content: "Worked comparison (illustrative)",
+      },
+      {
+        type: "p",
+        content:
+          "Start: portfolio $200k, spending $70k, save $30k/year, r = 5% real, SWR 4% → FIRE = $1.75M. Timeline is multi-decade. Case A: cut spending to $60k (FIRE $1.5M) and save $40k — timeline drops sharply. Case B: keep $70k spend, “optimize” return assumption to 7% real — chart looks better, but you did not control markets. Case C: keep spend and save, drop SWR to 3.5% (FIRE ≈ $2.0M) — finish line moves out. Use the Years calculator and Scenario compare to pin A and toggle one input at a time.",
+      },
+      {
+        type: "h2",
+        content: "Savings rate vs return (intuition)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Early years: contributions dominate terminal wealth; return noise matters less than consistent savings.",
+          "Late years: portfolio size is large; return and sequence risk dominate residual years.",
+          "If you are early, prioritize savings rate and career capital; if late, prioritize sequence cushions and SWR honesty.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Withdrawal rate is a finish-line lever",
+      },
+      {
+        type: "p",
+        content:
+          "Planning at 4% vs 3.5% is a 14% larger pile for the same spending. That is not a free “efficiency tip” — it is a risk preference about long horizons and flexible spending. Early retirees often stress lower rates or flexible rules. See the safe withdrawal rate guide for 3% / 3.5% / 4% framing.",
+      },
+      {
+        type: "h2",
+        content: "How to use RetireFire for lever analysis",
+      },
+      {
+        type: "ul",
+        content: [
+          "Years to FIRE calculator: baseline timeline under shared assumptions.",
+          "Sensitivity chips (± return / SWR style controls where available): instant “what if.”",
+          "Scenario A/B: pin current plan, change savings or spending, read Δ years.",
+          "Stress test on Years: keep contributions, target = FIRE number — see path dispersion around the deterministic date.",
+          "CSV export / share URL: keep honest records of which lever you claimed moved the plan.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Common mistakes",
+      },
+      {
+        type: "ul",
+        content: [
+          "Raising assumed returns until the chart hits a preferred year.",
+          "Ignoring that higher spending raises FIRE and lowers savings simultaneously.",
+          "Treating a single years estimate as a calendar appointment.",
+          "Forgetting taxes, fees, and healthcare — all of which can add years in real life.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Is maximizing savings rate always best? Not if it burns you out into a higher future spend; durability beats hero months.",
+          "Should I wait for market dips to invest? Timing is not a reliable years-to-FIRE lever in these models.",
+          "What about side income? Only the saved portion shortens years; Barista changes the question to semi-retirement cash flow.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Open Years to FIRE, pin a baseline in Scenario compare, and stress-test the timeline. Methodology documents formulas; Approach documents limits. Educational only — not advice.",
+      },
+    ],
+  },
+  {
+    slug: "when-can-you-stop-saving-for-retirement",
+    title: "When can you stop saving for retirement?",
+    description:
+      "Coast FIRE is the clean answer to “when can I stop aggressive retirement saving?” — definitions, formula, decision gates, and why sequence risk still matters after you coast.",
+    date: "2026-07-18",
+    readingMinutes: 10,
+    tags: ["coast-fire", "basics", "fire-number"],
+    body: [
+      {
+        type: "p",
+        content:
+          "“When can I stop saving for retirement?” is not the same as “when can I retire?” The Coast FIRE framing is usually the right one: you have enough invested that, if it compounds at an assumed real return until a traditional retirement age, it should reach a full FIRE target without further contributions — while you still earn enough to cover current spending.",
+      },
+      {
+        type: "h2",
+        content: "Precise definition",
+      },
+      {
+        type: "ul",
+        content: [
+          "Full FIRE number ≈ annual spending ÷ planned withdrawal rate.",
+          "Coast number ≈ full FIRE ÷ (1 + r)^n, n = years until traditional retirement age.",
+          "You are “coasting” (under the model) when current portfolio ≥ coast number.",
+          "You still need earned income (or other cash flow) for today’s lifestyle unless you are fully FI.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "What “stop saving” should mean in practice",
+      },
+      {
+        type: "p",
+        content:
+          "Stopping aggressive retirement contributions is not the same as zero savings forever. Many people keep a floor: emergency fund top-ups, employer match (often still free money), HSA contributions, or a small default investment habit to fight lifestyle creep. “Stop saving” is better phrased as “stop prioritizing max retirement savings over other life goals under these assumptions.”",
+      },
+      {
+        type: "h2",
+        content: "Worked example",
+      },
+      {
+        type: "p",
+        content:
+          "Spend $80k/year, plan 4% SWR → FIRE $2.0M. Age 38, traditional age 65 → n = 27 years. At 5% real, coast ≈ $2.0M / (1.05)^27 ≈ $534k. If you hold $600k invested (and healthcare/debt are handled), the constant-return model says you can reduce retirement contributions. If you hold $400k, you are not there yet — save more, spend less, or accept a later traditional age.",
+      },
+      {
+        type: "h2",
+        content: "Decision gates before you cut contributions",
+      },
+      {
+        type: "ul",
+        content: [
+          "Surplus still exists at a lower real return (e.g. −1 pp) and a stricter SWR.",
+          "Sequence stress test tails are acceptable for your risk tolerance (Coast free stress test).",
+          "Healthcare and emergency funds are not “inside” the coast pile.",
+          "You will not silently raise spending enough to re-inflate full FIRE.",
+          "Partner alignment if household finances are shared.",
+          "You re-run the numbers on job change, housing, kids, or market regime shifts.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Coast vs Barista vs full FI",
+      },
+      {
+        type: "ul",
+        content: [
+          "Coast: stop (or reduce) retirement contributions; still work for living expenses.",
+          "Barista / semi-retirement: portfolio covers part of spend; part-time income covers the rest.",
+          "Full FI: portfolio covers spending at your planned withdrawal rate without required work income.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Why people regret stopping too early",
+      },
+      {
+        type: "ul",
+        content: [
+          "Optimistic return or SWR assumptions that reverse under stress.",
+          "Lifestyle creep after “I’m coasting” identity.",
+          "Healthcare costs and family changes not in the spreadsheet.",
+          "Confusing Coast with early retirement and withdrawing too soon.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "How to answer the question with RetireFire",
+      },
+      {
+        type: "ul",
+        content: [
+          "Coast FIRE calculator for the number and age table for horizon intuition.",
+          "Free stress test for path ranges (not a single green light).",
+          "Scenario compare to pin “keep saving” vs “floor only.”",
+          "Coast assumptions checklist as pre-flight before you change behavior.",
+          "Methodology for formulas; Approach for limits and free-core promise.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Should I always take the employer match after coasting? Often yes — it is usually a high risk-adjusted return — but this is not personalized advice.",
+          "Can I coast at 40 with a 50-year horizon? Full FIRE for early withdrawal is a different problem; coast-to-65 is not early retirement math.",
+          "Is there one universal age to stop saving? No — only assumptions + pile + spending + gates.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Educational illustration only — not financial, tax, or investment advice. See the disclaimer. Start with the Coast FIRE calculator and the free assumptions checklist.",
+      },
+    ],
+  },
+  {
     slug: "monte-carlo-vs-historical-cycles-fire",
     title: "Monte Carlo vs historical cycles: what free FIRE tools can teach",
     description:

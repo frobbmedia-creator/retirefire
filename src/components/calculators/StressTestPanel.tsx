@@ -13,6 +13,7 @@ import {
 } from "@/lib/monte-carlo";
 import { formatCurrency, formatPercent } from "@/lib/format";
 import { AnalyticsEvents, trackEvent } from "@/lib/analytics";
+import { ProTeaserStrip } from "@/components/ui/pro-teaser";
 import { cn } from "@/lib/utils";
 
 export type StressTestPanelProps = {
@@ -169,10 +170,12 @@ export function StressTestPanel({
                 σ {p.label}
               </button>
             ))}
-            <span className="ml-auto rounded-full bg-zinc-900 px-2.5 py-1 text-[11px] font-medium text-zinc-500 ring-1 ring-zinc-800">
-              {PRO_PATH_TEASER.toLocaleString()} paths + regimes — Coming Pro
-            </span>
           </div>
+
+          <ProTeaserStrip
+            freeLabel={`${FREE_PATH_CAP.toLocaleString()} paths · success rate · p10/p50/p90 · stays free`}
+            proLabel={`${PRO_PATH_TEASER.toLocaleString()}+ paths, regimes, historical engines (planned)`}
+          />
 
           {!canRun && (
             <p className="rounded-xl bg-zinc-900/80 px-4 py-3 text-sm text-zinc-400 ring-1 ring-zinc-800">

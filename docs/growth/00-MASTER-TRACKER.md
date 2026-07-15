@@ -38,8 +38,8 @@
 | Task | Status | Notes |
 |------|--------|-------|
 | 2.1 Monte Carlo stress-test MVP | `[x]` | Free 1k-path stress test on Coast + Years; methodology updated |
-| 2.2 UX backlog (export, scenarios, Pro labels) | `[~]` | A/B compare shipped; saved accounts still later |
-| 2.3 Content engine (8–12 pieces / 6 weeks) | `[~]` | 6+ new pillars; checklist resource; MC vs history post |
+| 2.2 UX backlog (export, scenarios, Pro labels) | `[x]` | A/B compare + educational Pro teaser strips; saved accounts still later |
+| 2.3 Content engine (8–12 pieces / 6 weeks) | `[~]` | 9+ new pillars; checklist + SOR guide; MC vs history; stress-test & levers posts |
 | 2.4 Social amplification daily | `[ ]` | System designed; needs account ownership |
 
 ---
@@ -50,7 +50,7 @@
 |------|--------|
 | 3.1 Backlink / outreach | `[~]` | 30-day list + pitch templates in `13-outreach-30day.md` |
 | 3.2 Email list + lead magnets | `[~]` | Checklist + sequence guide live; welcome copy in `14-email-welcome-sequence.md` |
-| 3.3 Technical SEO scale | `[~]` | Audit in `15-technical-seo-audit.md`; resources hub + internal links improved |
+| 3.3 Technical SEO scale | `[~]` | Audit in `15-technical-seo-audit.md`; resources hub, breadcrumbs + JSON-LD, internal links |
 
 ---
 

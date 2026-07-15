@@ -21,8 +21,8 @@ Prioritized by **user value × shareability × freemium readiness**. Integrity: 
 | Monte Carlo stress test MVP (1k paths) | Core wedge | Free |
 | Path chart + p10/p50/p90 | Understanding | Free |
 | Volatility presets | Usability | Free |
-| “Pro: more paths / regimes” labels | Monetization setup | Label only |
-| Scenario comparison (A vs B side-by-side) | High value, shareable | Free basic |
+| “Pro: more paths / regimes” labels | Monetization setup | Label only — ProTeaserStrip shipped |
+| Scenario comparison (A vs B side-by-side) | High value, shareable | Free basic + Pro teaser |
 | Sensitivity: ±1% return / SWR chips | Instant insight | Free |
 
 ## P2 — Phase 2–3 polish

@@ -18,6 +18,7 @@ import {
 } from "@/lib/scenario-metrics";
 import type { PlannerState } from "@/lib/planner-state";
 import { formatCurrency, formatPercent, formatYears } from "@/lib/format";
+import { ProTeaserStrip } from "@/components/ui/pro-teaser";
 import { cn } from "@/lib/utils";
 
 /**
@@ -114,6 +115,11 @@ export function ScenarioCompare() {
             </table>
           </div>
         )}
+
+        <ProTeaserStrip
+          freeLabel="Pin A vs live B · same formulas · no account"
+          proLabel="Saved scenarios, history of runs, multi-compare (planned)"
+        />
 
         <p className="text-xs leading-relaxed text-zinc-500">
           Comparison uses the same formulas as the calculators above. Sequence

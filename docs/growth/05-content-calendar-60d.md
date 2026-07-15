@@ -13,29 +13,29 @@
 |-----|-------|------------|------|--------|-----|
 | W1 | Coast FIRE with Sequence of Returns Risk | coast fire sequence of returns | Pillar | Draft in posts.ts | Coast + Stress teaser |
 | W1 | Barista FIRE vs Coast FIRE: Data-Driven Comparison | coast fire vs barista fire | Pillar | Draft | Both calcs |
-| W2 | Why Most Simple FIRE Calculators Fail Long-Term | why fire calculators are wrong | Pillar | Outline | Methodology |
-| W2 | Realistic FIRE Numbers in 2026 | realistic fire number 2026 | Pillar | Outline | FIRE number |
-| Ongoing | Polish existing 7 posts (internal links, CTAs) | — | Refresh | Todo | — |
+| W2 | Why Most Simple FIRE Calculators Fail Long-Term | why fire calculators are wrong | Pillar | Done in posts.ts | Methodology |
+| W2 | Realistic FIRE Numbers in 2026 | realistic fire number 2026 | Pillar | Done in posts.ts | FIRE number |
+| Ongoing | Polish existing 7 posts (internal links, CTAs) | — | Refresh | Partial | — |
 
 ## Week 3–4
 
-| # | Title | Primary KW | Type |
-|---|-------|------------|------|
-| 6 | Age-by-Age Coast FIRE Tables + Worked Examples | coast fire by age | Linkable data |
-| 7 | How to Stress-Test Your Coast Number (Guide) | coast fire calculator + SOR | Guide |
-| 8 | Safe Withdrawal Rate for Early Retirees (Deep Dive) | safe withdrawal rate early retirement | Pillar |
-| 9 | Years to FIRE: Which Lever Moves the Needle Most | years to fire calculator | Support |
-| 10 | Barista FIRE Healthcare & Benefits Cliffs (Education) | barista fire | Support |
+| # | Title | Primary KW | Type | Status |
+|---|-------|------------|------|--------|
+| 6 | Age-by-Age Coast FIRE Tables + Worked Examples | coast fire by age | Linkable data | Done |
+| 7 | How to Stress-Test Your Coast Number (Guide) | coast fire calculator + SOR | Guide | Done |
+| 8 | Safe Withdrawal Rate for Early Retirees (Deep Dive) | safe withdrawal rate early retirement | Pillar | Existing SWR post; deepen later |
+| 9 | Years to FIRE: Which Lever Moves the Needle Most | years to fire calculator | Support | Done |
+| 10 | Barista FIRE Healthcare & Benefits Cliffs (Education) | barista fire | Support | Todo |
 
 ## Week 5–6
 
-| # | Title | Primary KW | Type |
-|---|-------|------------|------|
-| 11 | Monte Carlo vs Historical Cycles: What Free Tools Can Teach | fire calculator monte carlo | Differentiator |
-| 12 | Lean vs Regular vs Fat FIRE Numbers (2026) | lean fire number | Support |
-| 13 | When Can You Stop Saving for Retirement? | when can I stop saving | Coast cluster |
-| 14 | Semi-Retirement Math: Portfolio + Part-Time Income | semi retirement calculator | Barista |
-| 15 | RetireFire Methodology Explained (Human Version) | — | Trust |
+| # | Title | Primary KW | Type | Status |
+|---|-------|------------|------|--------|
+| 11 | Monte Carlo vs Historical Cycles: What Free Tools Can Teach | fire calculator monte carlo | Differentiator | Done |
+| 12 | Lean vs Regular vs Fat FIRE Numbers (2026) | lean fire number | Support | Todo |
+| 13 | When Can You Stop Saving for Retirement? | when can I stop saving | Coast cluster | Done |
+| 14 | Semi-Retirement Math: Portfolio + Part-Time Income | semi retirement calculator | Barista | Partial (existing semi-retirement post) |
+| 15 | RetireFire Methodology Explained (Human Version) | — | Trust | Partial (/methodology page) |
 
 ## Week 7–10 (Scale)
 
