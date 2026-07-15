@@ -169,19 +169,16 @@ export async function POST(request: Request) {
 
   const to = feedbackTo();
 
+  // Always mirror to ntfy when configured (instant, reliable)
+  void sendNtfy({ message, email });
+
   // 1) Resend when key + recipient exist
   if ((process.env.RESEND_API_KEY ?? "").trim() && to && isValidEmail(to)) {
     const result = await sendResend({ message, email, to });
     if (result.ok) {
-      // Best-effort ntfy mirror
-      void sendNtfy({ message, email });
       return NextResponse.json({ ok: true, via: "resend" });
     }
-    // Fall through so client can try FormSubmit; also try ntfy
-    const ntfy = await sendNtfy({ message, email });
-    if (ntfy.ok) {
-      return NextResponse.json({ ok: true, via: "ntfy" });
-    }
+    // Prefer browser FormSubmit for email over accepting ntfy-only
     return NextResponse.json(
       {
         error: result.error,
@@ -191,13 +188,7 @@ export async function POST(request: Request) {
     );
   }
 
-  // 2) ntfy only
-  const ntfy = await sendNtfy({ message, email });
-  if (ntfy.ok) {
-    return NextResponse.json({ ok: true, via: "ntfy" });
-  }
-
-  // 3) Tell client to use browser FormSubmit / Web3Forms
+  // 2) Tell client to use browser FormSubmit / Web3Forms for email
   if ((to && isValidEmail(to)) || web3Key()) {
     return NextResponse.json(
       {
@@ -206,6 +197,12 @@ export async function POST(request: Request) {
       },
       { status: 502 },
     );
+  }
+
+  // 3) ntfy-only success if nothing else is configured
+  const ntfy = await sendNtfy({ message, email });
+  if (ntfy.ok) {
+    return NextResponse.json({ ok: true, via: "ntfy" });
   }
 
   return NextResponse.json(
