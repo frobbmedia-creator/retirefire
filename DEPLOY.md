@@ -26,10 +26,19 @@ git push -u origin main
 2. Framework: **Next.js** (auto-detected)
 3. Build command: `npm run build` (default)
 4. Output: default (no override)
-5. **Environment variables** (optional for core site; required for feedback):
+5. **Environment variables** (optional for core site; required for feedback).
+
+   **Easiest (recommended):** [Web3Forms](https://web3forms.com) — free, no domain verify.
+   - Create an access key (enter the inbox you want feedback in)
+   - Add `WEB3FORMS_ACCESS_KEY` = that key (Production)
+
+   **Or Resend:**
    - `RESEND_API_KEY` — from [resend.com](https://resend.com)
-   - `FEEDBACK_TO_EMAIL` — inbox that receives visitor feedback
-   - `FEEDBACK_FROM_EMAIL` — optional; defaults to `RetireFire <onboarding@resend.dev>` (Resend test sender; only delivers to your Resend account email until you verify a domain)
+   - `FEEDBACK_TO_EMAIL` — must be **the same email as your Resend account** while using the free test sender
+   - `FEEDBACK_FROM_EMAIL` — optional; defaults to `RetireFire <onboarding@resend.dev>`  
+     Custom from-addresses only work after you verify a domain in Resend.
+
+   If both are set, **Web3Forms is used**. Redeploy after changing env vars (new deploy, not prebuilt redeploy).
 6. Deploy
 
 ## 3. Attach retirefire.net
