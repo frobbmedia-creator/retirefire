@@ -89,14 +89,31 @@ Leave unset to keep Vercel-only analytics. Custom events (`share_link_copy`, `cs
 
 ### Current local status (ops)
 
-If `git status` shows `main` ahead of `origin/main`, production is behind the offline roadmap until:
+If `git status` shows `main` ahead of `origin/main`, production is behind until:
 
 ```bash
 cd /Users/frobbclaw/retirefire
 git push origin main
 ```
 
-Do **not** force-push. Confirm Vercel redeploy after push.
+Do **not** force-push. Confirm a **new** Vercel Production deployment appears for the latest commit (not an old 5c66bee-era deploy).
+
+### Deploy from Vercel dashboard (no GitHub token needed)
+
+Use this when GitHub Actions fails on `VERCEL_TOKEN`:
+
+1. Open [vercel.com/dashboard](https://vercel.com/dashboard) → project **retirefire**
+2. Top right: **Deployments**
+3. Click **Create Deployment** (not “Redeploy” on an old row)
+4. Choose:
+   - **Git repository** `frobbmedia-creator/retirefire` (connect GitHub if prompted)
+   - Branch: **`main`**
+   - Commit should be recent (e.g. `3817e15` or “Polish hub” / “W30”) — **not** `5c66bee`
+5. Deploy → Production
+6. Wait until status is **Ready**
+7. Check: https://retirefire.net/resources (must be **200**, not 404)
+
+**Redeploy** on an old row only rebuilds that old commit — it will **not** ship the new blog/tools.
 
 ### SEO / Search Console (ops)
 

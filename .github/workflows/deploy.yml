@@ -1,5 +1,10 @@
 # Auto-deploy to Vercel on every push to main.
 # Uses Vercel CLI + project secrets (works without Vercel↔GitHub OAuth app).
+#
+# Secrets (repo → Settings → Secrets → Actions):
+#   VERCEL_TOKEN       — from https://vercel.com/account/tokens (paste only the token)
+#   VERCEL_ORG_ID      — team_… (from .vercel/project.json orgId)
+#   VERCEL_PROJECT_ID  — prj_… (from .vercel/project.json projectId)
 name: Deploy to Vercel
 
 on:
@@ -17,7 +22,6 @@ jobs:
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,11 +34,35 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
+      # Trim whitespace/newlines that break --token validation
+      - name: Normalize Vercel token
+        id: token
+        env:
+          RAW: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          TOKEN=$(printf '%s' "$RAW" | tr -d '[:space:]')
+          if [ -z "$TOKEN" ]; then
+            echo "::error::VERCEL_TOKEN secret is empty"
+            exit 1
+          fi
+          if printf '%s' "$TOKEN" | grep -qE '[[:space:]\-./:]'; then
+            echo "::error::VERCEL_TOKEN has invalid characters (space, -, ., /, :). Create a new token at vercel.com/account/tokens and paste ONLY the token value."
+            exit 1
+          fi
+          echo "::add-mask::$TOKEN"
+          echo "value=$TOKEN" >> "$GITHUB_OUTPUT"
+
       - name: Pull Vercel project settings
+        env:
+          VERCEL_TOKEN: ${{ steps.token.outputs.value }}
         run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
 
       - name: Build
+        env:
+          VERCEL_TOKEN: ${{ steps.token.outputs.value }}
         run: vercel build --prod --token="$VERCEL_TOKEN"
 
       - name: Deploy production
+        env:
+          VERCEL_TOKEN: ${{ steps.token.outputs.value }}
         run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
