@@ -13,6 +13,10 @@ import {
 type Props = { params: Promise<{ slug: string }> };
 
 const TAG_CALCULATOR: Record<string, { href: string; label: string }> = {
+  "lean-fire": {
+    href: "/calculators/fire-number",
+    label: "FIRE Number calculator (Lean preset)",
+  },
   "fire-number": {
     href: "/calculators/fire-number",
     label: "FIRE Number calculator",

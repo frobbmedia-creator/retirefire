@@ -11,6 +11,520 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "lean-fire-explained",
+    title: "Lean FIRE explained: definition, math, path, and risks",
+    description:
+      "Lean FIRE is a spending-based FI target, not a personality test. Core formula, $25k–$50k tables, 3–4% SWR grids, path math, vs other FIRE styles, and free calculators — educational only.",
+    date: "2026-07-21",
+    readingMinutes: 14,
+    tags: ["lean-fire", "fire-number", "basics"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Lean FIRE is one of the most searched — and most misused — labels in Financial Independence. Online, it can sound like a moral rank: frugal good, comfortable bad. In the math, Lean FIRE is simpler and less dramatic. It is a lifestyle spending level you choose, plugged into the same FIRE identity every other style uses: portfolio target equals annual spending divided by a planned withdrawal rate.",
+      },
+      {
+        type: "p",
+        content:
+          "This pillar defines Lean FIRE precisely, shows worked USD tables, sketches the accumulation path, and flags where Lean plans break (healthcare, housing, sequence risk, under-counted spending). RetireFire’s example Lean preset is $40,000/year spending — an illustration, not a research standard and not a claim that $40k fits your city or household.",
+      },
+      {
+        type: "h2",
+        content: "What Lean FIRE means (and what it does not)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Means: a relatively low planned annual spend in early retirement / FI, and therefore a smaller portfolio target at a given safe withdrawal rate (SWR).",
+          "Does not mean: a certified definition from academia. Bands differ by blog, forum, and country.",
+          "Does not mean: “better” than Regular or Fat FIRE. Spending is a preference and a constraint, not a virtue score.",
+          "Does not mean: your rent, insurance, or family size will cooperate with a nickname.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Community conversation often treats Lean as roughly the lower lifestyle band (examples people cite range around the mid-five-figures or less for a household, sometimes lower for one person). RetireFire publishes Lean / Regular / Fat example presets at $40k / $60k / $100k so tables stay comparable across tools. Replace every preset with your actual budget.",
+      },
+      {
+        type: "h2",
+        content: "Core formula",
+      },
+      {
+        type: "ul",
+        content: [
+          "FIRE number = annual spending ÷ withdrawal rate.",
+          "At 4% SWR, FIRE number = 25 × annual spending.",
+          "At 3.5% SWR, FIRE number ≈ 28.6 × annual spending.",
+          "At 3% SWR, FIRE number ≈ 33.3 × annual spending.",
+          "Lean only changes the spending input (and sometimes the humility of your SWR choice) — not the algebra.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Example: $40,000 spend at 4% → $1,000,000. Same spend at 3% → about $1,333,333. Dropping planned withdrawal rate from 4% to 3% raises the target by one-third for the same lifestyle. That trade-off is the heart of early-retirement planning, Lean or otherwise.",
+      },
+      {
+        type: "h2",
+        content: "Worked Lean spending bands",
+      },
+      {
+        type: "ul",
+        content: [
+          "$25,000/year: 4% → $625k · 3.5% → ≈ $714k · 3% → ≈ $833k",
+          "$30,000/year: 4% → $750k · 3.5% → ≈ $857k · 3% → $1.0M",
+          "$40,000/year (RetireFire Lean example): 4% → $1.0M · 3.5% → ≈ $1.14M · 3% → ≈ $1.33M",
+          "$50,000/year (upper-Lean / lower-Regular border for many): 4% → $1.25M · 3.5% → ≈ $1.43M · 3% → ≈ $1.67M",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "These are pre-tax portfolio illustrations under a constant withdrawal-rate model. Taxes, account types, fees, Social Security, pensions, and real insurance premiums are outside the simple identity. For full grids across Lean / Regular / Fat, see the 2026 comparison tables post.",
+      },
+      {
+        type: "h2",
+        content: "Path math: why Lean is “faster” only if spending is real",
+      },
+      {
+        type: "p",
+        content:
+          "The strategic case for Lean FIRE is speed and optionality: a smaller target can be reached with fewer years of high savings, or with a lower required savings rate for the same timeline. That advantage evaporates if the $40k budget was fiction. Under-counted healthcare, housing shocks, family changes, or lifestyle creep turn a “Lean” FI date into a funding gap.",
+      },
+      {
+        type: "ul",
+        content: [
+          "Higher savings rate shortens years to a fixed Lean target more than small return tweaks (see Years calculator lever posts).",
+          "Cutting spend lowers both the years needed and the portfolio required — double leverage, if sustainable.",
+          "Coast FIRE: stop aggressive saving earlier if the pile can compound to full Lean FIRE by a traditional retirement age — different question than retiring tomorrow.",
+          "Barista FIRE: part-time income covers part of Lean spend so the portfolio only funds the gap — job and benefits risk remain.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Lean vs Regular vs Fat vs Coast vs Barista",
+      },
+      {
+        type: "ul",
+        content: [
+          "Lean / Regular / Fat: spending-band labels for full FI (portfolio covers lifestyle).",
+          "Coast: work still funds today’s lifestyle; portfolio sized so contributions can pause while compounding toward full FI later.",
+          "Barista / semi-retirement: intentional work income shrinks the portfolio gap now.",
+          "You can be Lean Coast or Lean Barista — “Lean” still only describes spend level, not the work structure.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Risks that hit Lean plans harder",
+      },
+      {
+        type: "ul",
+        content: [
+          "Sequence of returns: early bad markets plus thin discretionary buffer leave less room to cut without pain.",
+          "Healthcare and insurance: premiums and coverage cliffs can dominate a Lean budget (especially pre-Medicare in the U.S.).",
+          "HCOL housing: geo arbitrage or roommates may be load-bearing assumptions, not side notes.",
+          "Longevity + low SWR tension: long early-retirement horizons often argue for testing 3–3.5% — which raises the Lean number.",
+          "Behavioral risk: chronic under-spending that only works until resentment or a crisis arrives is not a plan.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "How to run Lean FIRE on RetireFire",
+      },
+      {
+        type: "ul",
+        content: [
+          "FIRE Number: set your true annual spend and SWR; try the Lean-style preset only as a starting hint.",
+          "Years to FIRE: hold spend fixed, vary savings rate; then hold savings fixed, stress spend +10%.",
+          "Coast FIRE: ask whether you can stop contributions and still reach full Lean FI by your horizon age; run free stress test.",
+          "Barista FIRE: model gap = max(0, Lean spend − work income) ÷ SWR.",
+          "Scenario compare + CSV / share URL: freeze assumptions so “Lean” stays attached to numbers.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Cluster guides in this series",
+      },
+      {
+        type: "ul",
+        content: [
+          "Lean FIRE number: how much do you need? — full tables and multiples.",
+          "Lean FIRE budget and lifestyle systems — building a spend figure that survives contact with reality.",
+          "Lean FIRE path: years and savings rate — accumulation math and Coast hybrids.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Is there an official Lean FIRE dollar cutoff? No. Treat any cutoff as a community shorthand.",
+          "Is $40k Lean everywhere? No. Local housing and healthcare can make $40k austere or impossible.",
+          "Should Lean retirees always use 4%? Not automatically. Long horizons often deserve 3–3.5% sensitivity tests.",
+          "Is Lean FIRE the same as being cheap? No. Intentional low spending can still include high values on time, health, or place — the model only sees cash flows.",
+          "Can I combine Lean with Coast or Barista? Yes; Lean describes spend, Coast/Barista describe work and contribution structure.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Educational only — not financial, tax, or investment advice. Read Methodology for formulas, the SWR deep dive for withdrawal context, sequence-risk resources for path risk, and the disclaimer before any decision. Start with your budget, not the nickname.",
+      },
+    ],
+  },
+  {
+    slug: "lean-fire-number-how-much",
+    title: "Lean FIRE number: how much do you need? (tables)",
+    description:
+      "Lean FIRE number = annual spending ÷ withdrawal rate. Full tables for $25k–$50k spend at 3%, 3.5%, and 4% SWR, 25×–33× multiples, and free calculator workflow — educational only.",
+    date: "2026-07-21",
+    readingMinutes: 10,
+    tags: ["lean-fire", "fire-number", "tables"],
+    body: [
+      {
+        type: "p",
+        content:
+          "The Lean FIRE number is not a secret formula. It is the same portfolio identity as every other FIRE style: divide the annual spending you intend to support from the portfolio by the withdrawal rate you are willing to plan with. What makes it “Lean” is only the size of that spending input.",
+      },
+      {
+        type: "h2",
+        content: "Formula and multiples",
+      },
+      {
+        type: "ul",
+        content: [
+          "Lean FIRE number = Lean annual spending ÷ SWR.",
+          "4% SWR → 25 × spending.",
+          "3.5% SWR → ≈ 28.57 × spending.",
+          "3% SWR → ≈ 33.33 × spending.",
+          "RetireFire Lean example preset: $40,000/year → $1.0M at 4%, ≈ $1.14M at 3.5%, ≈ $1.33M at 3%.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Full grid (USD, pre-tax illustration)",
+      },
+      {
+        type: "ul",
+        content: [
+          "$25k spend: 4% → $625,000 · 3.5% → ≈ $714,000 · 3% → ≈ $833,000",
+          "$30k spend: 4% → $750,000 · 3.5% → ≈ $857,000 · 3% → $1,000,000",
+          "$35k spend: 4% → $875,000 · 3.5% → $1,000,000 · 3% → ≈ $1,167,000",
+          "$40k spend: 4% → $1,000,000 · 3.5% → ≈ $1,143,000 · 3% → ≈ $1,333,000",
+          "$45k spend: 4% → $1,125,000 · 3.5% → ≈ $1,286,000 · 3% → $1,500,000",
+          "$50k spend: 4% → $1,250,000 · 3.5% → ≈ $1,429,000 · 3% → ≈ $1,667,000",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Read across a row to see SWR sensitivity. Read down a column to see how housing or healthcare “small” increases cascade into six-figure portfolio changes. A $10k permanent spend increase at 4% is a $250k target increase.",
+      },
+      {
+        type: "h2",
+        content: "Choosing an SWR for a Lean plan",
+      },
+      {
+        type: "ul",
+        content: [
+          "4% is a historical U.S. research conversation starter (Bengen / Trinity-style lineage) — not a warranty for 40–50 year early retirements.",
+          "Many early-retirement planners stress 3–3.5% as a planning band, especially with thin discretionary buffers.",
+          "Lower SWR → higher Lean number → more accumulation or more years working — explicit trade-off.",
+          "Flexibility (cuttable spend, part-time optionality) can matter as much as the point estimate.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Coast and Barista numbers at Lean spend",
+      },
+      {
+        type: "ul",
+        content: [
+          "Full Lean FIRE: spending ÷ SWR (tables above).",
+          "Coast (constant-return sketch): coast ≈ full Lean FIRE ÷ (1+r)^n, with n = years until traditional retirement age.",
+          "Example: $1.0M Lean target, n = 25, r = 5% real → coast ≈ $295k; at 4% real → coast ≈ $375k.",
+          "Barista: gap = max(0, Lean spend − work income); barista number = gap ÷ SWR. $40k spend − $15k work → $25k gap → $625k at 4%.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Workflow in the FIRE Number calculator",
+      },
+      {
+        type: "ul",
+        content: [
+          "Enter your all-in annual spend (not “hope spend”).",
+          "Set SWR to 4%, then re-run at 3.5% and 3%.",
+          "Use Lean preset only if you need a starting stub — overwrite it.",
+          "Export CSV or copy share URL so the number is reproducible.",
+          "Cross-check Years, Coast, and Barista under the same assumptions.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Is $1M the Lean FIRE number? Only if your spend and SWR imply it (e.g. $40k at 4%).",
+          "Do I include taxes in spending? Be consistent: either model gross needs carefully or treat the simple number as pre-tax illustration and stress upward.",
+          "Should partners use one number or two? Model the household cash-flow unit you actually run.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Part of the Lean FIRE pillar series. See Lean FIRE explained, budget systems, and path/savings-rate guides. Educational tables only — not advice. Methodology and disclaimer apply.",
+      },
+    ],
+  },
+  {
+    slug: "lean-fire-budget-lifestyle",
+    title: "Lean FIRE budget and lifestyle systems (that survive reality)",
+    description:
+      "Build a Lean FIRE spending figure from categories, fixed vs flexible costs, housing and healthcare load-bearers, HCOL reality checks, and a tracking loop — educational only.",
+    date: "2026-07-21",
+    readingMinutes: 11,
+    tags: ["lean-fire", "basics", "fire-number"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Most Lean FIRE failures are not spreadsheet algebra failures. They are budget design failures: a target built from vibes, coffee-shop cuts, and last year’s luck. The portfolio formula is mercilessly honest — garbage spend in, garbage FIRE number out. This cluster is about constructing a Lean annual spending figure that can survive contact with housing, healthcare, and human behavior.",
+      },
+      {
+        type: "h2",
+        content: "Start from categories, not aesthetics",
+      },
+      {
+        type: "ul",
+        content: [
+          "Housing (rent/mortgage, tax, insurance, maintenance, HOA)",
+          "Utilities and communications",
+          "Food (home + away) — track, don’t invent",
+          "Transportation",
+          "Healthcare premiums, out-of-pocket, dental/vision",
+          "Insurance (beyond health)",
+          "Debt payments (if any remain in the plan)",
+          "Kids / dependents / pets if applicable",
+          "Discretionary (travel, hobbies, gifts) — small on Lean, not zero if zero is unstable",
+          "Buffer / irregular (repairs, replacements, one-offs annualized)",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Sum 12 months of real data when you can. Then build a FI-year version: what changes when paychecks stop, commute changes, or employer benefits disappear. Lean plans often under-price the benefits cliff.",
+      },
+      {
+        type: "h2",
+        content: "Fixed vs flexible (Lean’s real safety valve)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Fixed: hard to cut quickly without moving or major life change.",
+          "Flexible: can compress in a bad market year (travel, dining, hobbies).",
+          "A Lean budget with almost no flexible line items has little sequence-risk shock absorber.",
+          "Planning exercise: write a “recession Lean” budget 10–20% below baseline and ask if life is still acceptable.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Housing and healthcare: load-bearing beams",
+      },
+      {
+        type: "ul",
+        content: [
+          "If housing alone is 40%+ of a Lean target, stress geo arbitrage, housemates, or longer accumulation honestly.",
+          "Healthcare quotes beat forum averages. Model premiums at the ages you will actually be.",
+          "Barista paths sometimes exist mainly for benefits — portfolio math must not ignore that motive.",
+          "HCOL Lean without a structural housing solution is often Regular spend wearing a Lean label.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Lifestyle design vs deprivation",
+      },
+      {
+        type: "p",
+        content:
+          "Sustainable Lean aligns low cash outflows with high non-cash values (time, health, community, place). Fragile Lean is chronic deprivation that only works until burnout. The calculator cannot detect resentment; you must. If the only way the numbers close is a life you will abandon in year three, raise spend, lengthen the timeline, or change location — do not cosplay a $40k life on a $65k personality.",
+      },
+      {
+        type: "h2",
+        content: "Tracking loop (simple, boring, effective)",
+      },
+      {
+        type: "ul",
+        content: [
+          "Monthly: categorize transactions; flag one-offs.",
+          "Quarterly: recompute annualized run-rate; update FIRE number at 3% / 3.5% / 4%.",
+          "Annually: re-quote insurance; re-check housing plan; re-run Coast/Barista if work structure changed.",
+          "After any life event (move, kid, job loss, health): rebuild spend before celebrating FI math.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Map budget → RetireFire tools",
+      },
+      {
+        type: "ul",
+        content: [
+          "FIRE Number: paste the honest annual spend.",
+          "Years to FIRE: test savings rate if you cut flexible spend 10% vs raise income.",
+          "Coast / Barista: only after the spend figure is trustworthy.",
+          "Lean number tables cluster: convert budget into portfolio targets.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Should I use net or gross spending? Use the cash you need the portfolio (and other income) to support; be consistent about taxes.",
+          "Is grocery-maxxing enough? Rarely. Housing and health dominate most Lean failures.",
+          "Can couples be Lean if one partner is not? Household cash-flow must be negotiated; the spreadsheet is not a couples therapist.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Part of the Lean FIRE pillar series. Educational only — not financial, tax, or insurance advice. Verify benefits and housing with primary sources. See Lean FIRE explained and the disclaimer.",
+      },
+    ],
+  },
+  {
+    slug: "lean-fire-path-years-savings-rate",
+    title: "Lean FIRE path: years, savings rate, and Coast hybrids",
+    description:
+      "How long to Lean FIRE under savings-rate math, worked path tables, which levers move the date, and when Lean Coast or Barista hybrids help — educational only.",
+    date: "2026-07-21",
+    readingMinutes: 12,
+    tags: ["lean-fire", "years-to-fire", "coast-fire"],
+    body: [
+      {
+        type: "p",
+        content:
+          "Once you trust a Lean spending figure and a withdrawal-rate band, the next question is path: how many years of saving and investing might it take, and which lever moves the FI date most? This cluster sketches accumulation math the way RetireFire’s Years tool does — constant real return illustrations first, then humility about markets and life.",
+      },
+      {
+        type: "h2",
+        content: "Targets first, then years",
+      },
+      {
+        type: "ul",
+        content: [
+          "Pick Lean spend S (example $40,000).",
+          "Pick SWR → target portfolio F = S ÷ SWR (example 4% → $1,000,000).",
+          "Years solver grows portfolio with contributions until it reaches F under assumed real return r.",
+          "If you are already above F, years ≈ 0 for full Lean FI under those assumptions (work may still be chosen for other reasons).",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Savings rate intuition",
+      },
+      {
+        type: "p",
+        content:
+          "Savings rate is roughly annual savings divided by gross or take-home income — define it the same way every time. Higher savings rate usually dominates small return tweaks for time-to-FI because it both adds more dollars and often correlates with lower lifestyle spend (if the spend is the Lean target itself).",
+      },
+      {
+        type: "ul",
+        content: [
+          "Illustrative only (constant 5% real return, $0 start, $40k Lean target at 4% = $1M): the higher the annual savings, the shorter the path — re-run with your numbers in Years to FIRE.",
+          "From a $100k or $250k starting portfolio, years compress nonlinearly; early capital matters.",
+          "Raising spend to $50k (target $1.25M at 4%) lengthens the path even if savings stay fixed.",
+          "Dropping SWR to 3% (target ≈ $1.33M on $40k) lengthens the path without any lifestyle upgrade — pure safety premium.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Lever ranking (typical)",
+      },
+      {
+        type: "ul",
+        content: [
+          "1) Sustainable spend level (defines F).",
+          "2) Annual savings / savings rate (fills F).",
+          "3) Starting portfolio.",
+          "4) Assumed real return (sensitive, uncertain).",
+          "5) Withdrawal-rate choice (policy, not a market forecast).",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "For most accumulators, arguing about 5.0% vs 5.5% real return while ignoring a $8k housing decision is inverted priority. Fix spend and savings clarity before fine-tuning return fantasies.",
+      },
+      {
+        type: "h2",
+        content: "Lean Coast hybrid",
+      },
+      {
+        type: "ul",
+        content: [
+          "Full Lean FI: portfolio covers Lean spend now; work optional.",
+          "Lean Coast: work still covers today’s Lean (or current) lifestyle; portfolio is large enough that contributions can stop while compounding toward full Lean FI by a traditional retirement age.",
+          "Coast number ≈ F ÷ (1+r)^n. Smaller F (Lean) → smaller coast number → earlier option to stop aggressive saving.",
+          "Always stress coast with lower r, higher spend, and free sequence tools — coast is not a green light by itself.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Lean Barista hybrid",
+      },
+      {
+        type: "ul",
+        content: [
+          "Gap = max(0, Lean spend − durable work income).",
+          "Barista number = gap ÷ SWR — often much smaller than full Lean FI.",
+          "Trade-off: job risk, hours, and benefits vs smaller portfolio.",
+          "Model benefits cliffs separately; market Monte Carlo does not price insurance policy changes.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Practical path workflow",
+      },
+      {
+        type: "ul",
+        content: [
+          "Write S, SWR, F, current portfolio, annual savings, ages.",
+          "Run Years to FIRE baseline; export or share URL.",
+          "Scenario B: +10% spend; Scenario C: −$5k savings; Scenario D: 3.5% SWR.",
+          "If years blow up under mild stress, the plan was brittle.",
+          "Only then explore Coast or Barista as structural alternatives.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FAQ",
+      },
+      {
+        type: "ul",
+        content: [
+          "Does a high savings rate guarantee Lean FIRE? No — returns, job loss, and spend shocks still exist.",
+          "Is Coast “better” than full Lean FI? Different question: optional work now vs optional contributions later.",
+          "Should I use nominal or real returns? RetireFire emphasizes real (inflation-adjusted) clarity; stay consistent.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Part of the Lean FIRE pillar series with number tables and budget systems. Use Years, Coast, and FIRE Number calculators under shared assumptions. Educational only — not financial advice. Methodology, sequence-risk guide, and disclaimer apply.",
+      },
+    ],
+  },
+  {
     slug: "retirefire-methodology-explained",
     title: "RetireFire methodology explained (human version)",
     description:
@@ -481,7 +995,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Educational tables only — not financial advice and not a claim that these spends fit you in 2026. Start at the FIRE Number calculator; read Methodology and the disclaimer.",
+          "Educational tables only — not financial advice and not a claim that these spends fit you in 2026. For a full Lean-only deep dive (definition, budget systems, path math), see Lean FIRE explained and its number / budget / years clusters. Start at the FIRE Number calculator; read Methodology and the disclaimer.",
       },
     ],
   },

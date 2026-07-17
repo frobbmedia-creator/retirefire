@@ -57,6 +57,19 @@
 
 ---
 
+## Lean FIRE pillar pack (2026-07-21)
+
+| Role | Title | Primary KW | Slug | Status |
+|------|-------|------------|------|--------|
+| Pillar | Lean FIRE explained | lean fire | lean-fire-explained | Done in posts.ts |
+| Cluster 1 | Lean FIRE number tables | lean fire number | lean-fire-number-how-much | Done |
+| Cluster 2 | Lean FIRE budget systems | lean fire budget | lean-fire-budget-lifestyle | Done |
+| Cluster 3 | Lean path / savings rate | lean fire savings rate | lean-fire-path-years-savings-rate | Done |
+
+Full Reddit + SEO + deploy: `docs/growth/20-lean-fire-pillar-cluster-pack.md`
+
+---
+
 ## Pillar template (every long article)
 
 1. **Hook** — misconception or sharp number  
