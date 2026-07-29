@@ -24,7 +24,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:h-16 sm:px-6">
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 px-4 sm:h-16 sm:px-6">
         <Link
           href="/"
           className="group flex items-center gap-2.5 font-semibold tracking-tight text-zinc-50"
@@ -70,7 +70,7 @@ export function Navbar() {
           open ? "block" : "hidden",
         )}
       >
-        <nav className="mx-auto flex max-w-6xl flex-col gap-0.5 px-4 py-3">
+        <nav className="mx-auto flex max-w-7xl flex-col gap-0.5 px-4 py-3">
           {links.map((link) => (
             <Link
               key={link.href}

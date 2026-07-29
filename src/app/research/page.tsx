@@ -28,14 +28,14 @@ export default function ResearchPage() {
     .filter((page) => page !== undefined);
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+    <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
       <Breadcrumbs
         items={[
           { name: "Home", path: "/" },
           { name: "Research", path: "/research" },
         ]}
       />
-      <header className="mt-6 max-w-3xl">
+      <header className="mt-5 max-w-4xl">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-emerald-400">
           Reuse the numbers
         </p>
@@ -49,10 +49,10 @@ export default function ResearchPage() {
         </p>
       </header>
 
-      <ul className="mt-10 grid gap-5 md:grid-cols-2">
+      <ul className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {pages.map((page) => (
           <li key={page.slug}>
-            <article className="flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <article className="flex h-full min-h-64 flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 transition hover:-translate-y-0.5 hover:border-emerald-500/30 hover:bg-zinc-900/65">
               <p className="text-xs font-medium uppercase tracking-[0.14em] text-emerald-400">
                 Data + methodology
               </p>
@@ -86,18 +86,19 @@ export default function ResearchPage() {
         ))}
       </ul>
 
-      <section className="mt-12 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
-        <h2 className="text-lg font-semibold text-zinc-50">
-          Methodology before headlines
-        </h2>
-        <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-          These tables are educational illustrations, not forecasts. The
-          assumptions remain visible so readers can reproduce, challenge, and
-          replace them.
-        </p>
+      <section className="mt-8 flex flex-col gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 className="text-lg font-semibold text-zinc-50">
+            Methodology before headlines
+          </h2>
+          <p className="mt-1 max-w-4xl text-sm leading-relaxed text-zinc-400">
+            Educational illustrations, not forecasts. Assumptions stay visible
+            so readers can reproduce, challenge, and replace them.
+          </p>
+        </div>
         <Link
           href="/methodology"
-          className="mt-4 inline-block font-medium text-emerald-400 hover:underline"
+          className="shrink-0 font-medium text-emerald-400 hover:underline"
         >
           Read the methodology →
         </Link>
