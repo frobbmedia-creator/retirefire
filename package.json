@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test:calc": "npx tsx src/lib/calculations.test.ts && npx tsx src/lib/monte-carlo.test.ts && npx tsx src/lib/coast-tables.test.ts && npx tsx src/lib/scenario-metrics.test.ts",
-    "test:content": "npx tsx src/content/decision-pages.test.ts"
+    "test:content": "npx tsx src/content/decision-pages.test.ts",
+    "seo:indexnow": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
