@@ -47,12 +47,12 @@ export function Hero() {
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
             <Link href="/retirement-checkup" className={btnPrimary}>
-              Start retirement checkup
+              Start free checkup
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link href="/calculators" className={btnSecondary}>
               <BookOpen className="h-4 w-4" aria-hidden />
-              Advanced tools
+              Explore expert FIRE tools
             </Link>
           </div>
 
@@ -131,14 +131,6 @@ export function Hero() {
                     </p>
                   ))}
                 </div>
-
-                <Link
-                  href="/retirement-checkup"
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400"
-                >
-                  Start my checkup
-                  <ArrowRight className="h-4 w-4" aria-hidden />
-                </Link>
               </div>
             </div>
           </div>
