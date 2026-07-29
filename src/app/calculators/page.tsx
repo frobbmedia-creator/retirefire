@@ -46,6 +46,31 @@ const TOOLS = [
     body: "Combine two portfolios and income streams against shared household spending.",
   },
   {
+    href: "/calculators/retirement-age",
+    title: "Retirement Age",
+    body: "Estimate the age when savings and portfolio growth reach a spending-based target.",
+  },
+  {
+    href: "/calculators/portfolio-readiness",
+    title: "Can I Retire With This Portfolio?",
+    body: "Compare any portfolio amount with spending after Social Security, pension, or other income.",
+  },
+  {
+    href: "/calculators/withdrawal-guardrails",
+    title: "Withdrawal Guardrails",
+    body: "Convert withdrawal-rate guardrails into portfolio triggers and spending adjustments.",
+  },
+  {
+    href: "/calculators/roth-conversion",
+    title: "Roth Conversion Runway",
+    body: "Estimate a multi-year conversion amount, simplified tax cost, and remaining pretax balance.",
+  },
+  {
+    href: "/calculators/healthcare-budget",
+    title: "Healthcare Before Medicare",
+    body: "Budget premiums, out-of-pocket costs, subsidies, and medical inflation through age 65.",
+  },
+  {
     href: "/#scenario-compare",
     title: "Scenario A/B compare",
     body: "Pin a baseline and compare FIRE, years, Coast, and Barista side by side.",

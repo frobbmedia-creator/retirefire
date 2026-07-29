@@ -52,6 +52,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    ...[
+      "retirement-age",
+      "portfolio-readiness",
+      "withdrawal-guardrails",
+      "roth-conversion",
+      "healthcare-budget",
+    ].map((slug) => ({
+      url: `${base}/calculators/${slug}`,
+      lastModified: new Date("2026-07-29"),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    })),
     {
       url: `${base}/methodology`,
       lastModified: launched,
