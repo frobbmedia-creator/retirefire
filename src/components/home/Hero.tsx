@@ -29,7 +29,7 @@ export function Hero() {
           <div className="max-w-2xl">
           <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-500/25">
             <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
-            Simply the only place to plan
+            One simple place to plan for retirement
           </p>
 
           <h1 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
