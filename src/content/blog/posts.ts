@@ -3,8 +3,10 @@ export type BlogPost = {
   title: string;
   description: string;
   date: string;
+  dateModified?: string;
   readingMinutes: number;
   tags: string[];
+  sources?: Array<{ label: string; href: string }>;
   /** Simple paragraphs + optional headings for MVP (no MDX dependency) */
   body: Array<{ type: "p" | "h2" | "ul"; content: string | string[] }>;
 };
@@ -16,8 +18,23 @@ export const BLOG_POSTS: BlogPost[] = [
     description:
       "Price a 3–12 month mini-retirement, measure the true FIRE delay, protect the downside, and decide whether using some freedom now is worth it.",
     date: "2026-07-28",
+    dateModified: "2026-07-29",
     readingMinutes: 11,
     tags: ["years-to-fire", "coast-fire", "barista-fire", "semi-retirement"],
+    sources: [
+      {
+        label: "Fidelity Investments — 2026 State of Retirement Planning Study",
+        href: "https://newsroom.fidelity.com/pressreleases/fidelity-investments--study--72--of-americans-say-they-will-retire-on-their-own-terms-as-they-embrac/s/609fbcb7-3ea5-4773-a300-0659da881d2a",
+      },
+      {
+        label: "Journal of Accountancy — Beyond FIRE: Planning for mini-retirements",
+        href: "https://www.journalofaccountancy.com/newsletters/pfp-digest/beyond-fire-planning-for-mini-retirements/",
+      },
+      {
+        label: "RetireFire methodology",
+        href: "/methodology",
+      },
+    ],
     body: [
       {
         type: "p",
@@ -231,8 +248,19 @@ export const BLOG_POSTS: BlogPost[] = [
     description:
       "Your portfolio can fund retirement without designing it. Use this 100-day plan to replace the structure, challenge, connection, and purpose work provided.",
     date: "2026-07-28",
+    dateModified: "2026-07-29",
     readingMinutes: 12,
     tags: ["barista-fire", "semi-retirement", "basics"],
+    sources: [
+      {
+        label: "NBER Working Paper 35117 — Does Employment Slow Cognitive Decline?",
+        href: "https://www.nber.org/papers/w35117",
+      },
+      {
+        label: "Fidelity Investments — 2026 State of Retirement Planning Study",
+        href: "https://newsroom.fidelity.com/pressreleases/fidelity-investments--study--72--of-americans-say-they-will-retire-on-their-own-terms-as-they-embrac/s/609fbcb7-3ea5-4773-a300-0659da881d2a",
+      },
+    ],
     body: [
       {
         type: "p",

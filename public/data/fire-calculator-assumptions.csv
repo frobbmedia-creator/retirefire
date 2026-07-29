@@ -1,0 +1,8 @@
+assumption,version_a,version_b,why_it_matters
+returns,"7% nominal","5% real","Inflation may be counted differently"
+contributions,"Beginning of year","End of year","Earlier deposits compound longer"
+target,"25x spending","33.3x spending","4% versus 3% planning rate"
+income,"Ignores benefits","Includes later income","Changes portfolio-funded gap"
+path,"Constant return","Monte Carlo or history","Sequence risk changes ranges"
+taxes_and_fees,Excluded,Estimated,"Gross withdrawals can exceed spending"
+stopping_rule,"Fractional year","Whole year","Displayed date may differ"

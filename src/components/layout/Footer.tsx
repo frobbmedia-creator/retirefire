@@ -44,6 +44,16 @@ export function Footer() {
                     Barista FIRE
                   </Link>
                 </li>
+                <li>
+                  <Link href="/calculators/two-phase-coast" className="hover:text-emerald-400">
+                    Two-Phase Coast
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/calculators/couples-fire" className="hover:text-emerald-400">
+                    Couples FIRE
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
@@ -62,6 +72,16 @@ export function Footer() {
                 <li>
                   <Link href="/approach" className="hover:text-emerald-400">
                     Approach &amp; roadmap
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/guides" className="hover:text-emerald-400">
+                    Planning guides
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/research" className="hover:text-emerald-400">
+                    Research &amp; data
                   </Link>
                 </li>
                 <li>

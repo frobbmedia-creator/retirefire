@@ -36,6 +36,16 @@ const TOOLS = [
     body: "Semi-retirement: part-time income + smaller nest egg, with income sensitivity.",
   },
   {
+    href: "/calculators/two-phase-coast",
+    title: "Two-Phase Coast FIRE",
+    body: "Model contribution years followed by no-contribution Coast years.",
+  },
+  {
+    href: "/calculators/couples-fire",
+    title: "Couples FIRE",
+    body: "Combine two portfolios and income streams against shared household spending.",
+  },
+  {
     href: "/#scenario-compare",
     title: "Scenario A/B compare",
     body: "Pin a baseline and compare FIRE, years, Coast, and Barista side by side.",
