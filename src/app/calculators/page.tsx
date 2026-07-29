@@ -18,22 +18,22 @@ const TOOLS = [
   {
     href: "/calculators/fire-number",
     title: "FIRE Number",
-    body: "How large a portfolio you need for Lean, Regular, or Fat FIRE — with SWR sensitivity.",
+    body: "Estimate how much you need to invest based on yearly spending and the percentage you plan to withdraw.",
   },
   {
     href: "/calculators/years-to-fire",
     title: "Years to FIRE",
-    body: "Timeline to FI with growth chart, lever sensitivity, and free sequence stress test.",
+    body: "Estimate how many years it may take to reach your goal, then test how savings and market returns change the date.",
   },
   {
     href: "/calculators/coast-fire",
     title: "Coast FIRE",
-    body: "Coast number, age table, sensitivity, free sequence stress test, and checklist links.",
+    body: "See whether your current savings could grow enough for retirement without more contributions.",
   },
   {
     href: "/calculators/barista-fire",
     title: "Barista FIRE",
-    body: "Semi-retirement: part-time income + smaller nest egg, with income sensitivity.",
+    body: "See how part-time income could reduce the amount you need invested.",
   },
   {
     href: "/calculators/two-phase-coast",
@@ -63,7 +63,7 @@ const TOOLS = [
   {
     href: "/calculators/roth-conversion",
     title: "Roth Conversion Runway",
-    body: "Estimate a multi-year conversion amount, simplified tax cost, and remaining pretax balance.",
+    body: "Estimate how much money to move from a traditional retirement account to a Roth account over several years.",
   },
   {
     href: "/calculators/healthcare-budget",

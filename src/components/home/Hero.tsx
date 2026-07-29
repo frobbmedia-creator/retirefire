@@ -35,9 +35,8 @@ export function Hero() {
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            {SITE.description} Shared assumptions, scenario A/B, and free
-            sequence stress tests on Coast and Years — published formulas, not
-            hype.
+            {SITE.description} See the assumptions behind every answer. Compare
+            two plans and test how bad market years could change your timeline.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
@@ -46,7 +45,7 @@ export function Hero() {
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link href="/calculators/coast-fire" className={btnSecondary}>
-              Coast + stress test
+              Coast FIRE calculator
             </Link>
             <Link href="/methodology" className={btnSecondary}>
               <BookOpen className="h-4 w-4" aria-hidden />

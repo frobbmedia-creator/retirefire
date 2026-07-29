@@ -19,7 +19,7 @@ const TOOLS = {
       "Estimate the age when your current portfolio and annual savings could reach a spending-based retirement target.",
     component: RetirementAgeCalculator,
     explanation:
-      "The estimate solves for the time needed to reach annual spending divided by your selected withdrawal rate. Use a real return when entering spending in today’s dollars.",
+      "The calculator first estimates how much you need. It divides yearly spending by the percentage you plan to withdraw each year. The growth rate should be after inflation because spending is entered in today’s dollars.",
     related: [
       ["/retire-at-50", "Retire at 50 guide"],
       ["/retire-at-55", "Retire at 55 guide"],
@@ -29,10 +29,10 @@ const TOOLS = {
   "portfolio-readiness": {
     title: "Can I Retire With This Portfolio?",
     description:
-      "Test whether a portfolio can cover the spending left after Social Security, pensions, or other durable income.",
+      "Test whether your investments can cover the spending left after Social Security, pensions, or other reliable income.",
     component: PortfolioReadinessCalculator,
     explanation:
-      "A portfolio amount is not enough context by itself. The useful comparison is between investable assets and the annual spending gap those assets must support.",
+      "An investment balance does not tell the whole story. Compare it with the yearly expenses your investments must cover after other income is counted.",
     related: [
       ["/can-i-retire-with-1-million", "Retiring with $1 million"],
       ["/can-i-retire-with-2-million", "Retiring with $2 million"],
@@ -42,10 +42,10 @@ const TOOLS = {
   "withdrawal-guardrails": {
     title: "Retirement Withdrawal Guardrails Calculator",
     description:
-      "Turn upper and lower withdrawal-rate guardrails into portfolio triggers and planned spending adjustments.",
+      "Set clear investment-balance levels for cutting or raising retirement spending.",
     component: GuardrailsCalculator,
     explanation:
-      "Guardrails replace a rigid inflation-only withdrawal with explicit decision rules. This worksheet shows the trigger math so you can document the policy before markets move.",
+      "A flexible spending plan uses rules instead of raising spending automatically every year. This worksheet shows when your rules would call for a cut or an increase.",
     related: [
       ["/resources/sequence-risk-guide", "Sequence-risk guide"],
       ["/blog/how-to-stress-test-coast-fire-number", "Stress-testing assumptions"],
@@ -55,10 +55,10 @@ const TOOLS = {
   "roth-conversion": {
     title: "Roth Conversion Calculator for Early Retirement",
     description:
-      "Estimate a multi-year Roth conversion runway, simplified federal tax cost, and remaining pretax balance.",
+      "Estimate a multi-year Roth conversion, a simple federal tax cost, and the money left in your traditional retirement account.",
     component: RothConversionCalculator,
     explanation:
-      "Early retirement can create lower-income years before required minimum distributions. A conversion plan should also account for tax brackets, ACA subsidies, state tax, and five-year rules.",
+      "Some early retirees have low-income years before the government requires withdrawals from traditional retirement accounts. A complete plan should also consider federal and state taxes, health-insurance assistance, and Roth withdrawal rules.",
     related: [
       ["/early-retirement-health-insurance", "Healthcare before Medicare"],
       ["/retire-at-55", "Retire at 55 guide"],
@@ -68,10 +68,10 @@ const TOOLS = {
   "healthcare-budget": {
     title: "Early Retirement Healthcare Cost Calculator",
     description:
-      "Estimate the first-year and multi-year healthcare budget from retirement until Medicare eligibility.",
+      "Estimate health costs for the first year of retirement and for all the years until Medicare begins.",
     component: HealthcareBudgetCalculator,
     explanation:
-      "Premiums are only one part of the bridge. Include expected out-of-pocket costs, dental and vision care, possible subsidies, and a medical inflation assumption.",
+      "Monthly insurance payments are only part of the cost. Include deductibles and other out-of-pocket bills, dental and vision care, possible financial assistance, and rising medical prices.",
     related: [
       ["/early-retirement-health-insurance", "Health insurance guide"],
       ["/retire-at-50", "Retire at 50 guide"],

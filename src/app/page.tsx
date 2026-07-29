@@ -37,12 +37,12 @@ const CALC_LINKS = [
   {
     href: "/calculators/coast-fire",
     title: "Coast FIRE",
-    body: "Coast number, age table, and free sequence stress test",
+    body: "See if today’s investments could grow enough without new savings",
   },
   {
     href: "/calculators/barista-fire",
     title: "Barista FIRE",
-    body: "Part-time income shrinks the portfolio you need",
+    body: "See how part-time income can lower the savings you need",
   },
 ] as const;
 
@@ -99,9 +99,9 @@ export default function HomePage() {
                 often prefer 3–3.5%.
               </li>
               <li>
-                <strong className="text-zinc-200">Real vs nominal</strong> —
-                Default is real return (~5%). Toggle nominal and set inflation
-                to convert automatically.
+                <strong className="text-zinc-200">Inflation</strong> — Results
+                use returns after inflation by default, so all amounts stay in
+                today’s dollars.
               </li>
               <li>
                 <strong className="text-zinc-200">Coast &amp; Barista</strong> —
@@ -111,8 +111,8 @@ export default function HomePage() {
               <li>
                 <strong className="text-zinc-200">Honest limits</strong> —
                 Constant-return models omit taxes and healthcare. Coast and Years
-                include a free basic sequence stress test (1,000 paths); we still
-                publish what advanced engines and life plumbing leave out.
+                include a free test of 1,000 possible market paths. We also list
+                what each calculator leaves out.
               </li>
             </ul>
             <p className="mt-5 border-t border-zinc-800 pt-5 text-sm text-zinc-500">

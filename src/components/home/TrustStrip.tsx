@@ -5,7 +5,7 @@ const items = [
   {
     icon: Scale,
     title: "Conservative defaults",
-    body: "5% real return and 4% withdrawal as starting points — adjustable, never hidden.",
+    body: "We start with 5% growth after inflation and a 4% yearly withdrawal. You can change both.",
     href: "/methodology",
     linkLabel: "See defaults",
   },

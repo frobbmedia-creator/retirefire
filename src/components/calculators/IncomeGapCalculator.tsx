@@ -66,7 +66,7 @@ export function IncomeGapCalculator() {
           />
         </label>
         <label className="text-sm text-zinc-300">
-          Annual pension / other durable income
+          Annual pension / other reliable income
           <input
             className={fieldClass}
             type="number"
@@ -99,7 +99,7 @@ export function IncomeGapCalculator() {
         </div>
         <div className="rounded-xl border border-emerald-500/20 bg-zinc-950/70 p-4">
           <p className="text-xs text-zinc-500">
-            Illustrative steady-state target
+            Target after this income begins
           </p>
           <p className="mt-1 text-2xl font-semibold text-emerald-300">
             {formatCurrency(result.target)}
@@ -108,9 +108,9 @@ export function IncomeGapCalculator() {
       </div>
 
       <p className="mt-4 text-xs leading-relaxed text-zinc-500">
-        Simple steady-state illustration only. It does not value the
-        pre-benefit bridge, taxes, benefit changes, survivor rules, fees, or
-        sequence risk.
+        Simple estimate only. It does not include the years before benefits
+        begin, taxes, benefit changes, survivor benefits, fees, or market ups
+        and downs.
       </p>
     </section>
   );

@@ -12,17 +12,17 @@ export const FAQ_ITEMS = [
   {
     question: "Is the 4% rule guaranteed?",
     answer:
-      "No. The 4% starting point comes from historical U.S. portfolio research (Bengen and the Trinity Study lineage). It is not a guarantee, especially for multi-decade early retirement horizons. Many planners stress-test 3–3.5%. Use the FIRE Number calculator and SWR guide to compare multiples.",
+      "No. The 4% starting point comes from studies of past U.S. markets. Future results may be different, especially when retirement could last 40 years or more. Try lower rates, such as 3% or 3.5%, to see how much more savings they require.",
   },
   {
     question: "What is Coast FIRE?",
     answer:
-      "Coast FIRE means you have enough invested that, with no further contributions, compound growth may reach full FIRE by a traditional retirement age. You could stop saving aggressively — it does not mean you can stop working yet. Use the Coast checklist before changing savings behavior.",
+      "Coast FIRE means your current retirement savings may grow enough to fund retirement later, even if you stop adding money. You would usually keep working to pay today’s bills. It does not mean you can retire now.",
   },
   {
     question: "What is Barista FIRE?",
     answer:
-      "Barista FIRE is semi-retirement: part-time or flexible income covers some spending so your portfolio only needs to fund the remainder. The “barista number” is gap expenses ÷ withdrawal rate. Healthcare and hour cliffs often dominate the gap math — see the Barista healthcare guide.",
+      "Barista FIRE means working part time while using investments to cover the rest of your expenses. Because work pays some bills, you may need a smaller investment portfolio. Include health insurance and taxes in the plan.",
   },
   {
     question: "Which lever shortens years to FIRE most?",
@@ -42,7 +42,7 @@ export const FAQ_ITEMS = [
   {
     question: "Do you model sequence-of-returns risk?",
     answer:
-      "Core calculators still use constant-return illustrations. Coast FIRE and Years to FIRE also include a free basic stress test: 1,000 random return paths with fixed volatility, success rate, p10/p50/p90 terminals, and sample paths. It is educational — not a forecast or historical backtest. See Methodology and the sequence-risk guide.",
+      "The main calculators first show a simple, steady growth estimate. Coast FIRE and Years to FIRE can also test 1,000 possible market paths. This shows how early gains or losses could change the result. It is an educational range, not a prediction.",
   },
   {
     question: "How do I compare two plans side by side?",

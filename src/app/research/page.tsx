@@ -43,9 +43,9 @@ export default function ResearchPage() {
           RetireFire research and data
         </h1>
         <p className="mt-3 text-lg leading-relaxed text-zinc-400">
-          Original planning tables with formulas, assumptions, limitations,
-          and downloadable CSV files. Cite or reuse them with attribution to
-          RetireFire and a link to the source page.
+          Explore our retirement planning tables, see how we calculated the
+          numbers, and download the data. You may reuse the tables if you name
+          RetireFire and link to the source page.
         </p>
       </header>
 

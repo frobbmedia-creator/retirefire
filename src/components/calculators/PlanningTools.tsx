@@ -119,7 +119,7 @@ export function RetirementAgeCalculator() {
         },
         { label: "Years remaining", value: result.years == null ? "—" : result.years.toFixed(1) },
       ]}
-      note="Constant real return and end-of-year contributions; taxes, fees, Social Security, pensions, and market sequences are excluded."
+      note="This estimate assumes the same growth rate every year. It does not include taxes, fees, Social Security, pensions, or market ups and downs."
     />
   );
 }
@@ -150,7 +150,7 @@ export function PortfolioReadinessCalculator() {
         { label: "Funded", value: `${result.fundedPercent.toFixed(0)}%`, accent: true },
         { label: result.surplus >= 0 ? "Surplus" : "Shortfall", value: formatCurrency(Math.abs(result.surplus)) },
       ]}
-      note="Income is treated as durable and immediate. Model delayed benefits and bridge years separately."
+      note="This estimate assumes the income starts now and continues. If Social Security or a pension starts later, plan separately for the years before it begins."
     />
   );
 }
@@ -167,14 +167,14 @@ export function GuardrailsCalculator() {
   );
   return (
     <Tool
-      title="Withdrawal guardrail planner"
-      description="Translate withdrawal-rate guardrails into portfolio trigger levels and spending adjustments."
+      title="Retirement spending limits"
+      description="Set clear points for cutting or raising spending when your investment balance changes."
       fields={
         <>
           <Field label="Starting portfolio" value={portfolio} onChange={setPortfolio} step={10_000} />
           <Field label="Initial withdrawal rate (%)" value={rate} onChange={setRate} step={0.1} />
-          <Field label="Lower rate guardrail (%)" value={lower} onChange={setLower} step={0.1} />
-          <Field label="Upper rate guardrail (%)" value={upper} onChange={setUpper} step={0.1} />
+          <Field label="Rate for raising spending (%)" value={lower} onChange={setLower} step={0.1} />
+          <Field label="Rate for cutting spending (%)" value={upper} onChange={setUpper} step={0.1} />
           <Field label="Spending adjustment (%)" value={adjustment} onChange={setAdjustment} />
         </>
       }
@@ -185,7 +185,7 @@ export function GuardrailsCalculator() {
         { label: "Reduced annual spend", value: formatCurrency(result.reducedSpending) },
         { label: "Increased annual spend", value: formatCurrency(result.increasedSpending) },
       ]}
-      note="This is a trigger worksheet, not a backtest. Guardrail methods require precise review dates, inflation rules, and portfolio policies."
+      note="This worksheet shows when your rules would call for a change. It does not test the rules against past markets. Decide how often you will review the plan and how you will handle inflation."
     />
   );
 }
@@ -201,22 +201,22 @@ export function RothConversionCalculator() {
   );
   return (
     <Tool
-      title="Roth conversion runway"
-      description="Estimate how much pretax money a multi-year conversion plan moves and the simplified federal tax cost."
+      title="Roth conversion plan"
+      description="Estimate how much money you could move from a traditional retirement account to a Roth account over several years."
       fields={
         <>
-          <Field label="Pretax balance" value={balance} onChange={setBalance} step={10_000} />
+          <Field label="Traditional retirement account balance" value={balance} onChange={setBalance} step={10_000} />
           <Field label="Annual conversion" value={conversion} onChange={setConversion} step={1000} />
           <Field label="Conversion years" value={years} onChange={setYears} />
-          <Field label="Estimated marginal federal rate (%)" value={taxRate} onChange={setTaxRate} step={0.1} />
+          <Field label="Estimated federal tax rate on the conversion (%)" value={taxRate} onChange={setTaxRate} step={0.1} />
         </>
       }
       results={[
         { label: "Total converted", value: formatCurrency(result.converted), accent: true },
         { label: "Simplified federal tax", value: formatCurrency(result.estimatedFederalTax) },
-        { label: "Pretax balance remaining", value: formatCurrency(result.remainingPretax) },
+        { label: "Traditional account remaining", value: formatCurrency(result.remainingPretax) },
       ]}
-      note="Educational estimate only. It excludes deductions, bracket stacking, state tax, ACA subsidy effects, IRMAA, investment growth, and the five-year rules."
+      note="Educational estimate only. Actual taxes may change because of deductions, state taxes, health-insurance assistance, Medicare charges, investment growth, and Roth withdrawal rules."
     />
   );
 }
@@ -235,7 +235,7 @@ export function HealthcareBudgetCalculator() {
   return (
     <Tool
       title="Pre-Medicare healthcare budget"
-      description="Build an explicit healthcare bridge budget from retirement to Medicare eligibility."
+      description="Estimate health costs from the year you retire until Medicare begins, usually at age 65."
       fields={
         <>
           <Field label="Monthly household premium" value={premium} onChange={setPremium} step={50} />
@@ -249,7 +249,7 @@ export function HealthcareBudgetCalculator() {
       results={[
         { label: "First-year budget", value: formatCurrency(result.firstYear) },
         { label: "Monthly equivalent", value: formatCurrency(result.monthlyEquivalent), accent: true },
-        { label: "Bridge total", value: formatCurrency(result.total) },
+        { label: "Total before Medicare", value: formatCurrency(result.total) },
       ]}
       note="Subsidies depend on household income, household size, location, and current law. Re-price plans annually and keep a separate emergency reserve."
     />
