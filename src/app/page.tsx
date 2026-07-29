@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { Hero } from "@/components/home/Hero";
-import { HomeQuickCalculator } from "@/components/home/HomeQuickCalculator";
-import { FaqSection, FaqJsonLd } from "@/components/home/FaqSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE } from "@/lib/constants";
 import {
@@ -25,7 +23,6 @@ export const metadata: Metadata = pageMeta("/", {
 export default function HomePage() {
   return (
     <>
-      <FaqJsonLd />
       <JsonLd data={websiteJsonLd()} />
       <JsonLd
         data={webApplicationJsonLd({
@@ -36,52 +33,87 @@ export default function HomePage() {
       />
 
       <Hero />
-
-      <HomeQuickCalculator />
-
-      <section className="border-b border-zinc-800/60">
-        <div className="mx-auto max-w-7xl px-4 py-7 sm:px-6 sm:py-8">
-          <div className="flex flex-col gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-2xl">
-              <h2 className="font-semibold text-zinc-100">
-                Simple first answer. Serious FIRE depth.
-              </h2>
-              <p className="mt-1 text-sm leading-relaxed text-zinc-500">
-                Every advanced tool shows its assumptions, limits, and formulas.
-                No account or paywall is required.
-              </p>
+      <section className="border-b border-zinc-800/60 bg-zinc-900/20">
+        <div className="mx-auto grid max-w-7xl gap-4 px-4 py-7 sm:px-6 sm:py-8 lg:grid-cols-2">
+          <article className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5 sm:p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-400">
+              Start here
+            </p>
+            <h2 className="mt-2 text-xl font-semibold text-zinc-50">
+              Make the household decision
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+              Find out whether your current savings, family spending, and
+              expected retirement income point to the retirement age you want.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              <Link
+                href="/retirement-checkup"
+                className="font-semibold text-emerald-400 hover:underline"
+              >
+                Retirement checkup →
+              </Link>
+              <Link
+                href="/calculators/retirement-age"
+                className="text-zinc-300 hover:text-emerald-400"
+              >
+                Retirement age
+              </Link>
+              <Link
+                href="/calculators/couples-fire"
+                className="text-zinc-300 hover:text-emerald-400"
+              >
+                Couples
+              </Link>
+              <Link
+                href="/calculators/healthcare-budget"
+                className="text-zinc-300 hover:text-emerald-400"
+              >
+                Healthcare
+              </Link>
             </div>
-            <p className="flex shrink-0 flex-wrap gap-x-4 gap-y-2 text-sm">
+          </article>
+
+          <article className="rounded-2xl border border-zinc-800 bg-zinc-900/45 p-5 sm:p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
+              Go deeper
+            </p>
+            <h2 className="mt-2 text-xl font-semibold text-zinc-50">
+              Advanced FIRE and portfolio analysis
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+              Use transparent formulas, market-path testing, downloadable data,
+              and specialist FIRE tools without hiding the assumptions.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
               <Link
                 href="/calculators"
-                className="font-medium text-emerald-400 hover:underline"
+                className="font-semibold text-emerald-400 hover:underline"
               >
-                All FIRE tools
+                All advanced tools →
               </Link>
               <Link
                 href="/methodology"
-                className="font-medium text-emerald-400 hover:underline"
+                className="text-zinc-300 hover:text-emerald-400"
               >
                 Methodology
               </Link>
               <Link
                 href="/research"
-                className="font-medium text-emerald-400 hover:underline"
+                className="text-zinc-300 hover:text-emerald-400"
               >
                 Research
               </Link>
               <Link
-                href="/guides"
-                className="font-medium text-emerald-400 hover:underline"
+                href="/resources/sequence-risk-guide"
+                className="text-zinc-300 hover:text-emerald-400"
               >
-                Guides
+                Market risk
               </Link>
-            </p>
-          </div>
+            </div>
+          </article>
         </div>
       </section>
-
-      <FaqSection />
     </>
   );
 }

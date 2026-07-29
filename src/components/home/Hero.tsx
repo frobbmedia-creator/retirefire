@@ -33,16 +33,16 @@ export function Hero() {
           </p>
 
           <h1 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
-            Know when you can retire.
+            Is your household on track for retirement?
             <span className="mt-1 block text-emerald-400">
-              See what could help you get there.
+              Get a clear answer and your next three moves.
             </span>
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Start with six simple questions and get one clear answer. Then go
-            deeper with RetireFire&apos;s Coast FIRE, Barista FIRE, retirement
-            age, healthcare, Roth, and market stress-test tools.
+            In about three minutes, see an estimated retirement age, the yearly
+            spending your plan may support, and the changes that could help
+            most. No account, sales call, or financial jargon.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
@@ -50,34 +50,12 @@ export function Hero() {
               Start retirement checkup
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <Link href="/calculators/coast-fire" className={btnSecondary}>
-              Coast FIRE calculator
-            </Link>
             <Link href="/calculators" className={btnSecondary}>
               <BookOpen className="h-4 w-4" aria-hidden />
-              All FIRE tools
+              Advanced tools
             </Link>
           </div>
 
-          <dl className="mt-7 grid grid-cols-3 gap-3 sm:max-w-lg sm:gap-4">
-            {[
-              { label: "Questions", value: "6" },
-              { label: "Time", value: "~3 min" },
-              { label: "Signup", value: "None" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-xl border border-zinc-800/80 bg-zinc-900/40 px-3 py-3 text-center sm:px-4"
-              >
-                <dt className="text-[11px] uppercase tracking-wide text-zinc-500">
-                  {stat.label}
-                </dt>
-                <dd className="mt-1 text-lg font-semibold text-zinc-100 sm:text-xl">
-                  {stat.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
           </div>
 
           <div className="relative lg:justify-self-end">
