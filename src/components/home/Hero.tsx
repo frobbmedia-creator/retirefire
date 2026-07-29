@@ -2,7 +2,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
-  CheckCircle2,
+  ChartNoAxesCombined,
   ShieldCheck,
 } from "lucide-react";
 
@@ -68,14 +68,14 @@ export function Hero() {
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
-                      Your retirement checkup
+                      Advanced FIRE features
                     </p>
                     <p className="mt-1 text-sm text-zinc-500">
-                      A clear starting point
+                      Professional-grade depth
                     </p>
                   </div>
                   <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-300 ring-1 ring-emerald-500/25">
-                    Free
+                    No paywall
                   </span>
                 </div>
               </div>
@@ -83,16 +83,16 @@ export function Hero() {
               <div className="p-5 sm:p-6">
                 <div className="rounded-2xl bg-emerald-500/10 p-4 ring-1 ring-emerald-500/25">
                   <div className="flex items-center gap-3">
-                    <CheckCircle2
+                    <ChartNoAxesCombined
                       className="h-7 w-7 text-emerald-300"
                       aria-hidden
                     />
                     <div>
                       <p className="text-xl font-semibold text-emerald-300">
-                        One clear status
+                        Transparent portfolio analysis
                       </p>
                       <p className="mt-1 text-sm text-zinc-300">
-                        On track, close, or needs work
+                        Full assumptions, formulas, and limitations
                       </p>
                     </div>
                   </div>
@@ -100,9 +100,9 @@ export function Hero() {
 
                 <div className="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
                   {[
-                    ["Retirement age", "Estimated"],
-                    ["Yearly spending", "Supported"],
-                    ["Next steps", "Top 3"],
+                    ["FIRE paths", "Coast + Barista"],
+                    ["Market risk", "1k paths"],
+                    ["Research", "Data + methods"],
                   ].map(([label, value]) => (
                     <div
                       key={label}
@@ -116,9 +116,9 @@ export function Hero() {
 
                 <div className="mt-5 space-y-2.5">
                   {[
-                    "Use your real savings and spending",
-                    "See the assumptions behind the answer",
-                    "Open advanced FIRE tools when you are ready",
+                    "Compare scenarios and withdrawal rates",
+                    "Test the order of good and bad market years",
+                    "Download data and inspect every formula",
                   ].map((item) => (
                     <p
                       key={item}
