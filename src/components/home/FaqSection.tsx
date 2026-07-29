@@ -56,6 +56,8 @@ export const FAQ_ITEMS = [
   },
 ] as const;
 
+const HOME_FAQ_ITEMS = FAQ_ITEMS.slice(0, 4);
+
 export function FaqSection() {
   return (
     <section id="faq" className="scroll-mt-20 border-b border-zinc-800/60">
@@ -67,7 +69,7 @@ export function FaqSection() {
           Quick answers about {SITE.name} tools and FIRE concepts.
         </p>
         <div className="mt-6 divide-y divide-zinc-800 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/35">
-          {FAQ_ITEMS.map((item) => (
+          {HOME_FAQ_ITEMS.map((item) => (
             <details
               key={item.question}
               className="group px-4 py-4 open:bg-zinc-900/70 sm:px-5"
@@ -116,5 +118,5 @@ export function FaqSection() {
 
 /** JSON-LD for FAQPage rich results */
 export function FaqJsonLd() {
-  return <JsonLd data={faqPageJsonLd(FAQ_ITEMS)} />;
+  return <JsonLd data={faqPageJsonLd(HOME_FAQ_ITEMS)} />;
 }

@@ -1,6 +1,10 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, ShieldCheck } from "lucide-react";
-import { SITE } from "@/lib/constants";
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  ShieldCheck,
+} from "lucide-react";
 
 const btnPrimary =
   "inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 text-base font-medium text-zinc-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400 sm:w-auto";
@@ -20,23 +24,25 @@ export function Hero() {
         className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
-        <div className="max-w-2xl">
+      <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          <div className="max-w-2xl">
           <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-500/25">
             <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
-            Transparent math · Free stress test · Free core
+            Free retirement checkup · Advanced FIRE tools
           </p>
 
           <h1 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
-            Free FIRE calculators
+            Know when you can retire.
             <span className="mt-1 block text-emerald-400">
-              Coast, Barista &amp; your number — with clear assumptions.
+              See what could help you get there.
             </span>
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            {SITE.description} See the assumptions behind every answer. Compare
-            two plans and test how bad market years could change your timeline.
+            Start with six simple questions and get one clear answer. Then go
+            deeper with RetireFire&apos;s Coast FIRE, Barista FIRE, retirement
+            age, healthcare, Roth, and market stress-test tools.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
@@ -53,11 +59,11 @@ export function Hero() {
             </Link>
           </div>
 
-          <dl className="mt-8 grid grid-cols-3 gap-3 sm:max-w-lg sm:gap-4">
+          <dl className="mt-7 grid grid-cols-3 gap-3 sm:max-w-lg sm:gap-4">
             {[
-              { label: "Core tools", value: "Free" },
-              { label: "Stress test", value: "1k paths" },
-              { label: "Advice?", value: "No" },
+              { label: "Questions", value: "6" },
+              { label: "Time", value: "~3 min" },
+              { label: "Signup", value: "None" },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -72,6 +78,92 @@ export function Hero() {
               </div>
             ))}
           </dl>
+          </div>
+
+          <div className="relative lg:justify-self-end">
+            <div
+              aria-hidden
+              className="absolute -inset-8 rounded-full bg-emerald-500/10 blur-3xl"
+            />
+            <div className="relative overflow-hidden rounded-3xl border border-emerald-500/20 bg-zinc-900/85 shadow-2xl shadow-black/40">
+              <div className="border-b border-zinc-800 px-5 py-4 sm:px-6">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
+                      Your retirement checkup
+                    </p>
+                    <p className="mt-1 text-sm text-zinc-500">
+                      A clear starting point
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-300 ring-1 ring-emerald-500/25">
+                    Free
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-5 sm:p-6">
+                <div className="rounded-2xl bg-emerald-500/10 p-4 ring-1 ring-emerald-500/25">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle2
+                      className="h-7 w-7 text-emerald-300"
+                      aria-hidden
+                    />
+                    <div>
+                      <p className="text-xl font-semibold text-emerald-300">
+                        One clear status
+                      </p>
+                      <p className="mt-1 text-sm text-zinc-300">
+                        On track, close, or needs work
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                  {[
+                    ["Retirement age", "Estimated"],
+                    ["Yearly spending", "Supported"],
+                    ["Next steps", "Top 3"],
+                  ].map(([label, value]) => (
+                    <div
+                      key={label}
+                      className="rounded-xl border border-zinc-800 bg-zinc-950/65 p-3"
+                    >
+                      <p className="text-[11px] text-zinc-500">{label}</p>
+                      <p className="mt-1 font-semibold text-zinc-100">{value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-5 space-y-2.5">
+                  {[
+                    "Use your real savings and spending",
+                    "See the assumptions behind the answer",
+                    "Open advanced FIRE tools when you are ready",
+                  ].map((item) => (
+                    <p
+                      key={item}
+                      className="flex items-center gap-2 text-sm text-zinc-400"
+                    >
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-xs text-emerald-300">
+                        ✓
+                      </span>
+                      {item}
+                    </p>
+                  ))}
+                </div>
+
+                <Link
+                  href="/retirement-checkup"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400"
+                >
+                  Start my checkup
+                  <ArrowRight className="h-4 w-4" aria-hidden />
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
