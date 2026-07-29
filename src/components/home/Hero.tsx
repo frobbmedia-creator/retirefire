@@ -20,7 +20,7 @@ export function Hero() {
         className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
+      <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
         <div className="max-w-2xl">
           <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-500/25">
             <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
@@ -40,7 +40,7 @@ export function Hero() {
             hype.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
             <Link href="/#calculators" className={btnPrimary}>
               Open calculators
               <ArrowRight className="h-4 w-4" aria-hidden />
@@ -54,7 +54,7 @@ export function Hero() {
             </Link>
           </div>
 
-          <dl className="mt-12 grid grid-cols-3 gap-3 sm:max-w-lg sm:gap-4">
+          <dl className="mt-8 grid grid-cols-3 gap-3 sm:max-w-lg sm:gap-4">
             {[
               { label: "Core tools", value: "Free" },
               { label: "Stress test", value: "1k paths" },

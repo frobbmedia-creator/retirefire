@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
+import { HomeQuickCalculator } from "@/components/home/HomeQuickCalculator";
 import { FaqSection, FaqJsonLd } from "@/components/home/FaqSection";
-import { PlannerShell } from "@/components/planner/PlannerShell";
-import { CalculatorHub } from "@/components/calculators/CalculatorHub";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE } from "@/lib/constants";
 import {
@@ -64,7 +63,7 @@ export default function HomePage() {
       <TrustStrip />
 
       <section className="border-b border-zinc-800/60">
-        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-9">
           <h2 className="text-sm font-medium uppercase tracking-wide text-zinc-500">
             Dedicated calculator pages
           </h2>
@@ -85,24 +84,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        id="calculators"
-        className="scroll-mt-20 border-b border-zinc-800/60"
-      >
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-          <PlannerShell sharePath="/">
-            <CalculatorHub />
-          </PlannerShell>
-        </div>
-      </section>
+      <HomeQuickCalculator />
 
       <section className="border-b border-zinc-800/60">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-          <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900/80 to-zinc-950 p-6 sm:p-8 lg:p-10">
+        <div className="mx-auto max-w-6xl px-4 py-9 sm:px-6 sm:py-12">
+          <div className="rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-900/80 to-zinc-950 p-5 sm:p-7">
             <h2 className="text-xl font-semibold text-zinc-50 sm:text-2xl">
               How we approach FIRE math
             </h2>
-            <ul className="mt-4 space-y-3 text-sm leading-relaxed text-zinc-400 sm:text-base">
+            <ul className="mt-5 grid gap-x-8 gap-y-3 text-sm leading-relaxed text-zinc-400 md:grid-cols-2">
               <li>
                 <strong className="text-zinc-200">Withdrawal rates</strong> —
                 The “4% rule” lineage (Bengen / Trinity Study). Early retirees
@@ -124,14 +114,9 @@ export default function HomePage() {
                 include a free basic sequence stress test (1,000 paths); we still
                 publish what advanced engines and life plumbing leave out.
               </li>
-              <li>
-                <strong className="text-zinc-200">Compare plans</strong> —
-                Scenario A/B compare, sensitivity chips, share links, and CSV
-                export keep assumptions honest without an account.
-              </li>
             </ul>
-            <p className="mt-6 text-sm text-zinc-500">
-              Full sources:{" "}
+            <p className="mt-5 border-t border-zinc-800 pt-5 text-sm text-zinc-500">
+              Explore:{" "}
               <Link
                 href="/methodology"
                 className="font-medium text-emerald-400 underline-offset-2 hover:underline"
@@ -140,19 +125,12 @@ export default function HomePage() {
               </Link>
               {" · "}
               <Link
-                href="/blog/retirefire-methodology-explained"
-                className="font-medium text-emerald-400 underline-offset-2 hover:underline"
-              >
-                Human tour
-              </Link>
-              . Philosophy:{" "}
-              <Link
                 href="/approach"
                 className="font-medium text-emerald-400 underline-offset-2 hover:underline"
               >
                 Approach &amp; roadmap
               </Link>
-              . Free guides:{" "}
+              {" · "}
               <Link
                 href="/resources"
                 className="font-medium text-emerald-400 underline-offset-2 hover:underline"
@@ -161,19 +139,12 @@ export default function HomePage() {
               </Link>
               {" · "}
               <Link
-                href="/resources/coast-fire-checklist"
-                className="font-medium text-emerald-400 underline-offset-2 hover:underline"
-              >
-                Coast checklist
-              </Link>
-              . Blog:{" "}
-              <Link
                 href="/blog"
                 className="font-medium text-emerald-400 underline-offset-2 hover:underline"
               >
                 Blog
               </Link>
-              . Legal:{" "}
+              {" · "}
               <Link
                 href="/disclaimer"
                 className="font-medium text-emerald-400 underline-offset-2 hover:underline"

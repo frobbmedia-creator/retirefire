@@ -28,7 +28,7 @@ const items = [
 export function TrustStrip() {
   return (
     <section className="border-b border-zinc-800/60 bg-zinc-900/30">
-      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:grid-cols-3 sm:px-6 sm:py-12">
+      <div className="mx-auto grid max-w-6xl gap-5 px-4 py-6 sm:grid-cols-3 sm:px-6 sm:py-7">
         {items.map(({ icon: Icon, title, body, href, linkLabel }) => (
           <div key={title} className="flex gap-3">
             <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-800/80 text-emerald-400">
@@ -36,7 +36,7 @@ export function TrustStrip() {
             </div>
             <div>
               <h2 className="text-sm font-semibold text-zinc-100">{title}</h2>
-              <p className="mt-1 text-sm leading-relaxed text-zinc-500">{body}</p>
+              <p className="mt-1 text-xs leading-relaxed text-zinc-500 sm:text-sm">{body}</p>
               <Link
                 href={href}
                 className="mt-2 inline-block text-xs font-medium text-emerald-400/90 hover:underline"

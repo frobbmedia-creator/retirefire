@@ -59,27 +59,32 @@ export const FAQ_ITEMS = [
 export function FaqSection() {
   return (
     <section id="faq" className="scroll-mt-20 border-b border-zinc-800/60">
-      <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+      <div className="mx-auto max-w-3xl px-4 py-9 sm:px-6 sm:py-12">
         <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
           FAQ
         </h2>
         <p className="mt-2 text-sm text-zinc-400 sm:text-base">
           Quick answers about {SITE.name} tools and FIRE concepts.
         </p>
-        <dl className="mt-8 space-y-4">
+        <div className="mt-6 divide-y divide-zinc-800 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/35">
           {FAQ_ITEMS.map((item) => (
-            <div
+            <details
               key={item.question}
-              className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5"
+              className="group px-4 py-4 open:bg-zinc-900/70 sm:px-5"
             >
-              <dt className="font-medium text-zinc-100">{item.question}</dt>
-              <dd className="mt-2 text-sm leading-relaxed text-zinc-400">
+              <summary className="cursor-pointer list-none pr-8 font-medium text-zinc-100 marker:content-none">
+                {item.question}
+                <span className="float-right -mr-6 text-zinc-500 transition group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400">
                 {item.answer}
-              </dd>
-            </div>
+              </p>
+            </details>
           ))}
-        </dl>
-        <p className="mt-8 text-sm text-zinc-500">
+        </div>
+        <p className="mt-6 text-sm text-zinc-500">
           Go deeper:{" "}
           <Link href="/methodology" className="text-emerald-400 hover:underline">
             Methodology
