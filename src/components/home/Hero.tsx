@@ -3,7 +3,6 @@ import {
   ArrowRight,
   BookOpen,
   ChartNoAxesCombined,
-  ShieldCheck,
 } from "lucide-react";
 
 const btnPrimary =
@@ -13,7 +12,7 @@ const btnSecondary =
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-zinc-800/60">
+    <section className="relative overflow-hidden border-b border-zinc-800/60 lg:flex lg:min-h-[calc(100svh-18rem)] lg:items-center">
       {/* Soft gradient glow */}
       <div
         aria-hidden
@@ -27,11 +26,6 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <div className="max-w-2xl">
-          <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-500/25">
-            <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
-            One place to plan for retirement — from first checkup to FIRE deep dive
-          </p>
-
           <h1 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
             Is your household on track for retirement?
             <span className="mt-1 block text-emerald-400">
