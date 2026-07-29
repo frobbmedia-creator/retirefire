@@ -75,7 +75,7 @@ export type FireStyleId = (typeof FIRE_STYLES)[number]["id"];
 export const SITE = {
   name: "RetireFire",
   domain: "retirefire.net",
-  tagline: "One simple place to plan for retirement",
+  tagline: "One place to plan for retirement",
   /** Default <title> for homepage / root layout */
   title: "Free Retirement Checkup & FIRE Calculators",
   description:
