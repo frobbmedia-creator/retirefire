@@ -17,6 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
+      url: `${base}/retirement-checkup`,
+      lastModified: new Date("2026-07-29"),
+      changeFrequency: "monthly",
+      priority: 0.98,
+    },
+    {
       url: `${base}/calculators/fire-number`,
       lastModified: resourcesUpdated,
       changeFrequency: "weekly",

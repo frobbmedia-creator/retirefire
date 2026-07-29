@@ -16,6 +16,11 @@ export const metadata: Metadata = pageMeta("/calculators", {
 
 const TOOLS = [
   {
+    href: "/retirement-checkup",
+    title: "Retirement Checkup",
+    body: "Answer six simple questions and get one clear status, an estimated retirement age, and practical next steps.",
+  },
+  {
     href: "/calculators/fire-number",
     title: "FIRE Number",
     body: "Estimate how much you need to invest based on yearly spending and the percentage you plan to withdraw.",
@@ -114,8 +119,15 @@ export default function CalculatorsIndexPage() {
         Free FIRE calculators
       </h1>
       <p className="mt-3 text-zinc-400">
-        Every tool shares assumptions and can be linked via URL. Coast and Years
-        include a free basic stress test. Or use the{" "}
+        New to retirement planning? Start with the{" "}
+        <Link
+          href="/retirement-checkup"
+          className="text-emerald-400 hover:underline"
+        >
+          guided retirement checkup
+        </Link>
+        . Every detailed tool shares assumptions and can be linked via URL.
+        Coast and Years include a free basic stress test. Or use the{" "}
         <Link href="/#calculators" className="text-emerald-400 hover:underline">
           all-in-one hub on the homepage
         </Link>

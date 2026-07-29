@@ -40,16 +40,16 @@ export function Hero() {
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
-            <Link href="/#calculators" className={btnPrimary}>
-              Open calculators
+            <Link href="/retirement-checkup" className={btnPrimary}>
+              Start retirement checkup
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link href="/calculators/coast-fire" className={btnSecondary}>
               Coast FIRE calculator
             </Link>
-            <Link href="/methodology" className={btnSecondary}>
+            <Link href="/calculators" className={btnSecondary}>
               <BookOpen className="h-4 w-4" aria-hidden />
-              Methodology
+              All FIRE tools
             </Link>
           </div>
 

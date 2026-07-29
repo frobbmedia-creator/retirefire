@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { SITE } from "@/lib/constants";
 
 const links = [
+  { href: "/retirement-checkup", label: "Checkup" },
   { href: "/calculators", label: "Calculators" },
   { href: "/calculators/fire-number", label: "FIRE Number" },
   { href: "/calculators/coast-fire", label: "Coast" },
@@ -41,7 +42,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 md:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -55,7 +56,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-zinc-300 hover:bg-zinc-800 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-zinc-300 hover:bg-zinc-800 lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -66,7 +67,7 @@ export function Navbar() {
 
       <div
         className={cn(
-          "border-t border-zinc-800 md:hidden",
+          "border-t border-zinc-800 lg:hidden",
           open ? "block" : "hidden",
         )}
       >

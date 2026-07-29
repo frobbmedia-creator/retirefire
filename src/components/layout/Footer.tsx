@@ -8,6 +8,7 @@ export function Footer() {
     {
       label: "Tools",
       links: [
+        ["/retirement-checkup", "Retirement Checkup"],
         ["/calculators", "All calculators"],
         ["/calculators/fire-number", "FIRE Number"],
         ["/calculators/years-to-fire", "Years to FIRE"],
