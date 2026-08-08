@@ -10,7 +10,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-sm">
-            <div className="flex items-center gap-2 font-semibold text-zinc-100">
+            <div className="flex items-center gap-2 text-base font-semibold text-zinc-100">
               <Flame className="h-4 w-4 text-emerald-400" aria-hidden />
               {SITE.name}
             </div>

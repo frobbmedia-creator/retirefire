@@ -25,7 +25,7 @@ export function Navbar() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:h-16 sm:px-6">
         <Link
           href="/"
-          className="group flex items-center gap-2.5 font-semibold tracking-tight text-zinc-50"
+          className="group flex items-center gap-2.5 text-[15px] font-semibold tracking-tight text-zinc-50 sm:text-base"
           onClick={() => setOpen(false)}
         >
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-400 ring-1 ring-emerald-500/30 transition group-hover:bg-emerald-500/25">

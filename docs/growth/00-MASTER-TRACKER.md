@@ -17,7 +17,7 @@
 |------|--------|-------|
 | 1.1 Analytics & measurement | `[~]` | Vercel Analytics live. GA4/GSC/Plausible setup guide shipped. Event hooks in code. User must complete GSC DNS + optional GA4/Plausible keys. |
 | 1.2 Competitor & keyword baseline | `[x]` | See `01-competitor-keyword-baseline.md` |
-| 1.3 Site polish & authority | `[x]` | Approach, hero, hub, resources, breadcrumbs, FAQ — offline complete. Deploy pending. |
+| 1.3 Site polish & authority | `[x]` | Approach, hero, hub, resources, breadcrumbs, FAQ — **live on production**. |
 | 1.4 Social foundation | `[x]` | Profiles copy + first 10 posts + 30-day system in `03-social-foundation.md` |
 | Content wave 1 outlines | `[x]` | Calendar + 2 pillar drafts in content docs |
 
@@ -27,9 +27,9 @@
 - [x] Authority / Approach page written
 - [x] Social profiles + first posts drafted
 - [x] First content pieces outlined/drafted
-- [ ] User: GSC verified + sitemap submitted (access required)
-- [ ] User: Social accounts live with copy applied
-- [ ] Deploy Phase 1 code to production
+- [x] User: GSC verified + sitemap submitted (homepage + Coast indexed requested)
+- [~] User: Social — bio + site link done; thread + pin next
+- [x] Deploy Phase 1–2 code to production (Vercel Git → `frobbmedia-creator/retirefire`)
 
 ---
 
@@ -65,11 +65,11 @@
 
 ## User action required (only when blocked)
 
-1. **Google Search Console** — verify domain DNS, submit `https://retirefire.net/sitemap.xml`
-2. **Optional:** create GA4 property + Plausible site; add env vars (see analytics guide)
-3. **Social:** create/claim X + LinkedIn pages; paste bios from social doc
+1. ~~**Google Search Console**~~ In progress — property live, sitemap in, homepage + Coast requested  
+2. **Social:** create/claim X + LinkedIn; paste bio + pin thread (`19-launch-checklist-user.md` §2) (**next after a few more URL requests**)
+3. **Optional:** create GA4 property + Plausible site; add env vars (see analytics guide)
 4. **Later:** Stripe account + final pricing approval
-5. **Deploy:** merge/push Phase 1 commits if not auto-deployed
+5. ~~**Deploy**~~ Done — Vercel Git on `frobbmedia-creator/retirefire`; production auto-deploys from `main`
 
 ---
 

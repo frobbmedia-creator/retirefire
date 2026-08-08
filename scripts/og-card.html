@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #052e1f;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+      }
+      .card {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        padding: 64px 72px;
+        background:
+          radial-gradient(
+            ellipse 65% 75% at 78% 38%,
+            rgba(16, 185, 129, 0.22) 0%,
+            transparent 55%
+          ),
+          linear-gradient(145deg, #064e3b 0%, #052e1f 45%, #022c22 75%, #011812 100%);
+        color: #fafafa;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      /* ~15–20% larger than the original OG, not a redesign */
+      .logo {
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: #34d399;
+        line-height: 1;
+      }
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 22px;
+        padding: 8px 0 16px;
+      }
+      h1 {
+        font-size: 72px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.08;
+        color: #fafafa;
+        max-width: 920px;
+      }
+      .offer {
+        font-size: 28px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: #a1a1aa;
+        line-height: 1.3;
+      }
+      .domain {
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: #6ee7b7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="logo">RetireFire</div>
+      <div class="main">
+        <h1>Know your number.<br />Plan with clarity.</h1>
+        <p class="offer">Free FIRE · Coast · Barista calculators</p>
+      </div>
+      <div class="domain">retirefire.net</div>
+    </div>
+  </body>
+</html>

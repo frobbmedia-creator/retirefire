@@ -17,7 +17,7 @@ export function ProTeaserStrip({
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center gap-2 rounded-xl bg-zinc-950/50 px-3 py-2 text-[11px] leading-snug ring-1 ring-zinc-800",
+        "flex flex-wrap items-center gap-2 rounded-xl bg-zinc-950/50 px-3 py-2 text-xs leading-snug ring-1 ring-zinc-800",
         className,
       )}
     >
