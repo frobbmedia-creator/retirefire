@@ -11,6 +11,284 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "2026-401k-roth-catch-up-rule",
+    title: "2026 401(k) Roth catch-up rule: what FIRE savers need to know",
+    description:
+      "2026 401(k) limits, age 50 catch-ups, the age 60-63 super catch-up, and the high-earner Roth catch-up rule explained for FIRE planning.",
+    date: "2026-08-08",
+    readingMinutes: 9,
+    tags: ["2026", "tax-planning", "fire-number"],
+    body: [
+      {
+        type: "p",
+        content:
+          "The 2026 401(k) catch-up rules matter for FIRE households because they change where late-career savings land, not just how much can go into a plan. For 2026, the IRS lists a $24,500 employee elective deferral limit for traditional and safe harbor 401(k) plans. If you are age 50 or older by year-end, the regular catch-up limit is $8,000. If you turn 60, 61, 62, or 63 during the calendar year, the SECURE 2.0 higher catch-up limit is $11,250.",
+      },
+      {
+        type: "p",
+        content:
+          "The headline tax wrinkle is the Roth catch-up requirement. Beginning in 2026, participants in plans with Roth features that offer catch-up contributions must make catch-up contributions on a Roth basis if prior-year wages from the plan sponsor exceeded $150,000 for 2026. That means some high earners may lose the pre-tax catch-up deduction they expected, even though the dollars can still help their retirement plan.",
+      },
+      {
+        type: "h2",
+        content: "2026 limits to model",
+      },
+      {
+        type: "ul",
+        content: [
+          "Employee elective deferral limit: $24,500 for 401(k), 403(b), SARSEP, and most governmental 457(b) plans.",
+          "Age 50-plus catch-up: $8,000 for traditional and safe harbor 401(k) plans, if the plan permits catch-ups.",
+          "Age 60-63 higher catch-up: $11,250 for most 401(k), 403(b), governmental 457(b), and TSP participants.",
+          "High-earner Roth catch-up threshold: prior-year wages with the plan sponsor above $150,000 for 2026.",
+          "SIMPLE 401(k) limits differ: $17,000 employee deferral, $4,000 regular catch-up, and $5,250 age 60-63 catch-up for 2026.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Why this changes FIRE planning",
+      },
+      {
+        type: "p",
+        content:
+          "For a FIRE plan, the Roth catch-up rule can shift the tax timing of your final high-income years. A pre-tax catch-up lowers current taxable income. A Roth catch-up does not, but it may reduce required taxable withdrawals later and can improve tax diversification before a Roth conversion ladder or early-retirement gap period.",
+      },
+      {
+        type: "ul",
+        content: [
+          "If you are under the $150,000 prior-year wage threshold, you may still have access to pre-tax or Roth catch-up choices depending on your plan.",
+          "If you are above the threshold and your plan has Roth catch-ups, model catch-up dollars as after-tax Roth contributions.",
+          "If your plan does not support Roth catch-ups, ask HR or the plan administrator how the plan will handle affected participants before assuming the catch-up is available.",
+          "If you are age 60-63, the super catch-up can be meaningful, but only cash flow you can actually save belongs in the plan.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "FIRE example",
+      },
+      {
+        type: "p",
+        content:
+          "Suppose a 61-year-old employee can save the full 2026 deferral plus the age 60-63 catch-up. The employee-side total is $35,750 before employer match. At a 4% withdrawal-rate shortcut, every extra $10,000 of durable retirement assets supports roughly $400 of first-year annual spending. The bigger value may be account placement: Roth dollars can create flexibility if the early-retirement plan depends on managing taxable income.",
+      },
+      {
+        type: "h2",
+        content: "How to use RetireFire",
+      },
+      {
+        type: "ul",
+        content: [
+          "Use the FIRE Number calculator to test whether the extra contribution changes your target date or only improves margin.",
+          "Use Years to FIRE to model a one-year or four-year late-career savings sprint.",
+          "Use Coast FIRE if the catch-up window is really about reducing future contributions instead of retiring immediately.",
+          "Use Scenario Compare to test pre-tax-heavy versus Roth-heavy paths under the same spending and withdrawal-rate assumptions.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Source notes",
+      },
+      {
+        type: "p",
+        content:
+          "This guide is grounded in IRS retirement-plan guidance current as of August 8, 2026, including the IRS catch-up contribution page and IRS 2026 401(k) contribution-limit page. It is educational only and is not tax, investment, legal, or plan-administration advice.",
+      },
+    ],
+  },
+  {
+    slug: "roth-conversion-ladder-vs-taxable-brokerage-2026",
+    title: "Roth conversion ladder vs. taxable brokerage in 2026",
+    description:
+      "Compare a Roth conversion ladder and taxable brokerage bridge for early retirement in 2026, including tax brackets, cash-flow timing, and calculator workflow.",
+    date: "2026-08-08",
+    readingMinutes: 10,
+    tags: ["2026", "tax-planning", "comparison", "fire-number"],
+    body: [
+      {
+        type: "p",
+        content:
+          "A Roth conversion ladder and a taxable brokerage account solve different early-retirement problems. The conversion ladder moves pre-tax retirement money into Roth accounts over time, often during lower-income years. The taxable brokerage account is the liquid bridge you can spend without waiting for retirement-plan access rules. In a strong FIRE plan, the question is usually not either-or. It is how much bridge cash you need while the ladder matures.",
+      },
+      {
+        type: "p",
+        content:
+          "For 2026 planning, the IRS tax inflation adjustments matter because conversion income stacks on top of other taxable income. The 2026 standard deduction is $16,100 for single filers, $32,200 for married filing jointly, and $24,150 for heads of household. The 12% bracket runs up to $50,400 of taxable income for single filers and $100,800 for married filing jointly; the 22% bracket starts above those levels.",
+      },
+      {
+        type: "h2",
+        content: "What a Roth conversion ladder does",
+      },
+      {
+        type: "ul",
+        content: [
+          "You convert pre-tax IRA or 401(k) rollover dollars into a Roth IRA.",
+          "The converted amount is generally taxable income in the conversion year.",
+          "The strategy is most attractive when early retirement creates lower taxable-income years.",
+          "It can reduce future pre-tax balances, which may lower later required minimum distributions.",
+          "It needs careful timing, because converted principal generally has access rules that make a cash bridge important.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "What a taxable brokerage bridge does",
+      },
+      {
+        type: "ul",
+        content: [
+          "It provides flexible spending money before age 59 1/2 and while Roth ladder rungs mature.",
+          "It can fund living costs, estimated taxes, ACA premiums, and market downturn buffers.",
+          "It may generate taxable dividends, interest, and capital gains along the way.",
+          "It avoids forced conversion amounts, but it does not move pre-tax retirement balances into Roth space by itself.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "The 2026 decision frame",
+      },
+      {
+        type: "p",
+        content:
+          "Start with annual spending, then separate spending liquidity from tax-location strategy. If your first five early-retirement years require $60,000 per year and you cannot access retirement accounts comfortably, the taxable bridge has to cover real cash flow. After that, use the conversion ladder to fill low tax brackets deliberately instead of converting random amounts because the phrase sounds efficient.",
+      },
+      {
+        type: "ul",
+        content: [
+          "Low-income gap years: stronger case for annual Roth conversions up to a chosen bracket ceiling.",
+          "Large taxable balance: stronger cash-flow bridge, but watch dividends, gains, and ACA income cliffs.",
+          "Large pre-tax balance: stronger reason to evaluate conversions before Social Security, pensions, or RMDs arrive.",
+          "Thin cash bridge: do not over-convert if the tax bill creates liquidity stress.",
+          "High state tax year: compare retiring, relocating, or timing conversions instead of assuming federal brackets tell the whole story.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Calculator workflow",
+      },
+      {
+        type: "ul",
+        content: [
+          "Use FIRE Number for the full portfolio target based on actual spending and a conservative withdrawal rate.",
+          "Use Years to FIRE to see whether redirecting savings into taxable brokerage meaningfully changes the retirement date.",
+          "Use Scenario Compare for two versions: more taxable bridge now versus more pre-tax or Roth retirement savings.",
+          "Stress test sequence risk if the bridge depends on selling stock in the first few years after quitting.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Practical rule of thumb",
+      },
+      {
+        type: "p",
+        content:
+          "A taxable brokerage account buys access and flexibility. A Roth conversion ladder buys future tax optionality. FIRE households often need both: enough taxable assets to avoid a forced sale or penalty problem, and enough annual tax planning to keep pre-tax retirement money from becoming a later tax trap.",
+      },
+      {
+        type: "h2",
+        content: "Source notes",
+      },
+      {
+        type: "p",
+        content:
+          "The 2026 bracket and standard-deduction figures in this article are based on IRS tax-year 2026 inflation adjustment guidance current as of August 8, 2026. This is educational content only, not tax, investment, legal, or financial advice.",
+      },
+    ],
+  },
+  {
+    slug: "social-security-62-vs-70-fire",
+    title: "Social Security at 62 vs. 70 for FIRE: the portfolio impact",
+    description:
+      "Claiming Social Security at 62 vs. 70 can change a FIRE portfolio target by six figures. Compare monthly benefit tradeoffs, sequence risk, and bridge planning.",
+    date: "2026-08-08",
+    readingMinutes: 9,
+    tags: ["2026", "sequence-risk", "fire-number"],
+    body: [
+      {
+        type: "p",
+        content:
+          "For FIRE planning, Social Security claiming age is not just a retirement-income choice. It can change the portfolio you need to fund the same lifestyle. Claim at 62 and monthly benefits start earlier but are reduced. Delay to 70 and the monthly benefit can be much higher, but your portfolio must bridge eight additional years without that income.",
+      },
+      {
+        type: "p",
+        content:
+          "SSA guidance says retirement benefits can start as early as age 62, benefits are reduced before full retirement age, and delayed retirement credits increase the amount if you wait beyond full retirement age. For people born in 1960 or later, full retirement age is 67, and SSA's delayed-retirement table shows age 70 at 124% of the full retirement benefit. There is no additional benefit increase for waiting past 70.",
+      },
+      {
+        type: "h2",
+        content: "The FIRE math",
+      },
+      {
+        type: "p",
+        content:
+          "A simple FIRE number treats portfolio need as annual spending minus durable income, divided by withdrawal rate. If delaying Social Security raises a household benefit by $1,000 per month, that is $12,000 per year of later guaranteed-like income before tax details. At a 4% withdrawal-rate shortcut, $12,000 of annual income is equivalent to about $300,000 of portfolio support. At 3.5%, it is about $343,000. At 3%, it is about $400,000.",
+      },
+      {
+        type: "h2",
+        content: "Why 62 can still make sense",
+      },
+      {
+        type: "ul",
+        content: [
+          "Health, family longevity, or cash-flow needs may make earlier income valuable.",
+          "A weak market early in retirement can make portfolio withdrawals painful, and a benefit at 62 may reduce forced selling.",
+          "Some households value spending certainty now more than a larger inflation-adjusted check later.",
+          "Spousal, survivor, tax, and earnings-test rules can change the answer, so household-level planning matters.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Why 70 can be powerful",
+      },
+      {
+        type: "ul",
+        content: [
+          "A larger benefit can reduce required portfolio withdrawals for the rest of retirement.",
+          "Higher guaranteed-like income can make the FIRE number less fragile late in life.",
+          "Delaying can improve survivor-benefit resilience for some married households.",
+          "It can be especially valuable if you have enough taxable or Roth bridge assets to reach 70 without stressing the portfolio.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Sequence-risk tradeoff",
+      },
+      {
+        type: "p",
+        content:
+          "The hard part is the bridge. Delaying to 70 may improve lifetime income, but it increases withdrawals between 62 and 70. If those years overlap with a bear market, the larger bridge can hurt. Claiming at 62 does the opposite: it lowers early withdrawals but locks in a smaller monthly check. FIRE plans should test both the early-retirement bridge period and the late-retirement income floor.",
+      },
+      {
+        type: "h2",
+        content: "How to model it on RetireFire",
+      },
+      {
+        type: "ul",
+        content: [
+          "Use FIRE Number with spending net of expected Social Security income for a rough portfolio-impact view.",
+          "Use Years to FIRE to see whether building a larger age-62-to-70 bridge delays your target date.",
+          "Use Coast FIRE if Social Security is part of a later traditional-retirement income floor.",
+          "Use the sequence-risk guide to pressure-test the bridge years before assuming delay is automatically better.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Bottom line",
+      },
+      {
+        type: "p",
+        content:
+          "The 62 vs. 70 decision is not won by a slogan. Age 62 can reduce early portfolio strain. Age 70 can reduce long-run portfolio dependence. The right FIRE answer depends on health, longevity assumptions, spouse and survivor needs, taxes, work income, and how much bridge liquidity you already have.",
+      },
+      {
+        type: "h2",
+        content: "Source notes",
+      },
+      {
+        type: "p",
+        content:
+          "This article uses SSA retirement-planning guidance current as of August 8, 2026, including SSA pages on early benefits, delayed retirement credits, and planning between ages 62 and 70. Educational only, not Social Security, tax, investment, or financial advice.",
+      },
+    ],
+  },
+  {
     slug: "lean-fire-explained",
     title: "Lean FIRE explained: definition, math, path, and risks",
     description:
