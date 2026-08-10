@@ -2,7 +2,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 /**
- * Educational Free vs Pro labels — never dark-pattern lock the free core.
+ * Educational free vs Coming Pro labels \u2014 never dark-pattern lock free core.
  * See docs/growth/06-feature-backlog-freemium.md and /approach.
  */
 export function ProTeaserStrip({
@@ -26,17 +26,17 @@ export function ProTeaserStrip({
       </span>
       <span className="text-zinc-400">{freeLabel}</span>
       <span className="text-zinc-700" aria-hidden>
-        ·
+        \u00b7
       </span>
       <span className="rounded-full bg-zinc-800/80 px-2 py-0.5 font-medium text-zinc-500 ring-1 ring-zinc-700">
-        Pro
+        Coming Pro
       </span>
       <span className="text-zinc-500">{proLabel}</span>
       <Link
         href="/pro"
         className="ml-auto shrink-0 text-zinc-500 underline-offset-2 hover:text-emerald-400 hover:underline"
       >
-        Explore Pro
+        See Pro
       </Link>
     </div>
   );

@@ -1,50 +1,65 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import type { StripePlanId } from "@/lib/stripe/config";
+import { cn } from "@/lib/utils";
+import type { PlanId } from "@/lib/stripe/config";
 
-export function CheckoutButton({
-  plan,
-  children,
-  variant = "primary",
-}: {
-  plan: StripePlanId;
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
-}) {
+type Props = {
+  plan: PlanId;
+  label: string;
+  className?: string;
+  recommended?: boolean;
+};
+
+export function CheckoutButton({ plan, label, className, recommended }: Props) {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  async function checkout() {
+  async function handleClick() {
     setLoading(true);
-    setError("");
-
+    setError(null);
     try {
-      const response = await fetch("/api/stripe/checkout", {
+      const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ plan }),
       });
-      const result = (await response.json()) as { url?: string; error?: string };
-
-      if (!response.ok || !result.url) {
-        throw new Error(result.error || "Unable to start checkout.");
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Checkout failed");
+        setLoading(false);
+        return;
       }
-
-      window.location.assign(result.url);
-    } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "Unable to start checkout.");
-      setLoading(false);
+      if (data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      setError("No checkout URL returned");
+    } catch {
+      setError("Network error \u2014 try again");
     }
+    setLoading(false);
   }
 
   return (
-    <div>
-      <Button className="w-full" size="lg" variant={variant} onClick={checkout} disabled={loading}>
-        {loading ? "Opening secure checkout…" : children}
-      </Button>
-      {error ? <p className="mt-2 text-sm text-red-400" role="alert">{error}</p> : null}
+    <div className="w-full">
+      <button
+        type="button"
+        onClick={handleClick}
+        disabled={loading}
+        className={cn(
+          "inline-flex w-full items-center justify-center rounded-xl px-4 py-2.5 text-sm font-medium transition",
+          recommended
+            ? "bg-emerald-600 text-white hover:bg-emerald-500 disabled:bg-emerald-600/50"
+            : "bg-zinc-100 text-zinc-900 hover:bg-white disabled:bg-zinc-100/50",
+          className,
+        )}
+      >
+        {loading ? "Redirecting to Stripe\u2026" : label}
+      </button>
+      {error && (
+        <p className="mt-2 text-center text-xs text-red-400">{error}</p>
+      )}
     </div>
   );
 }
