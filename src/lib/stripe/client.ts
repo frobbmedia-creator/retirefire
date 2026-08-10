@@ -1,17 +1,24 @@
 import Stripe from "stripe";
 
-let stripeClient: Stripe | undefined;
-
+/**
+ * Server-side Stripe client.
+ * Only import this in API routes / server components.
+ */
 export function getStripe(): Stripe {
-  const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
-
-  if (!secretKey) {
-    throw new Error("STRIPE_SECRET_KEY is not configured");
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    throw new Error("STRIPE_SECRET_KEY is not set");
   }
-
-  stripeClient ??= new Stripe(secretKey, {
-    appInfo: { name: "RetireFire", version: "0.1.0" },
+  return new Stripe(key, {
+    apiVersion: "2024-11-20.acacia",
+    typescript: true,
   });
+}
 
-  return stripeClient;
+export function getPublishableKey(): string {
+  const key = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+  if (!key) {
+    throw new Error("NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is not set");
+  }
+  return key;
 }
