@@ -6,12 +6,17 @@ import type { PlanId } from "@/lib/stripe/config";
 
 type Props = {
   plan: PlanId;
-  label: string;
+  children: React.ReactNode;
+  variant?: "primary" | "secondary";
   className?: string;
-  recommended?: boolean;
 };
 
-export function CheckoutButton({ plan, label, className, recommended }: Props) {
+export function CheckoutButton({
+  plan,
+  children,
+  variant = "primary",
+  className,
+}: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -36,7 +41,7 @@ export function CheckoutButton({ plan, label, className, recommended }: Props) {
       }
       setError("No checkout URL returned");
     } catch {
-      setError("Network error \u2014 try again");
+      setError("Network error — try again");
     }
     setLoading(false);
   }
@@ -48,14 +53,16 @@ export function CheckoutButton({ plan, label, className, recommended }: Props) {
         onClick={handleClick}
         disabled={loading}
         className={cn(
-          "inline-flex w-full items-center justify-center rounded-xl px-4 py-2.5 text-sm font-medium transition",
-          recommended
-            ? "bg-emerald-600 text-white hover:bg-emerald-500 disabled:bg-emerald-600/50"
-            : "bg-zinc-100 text-zinc-900 hover:bg-white disabled:bg-zinc-100/50",
+          "inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl px-6 text-base font-medium transition",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950",
+          "disabled:pointer-events-none disabled:opacity-50",
+          variant === "primary"
+            ? "bg-emerald-500 text-zinc-950 shadow-lg shadow-emerald-500/20 hover:bg-emerald-400 focus-visible:ring-emerald-400/40"
+            : "bg-zinc-800 text-zinc-100 ring-1 ring-zinc-700 hover:bg-zinc-700 focus-visible:ring-zinc-500/40",
           className,
         )}
       >
-        {loading ? "Redirecting to Stripe\u2026" : label}
+        {loading ? "Redirecting to Stripe\u2026" : children}
       </button>
       {error && (
         <p className="mt-2 text-center text-xs text-red-400">{error}</p>
