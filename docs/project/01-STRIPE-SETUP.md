@@ -1,7 +1,7 @@
 # Stripe Setup
 
 1. In Stripe, create recurring monthly ($9) and annual ($79) prices plus a one-time report price ($19).
-2. Copy `.env.example` to `.env.local` and add the secret key, publishable key, and three `price_...` IDs.
+2. Copy `.env.example` to `.env.local` and add the secret key and three `price_...` IDs. RetireFire redirects to server-created Checkout Sessions, so it does not need a browser-exposed publishable key.
 3. Create a webhook endpoint for `https://retirefire.net/api/stripe/webhook` subscribing to:
    - `checkout.session.completed`
    - `customer.subscription.updated`
