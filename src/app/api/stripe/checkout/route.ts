@@ -9,20 +9,20 @@ import { getStripe } from "@/lib/stripe/client";
 
 /**
  * POST /api/stripe/checkout
- * Body: { plan: "monthly" | "annual" | "report", successUrl?: string, cancelUrl?: string }
+ * Body: { plan: "monthly" | "annual" | "report" }
  */
 export async function POST(request: Request) {
   if (!isStripeConfigured()) {
     return NextResponse.json(
       {
         error:
-          "Stripe is not configured. Set STRIPE_SECRET_KEY, publishable key, and price IDs in environment variables.",
+          "Checkout is temporarily unavailable.",
       },
       { status: 503 },
     );
   }
 
-  let body: { plan?: string; successUrl?: string; cancelUrl?: string };
+  let body: { plan?: string };
   try {
     body = await request.json();
   } catch {
@@ -47,10 +47,8 @@ export async function POST(request: Request) {
 
   const planConfig = STRIPE_PLANS[plan];
   const origin = new URL(request.url).origin;
-  const successUrl =
-    body.successUrl ??
-    `${origin}/pro?success=1&session_id={CHECKOUT_SESSION_ID}`;
-  const cancelUrl = body.cancelUrl ?? `${origin}/pro?canceled=1`;
+  const successUrl = `${origin}/pro/success?session_id={CHECKOUT_SESSION_ID}`;
+  const cancelUrl = `${origin}/pro?canceled=1`;
 
   try {
     const stripe = getStripe();
@@ -71,7 +69,7 @@ export async function POST(request: Request) {
               metadata: { plan, product: "retirefire_pro" },
             },
           }
-        : {}),
+        : { customer_creation: "always" as const }),
     });
 
     if (!session.url) {
@@ -84,8 +82,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ url: session.url, sessionId: session.id });
   } catch (err) {
     console.error("[stripe/checkout]", err);
-    const message =
-      err instanceof Error ? err.message : "Failed to create checkout session";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json(
+      { error: "Unable to start checkout. Please try again." },
+      { status: 500 },
+    );
   }
 }

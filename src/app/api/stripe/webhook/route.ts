@@ -4,7 +4,7 @@ import type Stripe from "stripe";
 
 /**
  * POST /api/stripe/webhook
- * Handles checkout.session.completed, customer.subscription.updated/deleted.
+ * Handles Checkout and subscription lifecycle events.
  * MVP logs events \u2014 wire a real store when ready.
  */
 export async function POST(request: Request) {
@@ -57,6 +57,17 @@ export async function POST(request: Request) {
         break;
       }
 
+      case "checkout.session.async_payment_succeeded":
+      case "checkout.session.async_payment_failed": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        console.info(`[stripe/webhook] ${event.type}`, {
+          sessionId: session.id,
+          plan: session.metadata?.plan,
+          paymentStatus: session.payment_status,
+        });
+        break;
+      }
+
       case "customer.subscription.updated":
       case "customer.subscription.deleted": {
         const sub = event.data.object as Stripe.Subscription;
@@ -70,6 +81,20 @@ export async function POST(request: Request) {
           plan: sub.metadata?.plan,
         });
         // TODO: update status in store
+        break;
+      }
+
+      case "invoice.paid":
+      case "invoice.payment_failed": {
+        const invoice = event.data.object as Stripe.Invoice;
+        console.info(`[stripe/webhook] ${event.type}`, {
+          invoiceId: invoice.id,
+          customerId:
+            typeof invoice.customer === "string"
+              ? invoice.customer
+              : invoice.customer?.id,
+          status: invoice.status,
+        });
         break;
       }
 
