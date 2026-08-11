@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { calculateRetirementCheckup } from "@/lib/retirement-checkup";
 import { formatCurrency } from "@/lib/format";
+import { AnalyticsEvents, trackEvent } from "@/lib/analytics";
 
 type Answers = {
   currentAge: number;
@@ -54,6 +55,19 @@ export function RetirementCheckup() {
   function reset() {
     setAnswers(initial);
     setStep(1);
+  }
+
+  function advance() {
+    const nextStep = step + 1;
+    trackEvent(
+      nextStep === 4
+        ? AnalyticsEvents.CHECKUP_COMPLETE
+        : AnalyticsEvents.CHECKUP_STEP,
+      nextStep === 4
+        ? { status: result.status }
+        : { step: nextStep },
+    );
+    setStep(nextStep);
   }
 
   return (
@@ -172,7 +186,7 @@ export function RetirementCheckup() {
               (answers.retirementAge < answers.currentAge ||
                 answers.currentAge <= 0)
             }
-            onClick={() => setStep((current) => current + 1)}
+            onClick={advance}
             className="inline-flex h-11 items-center gap-2 rounded-xl bg-emerald-500 px-5 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-40"
           >
             {step === 3 ? "See my results" : "Continue"}
@@ -397,6 +411,31 @@ function Results({
             Read how the math works
           </Link>
         </div>
+      </div>
+
+      <div className="mt-5 rounded-2xl bg-emerald-500/10 p-5 ring-1 ring-emerald-500/25">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">
+          Want a deeper plan?
+        </p>
+        <h2 className="mt-2 text-xl font-semibold text-zinc-50">
+          Compare more scenarios with RetireFire Pro.
+        </h2>
+        <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+          Saved plans and detailed reports are in development. Preview what is
+          coming; checkout stays paused until delivery is ready.
+        </p>
+        <Link
+          href="/pro"
+          onClick={() =>
+            trackEvent(AnalyticsEvents.PRO_INTEREST, {
+              source: "checkup_results",
+              status: result.status,
+            })
+          }
+          className="mt-4 inline-flex h-11 items-center justify-center rounded-xl bg-emerald-500 px-5 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400"
+        >
+          Preview RetireFire Pro
+        </Link>
       </div>
     </section>
   );

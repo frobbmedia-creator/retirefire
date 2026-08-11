@@ -12,6 +12,16 @@ import { getStripe } from "@/lib/stripe/client";
  * Body: { plan: "monthly" | "annual" | "report", successUrl?: string, cancelUrl?: string }
  */
 export async function POST(request: Request) {
+  if (process.env.STRIPE_CHECKOUT_ENABLED !== "true") {
+    return NextResponse.json(
+      {
+        error:
+          "RetireFire Pro checkout is temporarily unavailable while account access and purchase delivery are being completed.",
+      },
+      { status: 503 },
+    );
+  }
+
   if (!isStripeConfigured()) {
     return NextResponse.json(
       {

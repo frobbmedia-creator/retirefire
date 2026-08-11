@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
-import { CheckoutButton } from "@/components/pro/CheckoutButton";
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { pageMeta } from "@/lib/seo";
 
@@ -10,9 +10,9 @@ export const metadata: Metadata = pageMeta("/pro", {
 });
 
 const proFeatures = [
-  "Advanced planning workflows",
-  "Deeper scenario analysis",
-  "Pro reports and future premium tools",
+  "Saved plans and scenario history",
+  "Deeper scenario and market-risk analysis",
+  "Detailed planning reports",
 ];
 
 export default function ProPage() {
@@ -20,9 +20,12 @@ export default function ProPage() {
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Pro", path: "/pro" }]} />
       <div className="mx-auto mt-8 max-w-3xl text-center">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">RetireFire Pro</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">RetireFire Pro · In development</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">Go deeper when you need to.</h1>
-        <p className="mt-5 text-lg leading-relaxed text-zinc-400">Optional paid tools support more detailed planning. Core calculators stay free forever—no account wall, no stripped-down essentials.</p>
+        <p className="mt-5 text-lg leading-relaxed text-zinc-400">Core calculators stay free forever. Paid plans will open after saved accounts, reliable purchase delivery, and self-service billing are complete.</p>
+        <div className="mt-6 rounded-2xl bg-amber-500/10 px-5 py-4 text-left text-sm leading-relaxed text-amber-100 ring-1 ring-amber-500/25">
+          Checkout is temporarily paused. We will not accept payment until every purchase can be delivered and managed reliably.
+        </div>
       </div>
 
       <div className="mt-12 grid gap-6 lg:grid-cols-3">
@@ -42,7 +45,7 @@ export default function ProPage() {
           <ul className="mt-6 space-y-3 text-sm text-zinc-300">
             {proFeatures.map((feature) => <li className="flex gap-2" key={feature}><Check className="mt-0.5 size-4 shrink-0 text-emerald-400" />{feature}</li>)}
           </ul>
-          <div className="mt-8"><CheckoutButton plan="annual">Choose annual</CheckoutButton></div>
+          <button type="button" disabled className="mt-8 inline-flex h-12 w-full cursor-not-allowed items-center justify-center rounded-xl bg-zinc-800 px-6 text-sm font-semibold text-zinc-500">Coming soon</button>
         </section>
 
         <section className="rounded-2xl bg-zinc-900/50 p-6 ring-1 ring-zinc-800">
@@ -52,16 +55,19 @@ export default function ProPage() {
           <ul className="mt-6 space-y-3 text-sm text-zinc-300">
             {proFeatures.map((feature) => <li className="flex gap-2" key={feature}><Check className="mt-0.5 size-4 shrink-0 text-emerald-400" />{feature}</li>)}
           </ul>
-          <div className="mt-8"><CheckoutButton plan="monthly" variant="secondary">Choose monthly</CheckoutButton></div>
+          <button type="button" disabled className="mt-8 inline-flex h-12 w-full cursor-not-allowed items-center justify-center rounded-xl bg-zinc-800 px-6 text-sm font-semibold text-zinc-500">Coming soon</button>
         </section>
       </div>
 
       <section className="mx-auto mt-8 flex max-w-3xl flex-col gap-5 rounded-2xl bg-zinc-900/50 p-6 ring-1 ring-zinc-800 sm:flex-row sm:items-center sm:justify-between">
         <div><h2 className="text-xl font-semibold text-zinc-50">One-time Pro report</h2><p className="mt-1 text-sm text-zinc-400">Get a detailed planning report without a subscription.</p></div>
-        <div className="min-w-48"><p className="mb-2 text-center text-2xl font-semibold text-zinc-50">$19</p><CheckoutButton plan="report" variant="secondary">Buy one report</CheckoutButton></div>
+        <div className="min-w-48"><p className="mb-2 text-center text-2xl font-semibold text-zinc-50">$19</p><button type="button" disabled className="inline-flex h-12 w-full cursor-not-allowed items-center justify-center rounded-xl bg-zinc-800 px-6 text-sm font-semibold text-zinc-500">Coming soon</button></div>
       </section>
 
-      <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-zinc-500">RetireFire is educational software, not financial, tax, or investment advice. Purchases unlock software features—not outcomes or guarantees.</p>
+      <div className="mx-auto mt-10 max-w-2xl text-center">
+        <Link href="/retirement-checkup" className="inline-flex h-12 items-center justify-center rounded-xl bg-emerald-500 px-6 font-semibold text-zinc-950 transition hover:bg-emerald-400">Use the free retirement checkup</Link>
+        <p className="mt-5 text-sm leading-relaxed text-zinc-500">RetireFire is educational software, not financial, tax, or investment advice.</p>
+      </div>
     </main>
   );
 }
