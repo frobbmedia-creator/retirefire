@@ -1,6 +1,7 @@
 "use client";
 
 import { Calculator } from "lucide-react";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -85,12 +86,12 @@ export function FireNumberCalculator() {
           . At {formatPercent(withdrawalRate)}, you need roughly{" "}
           {fire.multiplier.toFixed(1)}× annual spending. Educational estimate —
           not advice.{" "}
-          <a
+          <Link
             href="/methodology"
             className="text-emerald-400/90 underline-offset-2 hover:underline"
           >
             Methodology
-          </a>
+          </Link>
           .
         </p>
       </CardContent>

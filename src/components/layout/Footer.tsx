@@ -4,123 +4,74 @@ import { SITE } from "@/lib/constants";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const groups = [
+    {
+      label: "Tools",
+      links: [
+        ["/retirement-checkup", "Retirement Checkup"],
+        ["/calculators", "All calculators"],
+        ["/calculators/fire-number", "FIRE Number"],
+        ["/calculators/years-to-fire", "Years to FIRE"],
+        ["/calculators/coast-fire", "Coast FIRE"],
+        ["/calculators/retirement-age", "Retirement Age"],
+      ],
+    },
+    {
+      label: "Learn",
+      links: [
+        ["/blog", "Blog"],
+        ["/guides", "Guides"],
+        ["/research", "Research"],
+        ["/resources", "Resources"],
+        ["/methodology", "Methodology"],
+      ],
+    },
+    {
+      label: "Trust",
+      links: [
+        ["/approach", "Approach"],
+        ["/disclaimer", "Disclaimer"],
+        ["/#faq", "FAQ"],
+      ],
+    },
+  ] as const;
 
   return (
     <footer className="mt-auto border-t border-zinc-800/80 bg-zinc-950">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
-          <div className="max-w-sm">
-            <div className="flex items-center gap-2 text-base font-semibold text-zinc-100">
+      <div className="mx-auto max-w-7xl px-4 py-7 sm:px-6">
+        <div className="grid gap-7 lg:grid-cols-[0.8fr_2fr] lg:items-start">
+          <div className="max-w-md">
+            <div className="flex items-center gap-2 font-semibold text-zinc-100">
               <Flame className="h-4 w-4 text-emerald-400" aria-hidden />
               {SITE.name}
             </div>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-500">
+            <p className="mt-2 text-xs leading-relaxed text-zinc-500 sm:text-sm">
               Free, transparent FIRE calculators. Educational tools only — not
               financial, tax, or investment advice.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-3 sm:gap-12">
-            <div>
-              <p className="font-medium text-zinc-300">Tools</p>
-              <ul className="mt-3 space-y-2 text-zinc-500">
-                <li>
-                  <Link href="/calculators/fire-number" className="hover:text-emerald-400">
-                    FIRE Number
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/calculators/years-to-fire" className="hover:text-emerald-400">
-                    Years to FIRE
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/calculators/coast-fire" className="hover:text-emerald-400">
-                    Coast FIRE
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/calculators/barista-fire" className="hover:text-emerald-400">
-                    Barista FIRE
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium text-zinc-300">Learn</p>
-              <ul className="mt-3 space-y-2 text-zinc-500">
-                <li>
-                  <Link href="/blog" className="hover:text-emerald-400">
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/methodology" className="hover:text-emerald-400">
-                    Methodology
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/approach" className="hover:text-emerald-400">
-                    Approach &amp; roadmap
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/resources" className="hover:text-emerald-400">
-                    Resources
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/resources/coast-fire-checklist"
-                    className="hover:text-emerald-400"
-                  >
-                    Coast checklist
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/resources/sequence-risk-guide"
-                    className="hover:text-emerald-400"
-                  >
-                    Sequence risk guide
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#faq" className="hover:text-emerald-400">
-                    FAQ
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium text-zinc-300">Trust</p>
-              <ul className="mt-3 space-y-2 text-zinc-500">
-                <li>
-                  <Link href="/disclaimer" className="hover:text-emerald-400">
-                    Disclaimer
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/approach" className="hover:text-emerald-400">
-                    Limitations
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="https://vercel.com/analytics"
-                    className="hover:text-emerald-400"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Privacy-friendly analytics
-                  </a>
-                </li>
-              </ul>
-            </div>
+          <div className="grid gap-5 text-sm sm:grid-cols-3">
+            {groups.map((group) => (
+              <div key={group.label}>
+                <p className="text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                  {group.label}
+                </p>
+                <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1.5 text-zinc-500">
+                  {group.links.map(([href, label]) => (
+                    <li key={href}>
+                      <Link href={href} className="hover:text-emerald-400">
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-zinc-800/80 pt-6 text-xs text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-6 flex flex-col gap-2 border-t border-zinc-800/80 pt-4 text-xs text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {SITE.name}. All rights reserved.
           </p>

@@ -75,9 +75,9 @@ export type FireStyleId = (typeof FIRE_STYLES)[number]["id"];
 export const SITE = {
   name: "RetireFire",
   domain: "retirefire.net",
-  tagline: "Transparent, risk-aware FIRE calculators",
+  tagline: "One place to plan for retirement",
   /** Default <title> for homepage / root layout */
-  title: "Free Coast FIRE & FIRE Calculators — Transparent Math",
+  title: "Free Retirement Checkup & FIRE Calculators",
   description:
-    "Free Coast FIRE, Barista FIRE, FIRE number, and years-to-FI calculators with free sequence stress tests. Published formulas, shareable scenarios — educational only, no paywall.",
+    "A free retirement checkup plus Coast FIRE, Barista FIRE, FIRE number, retirement-age, and market stress-test tools with clear assumptions and no signup.",
 } as const;

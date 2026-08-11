@@ -16,24 +16,64 @@ export const metadata: Metadata = pageMeta("/calculators", {
 
 const TOOLS = [
   {
+    href: "/retirement-checkup",
+    title: "Retirement Checkup",
+    body: "Answer six simple questions and get one clear status, an estimated retirement age, and practical next steps.",
+  },
+  {
     href: "/calculators/fire-number",
     title: "FIRE Number",
-    body: "How large a portfolio you need for Lean, Regular, or Fat FIRE — with SWR sensitivity.",
+    body: "Estimate how much you need to invest based on yearly spending and the percentage you plan to withdraw.",
   },
   {
     href: "/calculators/years-to-fire",
     title: "Years to FIRE",
-    body: "Timeline to FI with growth chart, lever sensitivity, and free sequence stress test.",
+    body: "Estimate how many years it may take to reach your goal, then test how savings and market returns change the date.",
   },
   {
     href: "/calculators/coast-fire",
     title: "Coast FIRE",
-    body: "Coast number, age table, sensitivity, free sequence stress test, and checklist links.",
+    body: "See whether your current savings could grow enough for retirement without more contributions.",
   },
   {
     href: "/calculators/barista-fire",
     title: "Barista FIRE",
-    body: "Semi-retirement: part-time income + smaller nest egg, with income sensitivity.",
+    body: "See how part-time income could reduce the amount you need invested.",
+  },
+  {
+    href: "/calculators/two-phase-coast",
+    title: "Two-Phase Coast FIRE",
+    body: "Model contribution years followed by no-contribution Coast years.",
+  },
+  {
+    href: "/calculators/couples-fire",
+    title: "Couples FIRE",
+    body: "Combine two portfolios and income streams against shared household spending.",
+  },
+  {
+    href: "/calculators/retirement-age",
+    title: "Retirement Age",
+    body: "Estimate the age when savings and portfolio growth reach a spending-based target.",
+  },
+  {
+    href: "/calculators/portfolio-readiness",
+    title: "Can I Retire With This Portfolio?",
+    body: "Compare any portfolio amount with spending after Social Security, pension, or other income.",
+  },
+  {
+    href: "/calculators/withdrawal-guardrails",
+    title: "Withdrawal Guardrails",
+    body: "Convert withdrawal-rate guardrails into portfolio triggers and spending adjustments.",
+  },
+  {
+    href: "/calculators/roth-conversion",
+    title: "Roth Conversion Runway",
+    body: "Estimate how much money to move from a traditional retirement account to a Roth account over several years.",
+  },
+  {
+    href: "/calculators/healthcare-budget",
+    title: "Healthcare Before Medicare",
+    body: "Budget premiums, out-of-pocket costs, subsidies, and medical inflation through age 65.",
   },
   {
     href: "/#scenario-compare",
@@ -79,8 +119,15 @@ export default function CalculatorsIndexPage() {
         Free FIRE calculators
       </h1>
       <p className="mt-3 text-zinc-400">
-        Every tool shares assumptions and can be linked via URL. Coast and Years
-        include a free basic stress test. Or use the{" "}
+        New to retirement planning? Start with the{" "}
+        <Link
+          href="/retirement-checkup"
+          className="text-emerald-400 hover:underline"
+        >
+          guided retirement checkup
+        </Link>
+        . Every detailed tool shares assumptions and can be linked via URL.
+        Coast and Years include a free basic stress test. Or use the{" "}
         <Link href="/#calculators" className="text-emerald-400 hover:underline">
           all-in-one hub on the homepage
         </Link>

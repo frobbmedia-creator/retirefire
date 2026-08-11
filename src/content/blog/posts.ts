@@ -3,8 +3,10 @@ export type BlogPost = {
   title: string;
   description: string;
   date: string;
+  dateModified?: string;
   readingMinutes: number;
   tags: string[];
+  sources?: Array<{ label: string; href: string }>;
   /** Simple paragraphs + optional headings for MVP (no MDX dependency) */
   body: Array<{ type: "p" | "h2" | "ul"; content: string | string[] }>;
 };
@@ -2726,6 +2728,482 @@ export const BLOG_POSTS: BlogPost[] = [
         type: "p",
         content:
           "Try the free FIRE Number calculator, compare Lean/Regular/Fat 2026 tables, and stress withdrawal rates with the SWR deep dive. Pair with Years, Coast, and Barista under shared assumptions. Methodology and Approach explain formulas and free-core limits. Educational only.",
+      },
+    ],
+  },
+  {
+    slug: "mini-retirement-fire-plan",
+    title: "Mini-retirement math: take a career break without derailing FIRE",
+    description:
+      "Price a 3–12 month mini-retirement, measure the true FIRE delay, protect the downside, and decide whether using some freedom now is worth it.",
+    date: "2026-07-28",
+    dateModified: "2026-07-29",
+    readingMinutes: 11,
+    tags: ["years-to-fire", "coast-fire", "barista-fire", "semi-retirement"],
+    sources: [
+      {
+        label: "Fidelity Investments — 2026 State of Retirement Planning Study",
+        href: "https://newsroom.fidelity.com/pressreleases/fidelity-investments--study--72--of-americans-say-they-will-retire-on-their-own-terms-as-they-embrac/s/609fbcb7-3ea5-4773-a300-0659da881d2a",
+      },
+      {
+        label: "Journal of Accountancy — Beyond FIRE: Planning for mini-retirements",
+        href: "https://www.journalofaccountancy.com/newsletters/pfp-digest/beyond-fire-planning-for-mini-retirements/",
+      },
+      {
+        label: "RetireFire methodology",
+        href: "/methodology",
+      },
+    ],
+    body: [
+      {
+        type: "p",
+        content:
+          "Traditional retirement asks you to save your freedom for the end. A mini-retirement asks a better question: can you afford to use some of it now?",
+      },
+      {
+        type: "p",
+        content:
+          "That question is moving into the mainstream. Fidelity’s 2026 retirement study found that nearly 7 in 10 Americans are considering a nontraditional retirement path, while 61% expect to transition into retirement rather than stop work on a single date. The Journal of Accountancy has also highlighted growing interest in midcareer breaks that spread leisure and earning years across a lifetime.",
+      },
+      {
+        type: "p",
+        content:
+          "The appeal is obvious. A three-, six-, or twelve-month break can buy time with young children, a long trip while your knees still cooperate, recovery from burnout, or space to test a different kind of work. The risk is also obvious: a break costs more than the money you spend. Here is how to price one without pretending the answer is more precise than it is.",
+      },
+      {
+        type: "h2",
+        content: "The real cost has four parts",
+      },
+      {
+        type: "p",
+        content:
+          "Most people budget for flights, rent, and food. That is only the first line. Use this identity: true break cost = extra spending + lost take-home pay + lost employer benefits + lost investment growth.",
+      },
+      {
+        type: "h2",
+        content: "1. Extra spending",
+      },
+      {
+        type: "p",
+        content:
+          "Count only costs above your normal baseline. If you normally spend $5,000 a month and expect to spend $6,500 while traveling, the break adds $1,500 a month — not $6,500.",
+      },
+      {
+        type: "ul",
+        content: [
+          "Add travel, temporary housing, storage, visas, insurance, transportation, and higher dining or activity costs.",
+          "Add the cost of a home left vacant or a lease you cannot exit.",
+          "Add re-entry expenses such as a deposit, moving costs, or a replacement car.",
+          "Subtract costs that disappear: commuting, childcare, work clothes, and other job-linked spending.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "2. Lost take-home pay",
+      },
+      {
+        type: "p",
+        content:
+          "Use take-home pay, not salary. If your salary is $120,000 but your bank account receives $7,000 a month after taxes and deductions, a six-month break removes roughly $42,000 of cash flow — not $60,000.",
+      },
+      {
+        type: "p",
+        content:
+          "Do not count retirement contributions twice. If a 401(k) contribution reduced the paycheck you used above, capture that missed saving separately when you model your FIRE date.",
+      },
+      {
+        type: "h2",
+        content: "3. Lost employer benefits",
+      },
+      {
+        type: "p",
+        content:
+          "Price the benefits you must replace, not the number printed on your total-compensation statement. Health coverage deserves its own quote before you resign. “I’ll use the marketplace” is not a price.",
+      },
+      {
+        type: "ul",
+        content: [
+          "Health insurance premiums and expected out-of-pocket costs.",
+          "Lost 401(k) match, HSA contributions, or equity vesting.",
+          "Disability and life insurance you still need.",
+          "A bonus tied to a specific employment date.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "4. Lost investment growth",
+      },
+      {
+        type: "p",
+        content:
+          "Money spent today cannot compound tomorrow. But avoid the internet’s favorite exaggeration: projecting every vacation dollar at a high return for 40 years and calling the result its “real cost.” Use the same real-return assumption as your FIRE plan. RetireFire defaults to 5% real as an educational planning assumption, not a forecast.",
+      },
+      {
+        type: "p",
+        content:
+          "If a break consumes $40,000 that would otherwise remain invested, its projected value in 20 years at 5% real is about $106,000 in today’s dollars: $40,000 × 1.05²⁰. That is useful context, not a bill. The break also creates value, and not every valuable experience can be postponed without loss.",
+      },
+      {
+        type: "h2",
+        content: "The number that matters: FIRE delay",
+      },
+      {
+        type: "p",
+        content:
+          "“This costs $40,000” is emotionally loud and strategically incomplete. The more useful question is: how many months does this move my likely FI date?",
+      },
+      {
+        type: "ul",
+        content: [
+          "Scenario A — keep working: current portfolio, normal annual contribution, current spending, chosen withdrawal rate, and a conservative real-return assumption.",
+          "Scenario B — take the break: subtract portfolio money used, reduce this year’s contribution for missed saving and match, and add any lasting spending change.",
+          "Keep every other assumption identical. The gap between the two Years to FIRE results is your estimated delay.",
+          "Do not punish the break scenario with a crash while giving the work scenario a smooth 8% return. Stress-test both under the same assumptions.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Worked example: the funding source changes the answer",
+      },
+      {
+        type: "p",
+        content:
+          "Maya is 37 with $450,000 invested, $50,000 in annual contributions, $60,000 in annual spending, and a $1.5 million target at a 4% withdrawal rate. She assumes a 5% real return for planning.",
+      },
+      {
+        type: "ul",
+        content: [
+          "$9,000 in extra travel costs.",
+          "$7,000 for health coverage and medical costs.",
+          "$25,000 less contributed to investments.",
+          "$3,000 in lost employer match.",
+          "$10,000 kept as a re-entry reserve.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Her cash reserve covers travel, insurance, and re-entry, so she does not sell investments. Her portfolio starts in the same place, but her annual contribution falls by $28,000. In a smooth-return model, the break may delay her target by months rather than years. The exact result depends on timing and assumptions, which is why she should compare scenarios instead of accepting a universal rule.",
+      },
+      {
+        type: "p",
+        content:
+          "Now change one fact: Maya funds the break by selling $49,000 during a bear market. The damage could be larger because she locks in losses and removes capital early. Same break, different funding plan. Funding source matters almost as much as price.",
+      },
+      {
+        type: "h2",
+        content: "Use three gates before you book",
+      },
+      {
+        type: "ul",
+        content: [
+          "Liquidity gate: after paying for the break, keep the full break budget, a re-entry reserve, your normal emergency fund, and cash for known bills due within 12 months.",
+          "Downside gate: write a response for a 30% market fall, costs running 20% high, a six-month job search, or a family issue ending the trip early.",
+          "Return gate: decide the default route home — same field, part-time work, a new career, a business, or an extension allowed only when a pre-set financial condition is met.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Do not label the same dollar “travel money,” “emergency fund,” and “house down payment.” If every downside answer is “sell more investments,” the plan is fragile.",
+      },
+      {
+        type: "h2",
+        content: "Your one-page mini-retirement plan",
+      },
+      {
+        type: "ul",
+        content: [
+          "Purpose: I am taking this break to ________.",
+          "Dates: I stop work on ________ and plan to resume earning by ________.",
+          "Base budget + 20% contingency: $________.",
+          "Re-entry reserve: $________.",
+          "Health coverage: ________ at $________ per month.",
+          "Funding source: ________.",
+          "Estimated FIRE delay / maximum acceptable delay: ________ / ________ months.",
+          "Job-outreach date, extension rule, and abort rule: ________.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Mini-retirement, Barista FIRE, or Coast FIRE?",
+      },
+      {
+        type: "ul",
+        content: [
+          "Mini-retirement: work pauses, then resumes. Best when you want a defined block of time now.",
+          "Barista FIRE: work continues at lower income or intensity. Best when you want an ongoing blend of work and freedom.",
+          "Coast FIRE: retirement contributions may pause while existing assets compound. Best when you have time and sufficient invested assets but still need income for current life.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "The decision rule",
+      },
+      {
+        type: "p",
+        content:
+          "Take the break when four statements are true: the experience is meaningfully more valuable now than later; you can fund it without stealing from emergency or re-entry reserves; the estimated FIRE delay is acceptable under conservative assumptions; and a slow return to work would be inconvenient, not catastrophic.",
+      },
+      {
+        type: "p",
+        content:
+          "Do not take it because social media turned someone else’s sabbatical into a highlight reel. Do not reject it because a compound-interest chart treated every unearned dollar as a tragedy. The point of financial independence is to gain control over when your time is most valuable — and then use that control deliberately.",
+      },
+      {
+        type: "h2",
+        content: "Research and limitations",
+      },
+      {
+        type: "p",
+        content:
+          "Trend context: Fidelity Investments, 2026 State of Retirement Planning Study (March 19, 2026), and Journal of Accountancy, “Beyond FIRE: Planning for mini-retirements” (April 27, 2026). Formula context: RetireFire Methodology. Educational illustration only — not financial, investment, tax, legal, or insurance advice. Verify costs and coverage for your own situation.",
+      },
+    ],
+  },
+  {
+    slug: "first-100-days-after-fire",
+    title: "The first 100 days after FIRE: a plan for time, brain, and identity",
+    description:
+      "Your portfolio can fund retirement without designing it. Use this 100-day plan to replace the structure, challenge, connection, and purpose work provided.",
+    date: "2026-07-28",
+    dateModified: "2026-07-29",
+    readingMinutes: 12,
+    tags: ["barista-fire", "semi-retirement", "basics"],
+    sources: [
+      {
+        label: "NBER Working Paper 35117 — Does Employment Slow Cognitive Decline?",
+        href: "https://www.nber.org/papers/w35117",
+      },
+      {
+        label: "Fidelity Investments — 2026 State of Retirement Planning Study",
+        href: "https://newsroom.fidelity.com/pressreleases/fidelity-investments--study--72--of-americans-say-they-will-retire-on-their-own-terms-as-they-embrac/s/609fbcb7-3ea5-4773-a300-0659da881d2a",
+      },
+    ],
+    body: [
+      {
+        type: "p",
+        content:
+          "You calculated your number. You stress-tested the portfolio. You gave notice. Then Monday arrived: no meetings, no commute, no one waiting for a decision. Just a clean calendar and the unsettling realization that freedom is not a schedule.",
+      },
+      {
+        type: "p",
+        content:
+          "This is the part most FIRE calculators cannot model. A portfolio can replace a paycheck. It does not automatically replace the challenge, social contact, movement, status, and rhythm that came bundled with work.",
+      },
+      {
+        type: "p",
+        content:
+          "That gap matters. A 2026 NBER working paper found that negative labor-market shocks were associated with declines in cognitive scores, with the findings concentrated among men ages 51–64. The study supports the possibility that working longer may delay age-related cognitive decline — but it does not prove that voluntary retirement causes dementia or that a job is the only way to stay sharp.",
+      },
+      {
+        type: "p",
+        content:
+          "The useful takeaway is simpler: do not retire only from work. Build something to retire into. Here is a 100-day plan.",
+      },
+      {
+        type: "h2",
+        content: "Inventory what your job was secretly doing for you",
+      },
+      {
+        type: "p",
+        content:
+          "Even a job you dislike may supply five kinds of structure. Score each from 0 to 5 based on how much your work currently provides. Any score of 4 or 5 needs a deliberate replacement. “I’ll stay busy” is not a replacement.",
+      },
+      {
+        type: "ul",
+        content: [
+          "Time: a reason to wake up and a shape for the week.",
+          "Challenge: problems with feedback and consequences.",
+          "People: repeated contact, weak ties, and shared context.",
+          "Movement: walking, commuting, standing, or leaving the house.",
+          "Identity: a short answer to “What do you do?”",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Days 1–14: decompress without permanent decisions",
+      },
+      {
+        type: "p",
+        content:
+          "The first two weeks are not the time to launch a nonprofit, renovate a house, buy an RV, and accept four volunteer roles. Treat them like the first days after a long flight: your judgment is present, but your internal clock is off.",
+      },
+      {
+        type: "ul",
+        content: [
+          "Sleep until you notice a stable natural pattern.",
+          "Walk outside every day.",
+          "Keep major spending inside your existing plan.",
+          "Write down what you feel tempted to add or escape.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Avoid the productivity costume: rebuilding a corporate calendar at home because an open day feels irresponsible. Every hobby does not need to become a project. You left work; you do not need to become middle management for your sourdough starter.",
+      },
+      {
+        type: "p",
+        content:
+          "Also avoid permanent vacation. Vacation feels good partly because it interrupts normal life. When indulgence becomes normal life, it can lose contrast. Rest fully, but do not confuse recovery with the final design.",
+      },
+      {
+        type: "h2",
+        content: "Days 15–30: build a minimum viable week",
+      },
+      {
+        type: "p",
+        content:
+          "Do not plan your ideal year yet. Design one week you would be willing to repeat, using five anchors.",
+      },
+      {
+        type: "ul",
+        content: [
+          "Body anchor: a fixed activity at least three times a week — strength training, swimming, hiking, a sports league, long walks, or physical volunteering.",
+          "Brain anchor: a challenge with progression and feedback — a language, graded course, instrument, software project, furniture build, garden, or tutoring.",
+          "People anchor: recurring contact, not vague social intention. “Thursday lunch and Saturday cycling” can survive a lazy week.",
+          "Service anchor: help a person or institution that would notice if you did not show up. Chosen obligation often gives freedom its shape.",
+          "Nothing anchor: protect unassigned time to nap, wander, cook, stare out a window, or do nothing worth reporting.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Days 31–60: run three experiments",
+      },
+      {
+        type: "p",
+        content:
+          "You are not choosing an identity for the next 40 years. You are collecting evidence. Run one experiment in each category.",
+      },
+      {
+        type: "ul",
+        content: [
+          "Mastery: commit 20 hours to learning or building one thing. Ask whether difficulty pulled you in and whether you would do another 20 hours without an audience.",
+          "Contribution: serve somewhere four times, not once. The first visit measures novelty; the fourth begins to measure fit.",
+          "Earned work: try a small, reversible form of paid work — one consulting project, a seasonal role, ten hours a week, or a paid workshop.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Paid work is not FIRE failure. In Fidelity’s 2026 study, common retirement alternatives included gig work or side hustles, a small business, part-time consulting, and changing industries. Work can become more useful after financial independence because money is no longer the only reason to choose it. The test is whether the work gives more than it takes.",
+      },
+      {
+        type: "h2",
+        content: "Days 61–90: stress-test the lifestyle",
+      },
+      {
+        type: "p",
+        content:
+          "Your financial plan has downside scenarios. Your life plan needs them too.",
+      },
+      {
+        type: "ul",
+        content: [
+          "Bad weather: what happens when travel, golf, cycling, or gardening disappears for ten days?",
+          "Low motivation: which activities still happen because another person expects you?",
+          "Partner mismatch: discuss alone time, chores, travel, spending, and interruption before resentment writes the policy.",
+          "Market decline: if the portfolio drops 25%, define in advance what actually changes.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "A market rule might say: core routines do not change; discretionary travel pauses; portfolio review remains quarterly; paid work becomes an option only if financial guardrails are crossed. This keeps market volatility from becoming identity volatility.",
+      },
+      {
+        type: "h2",
+        content: "Days 91–100: write your retirement operating system",
+      },
+      {
+        type: "p",
+        content:
+          "At day 100, keep what worked and remove what performed well only in theory. Write one page and review it after three months, not every morning.",
+      },
+      {
+        type: "ul",
+        content: [
+          "My week has these anchors: ________.",
+          "People who will notice my absence: ________.",
+          "The skill I am developing / the way I contribute: ________.",
+          "The amount of paid work I welcome / refuse: ________.",
+          "My quarterly adventure / protected empty time: ________.",
+          "Warning signs that I am drifting: ________.",
+          "People allowed to tell me the truth: ________.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Use a behavior scorecard",
+      },
+      {
+        type: "p",
+        content:
+          "Track behaviors, not happiness. Happiness is weather; behaviors are climate controls. Once a week, mark each item yes or no. If you score 2 out of 7 for several weeks, do not declare retirement a mistake. Change the system.",
+      },
+      {
+        type: "ul",
+        content: [
+          "I moved hard enough to raise my heart rate three times.",
+          "I had two meaningful conversations.",
+          "I worked on a difficult skill.",
+          "I helped someone outside my household.",
+          "I spent time outside.",
+          "I had one block of unscheduled time.",
+          "I did not check my portfolio outside my rule.",
+        ],
+      },
+      {
+        type: "h2",
+        content: "Should you keep working for your brain?",
+      },
+      {
+        type: "p",
+        content:
+          "Maybe — but “keep working” is too blunt to be useful. The NBER paper studied employment changes associated with local labor-demand shocks. Its findings were concentrated in a specific demographic group, and it is a working paper rather than a final verdict on how every person should retire.",
+      },
+      {
+        type: "p",
+        content:
+          "Employment bundles several potentially protective ingredients: mental demands, social interaction, routine, and purpose. Those ingredients can also exist in teaching, caregiving, volunteering, art, community leadership, study, and part-time work.",
+      },
+      {
+        type: "p",
+        content:
+          "Ask a more precise question: which useful demands disappear when I leave, and where will I choose to find them next? If the honest answer is “nowhere,” a phased exit may fit better than a cliff. Use the Barista FIRE calculator to see how modest earned income changes the portfolio required, then judge the job design too: hours, autonomy, people, challenge, and whether you can leave.",
+      },
+      {
+        type: "h2",
+        content: "What success looks like",
+      },
+      {
+        type: "ul",
+        content: [
+          "Successful FIRE does not require constant travel.",
+          "It does not require a monetized passion or heroic second act.",
+          "It does not require a packed calendar.",
+          "It does not require never earning another dollar.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "It requires a life you can inhabit after the novelty wears off. You may discover that you mostly want to cook, walk, help family, see friends, and enjoy missing out. That can be enough. The goal is not to make retirement impressive. The goal is to make it durable.",
+      },
+      {
+        type: "p",
+        content:
+          "Your FIRE number answers, “Can I afford to stop?” Your first 100 days answer the question that comes next: what is worth continuing?",
+      },
+      {
+        type: "h2",
+        content: "Research and limitations",
+      },
+      {
+        type: "p",
+        content:
+          "Research context: Kouchekinia, Neumark, and Bruckner, “Does Employment Slow Cognitive Decline? Evidence from Labor Market Shocks,” NBER Working Paper 35117 (2026), and Fidelity Investments, 2026 State of Retirement Planning Study. Educational information only — not medical, financial, investment, tax, or legal advice.",
       },
     ],
   },

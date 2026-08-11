@@ -1,6 +1,9 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, ShieldCheck } from "lucide-react";
-import { SITE } from "@/lib/constants";
+import {
+  ArrowRight,
+  BookOpen,
+  ChartNoAxesCombined,
+} from "lucide-react";
 
 const btnPrimary =
   "inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 text-base font-medium text-zinc-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400 sm:w-auto";
@@ -9,7 +12,7 @@ const btnSecondary =
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-zinc-800/60">
+    <section className="relative overflow-hidden border-b border-zinc-800/60 lg:flex lg:min-h-[calc(100svh-18rem)] lg:items-center">
       {/* Soft gradient glow */}
       <div
         aria-hidden
@@ -20,59 +23,111 @@ export function Hero() {
         className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
-        <div className="max-w-2xl">
-          <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-zinc-900/80 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-500/25">
-            <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
-            Transparent math · Free stress test · Free core
-          </p>
-
+      <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          <div className="max-w-2xl">
           <h1 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
-            Free FIRE calculators
+            Is your household on track for retirement?
             <span className="mt-1 block text-emerald-400">
-              Coast, Barista &amp; your number — with clear assumptions.
+              Get a clear answer and your next three moves.
             </span>
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            {SITE.description} Shared assumptions, scenario A/B, and free
-            sequence stress tests on Coast and Years — published formulas, not
-            hype.
+            In about three minutes, see an estimated retirement age, the yearly
+            spending your plan may support, and the changes that could help
+            most. No account, sales call, or financial jargon.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
-            <Link href="/#calculators" className={btnPrimary}>
-              Open calculators
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
+            <Link href="/retirement-checkup" className={btnPrimary}>
+              Start free checkup
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
-            <Link href="/calculators/coast-fire" className={btnSecondary}>
-              Coast + stress test
-            </Link>
-            <Link href="/methodology" className={btnSecondary}>
+            <Link href="/calculators" className={btnSecondary}>
               <BookOpen className="h-4 w-4" aria-hidden />
-              Methodology
+              Explore expert FIRE tools
             </Link>
           </div>
 
-          <dl className="mt-12 grid grid-cols-3 gap-3 sm:max-w-lg sm:gap-4">
-            {[
-              { label: "Core tools", value: "Free" },
-              { label: "Stress test", value: "1k paths" },
-              { label: "Advice?", value: "No" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-xl border border-zinc-800/80 bg-zinc-900/40 px-3 py-3 text-center sm:px-4"
-              >
-                <dt className="text-[11px] uppercase tracking-wide text-zinc-500">
-                  {stat.label}
-                </dt>
-                <dd className="mt-1 text-lg font-semibold text-zinc-100 sm:text-xl">
-                  {stat.value}
-                </dd>
+          </div>
+
+          <div className="relative lg:justify-self-end">
+            <div
+              aria-hidden
+              className="absolute -inset-8 rounded-full bg-emerald-500/10 blur-3xl"
+            />
+            <div className="relative overflow-hidden rounded-3xl border border-emerald-500/20 bg-zinc-900/85 shadow-2xl shadow-black/40">
+              <div className="border-b border-zinc-800 px-5 py-4 sm:px-6">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-[0.16em] text-emerald-400">
+                      Advanced FIRE features
+                    </p>
+                    <p className="mt-1 text-sm text-zinc-500">
+                      Professional-grade depth
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-300 ring-1 ring-emerald-500/25">
+                    No paywall
+                  </span>
+                </div>
               </div>
-            ))}
-          </dl>
+
+              <div className="p-5 sm:p-6">
+                <div className="rounded-2xl bg-emerald-500/10 p-4 ring-1 ring-emerald-500/25">
+                  <div className="flex items-center gap-3">
+                    <ChartNoAxesCombined
+                      className="h-7 w-7 text-emerald-300"
+                      aria-hidden
+                    />
+                    <div>
+                      <p className="text-xl font-semibold text-emerald-300">
+                        Transparent portfolio analysis
+                      </p>
+                      <p className="mt-1 text-sm text-zinc-300">
+                        Full assumptions, formulas, and limitations
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                  {[
+                    ["FIRE paths", "Coast + Barista"],
+                    ["Market risk", "1k paths"],
+                    ["Research", "Data + methods"],
+                  ].map(([label, value]) => (
+                    <div
+                      key={label}
+                      className="rounded-xl border border-zinc-800 bg-zinc-950/65 p-3"
+                    >
+                      <p className="text-[11px] text-zinc-500">{label}</p>
+                      <p className="mt-1 font-semibold text-zinc-100">{value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-5 space-y-2.5">
+                  {[
+                    "Compare scenarios and withdrawal rates",
+                    "Test the order of good and bad market years",
+                    "Download data and inspect every formula",
+                  ].map((item) => (
+                    <p
+                      key={item}
+                      className="flex items-center gap-2 text-sm text-zinc-400"
+                    >
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-xs text-emerald-300">
+                        ✓
+                      </span>
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

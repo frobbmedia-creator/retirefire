@@ -15,6 +15,16 @@ export const metadata: Metadata = pageMeta("/resources", {
 
 const RESOURCES = [
   {
+    href: "/guides",
+    title: "Planning guides by question",
+    body: "Retire by age, portfolio size, spending, couples, Social Security, pension, and healthcare.",
+  },
+  {
+    href: "/research",
+    title: "Research and downloadable data",
+    body: "Original Coast-by-age, retirement-timing, and calculator-assumption tables with CSV downloads.",
+  },
+  {
     href: "/resources/coast-fire-checklist",
     title: "Coast FIRE assumptions checklist",
     body: "Pre-flight questions before you change savings behavior based on a single coast number.",

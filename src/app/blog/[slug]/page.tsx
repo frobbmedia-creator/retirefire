@@ -92,6 +92,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.description,
       type: "article",
       publishedTime: post.date,
+      modifiedTime: post.dateModified ?? post.date,
       authors: [SITE.name],
     },
     authors: [{ name: SITE.name, url: `https://${SITE.domain}` }],
@@ -123,6 +124,7 @@ export default async function BlogPostPage({ params }: Props) {
           description: post.description,
           path,
           date: post.date,
+          dateModified: post.dateModified,
           readingMinutes: post.readingMinutes,
         })}
       />
@@ -138,6 +140,12 @@ export default async function BlogPostPage({ params }: Props) {
       <header className="mt-6">
         <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500">
           <time dateTime={post.date}>{post.date}</time>
+          {post.dateModified && post.dateModified !== post.date && (
+            <>
+              <span>·</span>
+              <span>Updated {post.dateModified}</span>
+            </>
+          )}
           <span>·</span>
           <span>{post.readingMinutes} min read</span>
         </div>
@@ -177,6 +185,26 @@ export default async function BlogPostPage({ params }: Props) {
       </div>
 
       <footer className="mt-12 space-y-4">
+        {post.sources && post.sources.length > 0 && (
+          <section className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 text-sm">
+            <h2 className="font-medium text-zinc-200">Sources</h2>
+            <ul className="mt-3 space-y-2">
+              {post.sources.map((source) => (
+                <li key={source.href}>
+                  <Link
+                    href={source.href}
+                    className="text-emerald-400 hover:underline"
+                    {...(source.href.startsWith("http")
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                  >
+                    {source.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
         <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5 text-sm text-zinc-300">
           <p className="font-medium text-emerald-300">Try the related tool</p>
           <p className="mt-2 text-zinc-400">

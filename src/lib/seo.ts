@@ -107,6 +107,7 @@ export function blogPostingJsonLd(opts: {
   description: string;
   path: string;
   date: string;
+  dateModified?: string;
   readingMinutes?: number;
 }) {
   return {
@@ -115,7 +116,7 @@ export function blogPostingJsonLd(opts: {
     headline: opts.title,
     description: opts.description,
     datePublished: opts.date,
-    dateModified: opts.date,
+    dateModified: opts.dateModified ?? opts.date,
     author: {
       "@type": "Organization",
       name: SITE.name,
@@ -135,6 +136,30 @@ export function blogPostingJsonLd(opts: {
     ...(opts.readingMinutes
       ? { timeRequired: `PT${opts.readingMinutes}M` }
       : {}),
+  };
+}
+
+export function webPageJsonLd(opts: {
+  title: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: opts.title,
+    description: opts.description,
+    url: absoluteUrl(opts.path),
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    isAccessibleForFree: true,
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      url: absoluteUrl("/"),
+    },
   };
 }
 
