@@ -124,6 +124,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.4,
     },
+    ...["privacy", "terms", "refunds"].map((slug) => ({
+      url: `${base}/${slug}`,
+      lastModified: new Date("2026-08-11"),
+      changeFrequency: "yearly" as const,
+      priority: 0.35,
+    })),
     {
       url: `${base}/blog`,
       lastModified: new Date("2026-07-29"),

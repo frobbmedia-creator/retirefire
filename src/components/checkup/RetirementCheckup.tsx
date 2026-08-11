@@ -421,8 +421,8 @@ function Results({
           Compare more scenarios with RetireFire Pro.
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-zinc-300">
-          Saved plans and detailed reports are in development. Preview what is
-          coming; checkout stays paused until delivery is ready.
+          Build a printable detailed report in the protected Pro workspace.
+          Subscription billing can be managed directly through Stripe.
         </p>
         <Link
           href="/pro"
@@ -434,7 +434,7 @@ function Results({
           }
           className="mt-4 inline-flex h-11 items-center justify-center rounded-xl bg-emerald-500 px-5 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400"
         >
-          Preview RetireFire Pro
+          Explore RetireFire Pro
         </Link>
       </div>
     </section>

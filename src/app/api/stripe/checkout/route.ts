@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: { plan?: string; successUrl?: string; cancelUrl?: string };
+  let body: { plan?: string };
   try {
     body = await request.json();
   } catch {
@@ -57,10 +57,8 @@ export async function POST(request: Request) {
 
   const planConfig = STRIPE_PLANS[plan];
   const origin = new URL(request.url).origin;
-  const successUrl =
-    body.successUrl ??
-    `${origin}/pro?success=1&session_id={CHECKOUT_SESSION_ID}`;
-  const cancelUrl = body.cancelUrl ?? `${origin}/pro?canceled=1`;
+  const successUrl = `${origin}/api/stripe/activate?session_id={CHECKOUT_SESSION_ID}`;
+  const cancelUrl = `${origin}/pro?canceled=1`;
 
   try {
     const stripe = getStripe();
@@ -75,6 +73,7 @@ export async function POST(request: Request) {
         plan,
         product: "retirefire_pro",
       },
+      ...(planConfig.mode === "payment" ? { customer_creation: "always" as const } : {}),
       ...(planConfig.mode === "subscription"
         ? {
             subscription_data: {

@@ -149,7 +149,7 @@ export function Hero() {
                   eventProps={{ source: "homepage_feature_card" }}
                   className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 hover:text-emerald-200"
                 >
-                  Preview what is coming to Pro
+                  Explore RetireFire Pro
                   <ArrowRight className="h-4 w-4" aria-hidden />
                 </TrackedLink>
               </div>
