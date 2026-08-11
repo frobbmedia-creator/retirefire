@@ -1,9 +1,10 @@
-import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
   ChartNoAxesCombined,
 } from "lucide-react";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { AnalyticsEvents } from "@/lib/analytics";
 
 const btnPrimary =
   "inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 text-base font-medium text-zinc-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400 sm:w-auto";
@@ -40,14 +41,30 @@ export function Hero() {
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
-            <Link href="/retirement-checkup" className={btnPrimary}>
+            <TrackedLink
+              href="/retirement-checkup"
+              className={btnPrimary}
+              eventName={AnalyticsEvents.CHECKUP_START}
+              eventProps={{ source: "homepage_hero" }}
+            >
               Start free checkup
               <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
-            <Link href="/calculators" className={btnSecondary}>
+            </TrackedLink>
+            <TrackedLink
+              href="/calculators"
+              className={btnSecondary}
+              eventName={AnalyticsEvents.CTA_CLICK}
+              eventProps={{ source: "homepage_hero", destination: "calculators" }}
+            >
               <BookOpen className="h-4 w-4" aria-hidden />
               Explore expert FIRE tools
-            </Link>
+            </TrackedLink>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-500">
+            <span>✓ No signup required</span>
+            <span>✓ Assumptions shown</span>
+            <span>✓ Private in your browser</span>
           </div>
 
           </div>
@@ -69,7 +86,7 @@ export function Hero() {
                     </p>
                   </div>
                   <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-300 ring-1 ring-emerald-500/25">
-                    No paywall
+                    Core tools free
                   </span>
                 </div>
               </div>
@@ -125,6 +142,16 @@ export function Hero() {
                     </p>
                   ))}
                 </div>
+
+                <TrackedLink
+                  href="/pro"
+                  eventName={AnalyticsEvents.PRO_INTEREST}
+                  eventProps={{ source: "homepage_feature_card" }}
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 hover:text-emerald-200"
+                >
+                  Explore RetireFire Pro
+                  <ArrowRight className="h-4 w-4" aria-hidden />
+                </TrackedLink>
               </div>
             </div>
           </div>

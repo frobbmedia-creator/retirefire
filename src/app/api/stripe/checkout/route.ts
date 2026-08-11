@@ -12,16 +12,24 @@ import { getStripe } from "@/lib/stripe/client";
  * Body: { plan: "monthly" | "annual" | "report" }
  */
 export async function POST(request: Request) {
-  if (!isStripeConfigured()) {
+  if (process.env.STRIPE_CHECKOUT_ENABLED !== "true") {
     return NextResponse.json(
       {
-        error:
-          "Checkout is temporarily unavailable.",
+        error: "Checkout is temporarily unavailable.",
       },
       { status: 503 },
     );
   }
 
+  if (!isStripeConfigured()) {
+    return NextResponse.json(
+      {
+        error:
+          "Stripe is not configured. Set STRIPE_SECRET_KEY and price IDs in environment variables.",
+      },
+      { status: 503 },
+    );
+  }
   let body: { plan?: string };
   try {
     body = await request.json();
@@ -47,7 +55,7 @@ export async function POST(request: Request) {
 
   const planConfig = STRIPE_PLANS[plan];
   const origin = new URL(request.url).origin;
-  const successUrl = `${origin}/pro/success?session_id={CHECKOUT_SESSION_ID}`;
+  const successUrl = `${origin}/api/stripe/activate?session_id={CHECKOUT_SESSION_ID}`;
   const cancelUrl = `${origin}/pro?canceled=1`;
 
   try {

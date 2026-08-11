@@ -4,7 +4,6 @@
  * Required environment variables (Vercel + local .env.local):
  * - STRIPE_SECRET_KEY
  * - STRIPE_WEBHOOK_SECRET
- * - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
  * - STRIPE_PRICE_ID_MONTHLY
  * - STRIPE_PRICE_ID_ANNUAL
  * - STRIPE_PRICE_ID_REPORT (optional one-time PDF unlock)

@@ -64,4 +64,8 @@ export const AnalyticsEvents = {
   CALCULATOR_INTERACT: "calculator_interact",
   CTA_CLICK: "cta_click",
   STRESS_TEST_RUN: "stress_test_run",
+  CHECKUP_START: "checkup_start",
+  CHECKUP_STEP: "checkup_step",
+  CHECKUP_COMPLETE: "checkup_complete",
+  PRO_INTEREST: "pro_interest",
 } as const;

@@ -31,6 +31,9 @@ export function Footer() {
       links: [
         ["/approach", "Approach"],
         ["/disclaimer", "Disclaimer"],
+        ["/privacy", "Privacy"],
+        ["/terms", "Terms"],
+        ["/refunds", "Refunds"],
         ["/#faq", "FAQ"],
       ],
     },

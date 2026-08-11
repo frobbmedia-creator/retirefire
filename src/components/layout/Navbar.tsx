@@ -18,6 +18,7 @@ const links = [
   { href: "/blog", label: "Blog" },
   { href: "/methodology", label: "Methodology" },
   { href: "/approach", label: "Approach" },
+  { href: "/pro", label: "Pro" },
 ];
 
 export function Navbar() {
@@ -25,18 +26,18 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 px-4 sm:h-16 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:h-[4.5rem] sm:px-6">
         <Link
           href="/"
-          className="group flex items-center gap-2.5 text-[15px] font-semibold tracking-tight text-zinc-50 sm:text-base"
+          className="group flex items-center gap-3 text-xl font-bold tracking-tight text-zinc-50 sm:text-2xl"
           onClick={() => setOpen(false)}
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-400 ring-1 ring-emerald-500/30 transition group-hover:bg-emerald-500/25">
-            <Flame className="h-4 w-4" aria-hidden />
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-400 ring-1 ring-emerald-500/30 transition group-hover:bg-emerald-500/25 sm:h-11 sm:w-11">
+            <Flame className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
           </span>
           <span>
             {SITE.name}
-            <span className="ml-1.5 hidden text-xs font-normal text-zinc-500 lg:inline">
+            <span className="ml-2 hidden text-xs font-normal tracking-normal text-zinc-500 xl:inline">
               {SITE.tagline}
             </span>
           </span>
@@ -47,7 +48,12 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-lg px-2.5 py-1.5 text-sm text-zinc-400 transition hover:bg-zinc-800/80 hover:text-zinc-100"
+              className={cn(
+                "rounded-lg px-2.5 py-1.5 text-sm transition hover:bg-zinc-800/80 hover:text-zinc-100",
+                link.href === "/pro"
+                  ? "bg-emerald-500/10 font-semibold text-emerald-300 ring-1 ring-emerald-500/25"
+                  : "text-zinc-400",
+              )}
             >
               {link.label}
             </Link>

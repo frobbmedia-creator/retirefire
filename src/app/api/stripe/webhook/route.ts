@@ -4,8 +4,9 @@ import type Stripe from "stripe";
 
 /**
  * POST /api/stripe/webhook
- * Handles Checkout and subscription lifecycle events.
- * MVP logs events \u2014 wire a real store when ready.
+ * Handles checkout.session.completed, customer.subscription.updated/deleted.
+ * Stripe remains the billing source of truth. Access is revalidated against
+ * Checkout Sessions and subscription status on protected requests.
  */
 export async function POST(request: Request) {
   const signature = request.headers.get("stripe-signature");
@@ -53,7 +54,6 @@ export async function POST(request: Request) {
           customerId,
           mode: session.mode,
         });
-        // TODO: persist subscription
         break;
       }
 
@@ -80,7 +80,6 @@ export async function POST(request: Request) {
           status: sub.status,
           plan: sub.metadata?.plan,
         });
-        // TODO: update status in store
         break;
       }
 
