@@ -16,12 +16,22 @@ const proFeatures = [
   "Detailed planning reports",
 ];
 
-export default function ProPage() {
+type Props = {
+  searchParams: Promise<{ canceled?: string }>;
+};
+
+export default async function ProPage({ searchParams }: Props) {
+  const { canceled } = await searchParams;
   const checkoutEnabled = process.env.STRIPE_CHECKOUT_ENABLED === "true";
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Pro", path: "/pro" }]} />
       <div className="mx-auto mt-8 max-w-3xl text-center">
+        {canceled === "1" && (
+          <p className="mb-6 rounded-xl bg-zinc-900 px-4 py-3 text-sm text-zinc-300 ring-1 ring-zinc-700" role="status">
+            Checkout canceled. You were not charged.
+          </p>
+        )}
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">RetireFire Pro</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">Go deeper when you need to.</h1>
         <p className="mt-5 text-lg leading-relaxed text-zinc-400">Core calculators stay free forever. Pro adds a protected detailed-report workspace, verified access, and self-service subscription billing.</p>

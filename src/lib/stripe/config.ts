@@ -42,8 +42,5 @@ export function getPriceId(plan: PlanId): string | undefined {
 }
 
 export function isStripeConfigured(): boolean {
-  return Boolean(
-    process.env.STRIPE_SECRET_KEY &&
-      (process.env.STRIPE_PRICE_ID_ANNUAL || process.env.STRIPE_PRICE_ID_MONTHLY),
-  );
+  return Boolean(process.env.STRIPE_SECRET_KEY);
 }

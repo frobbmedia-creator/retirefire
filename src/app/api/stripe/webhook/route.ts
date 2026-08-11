@@ -57,6 +57,17 @@ export async function POST(request: Request) {
         break;
       }
 
+      case "checkout.session.async_payment_succeeded":
+      case "checkout.session.async_payment_failed": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        console.info(`[stripe/webhook] ${event.type}`, {
+          sessionId: session.id,
+          plan: session.metadata?.plan,
+          paymentStatus: session.payment_status,
+        });
+        break;
+      }
+
       case "customer.subscription.updated":
       case "customer.subscription.deleted": {
         const sub = event.data.object as Stripe.Subscription;
@@ -68,6 +79,20 @@ export async function POST(request: Request) {
           customerId,
           status: sub.status,
           plan: sub.metadata?.plan,
+        });
+        break;
+      }
+
+      case "invoice.paid":
+      case "invoice.payment_failed": {
+        const invoice = event.data.object as Stripe.Invoice;
+        console.info(`[stripe/webhook] ${event.type}`, {
+          invoiceId: invoice.id,
+          customerId:
+            typeof invoice.customer === "string"
+              ? invoice.customer
+              : invoice.customer?.id,
+          status: invoice.status,
         });
         break;
       }

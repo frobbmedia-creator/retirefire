@@ -9,14 +9,13 @@ import { getStripe } from "@/lib/stripe/client";
 
 /**
  * POST /api/stripe/checkout
- * Body: { plan: "monthly" | "annual" | "report", successUrl?: string, cancelUrl?: string }
+ * Body: { plan: "monthly" | "annual" | "report" }
  */
 export async function POST(request: Request) {
   if (process.env.STRIPE_CHECKOUT_ENABLED !== "true") {
     return NextResponse.json(
       {
-        error:
-          "RetireFire Pro checkout is temporarily unavailable while account access and purchase delivery are being completed.",
+        error: "Checkout is temporarily unavailable.",
       },
       { status: 503 },
     );
@@ -31,7 +30,6 @@ export async function POST(request: Request) {
       { status: 503 },
     );
   }
-
   let body: { plan?: string };
   try {
     body = await request.json();
@@ -73,14 +71,13 @@ export async function POST(request: Request) {
         plan,
         product: "retirefire_pro",
       },
-      ...(planConfig.mode === "payment" ? { customer_creation: "always" as const } : {}),
       ...(planConfig.mode === "subscription"
         ? {
             subscription_data: {
               metadata: { plan, product: "retirefire_pro" },
             },
           }
-        : {}),
+        : { customer_creation: "always" as const }),
     });
 
     if (!session.url) {
@@ -93,8 +90,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ url: session.url, sessionId: session.id });
   } catch (err) {
     console.error("[stripe/checkout]", err);
-    const message =
-      err instanceof Error ? err.message : "Failed to create checkout session";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json(
+      { error: "Unable to start checkout. Please try again." },
+      { status: 500 },
+    );
   }
 }
