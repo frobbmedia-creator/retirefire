@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Flame } from "lucide-react";
 import { SITE } from "@/lib/constants";
+import { SupportEmailLink } from "@/components/support/SupportEmailLink";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -52,6 +53,7 @@ export function Footer() {
               Free, transparent FIRE calculators. Educational tools only — not
               financial, tax, or investment advice.
             </p>
+            <SupportEmailLink className="mt-3 inline-block text-sm text-zinc-400 hover:text-emerald-400" />
           </div>
 
           <div className="grid gap-5 text-sm sm:grid-cols-3">
