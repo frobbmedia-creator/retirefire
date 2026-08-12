@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { currentUser } from "@/lib/auth";
 import { activeEntitlements } from "@/lib/entitlements";
+import { SupportEmailLink } from "@/components/support/SupportEmailLink";
 
 export const metadata = { title: "Your RetireFire account", robots: { index: false } };
 export default async function AccountPage({ searchParams }: { searchParams: Promise<{ recovered?: string; error?: string }> }) {
@@ -19,6 +20,7 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
       {entitlements.length ? <ul className="mt-4 space-y-3">{entitlements.map((item, index) => <li key={`${item.stripe_checkout_session_id}-${index}`} className="flex items-center justify-between rounded-xl bg-zinc-950/60 px-4 py-3"><span className="capitalize text-zinc-200">{item.plan} access</span><span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase text-emerald-300">{item.status}</span></li>)}</ul> : <p className="mt-3 text-zinc-400">No active purchase is linked yet.</p>}
       <div className="mt-6 flex flex-wrap gap-3">{entitlements.length > 0 && <><Link href="/pro/workspace" className="rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-zinc-950">Open Pro workspace</Link><form action="/api/stripe/portal" method="post"><button className="rounded-xl bg-zinc-800 px-4 py-3 text-sm font-semibold text-zinc-100">Manage billing</button></form></>}<form action="/api/stripe/recover" method="post"><button className="rounded-xl border border-zinc-700 px-4 py-3 text-sm font-semibold text-zinc-200">Recover purchases</button></form></div>
       <p className="mt-4 text-xs leading-relaxed text-zinc-500">Recovery searches Stripe for completed purchases made with this account’s email address.</p>
+      <p className="mt-3 text-sm text-zinc-400">Need help with a purchase or your account? Email <SupportEmailLink className="text-emerald-400 hover:text-emerald-300" />.</p>
     </section>
     <form action="/api/auth/logout" method="post" className="mt-8"><button className="text-sm text-zinc-400 underline underline-offset-4 hover:text-zinc-200">Sign out</button></form>
   </main>;

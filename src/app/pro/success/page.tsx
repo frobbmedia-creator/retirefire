@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { getStripe } from "@/lib/stripe/client";
 import { STRIPE_PLANS, type PlanId } from "@/lib/stripe/config";
+import { SupportEmailLink } from "@/components/support/SupportEmailLink";
 
 export const metadata: Metadata = {
   title: "Purchase confirmed",
@@ -77,6 +78,9 @@ export default async function ProSuccessPage({ searchParams }: Props) {
           Back to Pro
         </Link>
       </div>
+      <p className="mt-6 text-sm text-zinc-500">
+        Need purchase help? Email <SupportEmailLink className="text-emerald-400 hover:text-emerald-300" />.
+      </p>
     </main>
   );
 }
