@@ -13,6 +13,10 @@
 4. Put the endpoint signing secret in `STRIPE_WEBHOOK_SECRET`.
 5. For local testing, forward events with `stripe listen --forward-to localhost:3000/api/stripe/webhook` and use the printed signing secret.
 
+## Accounts and durable access
+
+Set `DATABASE_URL` (or `POSTGRES_URL`) to a production PostgreSQL database, then apply `db/schema.sql` before enabling checkout. Checkout requires an authenticated RetireFire account and records the user ID in Stripe metadata. Webhooks persist entitlements and deduplicate event IDs. The Account page can recover prior purchases by matching the signed-in email against completed Stripe Checkout sessions.
+
 Use Stripe test-mode values before production. The Checkout route reads prices from Stripe IDs rather than trusting browser-provided amounts. The webhook verifies the raw request body and `stripe-signature` before processing events.
 
-The current handlers log normalized lifecycle details. The success page independently retrieves the Checkout Session from Stripe before showing a confirmed purchase. Connect lifecycle events to the account/entitlement store when authentication is introduced. Production fulfillment should record processed Stripe event IDs so retries are idempotent.
+The handlers persist normalized lifecycle state. The success page independently retrieves the Checkout Session from Stripe before showing a confirmed purchase. Stripe remains the billing source of truth.

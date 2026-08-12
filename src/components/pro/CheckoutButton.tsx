@@ -31,6 +31,10 @@ export function CheckoutButton({
       });
       const data = await res.json();
       if (!res.ok) {
+        if (res.status === 401 && data.loginUrl) {
+          window.location.href = data.loginUrl;
+          return;
+        }
         setError(data.error || "Checkout failed");
         setLoading(false);
         return;
