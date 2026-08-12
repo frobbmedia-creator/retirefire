@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run db:migrate && next build",
+    "db:migrate": "node scripts/migrate-db.mjs",
     "start": "next start",
     "lint": "eslint",
     "test:calc": "npx tsx src/lib/calculations.test.ts && npx tsx src/lib/monte-carlo.test.ts && npx tsx src/lib/coast-tables.test.ts && npx tsx src/lib/scenario-metrics.test.ts && npx tsx src/lib/planning-tools.test.ts && npx tsx src/lib/retirement-checkup.test.ts",
@@ -12,16 +13,17 @@
     "seo:indexnow": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^7.0.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "clsx": "^2.1.1",
     "lucide-react": "^1.24.0",
     "next": "16.2.12",
+    "postgres": "^3.4.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "tailwind-merge": "^3.6.0",
     "stripe": "^18.0.0",
-    "@stripe/stripe-js": "^7.0.0"
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

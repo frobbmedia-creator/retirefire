@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import { requestUser } from "@/lib/auth";
 import {
   getPriceId,
   isStripeConfigured,
@@ -11,7 +12,7 @@ import { getStripe } from "@/lib/stripe/client";
  * POST /api/stripe/checkout
  * Body: { plan: "monthly" | "annual" | "report" }
  */
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   if (process.env.STRIPE_CHECKOUT_ENABLED !== "true") {
     return NextResponse.json(
       {
@@ -28,6 +29,13 @@ export async function POST(request: Request) {
           "Stripe is not configured. Set STRIPE_SECRET_KEY and price IDs in environment variables.",
       },
       { status: 503 },
+    );
+  }
+  const user = await requestUser(request).catch(() => null);
+  if (!user) {
+    return NextResponse.json(
+      { error: "Sign in or create an account before purchasing.", loginUrl: "/account/login?returnTo=/pro" },
+      { status: 401 },
     );
   }
   let body: { plan?: string };
@@ -70,11 +78,14 @@ export async function POST(request: Request) {
       metadata: {
         plan,
         product: "retirefire_pro",
+        user_id: user.id,
       },
+      client_reference_id: user.id,
+      customer_email: user.email,
       ...(planConfig.mode === "subscription"
         ? {
             subscription_data: {
-              metadata: { plan, product: "retirefire_pro" },
+              metadata: { plan, product: "retirefire_pro", user_id: user.id },
             },
           }
         : { customer_creation: "always" as const }),

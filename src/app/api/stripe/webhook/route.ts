@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe/client";
 import type Stripe from "stripe";
+import { db } from "@/lib/db";
+import { upsertCheckoutEntitlement } from "@/lib/entitlements";
+import { STRIPE_PLANS, type PlanId } from "@/lib/stripe/config";
 
 /**
  * POST /api/stripe/webhook
@@ -34,6 +37,11 @@ export async function POST(request: Request) {
   }
 
   try {
+    const claimed = await db()<Array<{ event_id: string }>>`
+      INSERT INTO stripe_webhook_events (event_id, event_type)
+      VALUES (${event.id}, ${event.type}) ON CONFLICT (event_id) DO NOTHING RETURNING event_id
+    `;
+    if (!claimed.length) return NextResponse.json({ received: true, duplicate: true });
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
@@ -46,6 +54,19 @@ export async function POST(request: Request) {
           typeof session.customer === "string"
             ? session.customer
             : session.customer?.id;
+
+        const userId = session.metadata?.user_id || session.client_reference_id;
+        const typedPlan = plan as PlanId | undefined;
+        if (userId && typedPlan && typedPlan in STRIPE_PLANS && ["paid", "no_payment_required"].includes(session.payment_status)) {
+          await upsertCheckoutEntitlement({
+            userId,
+            plan: typedPlan,
+            status: typedPlan === "report" ? "lifetime" : "active",
+            sessionId: session.id,
+            customerId,
+            subscriptionId: typeof session.subscription === "string" ? session.subscription : session.subscription?.id,
+          });
+        }
 
         console.info("[stripe/webhook] checkout.session.completed", {
           sessionId: session.id,
@@ -73,6 +94,8 @@ export async function POST(request: Request) {
         const sub = event.data.object as Stripe.Subscription;
         const customerId =
           typeof sub.customer === "string" ? sub.customer : sub.customer?.id;
+
+        await db()`UPDATE entitlements SET status = ${sub.status}, updated_at = now() WHERE stripe_subscription_id = ${sub.id} OR (stripe_customer_id = ${customerId ?? null} AND plan <> 'report')`;
 
         console.info(`[stripe/webhook] ${event.type}`, {
           subscriptionId: sub.id,
@@ -104,6 +127,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ received: true });
   } catch (err) {
     console.error("[stripe/webhook] handler error", err);
+    await db()`DELETE FROM stripe_webhook_events WHERE event_id = ${event.id}`.catch(() => undefined);
     return NextResponse.json({ error: "Webhook handler failed" }, { status: 500 });
   }
 }

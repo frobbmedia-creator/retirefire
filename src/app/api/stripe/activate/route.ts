@@ -1,10 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe/client";
-import {
-  ENTITLEMENT_COOKIE,
-  signEntitlement,
-} from "@/lib/stripe/entitlement";
 import { STRIPE_PLANS, type PlanId } from "@/lib/stripe/config";
+import { requestUser } from "@/lib/auth";
+import { upsertCheckoutEntitlement } from "@/lib/entitlements";
 
 export async function GET(request: NextRequest) {
   const sessionId = request.nextUrl.searchParams.get("session_id");
@@ -12,6 +10,12 @@ export async function GET(request: NextRequest) {
   if (!sessionId?.startsWith("cs_")) return NextResponse.redirect(failure);
 
   try {
+    const user = await requestUser(request);
+    if (!user) {
+      const login = new URL("/account/login", request.url);
+      login.searchParams.set("returnTo", `/api/stripe/activate?session_id=${encodeURIComponent(sessionId)}`);
+      return NextResponse.redirect(login);
+    }
     const stripe = getStripe();
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     const plan = session.metadata?.plan as PlanId | undefined;
@@ -23,6 +27,9 @@ export async function GET(request: NextRequest) {
     ) {
       return NextResponse.redirect(failure);
     }
+    if (session.metadata?.user_id && session.metadata.user_id !== user.id) {
+      return NextResponse.redirect(failure);
+    }
 
     const customerId =
       typeof session.customer === "string" ? session.customer : undefined;
@@ -30,23 +37,15 @@ export async function GET(request: NextRequest) {
       typeof session.subscription === "string"
         ? session.subscription
         : undefined;
-    const maxAge = plan === "report" ? 365 * 24 * 60 * 60 : 30 * 24 * 60 * 60;
-    const token = signEntitlement({
+    await upsertCheckoutEntitlement({
+      userId: user.id,
       plan,
+      status: plan === "report" ? "lifetime" : "active",
       sessionId,
       customerId,
       subscriptionId,
-      exp: Date.now() + maxAge * 1000,
     });
     const response = NextResponse.redirect(new URL("/pro/workspace", request.url));
-    response.cookies.set(ENTITLEMENT_COOKIE, token, {
-      httpOnly: true,
-      secure: request.nextUrl.protocol === "https:",
-      sameSite: "lax",
-      path: "/",
-      maxAge,
-      priority: "high",
-    });
     return response;
   } catch (error) {
     console.error("[stripe/activate]", error);

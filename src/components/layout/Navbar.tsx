@@ -19,6 +19,7 @@ const links = [
   { href: "/methodology", label: "Methodology" },
   { href: "/approach", label: "Approach" },
   { href: "/pro", label: "Pro" },
+  { href: "/account", label: "Account" },
 ];
 
 export function Navbar() {
