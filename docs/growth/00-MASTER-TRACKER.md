@@ -5,6 +5,8 @@
 **Target monetization readiness:** ~Week 11–12 (Oct 2026)  
 **Operating mode:** Grok executes autonomously; user approves major decisions / provides access when blocked.
 
+**Oracle Status (2026-08-12):** Full permission granted by CEO. Site is being driven to icon status. Personality sharpening and decision-page expansion under active execution. No further questions except budgetary.
+
 ## Status legend
 
 - `[ ]` not started · `[~]` in progress · `[x]` done · `[!]` blocked on user
@@ -58,8 +60,21 @@
 
 | Task | Status |
 |------|--------|
-| 4.1 Freemium design + Stripe | `[ ]` — needs user pricing approval |
-| 4.2 Soft launch + optimize | `[ ]` |
+| 4.1 Freemium design + Stripe | `[x]` | Stripe live (monthly / annual / report). Core calculators remain free forever. |
+| 4.2 Soft launch + optimize | `[~]` |
+
+---
+
+## Oracle Icon Phase (Active — 2026-08-12)
+
+| Task | Status | Notes |
+|------|--------|-------|
+| Hero positioning sharpened | `[x]` | "The number is either enough — or it is not." Live. |
+| Decision-page expansion | `[~]` | More ages + portfolio thresholds + sharper takeaways in progress |
+| Arya / personality voice layer | `[~]` | Takeaways and result language being made more direct and quotable |
+| Shareable result objects | `[ ]` | Next |
+| Email capture live | `[ ]` | High priority after decision expansion |
+| Social account activation | `[!]` | Requires CEO ownership of X / LinkedIn |
 
 ---
 
@@ -68,7 +83,7 @@
 1. ~~**Google Search Console**~~ In progress — property live, sitemap in, homepage + Coast requested  
 2. **Social:** create/claim X + LinkedIn; paste bio + pin thread (`19-launch-checklist-user.md` §2) (**next after a few more URL requests**)
 3. **Optional:** create GA4 property + Plausible site; add env vars (see analytics guide)
-4. **Later:** Stripe account + final pricing approval
+4. ~~**Later:** Stripe account + final pricing approval~~ — **Stripe production is live**
 5. ~~**Deploy**~~ Done — Vercel Git on `frobbmedia-creator/retirefire`; production auto-deploys from `main`
 
 ---
