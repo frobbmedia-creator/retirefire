@@ -30,9 +30,9 @@ export const CALCULATOR_SEO: Record<
     title: "FIRE Number Calculator",
     description:
       "Estimate the invested portfolio that can support your lifestyle at a chosen withdrawal rate. Defaults follow classic 4% / 25× math — fully adjustable.",
-    metaTitle: "FIRE Number Calculator",
+    metaTitle: "FIRE Number Calculator — Free 4% Rule / 25× Tool",
     metaDescription:
-      "Free FIRE number calculator: annual spending ÷ safe withdrawal rate. Lean, Regular, and Fat FIRE presets with transparent 4% rule / 25× math.",
+      "Free FIRE number calculator: annual spending ÷ withdrawal rate. Lean, Regular & Fat presets with transparent 4% rule math. No signup.",
     howItWorks: [
       "Your FIRE number is the portfolio size that, at a chosen safe withdrawal rate (SWR), is meant to support a given annual spend without a traditional paycheck.",
       "The classic starting point is the “4% rule” lineage (Bengen / Trinity Study): spending ÷ 0.04 equals 25× annual spending. Early retirees often stress-test 3–3.5% instead.",
@@ -111,9 +111,9 @@ export const CALCULATOR_SEO: Record<
     title: "Years to FIRE Calculator",
     description:
       "Solve for years until your nest egg hits your FIRE number. Uses constant real returns and end-of-year contributions, with an illustrative growth chart.",
-    metaTitle: "Years to FIRE Calculator",
+    metaTitle: "Years to FIRE Calculator — Timeline + Stress Test",
     metaDescription:
-      "Free years to FIRE calculator: project years to financial independence from portfolio, savings, and expected real return — with a transparent growth chart.",
+      "Free years to FIRE calculator: project when you reach financial independence from portfolio, savings rate, and real return. Includes basic Monte Carlo stress test.",
     howItWorks: [
       "This years to FIRE calculator estimates how long it may take to reach financial independence given your current invested assets, annual savings, FIRE target, and assumed real (inflation-adjusted) return.",
       "Growth is modeled with a constant return and end-of-period contributions — a common planning simplification. Real markets bounce; treat the chart as an illustration, not a forecast.",
@@ -187,9 +187,9 @@ export const CALCULATOR_SEO: Record<
     title: "Coast FIRE Calculator",
     description:
       "Calculate how much you need today so compound growth alone may reach full FIRE by a chosen traditional retirement age — then you can “coast” on savings rate.",
-    metaTitle: "Coast FIRE Calculator",
+    metaTitle: "Coast FIRE Calculator (Free) — Exact Number + Stress Test",
     metaDescription:
-      "Free Coast FIRE calculator: find the portfolio that can grow to full FIRE by traditional retirement age with no further contributions. Clear coast FI formula.",
+      "Free Coast FIRE calculator: find the portfolio that can grow to full FIRE by traditional retirement age with no further contributions. Includes sequence stress test.",
     howItWorks: [
       "Coast FIRE asks a different question than classic FIRE: do you already have enough invested that, with no further contributions, compound growth may reach full FIRE by a traditional retirement age?",
       "If yes, you might stop aggressive saving (or save only for near-term goals) while still working for lifestyle, purpose, or benefits. Coast FIRE is not permission to stop working tomorrow.",
@@ -285,9 +285,9 @@ export const CALCULATOR_SEO: Record<
     title: "Barista FIRE Calculator",
     description:
       "Semi-retirement math: set expected work income and see the smaller portfolio needed to cover the remaining spending gap at your withdrawal rate.",
-    metaTitle: "Barista FIRE Calculator",
+    metaTitle: "Barista FIRE Calculator — Semi-Retirement Portfolio Tool",
     metaDescription:
-      "Free Barista FIRE calculator for semi-retirement: part-time income covers some spending so your portfolio only funds the gap. Transparent barista FI math.",
+      "Free Barista FIRE calculator for semi-retirement: part-time income covers some spending so your portfolio only funds the gap. Transparent math, no signup.",
     howItWorks: [
       "Barista FIRE (semi-retirement) blends portfolio withdrawals with intentional work income. The portfolio only needs to cover the spending gap after part-time or flexible earnings.",
       "Lower gap expenses mean a smaller “barista number,” which can unlock partial freedom years earlier than full FIRE — if the work income is realistic and sustainable.",
