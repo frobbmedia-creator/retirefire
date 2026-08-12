@@ -7,42 +7,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = `https://${SITE.domain}`;
   const launched = new Date("2026-07-01");
   const resourcesUpdated = new Date("2026-07-15");
+  const seoPass = new Date("2026-08-12");
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: base, lastModified: resourcesUpdated, changeFrequency: "weekly", priority: 1 },
+    { url: base, lastModified: seoPass, changeFrequency: "weekly", priority: 1 },
     {
       url: `${base}/calculators`,
-      lastModified: resourcesUpdated,
+      lastModified: seoPass,
       changeFrequency: "weekly",
       priority: 0.95,
     },
     {
       url: `${base}/retirement-checkup`,
-      lastModified: new Date("2026-07-29"),
+      lastModified: seoPass,
       changeFrequency: "monthly",
       priority: 0.98,
     },
     {
       url: `${base}/calculators/fire-number`,
-      lastModified: resourcesUpdated,
+      lastModified: seoPass,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${base}/calculators/years-to-fire`,
-      lastModified: resourcesUpdated,
+      lastModified: seoPass,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${base}/calculators/coast-fire`,
-      lastModified: resourcesUpdated,
+      lastModified: seoPass,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${base}/calculators/barista-fire`,
-      lastModified: resourcesUpdated,
+      lastModified: seoPass,
       changeFrequency: "weekly",
       priority: 0.9,
     },
@@ -132,7 +133,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     {
       url: `${base}/blog`,
-      lastModified: new Date("2026-07-29"),
+      lastModified: seoPass,
       changeFrequency: "weekly",
       priority: 0.75,
     },
