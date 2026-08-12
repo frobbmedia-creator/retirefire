@@ -80,5 +80,5 @@ export const SITE = {
   /** Default <title> for homepage / root layout */
   title: "Free Retirement Checkup & FIRE Calculators",
   description:
-    "A free retirement checkup plus Coast FIRE, Barista FIRE, FIRE number, retirement-age, and market stress-test tools with clear assumptions and no signup.",
+    "Free retirement checkup plus Coast FIRE, Barista FIRE, FIRE number, and years-to-FI calculators. Transparent math, sequence stress tests, no signup required.",
 } as const;
