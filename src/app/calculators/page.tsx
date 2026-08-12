@@ -6,7 +6,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata: Metadata = pageMeta("/calculators", {
   title: "All FIRE Calculators — Coast, Barista, Number & Years",
   description:
-    "Free Coast FIRE, Barista FIRE, FIRE number, and years-to-FI calculators with sequence stress tests, age tables, scenario compare, and published methodology.",
+    "Free Coast FIRE, Barista FIRE, FIRE number, and years-to-FI calculators with sequence stress tests, age tables, scenario compare, and published methodology. No signup.",
   openGraph: {
     title: "All FIRE Calculators · RetireFire",
     description:
