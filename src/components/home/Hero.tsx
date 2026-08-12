@@ -28,16 +28,16 @@ export function Hero() {
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <div className="max-w-2xl">
           <h1 className="text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
-            Is your household on track for retirement?
+            The number is either enough — or it is not.
             <span className="mt-1 block text-emerald-400">
-              Get a clear answer and your next three moves.
+              Get the clear answer and your next three moves.
             </span>
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
             In about three minutes, see an estimated retirement age, the yearly
-            spending your plan may support, and the changes that could help
-            most. No account, sales call, or financial jargon.
+            spending your plan may support, and the changes that matter most.
+            Transparent math. No account. No soft language.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
@@ -57,7 +57,7 @@ export function Hero() {
               eventProps={{ source: "homepage_hero", destination: "calculators" }}
             >
               <BookOpen className="h-4 w-4" aria-hidden />
-              Explore expert FIRE tools
+              Explore the FIRE tools
             </TrackedLink>
           </div>
 
