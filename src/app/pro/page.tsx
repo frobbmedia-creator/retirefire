@@ -6,8 +6,14 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/pro", {
-  title: "RetireFire Pro Pricing",
-  description: "Optional advanced retirement planning tools and reports. Core RetireFire calculators stay free forever.",
+  title: "RetireFire Pro — Advanced Retirement Planning Tools",
+  description:
+    "Upgrade to RetireFire Pro for saved scenarios, deeper market-risk analysis, and detailed planning reports. Core FIRE calculators stay free forever.",
+  openGraph: {
+    title: "RetireFire Pro — Advanced Retirement Planning",
+    description:
+      "Saved plans, deeper stress tests, and detailed reports. Core tools remain free.",
+  },
 });
 
 const proFeatures = [
