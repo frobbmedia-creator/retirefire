@@ -7,9 +7,32 @@ export function absoluteUrl(path = "/"): string {
   return path.startsWith("/") ? `${base}${path}` : `${base}/${path}`;
 }
 
-/** Merge page metadata with self-canonical and openGraph.url (no query params). */
+/**
+ * Merge page metadata with self-canonical, openGraph.url, and Twitter cards.
+ * Ensures twitter:title / twitter:description match the page (not root layout defaults).
+ */
 export function pageMeta(path: string, meta: Metadata = {}): Metadata {
   const url = absoluteUrl(path);
+
+  const ogTitle =
+    typeof meta.openGraph?.title === "string"
+      ? meta.openGraph.title
+      : typeof meta.title === "string"
+        ? `${meta.title} · ${SITE.name}`
+        : undefined;
+
+  const ogDescription =
+    typeof meta.openGraph?.description === "string"
+      ? meta.openGraph.description
+      : typeof meta.description === "string"
+        ? meta.description
+        : undefined;
+
+  const existingTwitter =
+    typeof meta.twitter === "object" && meta.twitter !== null
+      ? meta.twitter
+      : {};
+
   return {
     ...meta,
     alternates: {
@@ -19,6 +42,12 @@ export function pageMeta(path: string, meta: Metadata = {}): Metadata {
     openGraph: {
       ...meta.openGraph,
       url,
+    },
+    twitter: {
+      card: "summary_large_image",
+      ...existingTwitter,
+      ...(ogTitle ? { title: ogTitle } : {}),
+      ...(ogDescription ? { description: ogDescription } : {}),
     },
   };
 }
