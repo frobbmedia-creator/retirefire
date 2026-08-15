@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
-import { CALCULATION_REGISTRY } from "@/lib/calculation-registry";
+import {
+  CALCULATION_REGISTRY,
+  calculationVersion,
+} from "@/lib/calculation-registry";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/methodology", {
@@ -365,9 +368,51 @@ export default function MethodologyPage() {
           </p>
         </section>
 
+        <section id="roth-conversion-tax">
+          <h2 className="text-xl font-semibold text-zinc-50">
+            12. Current-year Roth conversion tax estimate
+          </h2>
+          <p className="mt-3 text-zinc-400">
+            The Roth calculator estimates regular federal income tax for tax
+            year 2026 only. It treats the entered current taxable income as
+            income after the standard or itemized deduction, caps the conversion
+            at the traditional account balance, adds the applied conversion to
+            taxable income, and traverses the selected filing status&apos;s ordinary
+            income brackets progressively.
+          </p>
+          <pre className="mt-4 overflow-x-auto rounded-xl bg-zinc-900 p-4 font-mono text-sm text-emerald-300 ring-1 ring-zinc-800">
+            Applied conversion = min(desired conversion, traditional balance){"\n"}
+            Tax after = progressive tax(current taxable income + applied conversion){"\n"}
+            Incremental tax = tax after − tax before{"\n"}
+            Effective conversion rate = incremental tax ÷ applied conversion
+          </pre>
+          <p className="mt-3 text-zinc-400">
+            The model does not subtract the standard deduction a second time.
+            Its 2026 standard-deduction amounts and bracket thresholds come from{" "}
+            <a
+              href="https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Revenue Procedure 2025-32
+            </a>
+            , effective for taxable years beginning in 2026. This is methodology
+            version {calculationVersion("roth-conversion")} and a current-year
+            illustration, not a multiyear or lifetime tax-savings forecast.
+          </p>
+          <p className="mt-3 text-zinc-400">
+            Explicit exclusions include state and local tax, AMT, NIIT, credits,
+            deduction changes, capital-gain and qualified-dividend interactions,
+            ACA premium tax credits, Medicare IRMAA, future law, multiyear
+            optimization, withholding and estimated-tax penalties, and the
+            opportunity cost of paying conversion tax.
+          </p>
+        </section>
+
         <section>
           <h2 className="text-xl font-semibold text-zinc-50">
-            12. Calculation governance
+            13. Calculation governance
           </h2>
           <p className="mt-3 text-zinc-400">
             Every calculation tracked here has a stable methodology version and
@@ -440,7 +485,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-zinc-50">13. Further reading</h2>
+          <h2 className="text-xl font-semibold text-zinc-50">14. Further reading</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-zinc-400">
             <li>
               Bengen (1994) and Trinity Study papers (library / journal access)

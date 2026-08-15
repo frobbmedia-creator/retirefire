@@ -49,13 +49,48 @@ assert.equal(guardrails.reducedSpending, 36_000);
 
 assert.deepEqual(
   rothConversionEstimate({
-    pretaxBalance: 500_000,
-    annualConversion: 50_000,
-    years: 5,
-    marginalTaxRate: 0.12,
+    taxYear: 2026,
+    filingStatus: "single",
+    currentTaxableIncome: 49_000,
+    desiredConversion: 60_000,
+    traditionalBalance: 500_000,
   }),
-  { converted: 250_000, estimatedFederalTax: 30_000, remainingPretax: 250_000 },
+  {
+    ok: true,
+    taxYear: 2026,
+    filingStatus: "single",
+    standardDeduction: 16_100,
+    taxableIncomeBeforeConversion: 49_000,
+    taxableIncomeAfterConversion: 109_000,
+    desiredConversion: 60_000,
+    appliedConversion: 60_000,
+    conversionWasLimited: false,
+    federalTaxBeforeConversion: 5_632,
+    federalTaxAfterConversion: 18_758,
+    incrementalFederalTax: 13_126,
+    effectiveFederalRateOnConversion: 13_126 / 60_000,
+    remainingTraditionalBalance: 440_000,
+    exclusions: [
+      "State and local income taxes",
+      "Alternative minimum tax and net investment income tax",
+      "Tax credits and changes to deductions",
+      "Capital gains and qualified-dividend interactions",
+      "ACA premium tax credits and Medicare IRMAA",
+      "Future tax-law changes and multiyear optimization",
+      "Withholding, estimated-tax penalties, and conversion opportunity cost",
+    ],
+  },
 );
+
+const invalidRoth = rothConversionEstimate({
+  taxYear: 2026,
+  filingStatus: "single",
+  currentTaxableIncome: 49_000,
+  desiredConversion: Number.POSITIVE_INFINITY,
+  traditionalBalance: 500_000,
+});
+assert.equal(invalidRoth.ok, false);
+if (!invalidRoth.ok) assert.match(invalidRoth.errors.join(" "), /desiredConversion/);
 
 assert.deepEqual(
   healthcareBudget({

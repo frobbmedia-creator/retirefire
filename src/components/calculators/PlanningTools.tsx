@@ -1,6 +1,11 @@
 "use client";
 
 import { useMemo, useState, type ReactNode } from "react";
+import { calculationVersion } from "@/lib/calculation-registry";
+import {
+  FEDERAL_TAX_PARAMETERS,
+  type FederalTaxFilingStatus,
+} from "@/lib/federal-tax";
 import { formatCurrency } from "@/lib/format";
 import {
   guardrailRange,
@@ -35,6 +40,35 @@ function Field({
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
       />
+    </label>
+  );
+}
+
+function SelectField<T extends string>({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: T;
+  onChange: (value: T) => void;
+  options: readonly { value: T; label: string }[];
+}) {
+  return (
+    <label className="text-sm text-zinc-300">
+      {label}
+      <select
+        className={inputClass}
+        value={value}
+        onChange={(event) => onChange(event.target.value as T)}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </label>
   );
 }
@@ -193,30 +227,67 @@ export function GuardrailsCalculator() {
 export function RothConversionCalculator() {
   const [balance, setBalance] = useState(800_000);
   const [conversion, setConversion] = useState(60_000);
-  const [years, setYears] = useState(5);
-  const [taxRate, setTaxRate] = useState(12);
+  const [taxableIncome, setTaxableIncome] = useState(50_000);
+  const [filingStatus, setFilingStatus] =
+    useState<FederalTaxFilingStatus>("single");
   const result = useMemo(
-    () => rothConversionEstimate({ pretaxBalance: balance, annualConversion: conversion, years, marginalTaxRate: taxRate / 100 }),
-    [balance, conversion, taxRate, years],
+    () =>
+      rothConversionEstimate({
+        taxYear: 2026,
+        filingStatus,
+        currentTaxableIncome: taxableIncome,
+        desiredConversion: conversion,
+        traditionalBalance: balance,
+      }),
+    [balance, conversion, filingStatus, taxableIncome],
   );
+  const statusParameters = FEDERAL_TAX_PARAMETERS.filingStatuses[filingStatus];
+  const methodologyVersion = calculationVersion("roth-conversion");
+  const results = result.ok
+    ? [
+        { label: "Taxable income before", value: formatCurrency(result.taxableIncomeBeforeConversion) },
+        { label: "Taxable income after", value: formatCurrency(result.taxableIncomeAfterConversion) },
+        { label: "Conversion included", value: formatCurrency(result.appliedConversion), accent: true },
+        { label: "Federal tax before", value: formatCurrency(result.federalTaxBeforeConversion) },
+        { label: "Federal tax after", value: formatCurrency(result.federalTaxAfterConversion) },
+        { label: "Incremental federal tax", value: formatCurrency(result.incrementalFederalTax), accent: true },
+        { label: "Effective rate on conversion", value: `${(result.effectiveFederalRateOnConversion * 100).toFixed(1)}%` },
+        { label: "Traditional balance remaining", value: formatCurrency(result.remainingTraditionalBalance) },
+      ]
+    : [{ label: "Estimate unavailable", value: result.errors.join("; ") }];
   return (
     <Tool
-      title="Roth conversion plan"
-      description="Estimate how much money you could move from a traditional retirement account to a Roth account over several years."
+      title="2026 Roth conversion estimate"
+      description="Estimate the incremental regular federal income tax from one proposed 2026 Roth conversion using progressive 2026 brackets."
       fields={
         <>
+          <SelectField
+            label="Federal filing status"
+            value={filingStatus}
+            onChange={setFilingStatus}
+            options={Object.entries(FEDERAL_TAX_PARAMETERS.filingStatuses).map(
+              ([value, parameters]) => ({
+                value: value as FederalTaxFilingStatus,
+                label: parameters.label,
+              }),
+            )}
+          />
+          <Field
+            label="Current 2026 federal taxable income (after deductions)"
+            value={taxableIncome}
+            onChange={setTaxableIncome}
+            step={1000}
+          />
           <Field label="Traditional retirement account balance" value={balance} onChange={setBalance} step={10_000} />
-          <Field label="Annual conversion" value={conversion} onChange={setConversion} step={1000} />
-          <Field label="Conversion years" value={years} onChange={setYears} />
-          <Field label="Estimated federal tax rate on the conversion (%)" value={taxRate} onChange={setTaxRate} step={0.1} />
+          <Field label="Desired 2026 conversion" value={conversion} onChange={setConversion} step={1000} />
         </>
       }
-      results={[
-        { label: "Total converted", value: formatCurrency(result.converted), accent: true },
-        { label: "Simplified federal tax", value: formatCurrency(result.estimatedFederalTax) },
-        { label: "Traditional account remaining", value: formatCurrency(result.remainingPretax) },
-      ]}
-      note="Educational estimate only. Actual taxes may change because of deductions, state taxes, health-insurance assistance, Medicare charges, investment growth, and Roth withdrawal rules."
+      results={results}
+      note={
+        result.ok
+          ? `Current-year educational estimate only · methodology v${methodologyVersion}. Current taxable income is assumed to be after deductions, so the 2026 ${statusParameters.label.toLowerCase()} standard deduction of ${formatCurrency(statusParameters.standardDeduction)} is shown for reference and is not subtracted again. ${result.conversionWasLimited ? "The desired conversion exceeded the traditional balance, so the estimate uses the available balance. " : ""}Excludes: ${result.exclusions.join("; ")}. It does not estimate lifetime savings.`
+          : `No estimate was produced: ${result.errors.join("; ")}. Methodology v${methodologyVersion}; exclusions: ${result.exclusions.join("; ")}.`
+      }
     />
   );
 }

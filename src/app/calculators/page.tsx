@@ -67,8 +67,8 @@ const TOOLS = [
   },
   {
     href: "/calculators/roth-conversion",
-    title: "Roth Conversion Runway",
-    body: "Estimate how much money to move from a traditional retirement account to a Roth account over several years.",
+    title: "2026 Roth Conversion Estimate",
+    body: "Estimate current-year incremental regular federal income tax for one proposed conversion using progressive brackets.",
   },
   {
     href: "/calculators/healthcare-budget",

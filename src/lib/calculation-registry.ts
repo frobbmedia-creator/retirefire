@@ -33,6 +33,7 @@ const SEC_COMPOUND_INTEREST =
 const FINRA_MONTE_CARLO =
   "https://www.finra.org/investors/insights/monte-carlo-simulations";
 const IRS_ROTH = "https://www.irs.gov/publications/p590a";
+const IRS_2026_TAX = "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf";
 const IRS_SEPP = "https://www.irs.gov/retirement-plans/substantially-equal-periodic-payments";
 
 export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
@@ -182,15 +183,33 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
   {
     id: "roth-conversion",
     name: "Roth conversion estimate",
-    version: "0.1.0",
-    status: "development",
+    version: "1.0.0",
+    status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
     reviewCadence: "Annual and when federal tax law changes",
     nextReviewTrigger: "When IRS guidance or tax-year parameters change",
-    assumptions: ["Current-year federal estimate", "Selected tax parameters apply"],
-    exclusions: ["State taxes", "IRMAA", "Multiyear optimization"],
-    sources: [{ label: "IRS Publication 590-A", href: IRS_ROTH }],
+    assumptions: [
+      "2026 ordinary-income brackets apply progressively",
+      "Current taxable income is already after standard or itemized deductions",
+      "The applied conversion is fully taxable and cannot exceed the traditional balance",
+    ],
+    exclusions: [
+      "State and local income taxes",
+      "Alternative minimum tax and net investment income tax",
+      "Tax credits and changes to deductions",
+      "Capital gains and qualified-dividend interactions",
+      "ACA premium tax credits and Medicare IRMAA",
+      "Future tax-law changes and multiyear optimization",
+      "Withholding, estimated-tax penalties, and conversion opportunity cost",
+    ],
+    sources: [
+      {
+        label: "Revenue Procedure 2025-32",
+        href: IRS_2026_TAX,
+      },
+      { label: "IRS Publication 590-A", href: IRS_ROTH },
+    ],
   },
   {
     id: "sepp-72t",

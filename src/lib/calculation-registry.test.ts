@@ -29,6 +29,21 @@ assert.ok(CALCULATION_REGISTRY.length >= 10, "expected governed calculation entr
 assert.equal(calculationVersion("fire"), "1.0.0");
 assert.equal(calculationVersion("not-a-method"), "unknown");
 
+// This catches a shipped Roth estimator remaining labeled as an unimplemented draft
+// or pointing users to a source that does not contain the 2026 bracket tables.
+const rothMethod = CALCULATION_REGISTRY.find((method) => method.id === "roth-conversion");
+assert(rothMethod);
+assert.equal(rothMethod.version, "1.0.0");
+assert.equal(rothMethod.status, "active");
+assert(
+  rothMethod.sources.some(
+    (source) =>
+      source.label === "Revenue Procedure 2025-32" &&
+      source.href === "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf",
+  ),
+);
+assert(rothMethod.exclusions.includes("Capital gains and qualified-dividend interactions"));
+
 const baseMethod = CALCULATION_REGISTRY[0]!;
 
 function issuesFor(patch: Record<string, unknown>): string {
