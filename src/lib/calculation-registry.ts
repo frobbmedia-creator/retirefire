@@ -222,7 +222,7 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
   {
     id: "social-security-claim",
     name: "Social Security claim-age estimate",
-    version: "1.0.0",
+    version: "1.0.1",
     status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
@@ -247,7 +247,7 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
   {
     id: "social-security-taxable",
     name: "Federal taxable Social Security estimate",
-    version: "1.0.0",
+    version: "1.1.0",
     status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
@@ -256,11 +256,11 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     assumptions: [
       "Publication 915 (2025) Worksheet 1 applies",
       "Other income is an AGI-like amount before Social Security and tax-exempt interest",
-      "The estimate is limited to single and married-filing-jointly returns",
+      "Married-filing-separately treatment depends on whether the taxpayer lived with a spouse at any time during 2025",
     ],
     exclusions: [
-      "Filing statuses other than single and married filing jointly",
-      "Lump-sum elections, benefit repayments, and special worksheet adjustments",
+      "Lump-sum elections and special worksheet adjustments",
+      "Ordinary benefit repayments and Form SSA-1099/RRB-1099 net box 5 handling; the model uses the entered gross annual benefit",
       "State and local tax and total federal income tax liability",
       "Tax years other than 2025 and future law",
     ],

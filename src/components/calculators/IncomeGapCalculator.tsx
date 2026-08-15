@@ -23,6 +23,9 @@ export function IncomeGapCalculator() {
   const [withdrawalRate, setWithdrawalRate] = useState(4);
   const [filingStatus, setFilingStatus] =
     useState<TaxableSocialSecurityFilingStatus>("single");
+  const [livedWithSpouseAtAnyTime, setLivedWithSpouseAtAnyTime] = useState<
+    boolean | null
+  >(null);
   const [otherIncome, setOtherIncome] = useState(30_000);
   const [taxExemptInterest, setTaxExemptInterest] = useState(0);
 
@@ -57,8 +60,18 @@ export function IncomeGapCalculator() {
         annualSocialSecurityBenefits: grossSocialSecurity,
         otherIncome,
         taxExemptInterest,
+        livedWithSpouseAtAnyTime:
+          filingStatus === "married_filing_separately"
+            ? (livedWithSpouseAtAnyTime ?? undefined)
+            : undefined,
       }),
-    [filingStatus, grossSocialSecurity, otherIncome, taxExemptInterest],
+    [
+      filingStatus,
+      grossSocialSecurity,
+      livedWithSpouseAtAnyTime,
+      otherIncome,
+      taxExemptInterest,
+    ],
   );
 
   const result = useMemo(() => {
@@ -296,6 +309,13 @@ export function IncomeGapCalculator() {
               <option value="married_filing_jointly">
                 Married filing jointly
               </option>
+              <option value="head_of_household">Head of household</option>
+              <option value="qualifying_surviving_spouse">
+                Qualifying surviving spouse
+              </option>
+              <option value="married_filing_separately">
+                Married filing separately
+              </option>
             </select>
           </label>
           <label className="text-sm text-zinc-300">
@@ -323,6 +343,37 @@ export function IncomeGapCalculator() {
             />
           </label>
         </div>
+        {filingStatus === "married_filing_separately" ? (
+          <fieldset className="mt-4 rounded-lg border border-zinc-800 p-3">
+            <legend className="px-1 text-sm text-zinc-300">
+              Did you live with your spouse at any time during 2025?
+            </legend>
+            <p className="mt-1 text-xs leading-relaxed text-zinc-500">
+              Publication 915 uses a different calculation when the answer is
+              yes. Choose one before an estimate is shown.
+            </p>
+            <div className="mt-2 flex gap-5">
+              <label className="flex items-center gap-2 text-sm text-zinc-300">
+                <input
+                  type="radio"
+                  name="mfs-lived-with-spouse"
+                  checked={livedWithSpouseAtAnyTime === true}
+                  onChange={() => setLivedWithSpouseAtAnyTime(true)}
+                />
+                Yes
+              </label>
+              <label className="flex items-center gap-2 text-sm text-zinc-300">
+                <input
+                  type="radio"
+                  name="mfs-lived-with-spouse"
+                  checked={livedWithSpouseAtAnyTime === false}
+                  onChange={() => setLivedWithSpouseAtAnyTime(false)}
+                />
+                No, we lived apart all year
+              </label>
+            </div>
+          </fieldset>
+        ) : null}
         {taxableEstimate.ok &&
         (benefitMode === "manual" || claimEstimate.ok) ? (
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -362,7 +413,9 @@ export function IncomeGapCalculator() {
         investment, or financial advice. Claim estimates are retired-worker
         comparisons based on the FRA amount you enter; verify benefits with SSA.
         Federal taxable-benefit estimates exclude state tax and special IRS
-        worksheet situations. Exact inputs and results stay in this browser.
+        worksheet situations. They use the gross benefit entered above and do
+        not apply ordinary repayments or Form SSA-1099/RRB-1099 net box 5.
+        Exact inputs and results stay in this browser.
       </p>
     </section>
   );

@@ -8,8 +8,8 @@ export const SOCIAL_SECURITY_ESTIMATE_EXCLUSIONS = Object.freeze([
 ] as const);
 
 export const TAXABLE_SOCIAL_SECURITY_EXCLUSIONS = Object.freeze([
-  "Filing statuses other than single and married filing jointly",
-  "Lump-sum elections, repayments exceeding gross benefits, and railroad-specific treatment",
+  "Lump-sum elections and railroad-specific treatment",
+  "Ordinary benefit repayments and Form SSA-1099/RRB-1099 net box 5 handling; the model uses the entered gross annual benefit",
   "Foreign-income, adoption-benefit, savings-bond, and other special worksheet adjustments",
   "Deductions or income not already reflected in the entered other-income amount",
   "State and local tax and total federal income tax liability",
@@ -51,7 +51,7 @@ function deepFreeze<T extends object>(value: T): T {
  * January 1 birthday; callers must make that adjustment before calling.
  */
 export const SOCIAL_SECURITY_CLAIM_PARAMETERS = deepFreeze({
-  methodVersion: "1.0.0",
+  methodVersion: "1.0.1",
   minimumSupportedBirthYear: 1933,
   earliestClaimAgeMonths: 62 * 12,
   latestClaimAgeMonths: 70 * 12,
@@ -132,7 +132,7 @@ export type SocialSecurityEstimate =
     }
   | {
       ok: true;
-      methodVersion: "1.0.0";
+      methodVersion: "1.0.1";
       birthYear: number;
       fullRetirementAge: FullRetirementAge;
       fullRetirementAgeMonthlyBenefit: number;
@@ -174,6 +174,20 @@ function roundCurrency(value: number): number {
   return Math.round((value + Number.EPSILON) * 100) / 100;
 }
 
+function floorCurrency(value: number): number {
+  const floatingPointTolerance =
+    Number.EPSILON * Math.max(1, Math.abs(value));
+  return Math.floor((value + floatingPointTolerance) * 100) / 100;
+}
+
+function floorWholeDollar(value: number): number {
+  // Preserve SSA's downward-dollar rule while neutralizing at most one
+  // relative machine epsilon of binary noise below a mathematically exact integer.
+  const floatingPointTolerance =
+    Number.EPSILON * Math.max(1, Math.abs(value));
+  return Math.floor(value + floatingPointTolerance);
+}
+
 /** Estimate a retired worker's gross benefit at a whole-month claim age. */
 export function estimateSocialSecurityClaim(
   input: SocialSecurityClaimInput,
@@ -210,15 +224,20 @@ export function estimateSocialSecurityClaim(
   }
 
   let claimAgeInMonths = Number.NaN;
+  let claimAgePartsAreValid = false;
   if (
     isInteger(candidate.claimAgeYears) &&
     isInteger(candidate.claimAgeMonths) &&
     candidate.claimAgeMonths >= 0 &&
     candidate.claimAgeMonths <= 11
   ) {
+    claimAgePartsAreValid = true;
     claimAgeInMonths = candidate.claimAgeYears * 12 + candidate.claimAgeMonths;
   }
   const hasClaimAge = Number.isFinite(claimAgeInMonths);
+  if (claimAgePartsAreValid && !hasClaimAge) {
+    errors.push("claim age converted to months must be finite");
+  }
   if (
     hasClaimAge &&
     (claimAgeInMonths < SOCIAL_SECURITY_CLAIM_PARAMETERS.earliestClaimAgeMonths ||
@@ -262,8 +281,16 @@ export function estimateSocialSecurityClaim(
   }
 
   const unroundedBenefit = fullRetirementAgeMonthlyBenefit * adjustmentFactor;
+  if (!Number.isFinite(unroundedBenefit)) {
+    return {
+      ok: false,
+      errors: ["estimated benefit before rounding must be finite"],
+      methodVersion: SOCIAL_SECURITY_CLAIM_PARAMETERS.methodVersion,
+      exclusions: SOCIAL_SECURITY_ESTIMATE_EXCLUSIONS,
+    };
+  }
   const estimatedMonthlyBenefitBeforeRounding = roundCurrency(unroundedBenefit);
-  const estimatedMonthlyBenefit = Math.floor(unroundedBenefit);
+  const estimatedMonthlyBenefit = floorWholeDollar(unroundedBenefit);
   const estimatedAnnualBenefit = estimatedMonthlyBenefit * 12;
   if (
     !Number.isFinite(estimatedMonthlyBenefitBeforeRounding) ||
@@ -279,7 +306,7 @@ export function estimateSocialSecurityClaim(
 
   return {
     ok: true,
-    methodVersion: "1.0.0",
+    methodVersion: "1.0.1",
     birthYear,
     fullRetirementAge,
     fullRetirementAgeMonthlyBenefit,
@@ -307,7 +334,7 @@ export function estimateSocialSecurityClaim(
  * Source revision: 2025. Last verified: 2026-08-15.
  */
 export const TAXABLE_SOCIAL_SECURITY_PARAMETERS = deepFreeze({
-  methodVersion: "1.0.0",
+  methodVersion: "1.1.0",
   taxYear: 2025,
   effectivePeriod: "2025 federal income tax returns",
   sourceRevision: "2025",
@@ -318,6 +345,15 @@ export const TAXABLE_SOCIAL_SECURITY_PARAMETERS = deepFreeze({
   filingStatuses: {
     single: { lowerThreshold: 25_000, upperThreshold: 34_000 },
     married_filing_jointly: { lowerThreshold: 32_000, upperThreshold: 44_000 },
+    head_of_household: { lowerThreshold: 25_000, upperThreshold: 34_000 },
+    qualifying_surviving_spouse: {
+      lowerThreshold: 25_000,
+      upperThreshold: 34_000,
+    },
+    married_filing_separately: {
+      lowerThreshold: 25_000,
+      upperThreshold: 34_000,
+    },
   },
   maximumTaxablePercentage: 0.85,
 } as const);
@@ -332,6 +368,8 @@ export type TaxableSocialSecurityInput = {
   /** AGI-like income excluding Social Security and tax-exempt interest. */
   otherIncome: number;
   taxExemptInterest: number;
+  /** Required for married filing separately; omitted for every other status. */
+  livedWithSpouseAtAnyTime?: boolean;
 };
 
 export type TaxableSocialSecurityEstimate =
@@ -343,15 +381,15 @@ export type TaxableSocialSecurityEstimate =
     }
   | {
       ok: true;
-      methodVersion: "1.0.0";
+      methodVersion: "1.1.0";
       taxYear: 2025;
       filingStatus: TaxableSocialSecurityFilingStatus;
       grossAnnualBenefits: number;
       otherIncome: number;
       taxExemptInterest: number;
       provisionalIncome: number;
-      lowerThreshold: number;
-      upperThreshold: number;
+      lowerThreshold: number | null;
+      upperThreshold: number | null;
       taxableAnnualBenefits: number;
       federallyTaxFreeAnnualBenefits: number;
       taxablePercentage: number;
@@ -383,7 +421,15 @@ export function estimateTaxableSocialSecurity(
       candidate.filingStatus,
     );
   if (!hasSupportedFilingStatus) {
-    errors.push("filingStatus must be single or married_filing_jointly");
+    errors.push("filingStatus must be a supported 2025 filing status");
+  }
+  if (
+    candidate.filingStatus === "married_filing_separately" &&
+    typeof candidate.livedWithSpouseAtAnyTime !== "boolean"
+  ) {
+    errors.push(
+      "livedWithSpouseAtAnyTime must be provided for married filing separately",
+    );
   }
   for (const field of [
     "annualSocialSecurityBenefits",
@@ -417,41 +463,95 @@ export function estimateTaxableSocialSecurity(
       exclusions: TAXABLE_SOCIAL_SECURITY_EXCLUSIONS,
     };
   }
+  const roundedProvisionalIncome = roundCurrency(provisionalIncome);
+  if (!Number.isFinite(roundedProvisionalIncome)) {
+    return {
+      ok: false,
+      errors: ["provisional income after currency rounding must be finite"],
+      methodVersion: TAXABLE_SOCIAL_SECURITY_PARAMETERS.methodVersion,
+      exclusions: TAXABLE_SOCIAL_SECURITY_EXCLUSIONS,
+    };
+  }
 
   const { lowerThreshold, upperThreshold } =
     TAXABLE_SOCIAL_SECURITY_PARAMETERS.filingStatuses[filingStatus];
-  const firstBandWidth = upperThreshold - lowerThreshold;
-  const amountAboveLower = Math.max(0, provisionalIncome - lowerThreshold);
-  const fiftyPercentBand = Math.min(
-    grossAnnualBenefits / 2,
-    Math.min(amountAboveLower, firstBandWidth) * 0.5,
-  );
-  const amountAboveUpper = Math.max(0, provisionalIncome - upperThreshold);
-  const taxableAnnualBenefits = roundCurrency(
-    Math.min(
+  const usesMarriedSeparateLivedTogetherRule =
+    filingStatus === "married_filing_separately" &&
+    candidate.livedWithSpouseAtAnyTime === true;
+  let taxableBeforeRounding: number;
+  if (usesMarriedSeparateLivedTogetherRule) {
+    taxableBeforeRounding = Math.min(
+      provisionalIncome * 0.85,
+      grossAnnualBenefits * TAXABLE_SOCIAL_SECURITY_PARAMETERS.maximumTaxablePercentage,
+    );
+  } else {
+    const firstBandWidth = upperThreshold - lowerThreshold;
+    const amountAboveLower = Math.max(0, provisionalIncome - lowerThreshold);
+    const fiftyPercentBand = Math.min(
+      grossAnnualBenefits / 2,
+      Math.min(amountAboveLower, firstBandWidth) * 0.5,
+    );
+    const amountAboveUpper = Math.max(0, provisionalIncome - upperThreshold);
+    taxableBeforeRounding = Math.min(
       grossAnnualBenefits * TAXABLE_SOCIAL_SECURITY_PARAMETERS.maximumTaxablePercentage,
       fiftyPercentBand + amountAboveUpper * 0.85,
-    ),
+    );
+  }
+  if (!Number.isFinite(taxableBeforeRounding)) {
+    return {
+      ok: false,
+      errors: ["taxable benefits before rounding must be finite"],
+      methodVersion: TAXABLE_SOCIAL_SECURITY_PARAMETERS.methodVersion,
+      exclusions: TAXABLE_SOCIAL_SECURITY_EXCLUSIONS,
+    };
+  }
+  const maximumTaxableAtWholeCents = floorCurrency(
+    grossAnnualBenefits *
+      TAXABLE_SOCIAL_SECURITY_PARAMETERS.maximumTaxablePercentage,
   );
+  const taxableAnnualBenefits = Math.min(
+    roundCurrency(taxableBeforeRounding),
+    maximumTaxableAtWholeCents,
+  );
+  if (!Number.isFinite(taxableAnnualBenefits)) {
+    return {
+      ok: false,
+      errors: ["taxable benefits after currency rounding must be finite"],
+      methodVersion: TAXABLE_SOCIAL_SECURITY_PARAMETERS.methodVersion,
+      exclusions: TAXABLE_SOCIAL_SECURITY_EXCLUSIONS,
+    };
+  }
   const federallyTaxFreeAnnualBenefits = roundCurrency(
     grossAnnualBenefits - taxableAnnualBenefits,
   );
+  const taxablePercentage =
+    grossAnnualBenefits === 0 ? 0 : taxableAnnualBenefits / grossAnnualBenefits;
+  if (
+    !Number.isFinite(federallyTaxFreeAnnualBenefits) ||
+    !Number.isFinite(taxablePercentage)
+  ) {
+    return {
+      ok: false,
+      errors: ["taxable-benefit result must be finite"],
+      methodVersion: TAXABLE_SOCIAL_SECURITY_PARAMETERS.methodVersion,
+      exclusions: TAXABLE_SOCIAL_SECURITY_EXCLUSIONS,
+    };
+  }
 
   return {
     ok: true,
-    methodVersion: "1.0.0",
+    methodVersion: "1.1.0",
     taxYear: 2025,
     filingStatus,
     grossAnnualBenefits,
     otherIncome,
     taxExemptInterest,
-    provisionalIncome: roundCurrency(provisionalIncome),
-    lowerThreshold,
-    upperThreshold,
+    provisionalIncome: roundedProvisionalIncome,
+    lowerThreshold: usesMarriedSeparateLivedTogetherRule ? null : lowerThreshold,
+    upperThreshold: usesMarriedSeparateLivedTogetherRule ? null : upperThreshold,
     taxableAnnualBenefits,
     federallyTaxFreeAnnualBenefits,
-    taxablePercentage:
-      grossAnnualBenefits === 0 ? 0 : taxableAnnualBenefits / grossAnnualBenefits,
+    taxablePercentage,
     exclusions: TAXABLE_SOCIAL_SECURITY_EXCLUSIONS,
   };
 }

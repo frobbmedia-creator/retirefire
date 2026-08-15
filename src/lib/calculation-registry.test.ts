@@ -55,7 +55,7 @@ const socialSecurityClaimMethod = CALCULATION_REGISTRY.find(
   (method) => method.id === "social-security-claim",
 );
 assert(socialSecurityClaimMethod);
-assert.equal(socialSecurityClaimMethod.version, "1.0.0");
+assert.equal(socialSecurityClaimMethod.version, "1.0.1");
 assert.equal(socialSecurityClaimMethod.status, "active");
 assert(
   socialSecurityClaimMethod.sources.some(
@@ -74,7 +74,7 @@ const taxableSocialSecurityMethod = CALCULATION_REGISTRY.find(
   (method) => method.id === "social-security-taxable",
 );
 assert(taxableSocialSecurityMethod);
-assert.equal(taxableSocialSecurityMethod.version, "1.0.0");
+assert.equal(taxableSocialSecurityMethod.version, "1.1.0");
 assert.equal(taxableSocialSecurityMethod.status, "active");
 assert(
   taxableSocialSecurityMethod.sources.some(
@@ -84,6 +84,16 @@ assert(
 assert(
   taxableSocialSecurityMethod.exclusions.includes(
     "State and local tax and total federal income tax liability",
+  ),
+);
+assert(
+  taxableSocialSecurityMethod.assumptions.includes(
+    "Married-filing-separately treatment depends on whether the taxpayer lived with a spouse at any time during 2025",
+  ),
+);
+assert(
+  taxableSocialSecurityMethod.exclusions.includes(
+    "Ordinary benefit repayments and Form SSA-1099/RRB-1099 net box 5 handling; the model uses the entered gross annual benefit",
   ),
 );
 

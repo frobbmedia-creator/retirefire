@@ -484,14 +484,16 @@ export default function MethodologyPage() {
               IRS Publication 915 (2025)
             </a>
             , applicable to 2025 federal income tax returns and the latest
-            completed publication reviewed on August 15, 2026. It supports
-            single and married-filing-jointly estimates only.
+            completed publication reviewed on August 15, 2026. It supports all
+            five individual filing statuses. Married-filing-separately users
+            must say whether they lived with a spouse at any time during 2025.
           </p>
           <pre className="mt-4 overflow-x-auto rounded-xl bg-zinc-900 p-4 font-mono text-sm text-emerald-300 ring-1 ring-zinc-800">
             Provisional income = other income + tax-exempt interest{"\n"}
             {"                     "}+ 50% of gross Social Security{"\n"}
-            Lower thresholds: $25,000 single · $32,000 joint{"\n"}
-            Upper thresholds: $34,000 single · $44,000 joint{"\n"}
+            Lower: $25,000 single/HOH/QSS/MFS apart · $32,000 joint{"\n"}
+            Upper: $34,000 single/HOH/QSS/MFS apart · $44,000 joint{"\n"}
+            MFS lived with spouse: direct 85% worksheet branch{"\n"}
             Maximum included in federal taxable income: 85% of benefits
           </pre>
           <p className="mt-3 text-zinc-400">
@@ -506,8 +508,10 @@ export default function MethodologyPage() {
             The models do not provide individualized claiming advice and exclude
             earnings-record calculations, COLAs, the retirement earnings test,
             spousal and survivor benefits, state tax, total federal tax, lump-sum
-            elections, repayments, special Publication 915 adjustments, and
-            future law. Exact inputs and results remain client-side.
+            elections, ordinary repayment and Form SSA-1099/RRB-1099 net box 5
+            handling, special Publication 915 adjustments, and future law. The
+            taxable model uses the entered gross annual benefit. Exact inputs and
+            results remain client-side.
           </p>
         </section>
 
