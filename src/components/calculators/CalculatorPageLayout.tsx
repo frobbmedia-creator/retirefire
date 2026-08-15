@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { PlannerShell } from "@/components/planner/PlannerShell";
 import { CalculatorHub } from "@/components/calculators/CalculatorHub";
 import { CalculatorSeoSection } from "@/components/calculators/CalculatorSeoSection";
@@ -9,6 +10,10 @@ import {
   breadcrumbJsonLd,
   softwareApplicationJsonLd,
 } from "@/lib/seo";
+import {
+  AnalyticsEvents,
+  calculationAnalyticsProps,
+} from "@/lib/analytics";
 
 type Tool = "fire" | "years" | "coast" | "barista" | "savings";
 
@@ -27,6 +32,8 @@ export function CalculatorPageLayout({
   seo?: CalculatorSeoContent;
   children?: ReactNode;
 }) {
+  const calculatorId = tools[0] === "savings" ? "savings-rate" : tools[0];
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
       {seo && (
@@ -80,13 +87,27 @@ export function CalculatorPageLayout({
       {seo && <CalculatorSeoSection content={seo} />}
 
       <p className="mt-10 text-sm text-zinc-500">
-        <Link href="/methodology" className="text-emerald-400 hover:underline">
+        <TrackedLink
+          href="/methodology"
+          className="text-emerald-400 hover:underline"
+          eventName={AnalyticsEvents.CALCULATOR_INTERACT}
+          eventProps={calculationAnalyticsProps(calculatorId, {
+            action: "methodology_open",
+          })}
+        >
           Methodology
-        </Link>
+        </TrackedLink>
         {" · "}
-        <Link href="/disclaimer" className="text-emerald-400 hover:underline">
+        <TrackedLink
+          href="/disclaimer"
+          className="text-emerald-400 hover:underline"
+          eventName={AnalyticsEvents.CALCULATOR_INTERACT}
+          eventProps={calculationAnalyticsProps(calculatorId, {
+            action: "risk_disclosure_open",
+          })}
+        >
           Disclaimer
-        </Link>
+        </TrackedLink>
         {" · "}
         <Link href="/#faq" className="text-emerald-400 hover:underline">
           FAQ

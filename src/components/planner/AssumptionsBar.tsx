@@ -9,10 +9,14 @@ import { formatPercent } from "@/lib/format";
 import { buildShareUrl, PLANNER_DEFAULTS, type PlannerState } from "@/lib/planner-state";
 import { buildScenarioCsv, downloadTextFile } from "@/lib/export-scenario";
 import { exportPlannerJson, importPlannerJson } from "@/lib/planner-transfer";
-import { AnalyticsEvents, trackEvent } from "@/lib/analytics";
+import {
+  AnalyticsEvents,
+  calculationAnalyticsProps,
+  trackEvent,
+} from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-export function AssumptionsBar() {
+export function AssumptionsBar({ calculatorId }: { calculatorId: string }) {
   const {
     state,
     setField,
@@ -30,6 +34,17 @@ export function AssumptionsBar() {
   const [exported, setExported] = useState(false);
   const [status, setStatus] = useState("");
   const importInputRef = useRef<HTMLInputElement>(null);
+  const assumptionTracked = useRef(false);
+
+  function setAssumption<K extends keyof PlannerState>(key: K, value: PlannerState[K]) {
+    setField(key, value);
+    if (assumptionTracked.current) return;
+    assumptionTracked.current = true;
+    trackEvent(
+      AnalyticsEvents.CALCULATOR_INTERACT,
+      calculationAnalyticsProps(calculatorId, { action: "assumption_interaction" }),
+    );
+  }
 
   async function copyShareLink() {
     const url = buildShareUrl(sharePath, state);
@@ -180,18 +195,18 @@ export function AssumptionsBar() {
         <MoneyInput
           label="Annual spending"
           value={state.annualExpenses}
-          onChange={(v) => setField("annualExpenses", v)}
+          onChange={(v) => setAssumption("annualExpenses", v)}
           hint="Target lifestyle spend in today's dollars"
         />
         <MoneyInput
           label="Current portfolio"
           value={state.currentPortfolio}
-          onChange={(v) => setField("currentPortfolio", v)}
+          onChange={(v) => setAssumption("currentPortfolio", v)}
         />
         <MoneyInput
           label="Annual contributions"
           value={state.annualContribution}
-          onChange={(v) => setField("annualContribution", v)}
+          onChange={(v) => setAssumption("annualContribution", v)}
         />
 
         <Slider
@@ -200,7 +215,7 @@ export function AssumptionsBar() {
           min={2.5}
           max={5}
           step={0.1}
-          onChange={(v) => setField("withdrawalRatePct", v)}
+          onChange={(v) => setAssumption("withdrawalRatePct", v)}
           displayValue={formatPercent(state.withdrawalRatePct / 100)}
         />
 
@@ -210,7 +225,7 @@ export function AssumptionsBar() {
           min={0}
           max={12}
           step={0.25}
-          onChange={(v) => setField("expectedReturnPct", v)}
+          onChange={(v) => setAssumption("expectedReturnPct", v)}
           displayValue={formatPercent(state.expectedReturnPct / 100)}
           hint={
             state.useNominal
@@ -229,13 +244,13 @@ export function AssumptionsBar() {
             >
               <ModeButton
                 active={!state.useNominal}
-                onClick={() => setField("useNominal", false)}
+                onClick={() => setAssumption("useNominal", false)}
               >
                 Real
               </ModeButton>
               <ModeButton
                 active={state.useNominal}
-                onClick={() => setField("useNominal", true)}
+                onClick={() => setAssumption("useNominal", true)}
               >
                 Nominal
               </ModeButton>
@@ -248,7 +263,7 @@ export function AssumptionsBar() {
               min={0}
               max={6}
               step={0.25}
-              onChange={(v) => setField("inflationPct", v)}
+              onChange={(v) => setAssumption("inflationPct", v)}
               displayValue={formatPercent(state.inflationPct / 100)}
               hint="Used to convert nominal → real for projections"
             />

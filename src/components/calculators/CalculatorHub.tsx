@@ -7,6 +7,7 @@ import { CoastFireCalculator } from "./CoastFireCalculator";
 import { BaristaFireCalculator } from "./BaristaFireCalculator";
 import { SavingsRateTable } from "./SavingsRateTable";
 import { ScenarioCompare } from "./ScenarioCompare";
+import { CalculatorLifecycleAnalytics } from "@/components/analytics/CalculatorLifecycleAnalytics";
 
 const JUMP = [
   { href: "#fire-number", label: "FIRE Number" },
@@ -30,6 +31,10 @@ export function CalculatorHub({
   const set = new Set(
     tools ?? ["fire", "years", "coast", "barista", "compare", "savings"],
   );
+  const calculatorIds = Array.from(set)
+    .filter((tool): tool is Exclude<typeof tool, "compare"> => tool !== "compare")
+    .map((tool) => (tool === "savings" ? "savings-rate" : tool));
+  const primaryCalculatorId = calculatorIds[0] ?? "fire";
 
   return (
     <div className="flex flex-col gap-8 lg:gap-10">
@@ -68,7 +73,8 @@ export function CalculatorHub({
         </div>
       )}
 
-      <AssumptionsBar />
+      <CalculatorLifecycleAnalytics calculatorIds={calculatorIds.join(",")} />
+      <AssumptionsBar calculatorId={primaryCalculatorId} />
 
       {set.has("fire") && <FireNumberCalculator />}
       {set.has("years") && <YearsToFireCalculator />}

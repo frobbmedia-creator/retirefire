@@ -357,7 +357,7 @@ export default function MethodologyPage() {
             until external review is complete.
           </p>
           <div className="mt-4 overflow-x-auto rounded-xl ring-1 ring-zinc-800">
-            <table className="w-full min-w-[920px] text-left text-sm">
+            <table className="w-full min-w-[1280px] text-left text-sm">
               <thead className="bg-zinc-900 text-zinc-400">
                 <tr>
                   <th className="px-4 py-3 font-medium">Method</th>
@@ -365,7 +365,10 @@ export default function MethodologyPage() {
                   <th className="px-4 py-3 font-medium">Status</th>
                   <th className="px-4 py-3 font-medium">Effective date</th>
                   <th className="px-4 py-3 font-medium">Last review</th>
+                  <th className="px-4 py-3 font-medium">Review cadence</th>
                   <th className="px-4 py-3 font-medium">Next review trigger</th>
+                  <th className="px-4 py-3 font-medium">Assumptions</th>
+                  <th className="px-4 py-3 font-medium">Material exclusions</th>
                   <th className="px-4 py-3 font-medium">Sources</th>
                 </tr>
               </thead>
@@ -379,7 +382,22 @@ export default function MethodologyPage() {
                     <td className="px-4 py-3">{method.status.replaceAll("_", " ")}</td>
                     <td className="px-4 py-3 whitespace-nowrap">{method.effectiveDate}</td>
                     <td className="px-4 py-3 whitespace-nowrap">{method.lastReviewed}</td>
+                    <td className="px-4 py-3 text-zinc-400">{method.reviewCadence}</td>
                     <td className="px-4 py-3 text-zinc-400">{method.nextReviewTrigger}</td>
+                    <td className="px-4 py-3 text-zinc-400">
+                      <ul className="list-disc space-y-1 pl-4">
+                        {method.assumptions.map((assumption) => (
+                          <li key={assumption}>{assumption}</li>
+                        ))}
+                      </ul>
+                    </td>
+                    <td className="px-4 py-3 text-zinc-400">
+                      <ul className="list-disc space-y-1 pl-4">
+                        {method.exclusions.map((exclusion) => (
+                          <li key={exclusion}>{exclusion}</li>
+                        ))}
+                      </ul>
+                    </td>
                     <td className="px-4 py-3">
                       {method.sources.map((source, index) => (
                         <span key={source.href}>

@@ -19,7 +19,10 @@ export type CalculationMethod = {
   status: CalculationStatus;
   effectiveDate: string;
   lastReviewed: string;
+  reviewCadence: string;
   nextReviewTrigger: string;
+  assumptions: readonly string[];
+  exclusions: readonly string[];
   sources: readonly CalculationSource[];
 };
 
@@ -40,7 +43,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual",
     nextReviewTrigger: "When withdrawal-rate methodology changes",
+    assumptions: ["Annual spending is in today’s dollars", "The chosen withdrawal rate is a planning input"],
+    exclusions: ["Taxes", "Investment fees", "Changing retirement spending"],
     sources: [{ label: "Bengen withdrawal-rate research", href: FPA_WITHDRAWAL_RATES }],
   },
   {
@@ -50,7 +56,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual",
     nextReviewTrigger: "Annual methodology review",
+    assumptions: ["Constant real return", "End-of-year contributions"],
+    exclusions: ["Market volatility", "Income changes", "Tax-account timing"],
     sources: [{ label: "SEC compound-interest calculator", href: SEC_COMPOUND_INTEREST }],
   },
   {
@@ -60,7 +69,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual",
     nextReviewTrigger: "Annual methodology review",
+    assumptions: ["No future retirement contributions", "Constant real return to retirement age"],
+    exclusions: ["Healthcare costs", "Social Security", "Sequence risk"],
     sources: [{ label: "SEC compound-interest calculator", href: SEC_COMPOUND_INTEREST }],
   },
   {
@@ -70,7 +82,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual",
     nextReviewTrigger: "When withdrawal-rate methodology changes",
+    assumptions: ["Work income offsets annual expenses", "The remaining gap uses the chosen withdrawal rate"],
+    exclusions: ["Job stability", "Benefits", "Taxes"],
     sources: [{ label: "Bengen withdrawal-rate research", href: FPA_WITHDRAWAL_RATES }],
   },
   {
@@ -80,7 +95,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual",
     nextReviewTrigger: "Annual methodology review",
+    assumptions: ["Spending remains fixed", "Savings rate determines income and annual savings"],
+    exclusions: ["Income volatility", "Taxes", "Investment fees"],
     sources: [{ label: "SEC compound-interest calculator", href: SEC_COMPOUND_INTEREST }],
   },
   {
@@ -90,7 +108,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "beta",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Quarterly during beta; annual after validation",
     nextReviewTrigger: "When the simulation model or assumptions change",
+    assumptions: ["Independent annual return shocks", "Fixed volatility preset", "End-of-year contributions"],
+    exclusions: ["Historical backtesting", "Tax effects", "Forecasting"],
     sources: [{ label: "FINRA Monte Carlo overview", href: FINRA_MONTE_CARLO }],
   },
   {
@@ -100,7 +121,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "development",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual",
     nextReviewTrigger: "When planning-tool assumptions change",
+    assumptions: ["Constant real return", "A FIRE target based on annual spending"],
+    exclusions: ["Career changes", "Taxes", "Market volatility"],
     sources: [{ label: "SEC compound-interest calculator", href: SEC_COMPOUND_INTEREST }],
   },
   {
@@ -110,7 +134,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "development",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual",
     nextReviewTrigger: "When planning-tool assumptions change",
+    assumptions: ["Portfolio income uses the chosen withdrawal rate", "Income offsets annual spending"],
+    exclusions: ["Taxes", "Account withdrawals", "Benefits"],
     sources: [{ label: "Bengen withdrawal-rate research", href: FPA_WITHDRAWAL_RATES }],
   },
   {
@@ -120,7 +147,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "development",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual",
     nextReviewTrigger: "When planning-tool assumptions change",
+    assumptions: ["Guardrails apply to a baseline withdrawal rate", "Adjustment percentages are user inputs"],
+    exclusions: ["Tax effects", "Investment returns", "Personal spending flexibility"],
     sources: [{ label: "Bengen withdrawal-rate research", href: FPA_WITHDRAWAL_RATES }],
   },
   {
@@ -130,7 +160,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "development",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual",
     nextReviewTrigger: "When planning-tool assumptions change",
+    assumptions: ["Initial health costs grow at the selected medical-inflation rate", "Medicare timing is user supplied"],
+    exclusions: ["ACA subsidies", "Coverage changes", "Individual medical needs"],
     sources: [{ label: "SEC compound-interest calculator", href: SEC_COMPOUND_INTEREST }],
   },
   {
@@ -140,7 +173,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "development",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual while in development",
     nextReviewTrigger: "When verified historical data is added or transformed",
+    assumptions: ["Only verified source data may be used", "Withdrawal timing is documented with the dataset"],
+    exclusions: ["Unverified datasets", "Future outcome probabilities", "Tax modeling"],
     sources: [{ label: "Bengen withdrawal-rate research", href: FPA_WITHDRAWAL_RATES }],
   },
   {
@@ -150,7 +186,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "development",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
-    nextReviewTrigger: "Annually and when federal tax law changes",
+    reviewCadence: "Annual and when federal tax law changes",
+    nextReviewTrigger: "When IRS guidance or tax-year parameters change",
+    assumptions: ["Current-year federal estimate", "Selected tax parameters apply"],
+    exclusions: ["State taxes", "IRMAA", "Multiyear optimization"],
     sources: [{ label: "IRS Publication 590-A", href: IRS_ROTH }],
   },
   {
@@ -160,7 +199,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     status: "blocked_external_review",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
+    reviewCadence: "Annual and when IRS guidance changes",
     nextReviewTrigger: "When Notice 2022-6 implementation receives external review",
+    assumptions: ["IRS Notice 2022-6 is the governing method", "External professional review is required"],
+    exclusions: ["Actionable payment guidance before review", "Individual tax advice", "Automatic rate retrieval"],
     sources: [{ label: "IRS SEPP guidance", href: IRS_SEPP }],
   },
 ] as const;
@@ -191,8 +233,20 @@ export function validateCalculationRegistry(methods: readonly CalculationMethod[
     if (!isIsoDate(method.effectiveDate) || !isIsoDate(method.lastReviewed)) {
       issues.push(`${method.id}: effective and review dates must be ISO dates`);
     }
+    if (!method.reviewCadence?.trim()) {
+      issues.push(`${method.id}: review cadence is required`);
+    }
     if (!method.nextReviewTrigger.trim()) {
       issues.push(`${method.id}: next review trigger is required`);
+    }
+    if (method.reviewCadence === method.nextReviewTrigger) {
+      issues.push(`${method.id}: review cadence must differ from next review trigger`);
+    }
+    if (!method.assumptions?.some((assumption) => assumption.trim())) {
+      issues.push(`${method.id}: at least one assumption is required`);
+    }
+    if (!method.exclusions?.some((exclusion) => exclusion.trim())) {
+      issues.push(`${method.id}: at least one exclusion is required`);
     }
     if (method.sources.length === 0) {
       issues.push(`${method.id}: at least one HTTPS source is required`);
