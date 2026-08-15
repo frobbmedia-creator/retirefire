@@ -1,0 +1,12 @@
+{
+  "status": "unverified_source_blocked",
+  "productionEnabled": false,
+  "methodologyVersion": "1.0.0",
+  "reason": "Production historical results remain disabled until the submitted series can be independently reproduced from a documented source, transformation method, coverage, and checksum.",
+  "requiredBeforeEnabling": [
+    "Documented source provenance and retrieval date",
+    "Reproducible transformation method",
+    "Series coverage validation",
+    "Cryptographic checksum of the verified CSV"
+  ]
+}
