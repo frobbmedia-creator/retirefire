@@ -6,8 +6,10 @@ import {
   applySequenceStress,
   parseHistoricalCsv,
   runHistoricalScenarios,
+  type HistoricalScenarioResult,
   type HistoricalDatasetMetadata,
 } from "./historical-scenarios";
+import { historicalPanelModel } from "../components/calculators/HistoricalScenarioPanel";
 import { calculationVersion } from "./calculation-registry";
 
 function assert(condition: boolean, message: string): asserts condition {
@@ -240,6 +242,27 @@ assert(rollingDataset.ok, "rolling fixture must parse");
   assert(stressed.map((row) => row.year).join(",") === "2001,2002,2000", "worst rows move first as intact rows");
   assert(stressed[0]!.stockReturn === -0.2 && stressed[0]!.bondReturn === 0.03 && stressed[0]!.inflation === 0.03, "stress preserves an entire row");
   assert(stressed.map((row) => row.sequenceLabel).join(",") === "synthetic-sequence-1,synthetic-sequence-2,synthetic-sequence-3", "stress labels the synthetic order");
+}
+
+// Break caught: an unverified historical source must never surface a success percentage from an otherwise valid result.
+{
+  const verifiedResult: HistoricalScenarioResult = {
+    ok: true,
+    methodologyVersion: "0.1.0",
+    withdrawalTiming: "beginning_of_year",
+    cycleCount: 3,
+    successCount: 2,
+    cycles: [],
+  };
+  const unavailable = historicalPanelModel("unverified_source_blocked", verifiedResult);
+  const ready = historicalPanelModel("verified", verifiedResult);
+
+  assert(unavailable.state === "unavailable", "unverified source must render as unavailable");
+  assert(unavailable.message === "Historical scenarios are unavailable until the source data is independently verified.", "unverified message");
+  assert(unavailable.successPercentage === undefined, "unverified source must not expose a success percentage");
+  assert(ready.state === "ready", "verified source with a result must render as ready");
+  assert(ready.successPercentage === "67%", "verified result success percentage");
+  assert(ready.summary === "2 of 3 historical cycles lasted the full horizon.", "verified denominator summary");
 }
 
 console.log("All historical-scenarios tests passed.");

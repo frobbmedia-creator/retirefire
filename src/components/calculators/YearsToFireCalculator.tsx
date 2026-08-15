@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { GrowthChart } from "@/components/ui/chart";
 import { usePlanner } from "@/components/planner/PlannerProvider";
 import { StressTestPanel } from "@/components/calculators/StressTestPanel";
+import { HistoricalScenarioPanel } from "@/components/calculators/HistoricalScenarioPanel";
 import { SensitivityStrip } from "@/components/calculators/SensitivityStrip";
 import { buildProjectionSeries } from "@/lib/calculations";
 import { formatCurrency, formatPercent, formatYears } from "@/lib/format";
@@ -147,6 +148,8 @@ export function YearsToFireCalculator() {
           enabled={fire.fireNumber > 0}
           disabledReason="Set a positive FIRE target (spending and withdrawal rate) to run the stress test."
         />
+
+        <HistoricalScenarioPanel />
       </CardContent>
     </Card>
   );

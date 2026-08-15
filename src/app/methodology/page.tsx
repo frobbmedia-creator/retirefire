@@ -346,9 +346,28 @@ export default function MethodologyPage() {
           </p>
         </section>
 
+        <section id="historical-scenarios">
+          <h2 className="text-xl font-semibold text-zinc-50">
+            11. Historical retirement scenarios
+          </h2>
+          <p className="mt-3 text-zinc-400">
+            Historical scenario results use overlapping, contiguous periods from
+            a verified annual return series. Each cycle applies withdrawals at
+            the beginning of the year, then applies the year&apos;s portfolio
+            return and reports the ending balance in real dollars. The cycle
+            denominator is the number of full-horizon periods available in that
+            verified series.
+          </p>
+          <p className="mt-3 text-zinc-400">
+            Historical scenarios are not future probabilities. RetireFire keeps
+            this tool unavailable until its source, transformation method,
+            coverage, and checksum can be independently reproduced.
+          </p>
+        </section>
+
         <section>
           <h2 className="text-xl font-semibold text-zinc-50">
-            11. Calculation governance
+            12. Calculation governance
           </h2>
           <p className="mt-3 text-zinc-400">
             Every calculation tracked here has a stable methodology version and
@@ -421,7 +440,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-zinc-50">12. Further reading</h2>
+          <h2 className="text-xl font-semibold text-zinc-50">13. Further reading</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-zinc-400">
             <li>
               Bengen (1994) and Trinity Study papers (library / journal access)

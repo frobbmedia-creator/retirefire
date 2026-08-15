@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { usePlanner } from "@/components/planner/PlannerProvider";
 import { StressTestPanel } from "@/components/calculators/StressTestPanel";
+import { HistoricalScenarioPanel } from "@/components/calculators/HistoricalScenarioPanel";
 import { SensitivityStrip } from "@/components/calculators/SensitivityStrip";
 import { CoastAgeTable } from "@/components/calculators/CoastAgeTable";
 import { formatCurrency, formatPercent, formatYears } from "@/lib/format";
@@ -167,6 +168,8 @@ export function CoastFireCalculator() {
               : "Horizon must be at least one year."
           }
         />
+
+        <HistoricalScenarioPanel />
       </CardContent>
     </Card>
   );
