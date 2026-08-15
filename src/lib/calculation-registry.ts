@@ -35,6 +35,13 @@ const FINRA_MONTE_CARLO =
 const IRS_ROTH = "https://www.irs.gov/publications/p590a";
 const IRS_2026_TAX = "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf";
 const IRS_SEPP = "https://www.irs.gov/retirement-plans/substantially-equal-periodic-payments";
+const SSA_EARLY_RETIREMENT =
+  "https://www.ssa.gov/oact/quickcalc/earlyretire.html";
+const SSA_DELAYED_RETIREMENT =
+  "https://www.ssa.gov/benefits/retirement/planner/delayret.html";
+const SSA_RETIREMENT_EXAMPLE =
+  "https://www.ssa.gov/policy/docs/statcomps/supplement/2025/apnc.html";
+const IRS_SOCIAL_SECURITY_TAX = "https://www.irs.gov/pub/irs-pdf/p915.pdf";
 
 export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
   {
@@ -210,6 +217,55 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
         href: IRS_2026_TAX,
       },
       { label: "IRS Publication 590-A", href: IRS_ROTH },
+    ],
+  },
+  {
+    id: "social-security-claim",
+    name: "Social Security claim-age estimate",
+    version: "1.0.0",
+    status: "active",
+    effectiveDate: "2026-08-15",
+    lastReviewed: "2026-08-15",
+    reviewCadence: "Annual and when Social Security law or SSA guidance changes",
+    nextReviewTrigger: "When SSA changes retirement ages or worker claim-age adjustments",
+    assumptions: [
+      "The entered monthly amount is the worker's own SSA estimate at full retirement age",
+      "The birth year already applies SSA's prior-year rule for a January 1 birthday",
+      "Retired-worker early reductions and delayed credits are applied by whole claim month",
+    ],
+    exclusions: [
+      "The worker's earnings record, eligibility, primary insurance amount, and future COLAs",
+      "Spousal, survivor, disability, dependent, and family-maximum benefits",
+      "The retirement earnings test, payment timing, taxes, and future law",
+    ],
+    sources: [
+      { label: "SSA Benefit Reduction for Early Retirement", href: SSA_EARLY_RETIREMENT },
+      { label: "SSA Delayed Retirement Credits", href: SSA_DELAYED_RETIREMENT },
+      { label: "SSA 2025 retired-worker benefit examples", href: SSA_RETIREMENT_EXAMPLE },
+    ],
+  },
+  {
+    id: "social-security-taxable",
+    name: "Federal taxable Social Security estimate",
+    version: "1.0.0",
+    status: "active",
+    effectiveDate: "2026-08-15",
+    lastReviewed: "2026-08-15",
+    reviewCadence: "Annual and when federal law, forms, or IRS guidance changes",
+    nextReviewTrigger: "When the IRS publishes a newer Publication 915 worksheet",
+    assumptions: [
+      "Publication 915 (2025) Worksheet 1 applies",
+      "Other income is an AGI-like amount before Social Security and tax-exempt interest",
+      "The estimate is limited to single and married-filing-jointly returns",
+    ],
+    exclusions: [
+      "Filing statuses other than single and married filing jointly",
+      "Lump-sum elections, benefit repayments, and special worksheet adjustments",
+      "State and local tax and total federal income tax liability",
+      "Tax years other than 2025 and future law",
+    ],
+    sources: [
+      { label: "IRS Publication 915 (2025)", href: IRS_SOCIAL_SECURITY_TAX },
     ],
   },
   {

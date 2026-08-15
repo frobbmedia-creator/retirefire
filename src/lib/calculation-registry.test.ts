@@ -49,6 +49,44 @@ assert(
   ),
 );
 
+// This catches either retirement-income estimate shipping without active,
+// source-backed governance metadata.
+const socialSecurityClaimMethod = CALCULATION_REGISTRY.find(
+  (method) => method.id === "social-security-claim",
+);
+assert(socialSecurityClaimMethod);
+assert.equal(socialSecurityClaimMethod.version, "1.0.0");
+assert.equal(socialSecurityClaimMethod.status, "active");
+assert(
+  socialSecurityClaimMethod.sources.some(
+    (source) => source.href === "https://www.ssa.gov/oact/quickcalc/earlyretire.html",
+  ),
+);
+assert(
+  socialSecurityClaimMethod.sources.some(
+    (source) =>
+      source.href ===
+      "https://www.ssa.gov/benefits/retirement/planner/delayret.html",
+  ),
+);
+
+const taxableSocialSecurityMethod = CALCULATION_REGISTRY.find(
+  (method) => method.id === "social-security-taxable",
+);
+assert(taxableSocialSecurityMethod);
+assert.equal(taxableSocialSecurityMethod.version, "1.0.0");
+assert.equal(taxableSocialSecurityMethod.status, "active");
+assert(
+  taxableSocialSecurityMethod.sources.some(
+    (source) => source.href === "https://www.irs.gov/pub/irs-pdf/p915.pdf",
+  ),
+);
+assert(
+  taxableSocialSecurityMethod.exclusions.includes(
+    "State and local tax and total federal income tax liability",
+  ),
+);
+
 const baseMethod = CALCULATION_REGISTRY[0]!;
 
 function issuesFor(patch: Record<string, unknown>): string {

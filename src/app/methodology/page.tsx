@@ -425,9 +425,95 @@ export default function MethodologyPage() {
           </p>
         </section>
 
+        <section id="social-security-estimates">
+          <h2 className="text-xl font-semibold text-zinc-50">
+            13. Social Security claim and federal taxable-benefit estimates
+          </h2>
+          <p className="mt-3 text-zinc-400">
+            The claim-age estimate starts with the retired worker&apos;s own SSA
+            monthly estimate at full retirement age. Full retirement age follows
+            SSA&apos;s birth-year schedule. For a January 1 birthday, SSA says to use
+            the prior birth year. Claim ages are whole months from age 62 through
+            exactly age 70.
+          </p>
+          <pre className="mt-4 overflow-x-auto rounded-xl bg-zinc-900 p-4 font-mono text-sm text-emerald-300 ring-1 ring-zinc-800">
+            First 36 early months: reduce 5/9 of 1% per month{"\n"}
+            Additional early months: reduce 5/12 of 1% per month{"\n"}
+            After FRA: apply the birth-year delayed-credit rate monthly{"\n"}
+            Delayed credits stop at age 70{"\n"}
+            Estimated monthly benefit: next lower whole dollar
+          </pre>
+          <p className="mt-3 text-zinc-400">
+            The monthly early-retirement rules and FRA schedule come from SSA&apos;s{" "}
+            <a
+              href="https://www.ssa.gov/oact/quickcalc/earlyretire.html"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Benefit Reduction for Early Retirement
+            </a>
+            . Delayed-credit rates and the age-70 stop come from SSA&apos;s{" "}
+            <a
+              href="https://www.ssa.gov/benefits/retirement/planner/delayret.html"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Delayed Retirement Credits
+            </a>
+            . Dollar rounding and golden cases were checked against the{" "}
+            <a
+              href="https://www.ssa.gov/policy/docs/statcomps/supplement/2025/apnc.html"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Annual Statistical Supplement, 2025, Appendix C
+            </a>
+            . This is method v{calculationVersion("social-security-claim")}.
+          </p>
+          <p className="mt-3 text-zinc-400">
+            The separate taxable-benefit estimate implements Worksheet 1 from{" "}
+            <a
+              href="https://www.irs.gov/pub/irs-pdf/p915.pdf"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              IRS Publication 915 (2025)
+            </a>
+            , applicable to 2025 federal income tax returns and the latest
+            completed publication reviewed on August 15, 2026. It supports
+            single and married-filing-jointly estimates only.
+          </p>
+          <pre className="mt-4 overflow-x-auto rounded-xl bg-zinc-900 p-4 font-mono text-sm text-emerald-300 ring-1 ring-zinc-800">
+            Provisional income = other income + tax-exempt interest{"\n"}
+            {"                     "}+ 50% of gross Social Security{"\n"}
+            Lower thresholds: $25,000 single · $32,000 joint{"\n"}
+            Upper thresholds: $34,000 single · $44,000 joint{"\n"}
+            Maximum included in federal taxable income: 85% of benefits
+          </pre>
+          <p className="mt-3 text-zinc-400">
+            Gross benefits are cash received and reduce the later portfolio gap;
+            the federally taxable portion is only the amount included in federal
+            taxable income. It is not the tax owed and is never substituted for
+            gross income. This is method v
+            {calculationVersion("social-security-taxable")}. Manual benefit mode
+            remains available for a user who already has an SSA estimate.
+          </p>
+          <p className="mt-3 text-zinc-400">
+            The models do not provide individualized claiming advice and exclude
+            earnings-record calculations, COLAs, the retirement earnings test,
+            spousal and survivor benefits, state tax, total federal tax, lump-sum
+            elections, repayments, special Publication 915 adjustments, and
+            future law. Exact inputs and results remain client-side.
+          </p>
+        </section>
+
         <section>
           <h2 className="text-xl font-semibold text-zinc-50">
-            13. Calculation governance
+            14. Calculation governance
           </h2>
           <p className="mt-3 text-zinc-400">
             Every calculation tracked here has a stable methodology version and
@@ -500,7 +586,7 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-zinc-50">14. Further reading</h2>
+          <h2 className="text-xl font-semibold text-zinc-50">15. Further reading</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-zinc-400">
             <li>
               Bengen (1994) and Trinity Study papers (library / journal access)
