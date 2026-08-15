@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import { CALCULATION_REGISTRY } from "@/lib/calculation-registry";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/methodology", {
@@ -268,10 +269,15 @@ export default function MethodologyPage() {
             9. What we deliberately omit (for now)
           </h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-zinc-400">
-            <li>Taxes (ordinary income, capital gains, RMDs, NIIT)</li>
+            <li>
+              Comprehensive tax planning, including capital gains, RMDs, NIIT,
+              state taxes, and multiyear Roth optimization
+            </li>
             <li>Investment fees and advisory costs</li>
-            <li>Social Security, pensions, and annuities</li>
-            <li>Healthcare and ACA subsidy cliffs</li>
+            <li>
+              Personalized Social Security, pension, annuity, and ACA subsidy
+              analysis
+            </li>
             <li>Taxes on withdrawals, account types, and rebalancing rules inside stress tests</li>
             <li>Historical cycle backtesting (cFIREsim-style overlapping periods)</li>
             <li>Inflation shocks, currency risk, and home equity strategies</li>
@@ -341,7 +347,63 @@ export default function MethodologyPage() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-zinc-50">11. Further reading</h2>
+          <h2 className="text-xl font-semibold text-zinc-50">
+            11. Calculation governance
+          </h2>
+          <p className="mt-3 text-zinc-400">
+            Every calculation tracked here has a stable methodology version and
+            review record. Status is intentionally visible: development and beta
+            entries are not validated planning advice, and SEPP remains blocked
+            until external review is complete.
+          </p>
+          <div className="mt-4 overflow-x-auto rounded-xl ring-1 ring-zinc-800">
+            <table className="w-full min-w-[920px] text-left text-sm">
+              <thead className="bg-zinc-900 text-zinc-400">
+                <tr>
+                  <th className="px-4 py-3 font-medium">Method</th>
+                  <th className="px-4 py-3 font-medium">Version</th>
+                  <th className="px-4 py-3 font-medium">Status</th>
+                  <th className="px-4 py-3 font-medium">Effective date</th>
+                  <th className="px-4 py-3 font-medium">Last review</th>
+                  <th className="px-4 py-3 font-medium">Next review trigger</th>
+                  <th className="px-4 py-3 font-medium">Sources</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-800 text-zinc-300">
+                {CALCULATION_REGISTRY.map((method) => (
+                  <tr key={method.id}>
+                    <td className="px-4 py-3 font-medium text-zinc-100">
+                      {method.name}
+                    </td>
+                    <td className="px-4 py-3 font-mono text-xs">{method.version}</td>
+                    <td className="px-4 py-3">{method.status.replaceAll("_", " ")}</td>
+                    <td className="px-4 py-3 whitespace-nowrap">{method.effectiveDate}</td>
+                    <td className="px-4 py-3 whitespace-nowrap">{method.lastReviewed}</td>
+                    <td className="px-4 py-3 text-zinc-400">{method.nextReviewTrigger}</td>
+                    <td className="px-4 py-3">
+                      {method.sources.map((source, index) => (
+                        <span key={source.href}>
+                          {index > 0 ? ", " : ""}
+                          <a
+                            href={source.href}
+                            className="text-emerald-400 hover:underline"
+                            rel="noreferrer"
+                            target="_blank"
+                          >
+                            {source.label}
+                          </a>
+                        </span>
+                      ))}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-zinc-50">12. Further reading</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-zinc-400">
             <li>
               Bengen (1994) and Trinity Study papers (library / journal access)

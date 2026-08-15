@@ -4,7 +4,24 @@
  * No-ops safely when providers are unavailable.
  */
 
-export type AnalyticsProps = Record<string, string | number | boolean | undefined>;
+export const ANALYTICS_PROP_ALLOWLIST = [
+  "calculator",
+  "methodology_version",
+  "status",
+  "validation_error",
+  "action",
+  "scenario_band",
+  "source",
+  "destination",
+  "path",
+  "tool",
+  "step",
+] as const;
+
+type AnalyticsProperty = (typeof ANALYTICS_PROP_ALLOWLIST)[number];
+type AnalyticsValue = string | boolean;
+
+export type AnalyticsProps = Partial<Record<AnalyticsProperty, AnalyticsValue>>;
 
 declare global {
   interface Window {
@@ -17,20 +34,31 @@ declare global {
   }
 }
 
-function cleanProps(props?: AnalyticsProps): Record<string, string | number | boolean> {
+function isAllowedAnalyticsValue(key: AnalyticsProperty, value: unknown): value is AnalyticsValue {
+  if (typeof value === "boolean") return true;
+  if (typeof value !== "string") return false;
+  if (key === "methodology_version") return /^\d+\.\d+\.\d+$/.test(value);
+  if (key === "path") return /^\/[a-z0-9/-]*$/.test(value);
+  if (key === "step") return /^step_[1-9]$/.test(value);
+  return /^[a-z][a-z0-9_-]{0,63}$/.test(value);
+}
+
+/** Keep event data categorical and operational; raw financial inputs never leave the client. */
+export function sanitizeAnalyticsProps(props?: Record<string, unknown>): AnalyticsProps {
   if (!props) return {};
-  const out: Record<string, string | number | boolean> = {};
-  for (const [k, v] of Object.entries(props)) {
-    if (v === undefined) continue;
-    out[k] = v;
+  const out: AnalyticsProps = {};
+  for (const [key, value] of Object.entries(props)) {
+    if (!ANALYTICS_PROP_ALLOWLIST.includes(key as AnalyticsProperty)) continue;
+    const allowedKey = key as AnalyticsProperty;
+    if (isAllowedAnalyticsValue(allowedKey, value)) out[allowedKey] = value;
   }
   return out;
 }
 
 /** Track a named conversion / engagement event across available providers. */
-export function trackEvent(name: string, props?: AnalyticsProps): void {
+export function trackEvent(name: string, props?: Record<string, unknown>): void {
   if (typeof window === "undefined") return;
-  const data = cleanProps(props);
+  const data = sanitizeAnalyticsProps(props);
 
   try {
     // Vercel Analytics custom events (when available)

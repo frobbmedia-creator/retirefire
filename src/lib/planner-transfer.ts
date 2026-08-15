@@ -4,15 +4,11 @@ import {
   type PlannerState,
   type PlannerStateIssue,
 } from "@/lib/planner-state";
+import { calculationVersion } from "@/lib/calculation-registry";
 
 export const MAX_PLANNER_IMPORT_BYTES = 256 * 1024;
 
-const CALCULATION_VERSIONS = {
-  fire: "1.0.0",
-  years: "1.0.0",
-  coast: "1.0.0",
-  barista: "1.0.0",
-} as const;
+const PLANNER_CALCULATION_IDS = ["fire", "years", "coast", "barista"] as const;
 
 export type PlannerImportResult =
   | { ok: true; state: PlannerState; issues: [] }
@@ -34,7 +30,9 @@ export function exportPlannerJson(state: PlannerState): string {
   return JSON.stringify({
     schemaVersion: PLANNER_SCHEMA_VERSION,
     exportedAt: new Date().toISOString(),
-    calculationVersions: CALCULATION_VERSIONS,
+    calculationVersions: Object.fromEntries(
+      PLANNER_CALCULATION_IDS.map((id) => [id, calculationVersion(id)]),
+    ),
     state: parsed.state,
   });
 }
