@@ -4,7 +4,7 @@
  * No-ops safely when providers are unavailable.
  */
 
-import { calculationVersion } from "@/lib/calculation-registry";
+import { CALCULATION_REGISTRY, calculationVersion } from "@/lib/calculation-registry";
 
 export const ANALYTICS_PROP_ALLOWLIST = [
   "calculator",
@@ -40,7 +40,7 @@ export const ANALYTICS_ALLOWED_VALUES: Record<AnalyticsProperty, readonly string
     "roth-conversion",
     "sepp-72t",
   ],
-  methodology_version: ["1.0.0", "0.1.0"],
+  methodology_version: [...new Set(CALCULATION_REGISTRY.map((method) => method.version))],
   status: ["started", "valid_result", "complete", "on-track", "close", "needs-work"],
   validation_error: ["invalid_input", "unsupported_state", "calculation_error"],
   action: ["assumption_interaction", "methodology_open", "risk_disclosure_open"],

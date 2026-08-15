@@ -7,9 +7,21 @@ import {
 } from "./calculation-registry";
 import {
   ANALYTICS_PROP_ALLOWLIST,
-  calculatorLifecycleProps,
   sanitizeAnalyticsProps,
 } from "./analytics";
+import {
+  createCalculatorLifecycleSession,
+  plannerCalculatorHasValidResult,
+  type PlannerMutation,
+} from "./calculator-lifecycle";
+import { PLANNER_DEFAULTS, type PlannerState } from "./planner-state";
+import {
+  calculateBaristaFire,
+  calculateCoastFire,
+  calculateFireNumber,
+  calculateYearsToFire,
+  effectiveRealReturn,
+} from "./calculations";
 
 // This catches accidental registry changes that remove its governance metadata.
 assert.deepEqual(validateCalculationRegistry(CALCULATION_REGISTRY), []);
@@ -86,10 +98,91 @@ assert.deepEqual(sanitizeAnalyticsProps({ status: "age_42" }), {});
 assert.deepEqual(sanitizeAnalyticsProps({ scenario_band: "portfolio_500000" }), {});
 assert.deepEqual(sanitizeAnalyticsProps({ scenario_band: "unrecognized_band" }), {});
 
-assert.deepEqual(calculatorLifecycleProps("coast", "valid_result"), {
-  calculator: "coast",
-  methodology_version: "1.0.0",
-  status: "valid_result",
-});
+// Methodology versions are governed by the registry, rather than copied into analytics.
+for (const method of CALCULATION_REGISTRY) {
+  assert.deepEqual(
+    sanitizeAnalyticsProps({ methodology_version: method.version }),
+    { methodology_version: method.version },
+  );
+}
+
+function plannerResults(state: PlannerState) {
+  const realReturn = effectiveRealReturn(
+    state.expectedReturnPct / 100,
+    state.inflationPct / 100,
+    state.useNominal,
+  );
+  const fire = calculateFireNumber({
+    annualExpenses: state.annualExpenses,
+    withdrawalRate: state.withdrawalRatePct / 100,
+  });
+  const years = calculateYearsToFire({
+    currentPortfolio: state.currentPortfolio,
+    annualContribution: state.annualContribution,
+    annualReturn: realReturn,
+    targetAmount: fire.fireNumber,
+  });
+  const coast = calculateCoastFire({
+    fireNumber: fire.fireNumber,
+    currentPortfolio: state.currentPortfolio,
+    currentAge: state.currentAge,
+    retirementAge: state.retirementAge,
+    annualReturn: realReturn,
+  });
+  const barista = calculateBaristaFire({
+    annualExpenses: state.annualExpenses,
+    partTimeIncome: state.partTimeIncome,
+    withdrawalRate: state.withdrawalRatePct / 100,
+    currentPortfolio: state.currentPortfolio,
+    annualContribution: state.annualContribution,
+    annualReturn: realReturn,
+  });
+  return { state, realReturn, fire, years, coast, barista };
+}
+
+function mutation(sequence: number, source: PlannerMutation["source"]): PlannerMutation {
+  return { sequence, source };
+}
+
+// This catches a false completion event on mount, external synchronization, or an invalid result.
+const lifecycle = createCalculatorLifecycleSession();
+assert.deepEqual(lifecycle.record(null, ["coast"], plannerResults(PLANNER_DEFAULTS)), []);
+assert.deepEqual(
+  lifecycle.record(mutation(1, "hydration"), ["coast"], plannerResults(PLANNER_DEFAULTS)),
+  [],
+);
+assert.deepEqual(
+  lifecycle.record(mutation(2, "history"), ["coast"], plannerResults(PLANNER_DEFAULTS)),
+  [],
+);
+
+const invalidCoast = plannerResults({ ...PLANNER_DEFAULTS, retirementAge: PLANNER_DEFAULTS.currentAge });
+assert.equal(plannerCalculatorHasValidResult("coast", invalidCoast), false);
+assert.deepEqual(
+  lifecycle.record(mutation(3, "field"), ["coast"], invalidCoast),
+  [{ calculator: "coast", status: "started" }],
+);
+
+const validCoast = plannerResults(PLANNER_DEFAULTS);
+assert.equal(plannerCalculatorHasValidResult("coast", validCoast), true);
+assert.deepEqual(
+  lifecycle.record(mutation(4, "preset"), ["coast"], validCoast),
+  [{ calculator: "coast", status: "valid_result" }],
+);
+assert.deepEqual(lifecycle.record(mutation(5, "patch"), ["coast"], validCoast), []);
+assert.deepEqual(lifecycle.record(mutation(6, "reset"), ["coast"], validCoast), []);
+assert.deepEqual(lifecycle.record(mutation(6, "reset"), ["coast"], validCoast), []);
+
+for (const source of ["field", "preset", "patch", "reset"] as const) {
+  const actionLifecycle = createCalculatorLifecycleSession();
+  assert.deepEqual(
+    actionLifecycle.record(mutation(1, source), ["fire"], validCoast),
+    [
+      { calculator: "fire", status: "started" },
+      { calculator: "fire", status: "valid_result" },
+    ],
+    `${source} user action should begin and complete a valid calculator lifecycle`,
+  );
+}
 
 console.log("All calculation-registry tests passed.");

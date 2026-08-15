@@ -32,6 +32,10 @@ import {
   type YearsToFireResult,
 } from "@/lib/calculations";
 import { FIRE_STYLES, type FireStyleId } from "@/lib/constants";
+import type {
+  PlannerMutation,
+  UserPlannerMutationSource,
+} from "@/lib/calculator-lifecycle";
 
 type PlannerContextValue = {
   state: PlannerState;
@@ -39,6 +43,7 @@ type PlannerContextValue = {
   patch: (partial: Partial<PlannerState>) => void;
   reset: () => void;
   setFireStyle: (style: FireStyleId) => void;
+  plannerMutation: PlannerMutation | null;
   /** Effective real return used in projections (decimal) */
   realReturn: number;
   withdrawalRate: number;
@@ -60,8 +65,15 @@ export function PlannerProvider({
 }) {
   const pathname = usePathname();
   const hydrated = useRef(false);
+  const mutationSequence = useRef(0);
   const [hydrationReady, setHydrationReady] = useState(false);
   const [state, setState] = useState<PlannerState>(PLANNER_DEFAULTS);
+  const [plannerMutation, setPlannerMutation] = useState<PlannerMutation | null>(null);
+
+  const recordUserMutation = useCallback((source: UserPlannerMutationSource) => {
+    mutationSequence.current += 1;
+    setPlannerMutation({ sequence: mutationSequence.current, source });
+  }, []);
 
   // Resolve URL, storage, and defaults only after the browser has hydrated.
   useEffect(() => {
@@ -102,15 +114,20 @@ export function PlannerProvider({
   const setField = useCallback(
     <K extends keyof PlannerState>(key: K, value: PlannerState[K]) => {
       setState((prev) => ({ ...prev, [key]: value }));
+      recordUserMutation("field");
     },
-    [],
+    [recordUserMutation],
   );
 
   const patch = useCallback((partial: Partial<PlannerState>) => {
     setState((prev) => ({ ...prev, ...partial }));
-  }, []);
+    recordUserMutation("patch");
+  }, [recordUserMutation]);
 
-  const reset = useCallback(() => setState({ ...PLANNER_DEFAULTS }), []);
+  const reset = useCallback(() => {
+    setState({ ...PLANNER_DEFAULTS });
+    recordUserMutation("reset");
+  }, [recordUserMutation]);
 
   const setFireStyle = useCallback((style: FireStyleId) => {
     const preset = FIRE_STYLES.find((s) => s.id === style);
@@ -119,7 +136,8 @@ export function PlannerProvider({
       fireStyle: style,
       annualExpenses: preset ? preset.spendingHint : prev.annualExpenses,
     }));
-  }, []);
+    recordUserMutation("preset");
+  }, [recordUserMutation]);
 
   const realReturn = useMemo(
     () =>
@@ -198,6 +216,7 @@ export function PlannerProvider({
       patch,
       reset,
       setFireStyle,
+      plannerMutation,
       realReturn,
       withdrawalRate,
       fire,
@@ -212,6 +231,7 @@ export function PlannerProvider({
       patch,
       reset,
       setFireStyle,
+      plannerMutation,
       realReturn,
       withdrawalRate,
       fire,
