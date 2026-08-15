@@ -35,6 +35,25 @@ const validState = {
   same(result.state, validState, "valid URL should preserve the planner state");
 }
 
+// Schema-valid fractional inputs must not change when URL state overrides storage.
+{
+  const fractionalState = {
+    ...PLANNER_DEFAULTS,
+    annualExpenses: 48_000.25,
+    withdrawalRatePct: 3.25,
+    expectedReturnPct: 5.25,
+    inflationPct: 2.75,
+    currentPortfolio: 150_000.75,
+    annualContribution: 30_000.5,
+    currentAge: 42.5,
+    retirementAge: 65.25,
+    partTimeIncome: 25_000.5,
+  };
+  const result = parsePlannerSearchParams(new URLSearchParams(stateToQueryString(fractionalState)));
+  assert(result.ok, "fractional URL should parse");
+  same(result.state, fractionalState, "fractional URL should preserve every supported value");
+}
+
 // The parser must reject values that could produce invalid financial output.
 for (const [label, value] of [
   ["non-finite number", { ...validState, currentAge: Number.NaN }],

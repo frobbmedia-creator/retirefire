@@ -259,23 +259,19 @@ export function stateToQueryString(state: PlannerState): string {
     if (value !== def) params.set(key, String(value === true ? 1 : value === false ? 0 : value));
   };
 
-  setIf("e", Math.round(state.annualExpenses), d.annualExpenses);
-  setIf("w", round1(state.withdrawalRatePct), d.withdrawalRatePct);
-  setIf("r", round1(state.expectedReturnPct), d.expectedReturnPct);
-  setIf("i", round1(state.inflationPct), d.inflationPct);
+  setIf("e", state.annualExpenses, d.annualExpenses);
+  setIf("w", state.withdrawalRatePct, d.withdrawalRatePct);
+  setIf("r", state.expectedReturnPct, d.expectedReturnPct);
+  setIf("i", state.inflationPct, d.inflationPct);
   setIf("n", state.useNominal, d.useNominal);
-  setIf("p", Math.round(state.currentPortfolio), d.currentPortfolio);
-  setIf("c", Math.round(state.annualContribution), d.annualContribution);
-  setIf("a", Math.round(state.currentAge), d.currentAge);
-  setIf("t", Math.round(state.retirementAge), d.retirementAge);
-  setIf("b", Math.round(state.partTimeIncome), d.partTimeIncome);
+  setIf("p", state.currentPortfolio, d.currentPortfolio);
+  setIf("c", state.annualContribution, d.annualContribution);
+  setIf("a", state.currentAge, d.currentAge);
+  setIf("t", state.retirementAge, d.retirementAge);
+  setIf("b", state.partTimeIncome, d.partTimeIncome);
   setIf("s", state.fireStyle, d.fireStyle);
 
   return params.toString();
-}
-
-function round1(n: number) {
-  return Math.round(n * 10) / 10;
 }
 
 export function buildShareUrl(path: string, state: PlannerState): string {
