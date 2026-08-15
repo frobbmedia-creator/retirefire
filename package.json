@@ -8,7 +8,7 @@
     "db:migrate": "node scripts/migrate-db.mjs",
     "start": "next start",
     "lint": "eslint",
-    "test:calc": "npx tsx src/lib/calculations.test.ts && npx tsx src/lib/monte-carlo.test.ts && npx tsx src/lib/coast-tables.test.ts && npx tsx src/lib/scenario-metrics.test.ts && npx tsx src/lib/planning-tools.test.ts && npx tsx src/lib/retirement-checkup.test.ts",
+    "test:calc": "npx tsx src/lib/calculations.test.ts && npx tsx src/lib/monte-carlo.test.ts && npx tsx src/lib/coast-tables.test.ts && npx tsx src/lib/scenario-metrics.test.ts && npx tsx src/lib/planning-tools.test.ts && npx tsx src/lib/retirement-checkup.test.ts && npx tsx src/lib/planner-state.test.ts",
     "test:content": "npx tsx src/content/decision-pages.test.ts",
     "test:support": "npx tsx src/components/support/SupportEmailLink.test.tsx",
     "seo:indexnow": "node scripts/submit-indexnow.mjs"
