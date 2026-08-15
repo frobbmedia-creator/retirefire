@@ -1,4 +1,5 @@
 import { realFromNominal } from "./calculations";
+import { calculationVersion } from "./calculation-registry";
 
 export type HistoricalYear = {
   year: number;
@@ -72,7 +73,7 @@ export type HistoricalCycleResult = {
 export type HistoricalScenarioResult =
   | {
       ok: true;
-      methodologyVersion: "1.0.0";
+      methodologyVersion: string;
       withdrawalTiming: "beginning_of_year";
       cycleCount: number;
       successCount: number;
@@ -96,21 +97,116 @@ function finiteNumber(value: string): number | null {
   return value.trim() !== "" && Number.isFinite(parsed) ? parsed : null;
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+/** Validate the runtime dataset boundary shared by parsing and simulation. */
+function validateHistoricalDataset(dataset: unknown): HistoricalValidationError[] {
+  const errors: HistoricalValidationError[] = [];
+  if (!isRecord(dataset)) {
+    return [error("invalid_input", "dataset must be an object.", undefined, "dataset")];
+  }
+
+  const suppliedYears = dataset.years;
+  if (!Array.isArray(suppliedYears)) {
+    errors.push(error("invalid_input", "dataset.years must be an array.", undefined, "dataset.years"));
+  }
+
+  const validYears: HistoricalYear[] = [];
+  const calendarYears: number[] = [];
+  for (const [index, suppliedYear] of (Array.isArray(suppliedYears) ? suppliedYears : []).entries()) {
+    const row = index + 1;
+    if (!isRecord(suppliedYear)) {
+      errors.push(error("invalid_row", "Each historical year must be an object.", row));
+      continue;
+    }
+    const year = suppliedYear.year;
+    const stockReturn = suppliedYear.stockReturn;
+    const bondReturn = suppliedYear.bondReturn;
+    const inflation = suppliedYear.inflation;
+    const values = [
+      ["year", year],
+      ["stockReturn", stockReturn],
+      ["bondReturn", bondReturn],
+      ["inflation", inflation],
+    ] as const;
+    for (const [field, value] of values) {
+      if (typeof value !== "number" || !Number.isFinite(value)) {
+        errors.push(error("invalid_number", `${field} must be finite.`, row, field));
+      }
+    }
+    if (typeof year === "number" && Number.isFinite(year) && Number.isInteger(year)) calendarYears.push(year);
+    else if (typeof year === "number" && Number.isFinite(year)) errors.push(error("invalid_number", "year must be an integer.", row, "year"));
+    if (
+      typeof year !== "number" || !Number.isFinite(year) || !Number.isInteger(year) ||
+      typeof stockReturn !== "number" || !Number.isFinite(stockReturn) ||
+      typeof bondReturn !== "number" || !Number.isFinite(bondReturn) ||
+      typeof inflation !== "number" || !Number.isFinite(inflation)
+    ) continue;
+    if (stockReturn <= -1 || bondReturn <= -1 || inflation <= -1) {
+      errors.push(error("return_floor", "Returns and inflation must be greater than -100%.", row));
+      continue;
+    }
+    validYears.push({ year, stockReturn, bondReturn, inflation });
+  }
+
+  const seen = new Set<number>();
+  for (const year of calendarYears) {
+    if (seen.has(year)) errors.push(error("duplicate_year", `Year ${year} appears more than once.`));
+    seen.add(year);
+  }
+  const chronologicalCalendarYears = [...calendarYears].sort((a, b) => a - b);
+  for (let index = 1; index < chronologicalCalendarYears.length; index++) {
+    if (chronologicalCalendarYears[index]! !== chronologicalCalendarYears[index - 1]! + 1) {
+      errors.push(error("year_gap", "Historical years must be contiguous."));
+      break;
+    }
+  }
+
+  const metadata = dataset.metadata;
+  if (!isRecord(metadata)) {
+    errors.push(error("invalid_input", "dataset.metadata must be an object.", undefined, "dataset.metadata"));
+  }
+  if (!isRecord(metadata) || typeof metadata.checksum !== "string" || !metadata.checksum.trim()) {
+    errors.push(error("missing_checksum", "A dataset checksum is required."));
+  }
+  const provenance = isRecord(metadata) ? metadata.provenance : undefined;
+  if (
+    !isRecord(provenance) ||
+    typeof provenance.source !== "string" || !provenance.source.trim() ||
+    typeof provenance.retrievedAt !== "string" || !provenance.retrievedAt.trim()
+  ) {
+    errors.push(error("missing_provenance", "Dataset source and retrieval date are required."));
+  }
+
+  const chronological = [...validYears].sort((a, b) => a.year - b.year);
+  const coverage = isRecord(metadata) && isRecord(metadata.coverage) ? metadata.coverage : undefined;
+  if (
+    !coverage ||
+    coverage.startYear !== chronological[0]?.year ||
+    coverage.endYear !== chronological[chronological.length - 1]?.year ||
+    coverage.yearCount !== chronological.length
+  ) {
+    errors.push(error("metadata_coverage_mismatch", "Metadata coverage must exactly match the CSV series."));
+  }
+
+  return errors;
+}
+
 /**
  * Parse a strict, reproducible annual-return CSV. Invalid input always returns
  * errors only; callers never receive a partial historical series.
  */
 export function parseHistoricalCsv(
-  text: string,
-  metadata: HistoricalDatasetMetadata,
+  text: unknown,
+  metadata: unknown,
 ): HistoricalDatasetResult {
   const errors: HistoricalValidationError[] = [];
-
-  if (!metadata.checksum?.trim()) {
-    errors.push(error("missing_checksum", "A dataset checksum is required."));
-  }
-  if (!metadata.provenance?.source?.trim() || !metadata.provenance?.retrievedAt?.trim()) {
-    errors.push(error("missing_provenance", "Dataset source and retrieval date are required."));
+  if (typeof text !== "string") {
+    errors.push(error("invalid_input", "CSV text must be a string.", undefined, "text"));
+    errors.push(...validateHistoricalDataset({ years: [], metadata }));
+    return { ok: false, errors };
   }
 
   const lines = text.replace(/^\uFEFF/, "").split(/\r?\n/).filter((line) => line.trim() !== "");
@@ -152,47 +248,30 @@ export function parseHistoricalCsv(
     years.push({ year, stockReturn, bondReturn, inflation });
   }
 
-  if (years.length === 0 && lines.length > 1) {
-    errors.push(error("invalid_row", "CSV has no valid annual rows."));
-  }
-
-  const seen = new Set<number>();
-  for (const entry of years) {
-    if (seen.has(entry.year)) errors.push(error("duplicate_year", `Year ${entry.year} appears more than once.`));
-    seen.add(entry.year);
-  }
-
-  const chronological = [...years].sort((a, b) => a.year - b.year);
-  for (let index = 1; index < chronological.length; index++) {
-    if (chronological[index]!.year !== chronological[index - 1]!.year + 1) {
-      errors.push(error("year_gap", "Historical years must be contiguous."));
-      break;
-    }
-  }
-
-  const coverage = metadata.coverage;
-  if (
-    !coverage ||
-    coverage.startYear !== chronological[0]?.year ||
-    coverage.endYear !== chronological[chronological.length - 1]?.year ||
-    coverage.yearCount !== chronological.length
-  ) {
-    errors.push(error("metadata_coverage_mismatch", "Metadata coverage must exactly match the CSV series."));
-  }
+  if (years.length === 0) errors.push(error("invalid_row", "CSV must contain at least one valid annual row."));
+  errors.push(...validateHistoricalDataset({ years, metadata }));
 
   if (errors.length > 0) return { ok: false, errors };
-  return { ok: true, dataset: { years: chronological, metadata } };
+  return {
+    ok: true,
+    dataset: { years: [...years].sort((a, b) => a.year - b.year), metadata: metadata as HistoricalDatasetMetadata },
+  };
 }
 
-function validateScenarioInput(input: HistoricalScenarioInput): HistoricalValidationError[] {
+function validateScenarioInput(input: unknown): HistoricalValidationError[] {
   const errors: HistoricalValidationError[] = [];
-  if (!Number.isFinite(input.stockAllocation) || input.stockAllocation < 0 || input.stockAllocation > 1) {
+  if (!isRecord(input)) return [error("invalid_input", "scenario input must be an object.")];
+  const stockAllocation = input.stockAllocation;
+  const horizonYears = input.horizonYears;
+  const annualFee = input.annualFee;
+  if (typeof stockAllocation !== "number" || !Number.isFinite(stockAllocation) || stockAllocation < 0 || stockAllocation > 1) {
     errors.push(error("invalid_stock_allocation", "stockAllocation must be between 0 and 1."));
   }
   if (
-    !Number.isInteger(input.horizonYears) ||
-    input.horizonYears < 1 ||
-    input.horizonYears > input.dataset.years.length
+    typeof horizonYears !== "number" ||
+    !Number.isInteger(horizonYears) ||
+    horizonYears < 1 ||
+    horizonYears > (isRecord(input.dataset) && Array.isArray(input.dataset.years) ? input.dataset.years.length : 0)
   ) {
     errors.push(error("invalid_horizon", "horizonYears must be a whole number within the dataset coverage."));
   }
@@ -202,41 +281,48 @@ function validateScenarioInput(input: HistoricalScenarioInput): HistoricalValida
     ["annualFee", input.annualFee],
   ] as const;
   for (const [field, value] of finiteNonNegative) {
-    if (!Number.isFinite(value) || value < 0) errors.push(error("invalid_input", `${field} must be finite and non-negative.`, undefined, field));
+    if (typeof value !== "number" || !Number.isFinite(value) || value < 0) {
+      errors.push(error("invalid_input", `${field} must be finite and non-negative.`, undefined, field));
+    }
   }
-  if (Number.isFinite(input.annualFee) && input.annualFee >= 1) {
+  if (typeof annualFee === "number" && Number.isFinite(annualFee) && annualFee >= 1) {
     errors.push(error("invalid_input", "annualFee must be less than 1.", undefined, "annualFee"));
   }
   return errors;
 }
 
 /** Run every contiguous historical window of the selected retirement horizon. */
-export function runHistoricalScenarios(input: HistoricalScenarioInput): HistoricalScenarioResult {
-  const errors = validateScenarioInput(input);
+export function runHistoricalScenarios(input: unknown): HistoricalScenarioResult {
+  const errors = [
+    ...validateScenarioInput(input),
+    ...(isRecord(input) ? validateHistoricalDataset(input.dataset) : []),
+  ];
   if (errors.length > 0) return { ok: false, errors };
 
+  const scenario = input as HistoricalScenarioInput;
+
   const cycles: HistoricalCycleResult[] = [];
-  const bondAllocation = 1 - input.stockAllocation;
-  for (let start = 0; start <= input.dataset.years.length - input.horizonYears; start++) {
-    const cycle = input.dataset.years.slice(start, start + input.horizonYears);
-    let balance = input.startPortfolio;
+  const bondAllocation = 1 - scenario.stockAllocation;
+  for (let start = 0; start <= scenario.dataset.years.length - scenario.horizonYears; start++) {
+    const cycle = scenario.dataset.years.slice(start, start + scenario.horizonYears);
+    let balance = scenario.startPortfolio;
     let peak = balance;
     let maxDrawdown = 0;
     let failureYearOffset: number | null = null;
 
     for (let offset = 0; offset < cycle.length; offset++) {
-      if (balance < input.annualWithdrawal) {
+      if (balance < scenario.annualWithdrawal) {
         balance = 0;
         maxDrawdown = 1;
         failureYearOffset = offset;
         break;
       }
-      balance -= input.annualWithdrawal;
+      balance -= scenario.annualWithdrawal;
       const year = cycle[offset]!;
       const realReturn =
-        input.stockAllocation * realFromNominal(year.stockReturn, year.inflation) +
+        scenario.stockAllocation * realFromNominal(year.stockReturn, year.inflation) +
         bondAllocation * realFromNominal(year.bondReturn, year.inflation);
-      balance *= (1 + realReturn) * (1 - input.annualFee);
+      balance *= (1 + realReturn) * (1 - scenario.annualFee);
       peak = Math.max(peak, balance);
       maxDrawdown = Math.max(maxDrawdown, peak === 0 ? 0 : (peak - balance) / peak);
     }
@@ -252,7 +338,7 @@ export function runHistoricalScenarios(input: HistoricalScenarioInput): Historic
 
   return {
     ok: true,
-    methodologyVersion: "1.0.0",
+    methodologyVersion: calculationVersion("historical-scenarios"),
     withdrawalTiming: "beginning_of_year",
     cycleCount: cycles.length,
     successCount: cycles.filter((cycle) => cycle.failureYearOffset === null).length,

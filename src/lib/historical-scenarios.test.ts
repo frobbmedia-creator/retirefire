@@ -8,6 +8,7 @@ import {
   runHistoricalScenarios,
   type HistoricalDatasetMetadata,
 } from "./historical-scenarios";
+import { calculationVersion } from "./calculation-registry";
 
 function assert(condition: boolean, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -90,6 +91,14 @@ const validMetadata: HistoricalDatasetMetadata = {
   assert(result.errors.some((error) => error.code === "metadata_coverage_mismatch"), "coverage error code");
 }
 
+// Break caught: public parser boundaries that trust TypeScript-only inputs throw instead of returning structured errors.
+{
+  const nonString = parseHistoricalCsv(undefined, validMetadata);
+  const missingMetadata = parseHistoricalCsv(validCsv, undefined);
+  assert(!nonString.ok && nonString.errors.some((error) => error.code === "invalid_input"), "non-string CSV error");
+  assert(!missingMetadata.ok && missingMetadata.errors.some((error) => error.code === "invalid_input"), "missing metadata error");
+}
+
 const threeYear = parseHistoricalCsv(
   [
     "year,stock_return,bond_return,inflation",
@@ -150,11 +159,79 @@ assert(threeYear.ok, "golden fixture must parse");
   assert(result.ok, "golden simulation must succeed");
   // Hand-derived: each year withdraws first; real weighted returns are 0.054901960784313794, -0.13398058252427184, and 0.045544554455445585; then multiply by 0.99 fee factor.
   assert(approx(result.cycles[0]!.realEndingValue, 641.8702889007538), `golden terminal ${result.cycles[0]!.realEndingValue}`);
-  assert(result.methodologyVersion === "1.0.0", "methodology version");
+  assert(result.methodologyVersion === calculationVersion("historical-scenarios"), "methodology version comes from registry");
   assert(result.withdrawalTiming === "beginning_of_year", "withdrawal timing");
   assert(result.cycleCount === 1 && result.successCount === 1, "cycle and success counts");
   assert(result.cycles[0]!.failureYearOffset === null, "completed cycle has no failure offset");
   assert(approx(result.cycles[0]!.maxDrawdown, 0.3581297110992462), "drawdown from starting peak");
+}
+
+// Break caught: an unparsed or forged dataset could bypass governance and leak NaN or invalid historical results.
+{
+  const result = runHistoricalScenarios({
+    dataset: {
+      years: [
+        { year: 2000, stockReturn: Number.NaN, bondReturn: 0.01, inflation: 0.02 },
+        { year: 2000, stockReturn: -1, bondReturn: 0.01, inflation: 0.02 },
+        { year: 2002, stockReturn: 0.01, bondReturn: 0.01, inflation: 0.02 },
+      ],
+      metadata: {
+        checksum: "",
+        provenance: { source: "", retrievedAt: "" },
+        coverage: { startYear: 2000, endYear: 2002, yearCount: 3 },
+      },
+    },
+    startPortfolio: 1_000,
+    annualWithdrawal: 100,
+    stockAllocation: 0.6,
+    horizonYears: 3,
+    annualFee: 0.01,
+  });
+  assert(!result.ok, "forged datasets must reject before simulation");
+  assert(result.errors.some((error) => error.code === "invalid_number"), "forged NaN error");
+  assert(result.errors.some((error) => error.code === "return_floor"), "forged return floor error");
+  assert(result.errors.some((error) => error.code === "duplicate_year"), "forged duplicate error");
+  assert(result.errors.some((error) => error.code === "year_gap"), "forged gap error");
+  assert(result.errors.some((error) => error.code === "missing_checksum"), "forged checksum error");
+  assert(result.errors.some((error) => error.code === "missing_provenance"), "forged provenance error");
+}
+
+// Break caught: malformed public simulation input would throw while reading a missing dataset instead of returning errors.
+{
+  const missingInput = runHistoricalScenarios(undefined);
+  const missingDataset = runHistoricalScenarios({});
+  assert(!missingInput.ok && missingInput.errors.some((error) => error.code === "invalid_input"), "missing input error");
+  assert(!missingDataset.ok && missingDataset.errors.some((error) => error.code === "invalid_input"), "missing dataset error");
+}
+
+const rollingDataset = parseHistoricalCsv(
+  [
+    "year,stock_return,bond_return,inflation",
+    "2000,0,0,0",
+    "2001,4,4,0",
+    "2002,0,0,0",
+    "2003,0,0,0",
+  ].join("\n"),
+  { ...validMetadata, coverage: { startYear: 2000, endYear: 2003, yearCount: 4 } },
+);
+assert(rollingDataset.ok, "rolling fixture must parse");
+
+// Break caught: incorrect contiguous-window enumeration can hide failed sequences or count the wrong number of cycles.
+{
+  const result = runHistoricalScenarios({
+    dataset: rollingDataset.dataset,
+    startPortfolio: 100,
+    annualWithdrawal: 80,
+    stockAllocation: 0.6,
+    horizonYears: 2,
+    annualFee: 0,
+  });
+  assert(result.ok, "rolling scenario must run");
+  // Hand-derived windows: 2000–01 fails at offset 1; 2001–02 ends at 20 after a 400% return; 2002–03 fails at offset 1.
+  assert(result.cycleCount === 3 && result.successCount === 1, "every contiguous two-year cycle is counted");
+  assert(result.cycles[0]!.failureYearOffset === 1 && result.cycles[0]!.realEndingValue === 0 && result.cycles[0]!.maxDrawdown === 1, "first failed cycle");
+  assert(result.cycles[1]!.failureYearOffset === null && result.cycles[1]!.realEndingValue === 20 && result.cycles[1]!.maxDrawdown === 0.8, "successful middle cycle");
+  assert(result.cycles[2]!.failureYearOffset === 1 && result.cycles[2]!.realEndingValue === 0 && result.cycles[2]!.maxDrawdown === 1, "last failed cycle");
 }
 
 // Break caught: stress that changes individual fields or retains chronological labels would fabricate a historical sequence.

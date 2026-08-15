@@ -1,7 +1,7 @@
 {
   "status": "unverified_source_blocked",
   "productionEnabled": false,
-  "methodologyVersion": "1.0.0",
+  "calculationId": "historical-scenarios",
   "reason": "Production historical results remain disabled until the submitted series can be independently reproduced from a documented source, transformation method, coverage, and checksum.",
   "requiredBeforeEnabling": [
     "Documented source provenance and retrieval date",
