@@ -92,6 +92,17 @@ assert(exactWholeDollarReduction.ok);
 assert.equal(exactWholeDollarReduction.adjustmentFactor, 149 / 180);
 assert.equal(exactWholeDollarReduction.estimatedMonthlyBenefit, 447);
 
+// Break caught: a genuine sub-dollar input must still follow SSA's
+// next-lower-dollar rule; tolerance must not promote it to the next dollar.
+const genuineSubDollarBenefit = estimateSocialSecurityClaim({
+  birthYear: 1960,
+  fullRetirementAgeMonthlyBenefit: 446.99999999999994,
+  claimAgeYears: 67,
+  claimAgeMonths: 0,
+});
+assert(genuineSubDollarBenefit.ok);
+assert.equal(genuineSubDollarBenefit.estimatedMonthlyBenefit, 446);
+
 // Break caught: SSA's 2025 Appendix C golden example must retain the agency's
 // next-lower-dollar result for a $1,671 PIA claimed 60 months early.
 const ssaEarlyGolden = estimateSocialSecurityClaim({
@@ -194,7 +205,7 @@ for (const input of [
 }
 
 assert(Object.isFrozen(SOCIAL_SECURITY_CLAIM_PARAMETERS));
-assert.equal(SOCIAL_SECURITY_CLAIM_PARAMETERS.methodVersion, "1.0.1");
+assert.equal(SOCIAL_SECURITY_CLAIM_PARAMETERS.methodVersion, "1.0.2");
 assert.equal(SOCIAL_SECURITY_CLAIM_PARAMETERS.lastVerifiedDate, "2026-08-15");
 assert.equal(
   SOCIAL_SECURITY_CLAIM_PARAMETERS.earlyRetirementSourceUrl,
@@ -342,6 +353,21 @@ assert.equal(fractionalCentCap.taxableAnnualBenefits, 85);
 assert.equal(fractionalCentCap.federallyTaxFreeAnnualBenefits, 15.01);
 assert(fractionalCentCap.taxablePercentage <= 0.85);
 
+// Break caught: cent handling must stay below the exact numeric 85% cap even
+// when the entered benefit is represented just below a whole dollar.
+const justBelowWholeDollarCap = taxableEstimate(
+  "single",
+  100_000,
+  99.99999999999999,
+);
+assert(justBelowWholeDollarCap.ok);
+const exactJustBelowWholeDollarCap = 99.99999999999999 * 0.85;
+assert.equal(justBelowWholeDollarCap.taxableAnnualBenefits, 84.99);
+assert(
+  justBelowWholeDollarCap.taxableAnnualBenefits <= exactJustBelowWholeDollarCap,
+);
+assert(justBelowWholeDollarCap.taxablePercentage <= 0.85);
+
 // Break caught: Publication 915 Example 3 must produce $6,275, not a flat 85%.
 const irsGolden = taxableEstimate("married_filing_jointly", 40_500, 10_000);
 assert(irsGolden.ok);
@@ -411,7 +437,7 @@ for (const input of [
 
 assert(Object.isFrozen(TAXABLE_SOCIAL_SECURITY_PARAMETERS));
 assert(Object.isFrozen(TAXABLE_SOCIAL_SECURITY_PARAMETERS.filingStatuses));
-assert.equal(TAXABLE_SOCIAL_SECURITY_PARAMETERS.methodVersion, "1.1.0");
+assert.equal(TAXABLE_SOCIAL_SECURITY_PARAMETERS.methodVersion, "1.1.1");
 assert.equal(TAXABLE_SOCIAL_SECURITY_PARAMETERS.taxYear, 2025);
 assert.equal(TAXABLE_SOCIAL_SECURITY_PARAMETERS.lastVerifiedDate, "2026-08-15");
 assert.deepEqual(TAXABLE_SOCIAL_SECURITY_PARAMETERS.filingStatuses, {

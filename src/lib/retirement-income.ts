@@ -51,7 +51,7 @@ function deepFreeze<T extends object>(value: T): T {
  * January 1 birthday; callers must make that adjustment before calling.
  */
 export const SOCIAL_SECURITY_CLAIM_PARAMETERS = deepFreeze({
-  methodVersion: "1.0.1",
+  methodVersion: "1.0.2",
   minimumSupportedBirthYear: 1933,
   earliestClaimAgeMonths: 62 * 12,
   latestClaimAgeMonths: 70 * 12,
@@ -132,7 +132,7 @@ export type SocialSecurityEstimate =
     }
   | {
       ok: true;
-      methodVersion: "1.0.1";
+      methodVersion: "1.0.2";
       birthYear: number;
       fullRetirementAge: FullRetirementAge;
       fullRetirementAgeMonthlyBenefit: number;
@@ -174,18 +174,48 @@ function roundCurrency(value: number): number {
   return Math.round((value + Number.EPSILON) * 100) / 100;
 }
 
-function floorCurrency(value: number): number {
-  const floatingPointTolerance =
-    Number.EPSILON * Math.max(1, Math.abs(value));
-  return Math.floor((value + floatingPointTolerance) * 100) / 100;
+function decimalFraction(value: number): Readonly<{
+  numerator: bigint;
+  denominator: bigint;
+}> {
+  const [coefficient, exponentText] = value.toString().toLowerCase().split("e");
+  const [whole, fraction = ""] = coefficient.split(".");
+  const exponent = Number(exponentText ?? 0) - fraction.length;
+  let numerator = BigInt(`${whole}${fraction}`);
+  let denominator = BigInt(1);
+
+  if (exponent >= 0) {
+    numerator *= BigInt(10) ** BigInt(exponent);
+  } else {
+    denominator = BigInt(10) ** BigInt(-exponent);
+  }
+
+  return { numerator, denominator };
 }
 
-function floorWholeDollar(value: number): number {
-  // Preserve SSA's downward-dollar rule while neutralizing at most one
-  // relative machine epsilon of binary noise below a mathematically exact integer.
-  const floatingPointTolerance =
-    Number.EPSILON * Math.max(1, Math.abs(value));
-  return Math.floor(value + floatingPointTolerance);
+function floorPercentageAtWholeCents(
+  value: number,
+  percentageNumerator: number,
+  percentageDenominator: number,
+): number {
+  const valueFraction = decimalFraction(value);
+  const wholeCents =
+    (valueFraction.numerator * BigInt(percentageNumerator) * BigInt(100)) /
+    (valueFraction.denominator * BigInt(percentageDenominator));
+  return Number(wholeCents) / 100;
+}
+
+function floorRationallyAdjustedBenefit(
+  benefit: number,
+  adjustmentNumerator: number,
+  adjustmentDenominator: number,
+): number {
+  const benefitFraction = decimalFraction(benefit);
+  const adjustedNumerator =
+    benefitFraction.numerator * BigInt(adjustmentNumerator);
+  const adjustedDenominator =
+    benefitFraction.denominator * BigInt(adjustmentDenominator);
+  return Number(adjustedNumerator / adjustedDenominator);
 }
 
 /** Estimate a retired worker's gross benefit at a whole-month claim age. */
@@ -263,23 +293,26 @@ export function estimateSocialSecurityClaim(
   const monthsFromFullRetirementAge = claimAgeInMonths - fullRetirementAgeInMonths;
   const delayedCreditRate = delayedCreditRateForBirthYear(birthYear);
 
-  let adjustmentFactor = 1;
+  let adjustmentNumerator = 1;
+  let adjustmentDenominator = 1;
   if (monthsFromFullRetirementAge < 0) {
     const earlyMonths = -monthsFromFullRetirementAge;
-    adjustmentFactor =
-      earlyMonths <= 36 ? (180 - earlyMonths) / 180 : (228 - earlyMonths) / 240;
+    adjustmentNumerator =
+      earlyMonths <= 36 ? 180 - earlyMonths : 228 - earlyMonths;
+    adjustmentDenominator = earlyMonths <= 36 ? 180 : 240;
   } else if (monthsFromFullRetirementAge > 0) {
     const creditedMonths = Math.min(
       monthsFromFullRetirementAge,
       SOCIAL_SECURITY_CLAIM_PARAMETERS.latestClaimAgeMonths -
         fullRetirementAgeInMonths,
     );
-    adjustmentFactor =
-      1 +
-      (creditedMonths * delayedCreditRate.monthlyNumerator) /
-        delayedCreditRate.monthlyDenominator;
+    adjustmentNumerator =
+      delayedCreditRate.monthlyDenominator +
+      creditedMonths * delayedCreditRate.monthlyNumerator;
+    adjustmentDenominator = delayedCreditRate.monthlyDenominator;
   }
 
+  const adjustmentFactor = adjustmentNumerator / adjustmentDenominator;
   const unroundedBenefit = fullRetirementAgeMonthlyBenefit * adjustmentFactor;
   if (!Number.isFinite(unroundedBenefit)) {
     return {
@@ -290,7 +323,11 @@ export function estimateSocialSecurityClaim(
     };
   }
   const estimatedMonthlyBenefitBeforeRounding = roundCurrency(unroundedBenefit);
-  const estimatedMonthlyBenefit = floorWholeDollar(unroundedBenefit);
+  const estimatedMonthlyBenefit = floorRationallyAdjustedBenefit(
+    fullRetirementAgeMonthlyBenefit,
+    adjustmentNumerator,
+    adjustmentDenominator,
+  );
   const estimatedAnnualBenefit = estimatedMonthlyBenefit * 12;
   if (
     !Number.isFinite(estimatedMonthlyBenefitBeforeRounding) ||
@@ -306,7 +343,7 @@ export function estimateSocialSecurityClaim(
 
   return {
     ok: true,
-    methodVersion: "1.0.1",
+    methodVersion: "1.0.2",
     birthYear,
     fullRetirementAge,
     fullRetirementAgeMonthlyBenefit,
@@ -334,7 +371,7 @@ export function estimateSocialSecurityClaim(
  * Source revision: 2025. Last verified: 2026-08-15.
  */
 export const TAXABLE_SOCIAL_SECURITY_PARAMETERS = deepFreeze({
-  methodVersion: "1.1.0",
+  methodVersion: "1.1.1",
   taxYear: 2025,
   effectivePeriod: "2025 federal income tax returns",
   sourceRevision: "2025",
@@ -381,7 +418,7 @@ export type TaxableSocialSecurityEstimate =
     }
   | {
       ok: true;
-      methodVersion: "1.1.0";
+      methodVersion: "1.1.1";
       taxYear: 2025;
       filingStatus: TaxableSocialSecurityFilingStatus;
       grossAnnualBenefits: number;
@@ -505,13 +542,18 @@ export function estimateTaxableSocialSecurity(
       exclusions: TAXABLE_SOCIAL_SECURITY_EXCLUSIONS,
     };
   }
-  const maximumTaxableAtWholeCents = floorCurrency(
+  const exactNumericMaximumTaxable =
     grossAnnualBenefits *
-      TAXABLE_SOCIAL_SECURITY_PARAMETERS.maximumTaxablePercentage,
+    TAXABLE_SOCIAL_SECURITY_PARAMETERS.maximumTaxablePercentage;
+  const maximumTaxableAtWholeCents = floorPercentageAtWholeCents(
+    grossAnnualBenefits,
+    85,
+    100,
   );
   const taxableAnnualBenefits = Math.min(
     roundCurrency(taxableBeforeRounding),
     maximumTaxableAtWholeCents,
+    exactNumericMaximumTaxable,
   );
   if (!Number.isFinite(taxableAnnualBenefits)) {
     return {
@@ -525,7 +567,12 @@ export function estimateTaxableSocialSecurity(
     grossAnnualBenefits - taxableAnnualBenefits,
   );
   const taxablePercentage =
-    grossAnnualBenefits === 0 ? 0 : taxableAnnualBenefits / grossAnnualBenefits;
+    grossAnnualBenefits === 0
+      ? 0
+      : Math.min(
+          TAXABLE_SOCIAL_SECURITY_PARAMETERS.maximumTaxablePercentage,
+          taxableAnnualBenefits / grossAnnualBenefits,
+        );
   if (
     !Number.isFinite(federallyTaxFreeAnnualBenefits) ||
     !Number.isFinite(taxablePercentage)
@@ -540,7 +587,7 @@ export function estimateTaxableSocialSecurity(
 
   return {
     ok: true,
-    methodVersion: "1.1.0",
+    methodVersion: "1.1.1",
     taxYear: 2025,
     filingStatus,
     grossAnnualBenefits,

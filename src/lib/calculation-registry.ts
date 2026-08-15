@@ -222,7 +222,7 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
   {
     id: "social-security-claim",
     name: "Social Security claim-age estimate",
-    version: "1.0.1",
+    version: "1.0.2",
     status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
@@ -247,7 +247,7 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
   {
     id: "social-security-taxable",
     name: "Federal taxable Social Security estimate",
-    version: "1.1.0",
+    version: "1.1.1",
     status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
