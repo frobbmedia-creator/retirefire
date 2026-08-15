@@ -223,3 +223,136 @@ Exit 0. Observed results:
   estimate. Users with nondeductible IRA basis, itemized/age/dependent deduction
   differences, capital gains, credits, ACA/IRMAA interactions, state tax, AMT,
   NIIT, or other excluded circumstances need a fuller tax calculation.
+
+## Review fix — Round 1
+
+### Findings addressed
+
+- Replaced prototype-chain membership validation with an own-property check.
+  Runtime inputs using `__proto__`, `constructor`, or `toString` now return
+  `ok: false` with a filing-status error and never reach bracket traversal or
+  throw.
+- Added the explicit returned exclusion: “Nondeductible IRA or plan basis and
+  pro-rata treatment; the estimate assumes the entire applied conversion is
+  taxable.” The calculator renders both that exclusion and a direct fully
+  taxable assumption sentence; the calculation registry mirrors it.
+- Froze `FEDERAL_TAX_EXCLUSIONS` at runtime. Because the array contains only
+  immutable strings, a shallow runtime freeze fully protects the shared value;
+  tests prove `push` throws and cannot contaminate later estimates.
+- Changed the effective conversion rate for a zero applied conversion from `0`
+  to `null`, because the ratio is undefined rather than 0%. The primary UI maps
+  `null` to `N/A`, and methodology now documents the zero-conversion convention.
+- Bumped the governed Roth methodology version from `1.0.0` to `1.0.1` for the
+  validation/disclosure and zero-rate contract correction. UI methodology copy
+  continues to derive the version from the registry.
+
+### IRS basis/pro-rata evidence
+
+The review wording was verified on 2026-08-15 against official IRS material:
+
+- **Publication 590-A (2025)** —
+  https://www.irs.gov/pub/irs-pdf/p590a.pdf
+  - “Converting From Any Traditional IRA Into a Roth IRA” explains that part or
+    all of a traditional-IRA conversion may be included in gross income and
+    that a return of traditional-IRA basis is not included.
+- **About Publication 590-A, Contributions to Individual Retirement
+  Arrangements (IRAs)** —
+  https://www.irs.gov/forms-pubs/about-publication-590-a
+  - The IRS current-revision page was last reviewed or updated 2026-03-30.
+- **Instructions for Form 8606 (2025)** —
+  https://www.irs.gov/instructions/i8606
+  - Identifies nondeductible traditional-IRA contributions, distributions when
+    basis exists, and Roth conversions as Form 8606 reporting/calculation uses.
+
+The estimator does not collect basis or perform Form 8606 allocation, so it
+retains the conservative “entire applied conversion is taxable” assumption and
+now discloses the omitted basis/pro-rata treatment in every returned result and
+the visible calculator.
+
+### RED evidence
+
+Root-cause reproduction before code changes:
+
+```text
+npx tsx -e '<call estimateFederalIncomeTax for __proto__, constructor, toString>'
+```
+
+Observed for all three values:
+
+```text
+TypeError: brackets is not iterable
+```
+
+Focused RED commands:
+
+```text
+npx tsx src/lib/federal-tax.test.ts
+npx tsx src/lib/planning-tools.test.ts
+npx tsx src/lib/calculation-registry.test.ts
+```
+
+Observed failures:
+
+```text
+Federal tax: Object.isFrozen(FEDERAL_TAX_EXCLUSIONS) was false.
+Planning tools: returned exclusions omitted the nondeductible-basis/pro-rata disclosure.
+Registry: Roth exclusions omitted the governed nondeductible-basis/pro-rata disclosure.
+```
+
+The own-property status regression was also protected with `assert.doesNotThrow`
+plus `ok: false` and filing-status-error assertions for each prototype-chain
+name. The zero-conversion golden result independently changed its expected
+effective rate from `0` to `null`.
+
+The methodology-version regression was then changed to `1.0.1` and failed
+before the scoped registry bump:
+
+```text
+AssertionError: '1.0.0' !== '1.0.1'
+```
+
+### GREEN and verification evidence
+
+Focused GREEN:
+
+```text
+npx tsx src/lib/federal-tax.test.ts
+All federal-tax checks passed.
+
+npx tsx src/lib/planning-tools.test.ts
+All planning-tool checks passed.
+
+npx tsx src/lib/calculation-registry.test.ts
+All calculation-registry tests passed.
+```
+
+The initial combined final-verification invocation was interrupted after an
+unusually long wait and produced no usable completion evidence. Following the
+bounded-wait instruction, every required command was rerun individually:
+
+```text
+npx tsx src/lib/federal-tax.test.ts        — exit 0
+npx tsx src/lib/planning-tools.test.ts     — exit 0
+npm run test:content                       — exit 0; 15 checks passed
+npm run lint                               — exit 0
+npx tsc --noEmit                           — exit 0
+npm run test:calc                          — exit 0; all 10 suites passed
+git diff --check                           — exit 0
+```
+
+The full calculator run covered calculations, Monte Carlo, coast tables,
+scenario metrics, federal tax, planning tools, retirement checkup, planner
+state, planner transfer, and calculation registry.
+
+### Self-review and concerns
+
+- Mutation check: inherited object-property names, removing the own-property
+  guard, unfreezing exclusions, removing the basis exclusion, or restoring the
+  zero rate to numeric `0` each fail a focused behavioral assertion.
+- The rendered-calculator regression uses React server rendering of the real
+  component and asserts user-visible disclosure, rather than grepping source
+  text.
+- No analytics code or payload changed; financial inputs and results remain
+  client-side.
+- No blocking concern remains. The estimator still intentionally excludes
+  actual Form 8606 basis allocation and applicable plan-basis treatment.

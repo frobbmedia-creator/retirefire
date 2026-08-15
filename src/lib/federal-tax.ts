@@ -1,12 +1,13 @@
-export const FEDERAL_TAX_EXCLUSIONS = [
+export const FEDERAL_TAX_EXCLUSIONS = Object.freeze([
   "State and local income taxes",
   "Alternative minimum tax and net investment income tax",
   "Tax credits and changes to deductions",
   "Capital gains and qualified-dividend interactions",
+  "Nondeductible IRA or plan basis and pro-rata treatment; the estimate assumes the entire applied conversion is taxable",
   "ACA premium tax credits and Medicare IRMAA",
   "Future tax-law changes and multiyear optimization",
   "Withholding, estimated-tax penalties, and conversion opportunity cost",
-] as const;
+] as const);
 
 const JOINT_BRACKETS = [
   { upTo: 24_800, rate: 0.1 },
@@ -145,7 +146,7 @@ export type FederalTaxEstimate =
       federalTaxBeforeConversion: number;
       federalTaxAfterConversion: number;
       incrementalFederalTax: number;
-      effectiveFederalRateOnConversion: number;
+      effectiveFederalRateOnConversion: number | null;
       remainingTraditionalBalance: number;
       exclusions: typeof FEDERAL_TAX_EXCLUSIONS;
     };
@@ -187,10 +188,13 @@ export function estimateFederalIncomeTax(input: FederalTaxInput): FederalTaxEsti
   if (candidate.taxYear !== FEDERAL_TAX_PARAMETERS.taxYear) {
     errors.push("taxYear must be 2026");
   }
-  if (
-    typeof candidate.filingStatus !== "string" ||
-    !(candidate.filingStatus in FEDERAL_TAX_PARAMETERS.filingStatuses)
-  ) {
+  const hasSupportedFilingStatus =
+    typeof candidate.filingStatus === "string" &&
+    Object.prototype.hasOwnProperty.call(
+      FEDERAL_TAX_PARAMETERS.filingStatuses,
+      candidate.filingStatus,
+    );
+  if (!hasSupportedFilingStatus) {
     errors.push("filingStatus must be a supported 2026 filing status");
   }
   for (const field of [
@@ -245,7 +249,7 @@ export function estimateFederalIncomeTax(input: FederalTaxInput): FederalTaxEsti
     federalTaxAfterConversion,
     incrementalFederalTax,
     effectiveFederalRateOnConversion:
-      appliedConversion === 0 ? 0 : incrementalFederalTax / appliedConversion,
+      appliedConversion === 0 ? null : incrementalFederalTax / appliedConversion,
     remainingTraditionalBalance: traditionalBalance - appliedConversion,
     exclusions: FEDERAL_TAX_EXCLUSIONS,
   };

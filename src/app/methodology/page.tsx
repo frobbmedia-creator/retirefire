@@ -384,11 +384,25 @@ export default function MethodologyPage() {
             Applied conversion = min(desired conversion, traditional balance){"\n"}
             Tax after = progressive tax(current taxable income + applied conversion){"\n"}
             Incremental tax = tax after − tax before{"\n"}
-            Effective conversion rate = incremental tax ÷ applied conversion
+            Effective rate = incremental tax ÷ applied conversion (if conversion &gt; 0){"\n"}
+            If applied conversion = $0: effective rate = N/A
           </pre>
           <p className="mt-3 text-zinc-400">
-            The model does not subtract the standard deduction a second time.
-            Its 2026 standard-deduction amounts and bracket thresholds come from{" "}
+            The model assumes the entire applied conversion is taxable. It does
+            not calculate nondeductible IRA or plan basis or applicable pro-rata
+            treatment. IRS guidance explains that a traditional-IRA conversion
+            may be partly nontaxable when it returns basis; see{" "}
+            <a
+              href="https://www.irs.gov/publications/p590a"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              IRS Publication 590-A
+            </a>
+            . The model also does not subtract the standard deduction a second
+            time. Its 2026 standard-deduction amounts and bracket thresholds
+            come from{" "}
             <a
               href="https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
               className="text-emerald-400 hover:underline"
@@ -404,9 +418,10 @@ export default function MethodologyPage() {
           <p className="mt-3 text-zinc-400">
             Explicit exclusions include state and local tax, AMT, NIIT, credits,
             deduction changes, capital-gain and qualified-dividend interactions,
-            ACA premium tax credits, Medicare IRMAA, future law, multiyear
-            optimization, withholding and estimated-tax penalties, and the
-            opportunity cost of paying conversion tax.
+            nondeductible IRA or plan basis and pro-rata treatment, ACA premium
+            tax credits, Medicare IRMAA, future law, multiyear optimization,
+            withholding and estimated-tax penalties, and the opportunity cost
+            of paying conversion tax.
           </p>
         </section>
 

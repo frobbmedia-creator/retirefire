@@ -33,7 +33,7 @@ assert.equal(calculationVersion("not-a-method"), "unknown");
 // or pointing users to a source that does not contain the 2026 bracket tables.
 const rothMethod = CALCULATION_REGISTRY.find((method) => method.id === "roth-conversion");
 assert(rothMethod);
-assert.equal(rothMethod.version, "1.0.0");
+assert.equal(rothMethod.version, "1.0.1");
 assert.equal(rothMethod.status, "active");
 assert(
   rothMethod.sources.some(
@@ -43,6 +43,11 @@ assert(
   ),
 );
 assert(rothMethod.exclusions.includes("Capital gains and qualified-dividend interactions"));
+assert(
+  rothMethod.exclusions.includes(
+    "Nondeductible IRA or plan basis and pro-rata treatment; the estimate assumes the entire applied conversion is taxable",
+  ),
+);
 
 const baseMethod = CALCULATION_REGISTRY[0]!;
 

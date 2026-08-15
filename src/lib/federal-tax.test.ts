@@ -10,6 +10,13 @@ async function run() {
 
   const { FEDERAL_TAX_PARAMETERS, estimateFederalIncomeTax } = federalTax;
 
+  // Break caught: exclusions shared by estimates must resist runtime mutation.
+  assert(Object.isFrozen(federalTax.FEDERAL_TAX_EXCLUSIONS));
+  assert.throws(
+    () => (federalTax.FEDERAL_TAX_EXCLUSIONS as unknown as string[]).push("mutation"),
+    TypeError,
+  );
+
   // Break caught: runtime code must not be able to mutate governed tax fixtures.
   assert(Object.isFrozen(FEDERAL_TAX_PARAMETERS));
   assert(Object.isFrozen(FEDERAL_TAX_PARAMETERS.filingStatuses));
@@ -120,7 +127,7 @@ async function run() {
     federalTaxBeforeConversion: 5_752,
     federalTaxAfterConversion: 5_752,
     incrementalFederalTax: 0,
-    effectiveFederalRateOnConversion: 0,
+    effectiveFederalRateOnConversion: null,
     remainingTraditionalBalance: 100_000,
     exclusions: federalTax.FEDERAL_TAX_EXCLUSIONS,
   });
@@ -156,6 +163,33 @@ async function run() {
   assert.equal(limitedConversion.federalTaxAfterConversion, 2_046);
   assert.equal(limitedConversion.incrementalFederalTax, 2_046);
   assert.equal(limitedConversion.remainingTraditionalBalance, 0);
+
+  // Break caught: Object.prototype property names are not supported filing statuses
+  // and must return validation failures rather than reaching bracket traversal.
+  for (const filingStatus of ["__proto__", "constructor", "toString"]) {
+    let invalidStatus: ReturnType<typeof estimateFederalIncomeTax> | undefined;
+    assert.doesNotThrow(() => {
+      invalidStatus = estimateFederalIncomeTax({
+        taxYear: 2026,
+        filingStatus: filingStatus as never,
+        currentTaxableIncome: 50_000,
+        desiredConversion: 10_000,
+        traditionalBalance: 100_000,
+      });
+    });
+    assert.equal(invalidStatus?.ok, false);
+    if (invalidStatus && !invalidStatus.ok) {
+      assert.match(invalidStatus.errors.join(" "), /filingStatus/);
+    }
+  }
+
+  // Break caught: the estimator must explicitly tell consumers that basis and
+  // pro-rata treatment are outside a fully taxable conversion estimate.
+  assert(
+    crossingBrackets.exclusions.includes(
+      "Nondeductible IRA or plan basis and pro-rata treatment; the estimate assumes the entire applied conversion is taxable",
+    ),
+  );
 
   // Break caught: invalid numbers or unsupported contracts must return an
   // explicit failure, never a result containing NaN.

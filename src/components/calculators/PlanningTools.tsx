@@ -251,7 +251,13 @@ export function RothConversionCalculator() {
         { label: "Federal tax before", value: formatCurrency(result.federalTaxBeforeConversion) },
         { label: "Federal tax after", value: formatCurrency(result.federalTaxAfterConversion) },
         { label: "Incremental federal tax", value: formatCurrency(result.incrementalFederalTax), accent: true },
-        { label: "Effective rate on conversion", value: `${(result.effectiveFederalRateOnConversion * 100).toFixed(1)}%` },
+        {
+          label: "Effective rate on conversion",
+          value:
+            result.effectiveFederalRateOnConversion === null
+              ? "N/A"
+              : `${(result.effectiveFederalRateOnConversion * 100).toFixed(1)}%`,
+        },
         { label: "Traditional balance remaining", value: formatCurrency(result.remainingTraditionalBalance) },
       ]
     : [{ label: "Estimate unavailable", value: result.errors.join("; ") }];
@@ -285,7 +291,7 @@ export function RothConversionCalculator() {
       results={results}
       note={
         result.ok
-          ? `Current-year educational estimate only · methodology v${methodologyVersion}. Current taxable income is assumed to be after deductions, so the 2026 ${statusParameters.label.toLowerCase()} standard deduction of ${formatCurrency(statusParameters.standardDeduction)} is shown for reference and is not subtracted again. ${result.conversionWasLimited ? "The desired conversion exceeded the traditional balance, so the estimate uses the available balance. " : ""}Excludes: ${result.exclusions.join("; ")}. It does not estimate lifetime savings.`
+          ? `Current-year educational estimate only · methodology v${methodologyVersion}. Current taxable income is assumed to be after deductions, so the 2026 ${statusParameters.label.toLowerCase()} standard deduction of ${formatCurrency(statusParameters.standardDeduction)} is shown for reference and is not subtracted again. The estimate assumes the entire applied conversion is taxable; it does not calculate nondeductible IRA or plan basis or pro-rata treatment. ${result.conversionWasLimited ? "The desired conversion exceeded the traditional balance, so the estimate uses the available balance. " : ""}Excludes: ${result.exclusions.join("; ")}. It does not estimate lifetime savings.`
           : `No estimate was produced: ${result.errors.join("; ")}. Methodology v${methodologyVersion}; exclusions: ${result.exclusions.join("; ")}.`
       }
     />

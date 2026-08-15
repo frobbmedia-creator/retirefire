@@ -183,7 +183,7 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
   {
     id: "roth-conversion",
     name: "Roth conversion estimate",
-    version: "1.0.0",
+    version: "1.0.1",
     status: "active",
     effectiveDate: "2026-08-15",
     lastReviewed: "2026-08-15",
@@ -199,6 +199,7 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
       "Alternative minimum tax and net investment income tax",
       "Tax credits and changes to deductions",
       "Capital gains and qualified-dividend interactions",
+      "Nondeductible IRA or plan basis and pro-rata treatment; the estimate assumes the entire applied conversion is taxable",
       "ACA premium tax credits and Medicare IRMAA",
       "Future tax-law changes and multiyear optimization",
       "Withholding, estimated-tax penalties, and conversion opportunity cost",

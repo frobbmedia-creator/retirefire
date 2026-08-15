@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { RothConversionCalculator } from "../components/calculators/PlanningTools";
 import {
   guardrailRange,
   healthcareBudget,
@@ -75,6 +78,7 @@ assert.deepEqual(
       "Alternative minimum tax and net investment income tax",
       "Tax credits and changes to deductions",
       "Capital gains and qualified-dividend interactions",
+      "Nondeductible IRA or plan basis and pro-rata treatment; the estimate assumes the entire applied conversion is taxable",
       "ACA premium tax credits and Medicare IRMAA",
       "Future tax-law changes and multiyear optimization",
       "Withholding, estimated-tax penalties, and conversion opportunity cost",
@@ -91,6 +95,12 @@ const invalidRoth = rothConversionEstimate({
 });
 assert.equal(invalidRoth.ok, false);
 if (!invalidRoth.ok) assert.match(invalidRoth.errors.join(" "), /desiredConversion/);
+
+// Break caught: the primary calculator must visibly disclose the fully taxable
+// assumption and the omitted nondeductible-basis/pro-rata treatment.
+const rothMarkup = renderToStaticMarkup(createElement(RothConversionCalculator));
+assert.match(rothMarkup, /assumes the entire applied conversion is taxable/i);
+assert.match(rothMarkup, /nondeductible IRA or plan basis and pro-rata treatment/i);
 
 assert.deepEqual(
   healthcareBudget({
