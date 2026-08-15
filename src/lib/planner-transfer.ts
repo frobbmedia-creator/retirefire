@@ -65,5 +65,5 @@ export function importPlannerJson(text: string, byteLength: number): PlannerImpo
 /** Quote CSV values and prevent spreadsheet programs from evaluating untrusted text as formulas. */
 export function csvCell(value: string | number): string {
   const text = typeof value === "string" && /^[\t\r ]*[=+\-@]/.test(value) ? `'${value}` : String(value);
-  return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+  return /[",\r\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
 }

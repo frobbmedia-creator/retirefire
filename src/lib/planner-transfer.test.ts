@@ -5,7 +5,11 @@ import {
   exportPlannerJson,
   importPlannerJson,
 } from "./planner-transfer";
-import { normalizeMoneyDraft } from "../components/ui/money-input";
+import {
+  moneyDraftForValue,
+  moneyInputDisplay,
+  normalizeMoneyDraft,
+} from "../components/ui/money-input";
 
 const validState = {
   ...PLANNER_DEFAULTS,
@@ -49,6 +53,7 @@ const validState = {
   assert.equal(csvCell('a,"b"'), '"a,""b"""');
   assert.equal(csvCell("a,b"), '"a,b"');
   assert.equal(csvCell("a\nb"), '"a\nb"');
+  assert.equal(csvCell("a\rb"), '"a\rb"');
   assert.equal(csvCell("=SUM(A1:A2)"), "'=SUM(A1:A2)");
   assert.equal(csvCell("\t=SUM(A1:A2)"), "'\t=SUM(A1:A2)");
   assert.equal(csvCell("-not-a-number"), "'-not-a-number");
@@ -62,6 +67,13 @@ const validState = {
   assert.equal(normalizeMoneyDraft("75.25", 0, 50), 50);
   assert.equal(normalizeMoneyDraft(String(18.75), 0, 100), 18.75);
   assert.equal(normalizeMoneyDraft("-5", 0, 100), 0);
+}
+
+// An externally changed money value preserves cents when blurred and when re-focused as a draft.
+{
+  const externallyUpdatedValue = 1234.56;
+  assert.equal(moneyInputDisplay(externallyUpdatedValue), "1,234.56");
+  assert.equal(moneyDraftForValue(externallyUpdatedValue), "1234.56");
 }
 
 console.log("All planner-transfer tests passed.");

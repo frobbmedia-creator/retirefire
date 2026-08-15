@@ -65,6 +65,19 @@ const MONEY_FIELDS: Array<keyof Pick<PlannerState, "annualExpenses" | "currentPo
   "annualContribution",
   "partTimeIncome",
 ];
+const PLANNER_STATE_FIELDS: Array<keyof PlannerState> = [
+  "annualExpenses",
+  "withdrawalRatePct",
+  "expectedReturnPct",
+  "inflationPct",
+  "useNominal",
+  "currentPortfolio",
+  "annualContribution",
+  "currentAge",
+  "retirementAge",
+  "partTimeIncome",
+  "fireStyle",
+];
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -98,7 +111,19 @@ export function parsePlannerState(value: unknown): PlannerStateParseResult {
     return { ok: false, issues: [issue("state", "planner state must be an object")] };
   }
 
-  const state = value as Partial<PlannerState>;
+  const unexpectedFields = Object.keys(value).filter(
+    (field) => !PLANNER_STATE_FIELDS.includes(field as keyof PlannerState),
+  );
+  if (unexpectedFields.length > 0) {
+    return {
+      ok: false,
+      issues: [issue("state", "planner state has unsupported fields")],
+    };
+  }
+
+  const state = Object.fromEntries(
+    PLANNER_STATE_FIELDS.map((field) => [field, value[field]]),
+  ) as Partial<PlannerState>;
   const issues: PlannerStateIssue[] = [];
   for (const field of MONEY_FIELDS) {
     if (!isFiniteInRange(state[field], 0, 100_000_000)) {

@@ -70,6 +70,12 @@ for (const [label, value] of [
   assert(result.issues.length > 0, `${label} should provide an explicit issue`);
 }
 
+// A planner state is an exact runtime shape, so unrecognized data cannot persist or export.
+{
+  const result = parsePlannerState({ ...validState, untrustedMetadata: "do not keep" });
+  assert(!result.ok, "planner state with an unknown field should be rejected");
+}
+
 // A partial URL is normalized with defaults; an invalid URL is not a scenario.
 {
   const partial = parsePlannerSearchParams(new URLSearchParams("e=48000"));

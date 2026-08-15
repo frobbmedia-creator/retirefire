@@ -25,6 +25,18 @@ export function normalizeMoneyDraft(raw: string, min: number, max?: number): num
   return max == null ? value : Math.min(max, value);
 }
 
+/** Preserve an externally controlled value exactly when it becomes the active input draft. */
+export function moneyDraftForValue(value: number): string {
+  return value ? String(value) : "";
+}
+
+/** Format the blurred input without rounding away cents from a decimal planner value. */
+export function moneyInputDisplay(value: number): string {
+  return value
+    ? formatCurrency(value, { cents: !Number.isInteger(value) }).replace("$", "").trim()
+    : "";
+}
+
 /**
  * Mobile-friendly currency input: formatted when blurred, raw digits when focused.
  */
@@ -41,11 +53,11 @@ export function MoneyInput({
 }: MoneyInputProps) {
   const inputId = id ?? label.replace(/\s+/g, "-").toLowerCase();
   const [focused, setFocused] = useState(false);
-  const [draft, setDraft] = useState(value ? String(value) : "");
+  const [draft, setDraft] = useState(moneyDraftForValue(value));
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
-      setDraft(value ? String(value) : "");
+      setDraft(moneyDraftForValue(value));
     });
     return () => window.cancelAnimationFrame(frame);
   }, [value]);
@@ -53,14 +65,10 @@ export function MoneyInput({
   function commit(raw: string) {
     const n = normalizeMoneyDraft(raw, min, max);
     onChange(n);
-    setDraft(n ? String(n) : "");
+    setDraft(moneyDraftForValue(n));
   }
 
-  const display = focused
-    ? draft
-    : value
-      ? formatCurrency(value).replace("$", "").trim()
-      : "";
+  const display = focused ? draft : moneyInputDisplay(value);
 
   return (
     <div className={cn("flex w-full flex-col gap-1.5", className)}>
@@ -87,7 +95,7 @@ export function MoneyInput({
           value={display}
           onFocus={() => {
             setFocused(true);
-            setDraft(value ? String(value) : "");
+            setDraft(moneyDraftForValue(value));
           }}
           onBlur={() => {
             setFocused(false);
@@ -113,7 +121,7 @@ export function MoneyInput({
             onClick={() => {
               const next = Math.max(min, (value || 0) - step);
               onChange(next);
-              setDraft(next ? String(next) : "");
+              setDraft(moneyDraftForValue(next));
             }}
           >
             −
@@ -129,7 +137,7 @@ export function MoneyInput({
                   ? Math.min(max, (value || 0) + step)
                   : (value || 0) + step;
               onChange(next);
-              setDraft(String(next));
+              setDraft(moneyDraftForValue(next));
             }}
           >
             +
