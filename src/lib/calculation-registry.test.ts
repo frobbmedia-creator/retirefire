@@ -55,7 +55,7 @@ const socialSecurityClaimMethod = CALCULATION_REGISTRY.find(
   (method) => method.id === "social-security-claim",
 );
 assert(socialSecurityClaimMethod);
-assert.equal(socialSecurityClaimMethod.version, "1.0.2");
+assert.equal(socialSecurityClaimMethod.version, "1.0.3");
 assert.equal(socialSecurityClaimMethod.status, "active");
 assert(
   socialSecurityClaimMethod.sources.some(
@@ -74,7 +74,7 @@ const taxableSocialSecurityMethod = CALCULATION_REGISTRY.find(
   (method) => method.id === "social-security-taxable",
 );
 assert(taxableSocialSecurityMethod);
-assert.equal(taxableSocialSecurityMethod.version, "1.1.1");
+assert.equal(taxableSocialSecurityMethod.version, "1.1.2");
 assert.equal(taxableSocialSecurityMethod.status, "active");
 assert(
   taxableSocialSecurityMethod.sources.some(

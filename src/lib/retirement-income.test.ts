@@ -103,6 +103,59 @@ const genuineSubDollarBenefit = estimateSocialSecurityClaim({
 assert(genuineSubDollarBenefit.ok);
 assert.equal(genuineSubDollarBenefit.estimatedMonthlyBenefit, 446);
 
+// Break caught: currency outside the estimator's safe whole-cent domain must
+// be rejected before exact-decimal conversion can produce an off-by-one result.
+const unsafeClaimCurrency = estimateSocialSecurityClaim({
+  birthYear: 1960,
+  fullRetirementAgeMonthlyBenefit: 18_014_398_509_481_992,
+  claimAgeYears: 64,
+  claimAgeMonths: 5,
+});
+assert.equal(unsafeClaimCurrency.ok, false);
+if (!unsafeClaimCurrency.ok) {
+  assert(
+    unsafeClaimCurrency.errors.some(
+      (error) =>
+        error.includes("fullRetirementAgeMonthlyBenefit") &&
+        error.includes("safe whole-cent limit"),
+    ),
+  );
+}
+
+const unsafeAdjustedMonthlyResult = estimateSocialSecurityClaim({
+  birthYear: 1960,
+  fullRetirementAgeMonthlyBenefit: 80_000_000_000_000,
+  claimAgeYears: 70,
+  claimAgeMonths: 0,
+});
+assert.equal(unsafeAdjustedMonthlyResult.ok, false);
+if (!unsafeAdjustedMonthlyResult.ok) {
+  assert(
+    unsafeAdjustedMonthlyResult.errors.some(
+      (error) =>
+        error.includes("estimated monthly benefit") &&
+        error.includes("safe whole-cent limit"),
+    ),
+  );
+}
+
+const unsafeAnnualClaimResult = estimateSocialSecurityClaim({
+  birthYear: 1960,
+  fullRetirementAgeMonthlyBenefit: 10_000_000_000_000,
+  claimAgeYears: 67,
+  claimAgeMonths: 0,
+});
+assert.equal(unsafeAnnualClaimResult.ok, false);
+if (!unsafeAnnualClaimResult.ok) {
+  assert(
+    unsafeAnnualClaimResult.errors.some(
+      (error) =>
+        error.includes("estimated annual benefit") &&
+        error.includes("safe whole-cent limit"),
+    ),
+  );
+}
+
 // Break caught: SSA's 2025 Appendix C golden example must retain the agency's
 // next-lower-dollar result for a $1,671 PIA claimed 60 months early.
 const ssaEarlyGolden = estimateSocialSecurityClaim({
@@ -205,7 +258,7 @@ for (const input of [
 }
 
 assert(Object.isFrozen(SOCIAL_SECURITY_CLAIM_PARAMETERS));
-assert.equal(SOCIAL_SECURITY_CLAIM_PARAMETERS.methodVersion, "1.0.2");
+assert.equal(SOCIAL_SECURITY_CLAIM_PARAMETERS.methodVersion, "1.0.3");
 assert.equal(SOCIAL_SECURITY_CLAIM_PARAMETERS.lastVerifiedDate, "2026-08-15");
 assert.equal(
   SOCIAL_SECURITY_CLAIM_PARAMETERS.earlyRetirementSourceUrl,
@@ -368,6 +421,75 @@ assert(
 );
 assert(justBelowWholeDollarCap.taxablePercentage <= 0.85);
 
+// Break caught: unsafe gross-benefit magnitudes must be rejected rather than
+// converted through a lossy decimal/cents path that can exceed the 85% cap.
+const unsafeTaxableCurrency = taxableEstimate(
+  "single",
+  100_000,
+  18_014_398_509_481_990,
+);
+assert.equal(unsafeTaxableCurrency.ok, false);
+if (!unsafeTaxableCurrency.ok) {
+  assert(
+    unsafeTaxableCurrency.errors.some(
+      (error) =>
+        error.includes("annualSocialSecurityBenefits") &&
+        error.includes("safe whole-cent limit"),
+    ),
+  );
+}
+
+for (const { input, field } of [
+  {
+    input: {
+      taxYear: 2025,
+      filingStatus: "single",
+      annualSocialSecurityBenefits: 20_000,
+      otherIncome: 18_014_398_509_481_990,
+      taxExemptInterest: 0,
+    },
+    field: "otherIncome",
+  },
+  {
+    input: {
+      taxYear: 2025,
+      filingStatus: "single",
+      annualSocialSecurityBenefits: 20_000,
+      otherIncome: 15_000,
+      taxExemptInterest: 18_014_398_509_481_990,
+    },
+    field: "taxExemptInterest",
+  },
+] as const) {
+  const unsafeMonetaryInput = estimateTaxableSocialSecurity(input);
+  assert.equal(unsafeMonetaryInput.ok, false);
+  if (!unsafeMonetaryInput.ok) {
+    assert(
+      unsafeMonetaryInput.errors.some(
+        (error) => error.includes(field) && error.includes("safe whole-cent limit"),
+      ),
+    );
+  }
+}
+
+const unsafeProvisionalIncome = estimateTaxableSocialSecurity({
+  taxYear: 2025,
+  filingStatus: "single",
+  annualSocialSecurityBenefits: 60_000_000_000_000,
+  otherIncome: 60_000_000_000_000,
+  taxExemptInterest: 60_000_000_000_000,
+});
+assert.equal(unsafeProvisionalIncome.ok, false);
+if (!unsafeProvisionalIncome.ok) {
+  assert(
+    unsafeProvisionalIncome.errors.some(
+      (error) =>
+        error.includes("provisional income") &&
+        error.includes("safe whole-cent limit"),
+    ),
+  );
+}
+
 // Break caught: Publication 915 Example 3 must produce $6,275, not a flat 85%.
 const irsGolden = taxableEstimate("married_filing_jointly", 40_500, 10_000);
 assert(irsGolden.ok);
@@ -437,7 +559,7 @@ for (const input of [
 
 assert(Object.isFrozen(TAXABLE_SOCIAL_SECURITY_PARAMETERS));
 assert(Object.isFrozen(TAXABLE_SOCIAL_SECURITY_PARAMETERS.filingStatuses));
-assert.equal(TAXABLE_SOCIAL_SECURITY_PARAMETERS.methodVersion, "1.1.1");
+assert.equal(TAXABLE_SOCIAL_SECURITY_PARAMETERS.methodVersion, "1.1.2");
 assert.equal(TAXABLE_SOCIAL_SECURITY_PARAMETERS.taxYear, 2025);
 assert.equal(TAXABLE_SOCIAL_SECURITY_PARAMETERS.lastVerifiedDate, "2026-08-15");
 assert.deepEqual(TAXABLE_SOCIAL_SECURITY_PARAMETERS.filingStatuses, {

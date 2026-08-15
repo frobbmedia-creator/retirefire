@@ -51,7 +51,7 @@ function deepFreeze<T extends object>(value: T): T {
  * January 1 birthday; callers must make that adjustment before calling.
  */
 export const SOCIAL_SECURITY_CLAIM_PARAMETERS = deepFreeze({
-  methodVersion: "1.0.2",
+  methodVersion: "1.0.3",
   minimumSupportedBirthYear: 1933,
   earliestClaimAgeMonths: 62 * 12,
   latestClaimAgeMonths: 70 * 12,
@@ -132,7 +132,7 @@ export type SocialSecurityEstimate =
     }
   | {
       ok: true;
-      methodVersion: "1.0.2";
+      methodVersion: "1.0.3";
       birthYear: number;
       fullRetirementAge: FullRetirementAge;
       fullRetirementAgeMonthlyBenefit: number;
@@ -168,6 +168,14 @@ function isInteger(value: unknown): value is number {
 
 function isFiniteNonNegative(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value) && value >= 0;
+}
+
+// Keeps every accepted dollar value within Number.MAX_SAFE_INTEGER when scaled
+// to whole cents, which is the estimator's smallest promised currency unit.
+const MAX_SAFE_WHOLE_CENT_AMOUNT = Number.MAX_SAFE_INTEGER / 100;
+
+function safeWholeCentLimitError(field: string): string {
+  return `${field} must not exceed the safe whole-cent limit of ${MAX_SAFE_WHOLE_CENT_AMOUNT}`;
 }
 
 function roundCurrency(value: number): number {
@@ -241,6 +249,12 @@ export function estimateSocialSecurityClaim(
   }
   if (!isFiniteNonNegative(candidate.fullRetirementAgeMonthlyBenefit)) {
     errors.push("fullRetirementAgeMonthlyBenefit must be finite and non-negative");
+  } else if (
+    candidate.fullRetirementAgeMonthlyBenefit > MAX_SAFE_WHOLE_CENT_AMOUNT
+  ) {
+    errors.push(
+      safeWholeCentLimitError("fullRetirementAgeMonthlyBenefit"),
+    );
   }
   if (!isInteger(candidate.claimAgeYears)) {
     errors.push("claimAgeYears must be a whole number");
@@ -322,12 +336,28 @@ export function estimateSocialSecurityClaim(
       exclusions: SOCIAL_SECURITY_ESTIMATE_EXCLUSIONS,
     };
   }
+  if (unroundedBenefit > MAX_SAFE_WHOLE_CENT_AMOUNT) {
+    return {
+      ok: false,
+      errors: [safeWholeCentLimitError("estimated monthly benefit")],
+      methodVersion: SOCIAL_SECURITY_CLAIM_PARAMETERS.methodVersion,
+      exclusions: SOCIAL_SECURITY_ESTIMATE_EXCLUSIONS,
+    };
+  }
   const estimatedMonthlyBenefitBeforeRounding = roundCurrency(unroundedBenefit);
   const estimatedMonthlyBenefit = floorRationallyAdjustedBenefit(
     fullRetirementAgeMonthlyBenefit,
     adjustmentNumerator,
     adjustmentDenominator,
   );
+  if (estimatedMonthlyBenefit > MAX_SAFE_WHOLE_CENT_AMOUNT / 12) {
+    return {
+      ok: false,
+      errors: [safeWholeCentLimitError("estimated annual benefit")],
+      methodVersion: SOCIAL_SECURITY_CLAIM_PARAMETERS.methodVersion,
+      exclusions: SOCIAL_SECURITY_ESTIMATE_EXCLUSIONS,
+    };
+  }
   const estimatedAnnualBenefit = estimatedMonthlyBenefit * 12;
   if (
     !Number.isFinite(estimatedMonthlyBenefitBeforeRounding) ||
@@ -343,7 +373,7 @@ export function estimateSocialSecurityClaim(
 
   return {
     ok: true,
-    methodVersion: "1.0.2",
+    methodVersion: "1.0.3",
     birthYear,
     fullRetirementAge,
     fullRetirementAgeMonthlyBenefit,
@@ -371,7 +401,7 @@ export function estimateSocialSecurityClaim(
  * Source revision: 2025. Last verified: 2026-08-15.
  */
 export const TAXABLE_SOCIAL_SECURITY_PARAMETERS = deepFreeze({
-  methodVersion: "1.1.1",
+  methodVersion: "1.1.2",
   taxYear: 2025,
   effectivePeriod: "2025 federal income tax returns",
   sourceRevision: "2025",
@@ -418,7 +448,7 @@ export type TaxableSocialSecurityEstimate =
     }
   | {
       ok: true;
-      methodVersion: "1.1.1";
+      methodVersion: "1.1.2";
       taxYear: 2025;
       filingStatus: TaxableSocialSecurityFilingStatus;
       grossAnnualBenefits: number;
@@ -475,6 +505,8 @@ export function estimateTaxableSocialSecurity(
   ] as const) {
     if (!isFiniteNonNegative(candidate[field])) {
       errors.push(`${field} must be finite and non-negative`);
+    } else if (candidate[field] > MAX_SAFE_WHOLE_CENT_AMOUNT) {
+      errors.push(safeWholeCentLimitError(field));
     }
   }
   if (errors.length > 0) {
@@ -496,6 +528,14 @@ export function estimateTaxableSocialSecurity(
     return {
       ok: false,
       errors: ["provisional income must be finite"],
+      methodVersion: TAXABLE_SOCIAL_SECURITY_PARAMETERS.methodVersion,
+      exclusions: TAXABLE_SOCIAL_SECURITY_EXCLUSIONS,
+    };
+  }
+  if (provisionalIncome > MAX_SAFE_WHOLE_CENT_AMOUNT) {
+    return {
+      ok: false,
+      errors: [safeWholeCentLimitError("provisional income")],
       methodVersion: TAXABLE_SOCIAL_SECURITY_PARAMETERS.methodVersion,
       exclusions: TAXABLE_SOCIAL_SECURITY_EXCLUSIONS,
     };
@@ -587,7 +627,7 @@ export function estimateTaxableSocialSecurity(
 
   return {
     ok: true,
-    methodVersion: "1.1.1",
+    methodVersion: "1.1.2",
     taxYear: 2025,
     filingStatus,
     grossAnnualBenefits,
