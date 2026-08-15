@@ -1,4 +1,5 @@
 import type { PlannerState } from "@/lib/planner-state";
+import { csvCell } from "@/lib/planner-transfer";
 import type {
   BaristaFireResult,
   CoastFireResult,
@@ -16,12 +17,6 @@ export type ScenarioExportInput = {
   barista: BaristaFireResult;
   shareUrl: string;
 };
-
-function csvEscape(value: string | number): string {
-  const s = String(value);
-  if (/[",\n]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
-  return s;
-}
 
 /** Build a simple two-column CSV of the current planner scenario. */
 export function buildScenarioCsv(input: ScenarioExportInput): string {
@@ -70,7 +65,7 @@ export function buildScenarioCsv(input: ScenarioExportInput): string {
     ["barista_gap_expenses", Math.round(barista.gapExpenses)],
   ];
 
-  return rows.map(([k, v]) => `${csvEscape(k)},${csvEscape(v)}`).join("\n") + "\n";
+  return rows.map(([k, v]) => `${csvCell(k)},${csvCell(v)}`).join("\n") + "\n";
 }
 
 export function downloadTextFile(filename: string, content: string, mime = "text/csv"): void {
