@@ -26,7 +26,8 @@ Only official IRS material was used as authority. Sources were rechecked on
      series commencing during 2022.
    - Use: three recognized methods; permitted life-expectancy tables; 5%/120%
      federal mid-term maximum-rate rule; account-balance rules; fixed-method
-     treatment; one-time switch rule; Appendix A Uniform Lifetime Table.
+     treatment; one-time switch rule; the section 2.04 recapture/modification
+     rule; Appendix A Uniform Lifetime Table.
 2. **IRS, Substantially equal periodic payments**
    - URL: https://www.irs.gov/retirement-plans/substantially-equal-periodic-payments
    - Source date: page does not state a publication date; current page reviewed
@@ -63,6 +64,14 @@ Only official IRS material was used as authority. Sources were rechecked on
 
 The rate implementation uses the unrounded 120% mid-term column, not the
 separately rounded section 7520 rate.
+
+This implementation accepts a Notice 2022-6 election commencing during 2022
+and Notice-governed series commencing in 2023 or later. It rejects every
+pre-2022 commencement rather than attempting Rev. Rul. 2002-62 or transition-
+series support. A 2022 RMD calculation can proceed; a 2022 fixed-method request
+fails with an explicit authoritative-rate-coverage error because the static
+ledger begins in November 2022 and does not contain both required 2021/2022
+lookback months. No older rate is inferred or substituted.
 
 ## Table integrity and scope
 
@@ -110,6 +119,7 @@ display precision in the FAQ.
 | Balance | $400,000 |
 | Birth date used by fixture | 1973-06-15 |
 | First payment date used by fixture | 2023-01-15 |
+| Distribution year | 2023 |
 | Attained age in distribution year | 50 |
 | Table | Single Life |
 | Source factor | 36.2 |
@@ -119,6 +129,28 @@ display precision in the FAQ.
 | IRS displayed payment | $11,050 |
 | Difference | $0.28 |
 | Result | within tolerance; externally unreviewed |
+
+### Case 1b: RMD annual redetermination
+
+Notice 2022-6 section 3.01(a) requires the account balance, table factor, and
+payment to be redetermined for each distribution year. A second-year fixture
+preserves the January 15, 2023 commencement date but supplies the current
+balance and `distributionYear: 2024`.
+
+| Field | Year one | Year two |
+|---|---:|---:|
+| Current distribution-year balance | $400,000 | $380,000 |
+| Distribution year | 2023 | 2024 |
+| Attained age in distribution year | 50 | 51 |
+| Single Life factor | 36.2 | 35.3 |
+| Hand formula | $400,000 / 36.2 | $380,000 / 35.3 |
+| Exact code payment | $11,049.72 | $10,764.87 |
+| Modification end date | 2032-12-15 | 2032-12-15 |
+
+The invariant modification date demonstrates that `firstDistributionDate` is
+the immutable commencement anchor; `distributionYear` changes only the RMD
+age/factor/payment calculation. Fixed methods reject `distributionYear` and
+remain based on their first-distribution-year inputs.
 
 ### Case 2: IRS age-50 fixed-amortization example
 
@@ -166,7 +198,8 @@ and verified as of August 15, 2026. The function does not invent or forecast it.
 
 ### Case 5: calendar-date modification period
 
-The IRS FAQ gives a taxpayer born August 15, 1968 who commences payments on
+Notice 2022-6 section 2.04 states the recapture/modification timing rule. The
+IRS FAQ gives a taxpayer born August 15, 1968 who commences payments on
 December 1, 2024. Age 59½ occurs February 15, 2028; the fifth anniversary is
 December 1, 2029. The later date, and the code result, is December 1, 2029.
 
@@ -189,8 +222,11 @@ failed validation checkpoint, not a golden-case pass and not an approximation.
 - A SoSEPP is tied to one account; balances and distributions cannot be
   combined across accounts.
 - RMD amounts must be redetermined each distribution year using the same life
-  table, subject to Notice 2022-6's beneficiary and transition rules.
+  table, current distribution-year balance, and required `distributionYear`,
+  subject to Notice 2022-6's beneficiary and transition rules.
 - The fixed-amortization amount remains level in succeeding years.
+- `distributionYear` is RMD-only. Fixed methods reject it and derive their age,
+  factor, rate lookback, and level payment from commencement inputs.
 - Unauthorized changes before the later of the fifth payment anniversary and
   age 59½ can trigger recapture tax plus interest.
 - The implementation does not decide plan separation-from-service facts,
@@ -199,6 +235,8 @@ failed validation checkpoint, not a golden-case pass and not an approximation.
   eligibility.
 - Rate data is static through August 2026; later first-payment months remain
   unavailable until both official lookback rates are added and verified.
+- Inputs whose fifth anniversary or age-59½ milestone cannot be represented as
+  a four-digit `YYYY-MM-DD` date return a structured failure.
 
 ## External review sign-off
 

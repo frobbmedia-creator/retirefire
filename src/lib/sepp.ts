@@ -97,21 +97,36 @@ export type SeppLifeExpectancyTable =
   | "uniform-lifetime"
   | "joint-and-last-survivor";
 
-export type SeppCalculationInput = Readonly<{
-  method: SeppMethod;
+type SeppCalculationCommonInput = Readonly<{
   accountBalance: number;
   birthDate: string;
   firstDistributionDate: string;
   lifeExpectancyTable: SeppLifeExpectancyTable;
   beneficiaryBirthDate?: string | null;
-  interestRate?: number | null;
 }>;
+
+export type SeppCalculationInput =
+  | Readonly<
+      SeppCalculationCommonInput & {
+        method: "required-minimum-distribution";
+        distributionYear: number;
+        interestRate?: number | null;
+      }
+    >
+  | Readonly<
+      SeppCalculationCommonInput & {
+        method: "fixed-amortization" | "fixed-annuitization";
+        distributionYear?: never;
+        interestRate?: number | null;
+      }
+    >;
 
 type NormalizedSeppInput = Readonly<{
   method: SeppMethod;
   accountBalance: number;
   birthDate: string;
   firstDistributionDate: string;
+  distributionYear: number | null;
   lifeExpectancyTable: SeppLifeExpectancyTable;
   beneficiaryBirthDate: string | null;
   interestRate: number | null;
@@ -164,6 +179,8 @@ const TABLE_VALUES = new Set<string>([
 ]);
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const MAX_SAFE_CURRENCY = Number.MAX_SAFE_INTEGER / 100;
+const NOTICE_2022_6_EARLIEST_COMMENCEMENT = "2022-01-01";
+const MAX_ISO_YEAR = 9999;
 
 const BASE_WARNINGS = Object.freeze([
   "This internal calculation is non-actionable until external professional review is complete",
@@ -194,14 +211,34 @@ function formatDate(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
 
-function addCalendarYearsAndMonths(date: Date, years: number, months: number): Date {
+function isLeapYear(year: number): boolean {
+  return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+}
+
+function daysInMonth(year: number, month: number): number {
+  return [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][
+    month
+  ] as number;
+}
+
+function addCalendarYearsAndMonths(
+  date: Date,
+  years: number,
+  months: number,
+): Date | null {
   const absoluteMonth = date.getUTCMonth() + months;
   const targetYear = date.getUTCFullYear() + years + Math.floor(absoluteMonth / 12);
   const targetMonth = ((absoluteMonth % 12) + 12) % 12;
-  const lastDay = new Date(Date.UTC(targetYear, targetMonth + 1, 0)).getUTCDate();
-  return new Date(
-    Date.UTC(targetYear, targetMonth, Math.min(date.getUTCDate(), lastDay)),
+  if (targetYear < 0 || targetYear > MAX_ISO_YEAR) return null;
+
+  const result = new Date(0);
+  result.setUTCHours(0, 0, 0, 0);
+  result.setUTCFullYear(
+    targetYear,
+    targetMonth,
+    Math.min(date.getUTCDate(), daysInMonth(targetYear, targetMonth)),
   );
+  return result;
 }
 
 function lifeExpectancyFactor(
@@ -238,6 +275,7 @@ export function calculateSepp(input: SeppCalculationInput): SeppCalculationResul
   const table = candidate.lifeExpectancyTable;
   const birthDate = parseIsoDate(candidate.birthDate);
   const firstDistributionDate = parseIsoDate(candidate.firstDistributionDate);
+  const isRmd = method === "required-minimum-distribution";
 
   if (typeof method !== "string" || !METHOD_VALUES.has(method)) {
     errors.push("method is unsupported");
@@ -250,6 +288,12 @@ export function calculateSepp(input: SeppCalculationInput): SeppCalculationResul
   if (!birthDate) errors.push("birthDate must be a valid YYYY-MM-DD calendar date");
   if (!firstDistributionDate) {
     errors.push("firstDistributionDate must be a valid YYYY-MM-DD calendar date");
+  } else if (
+    formatDate(firstDistributionDate) < NOTICE_2022_6_EARLIEST_COMMENCEMENT
+  ) {
+    errors.push(
+      `firstDistributionDate must be on or after ${NOTICE_2022_6_EARLIEST_COMMENCEMENT} for this Notice 2022-6 implementation`,
+    );
   }
   if (typeof table !== "string" || !TABLE_VALUES.has(table)) {
     errors.push("unsupported lifeExpectancyTable");
@@ -278,6 +322,44 @@ export function calculateSepp(input: SeppCalculationInput): SeppCalculationResul
 
   if (birthDate && firstDistributionDate && birthDate > firstDistributionDate) {
     errors.push("birthDate must not be after firstDistributionDate");
+  }
+
+  if (isRmd) {
+    if (candidate.distributionYear == null) {
+      errors.push("distributionYear is required for the RMD method");
+    } else if (
+      !Number.isInteger(candidate.distributionYear) ||
+      candidate.distributionYear < 2022 ||
+      candidate.distributionYear > MAX_ISO_YEAR
+    ) {
+      errors.push("distributionYear must be an integer from 2022 through 9999");
+    } else if (
+      firstDistributionDate &&
+      candidate.distributionYear < firstDistributionDate.getUTCFullYear()
+    ) {
+      errors.push(
+        "distributionYear must not be before the firstDistributionDate year",
+      );
+    }
+  } else if (candidate.distributionYear !== undefined) {
+    errors.push("distributionYear is only permitted for the RMD method");
+  }
+
+  const fiveYearAnniversary = firstDistributionDate
+    ? addCalendarYearsAndMonths(firstDistributionDate, 5, 0)
+    : null;
+  const ageFiftyNineAndHalf = birthDate
+    ? addCalendarYearsAndMonths(birthDate, 59, 6)
+    : null;
+  if (firstDistributionDate && !fiveYearAnniversary) {
+    errors.push(
+      "firstDistributionDate cannot produce a modification date within the supported YYYY-MM-DD range",
+    );
+  }
+  if (birthDate && !ageFiftyNineAndHalf) {
+    errors.push(
+      "birthDate cannot produce age 59.5 within the supported YYYY-MM-DD range",
+    );
   }
 
   const isFixed = method === "fixed-amortization" || method === "fixed-annuitization";
@@ -319,12 +401,20 @@ export function calculateSepp(input: SeppCalculationInput): SeppCalculationResul
     );
   }
 
-  if (errors.length > 0 || !birthDate || !firstDistributionDate) {
+  if (
+    errors.length > 0 ||
+    !birthDate ||
+    !firstDistributionDate ||
+    !fiveYearAnniversary ||
+    !ageFiftyNineAndHalf
+  ) {
     return failure(errors);
   }
 
-  const attainedAge =
-    firstDistributionDate.getUTCFullYear() - birthDate.getUTCFullYear();
+  const calculationYear = isRmd
+    ? (candidate.distributionYear as number)
+    : firstDistributionDate.getUTCFullYear();
+  const attainedAge = calculationYear - birthDate.getUTCFullYear();
   const factor = lifeExpectancyFactor(
     table as SeppLifeExpectancyTable,
     attainedAge,
@@ -358,12 +448,6 @@ export function calculateSepp(input: SeppCalculationInput): SeppCalculationResul
     return failure(["calculation result exceeds the supported numeric domain"]);
   }
 
-  const fiveYearAnniversary = addCalendarYearsAndMonths(
-    firstDistributionDate,
-    5,
-    0,
-  );
-  const ageFiftyNineAndHalf = addCalendarYearsAndMonths(birthDate, 59, 6);
   const modificationEndDate = formatDate(
     fiveYearAnniversary > ageFiftyNineAndHalf
       ? fiveYearAnniversary
@@ -391,6 +475,7 @@ export function calculateSepp(input: SeppCalculationInput): SeppCalculationResul
       accountBalance: candidate.accountBalance as number,
       birthDate: candidate.birthDate as string,
       firstDistributionDate: candidate.firstDistributionDate as string,
+      distributionYear: isRmd ? (candidate.distributionYear as number) : null,
       lifeExpectancyTable: table as SeppLifeExpectancyTable,
       beneficiaryBirthDate:
         candidate.beneficiaryBirthDate == null
