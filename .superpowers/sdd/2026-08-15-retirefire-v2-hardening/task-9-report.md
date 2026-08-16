@@ -154,13 +154,96 @@ exit 0; no whitespace errors.
 
 ## Remaining concerns
 
-- `calculateSepp` is imported by the client module so `seppUiModel` can
-  classify recognized versus invalid example inputs. A motivated user could
-  still invoke the core from the browser console. The public UI never renders
-  that payment, the model never includes it, and the core result remains
-  `actionable: false`.
 - Fixed annuitization and the Joint and Last Survivor Table remain unavailable.
   The static rate ledger still ends at 2026-08, so first-payment months after
   2026-09 continue to fail closed.
 - Passing local checks is not professional tax review and does not authorize a
   distribution. The external-review gate and blank sign-off must be preserved.
+
+## Review fix — Round 1
+
+### Outcome
+
+Resolved the two Important quality-review findings without adding a Server
+Action or changing Task 8 formulas.
+
+- Moved `SeppUiModel` and `seppUiModel` to `src/lib/sepp-ui-model.ts`.
+- Stopped classifying example inputs with `calculateSepp`. The model now uses
+  a shallow structural check: a non-null object with a finite balance,
+  `YYYY-MM-DD`-shaped date strings, and a present method is `recognized`.
+- `SeppCalculator.tsx` is the form/view only. It does not import `@/lib/sepp`
+  or `calculateSepp`, and it does not re-export `seppUiModel`.
+- Tests still call `calculateSepp` to prove the RMD and amortization golden
+  payments exist, then prove the UI model returns `paymentOutput: null` and
+  does not leak `11049.72` or `21101.63`. A structurally complete 99%
+  amortization example remains `recognized` even though the core rejects it,
+  so the UI model cannot act as a rate-ceiling oracle.
+
+Registry status remains `blocked_external_review`. External review remains
+`pending`. Successful core results remain `actionable: false`.
+
+### RED / GREEN evidence
+
+Tests were pointed at `./sepp-ui-model` and the amortization / no-oracle
+assertions were added before the new module existed:
+
+```text
+npx tsx src/lib/sepp.test.ts
+Error: Cannot find module './sepp-ui-model'
+```
+
+After adding the lib module and stripping the client engine import:
+
+```text
+npx tsx src/lib/sepp.test.ts
+All SEPP checks passed; external review remains pending.
+```
+
+### Files changed
+
+- `src/lib/sepp-ui-model.ts` — new fail-closed UI model; no engine import.
+- `src/components/calculators/SeppCalculator.tsx` — form/view only.
+- `src/lib/sepp.test.ts` — lib import, amortization leak, over-ceiling
+  recognized-shape lock.
+- `.superpowers/sdd/2026-08-15-retirefire-v2-hardening/task-9-report.md`
+  — this appendix.
+
+### Bounded verification
+
+```text
+npx tsx src/lib/sepp.test.ts
+All SEPP checks passed; external review remains pending.
+
+npx tsx src/lib/calculation-registry.test.ts
+All calculation-registry tests passed.
+
+npm run test:content
+All 15 decision-page checks passed.
+
+npm run lint
+exit 0; ESLint reported no errors or warnings.
+
+npx tsc --noEmit
+exit 0; no diagnostics. Ran again after test:calc; exit 0.
+
+npm run test:calc
+All calculation, Monte Carlo, coast-table, scenario-metric, federal-tax,
+retirement-income, planning-tool, retirement-checkup, planner-state,
+planner-transfer, SEPP, and calculation-registry checks passed.
+
+git diff --check
+exit 0; no whitespace errors.
+```
+
+`npm run build` was not rerun; lint and TypeScript were clean after the
+client/lib split.
+
+### Self-review
+
+- Completeness: both Important findings are closed. Existing
+  blocked/unknown/malformed/no-IRS-approved assertions remain.
+- Quality: the client bundle no longer pulls `sepp.ts` or `sepp-rates.ts`.
+- YAGNI: no Server Action, no new UI primitive, no analytics, no formula
+  change.
+- Testing: the over-ceiling case fails if `seppUiModel` is later wired back
+  to `calculateSepp`.

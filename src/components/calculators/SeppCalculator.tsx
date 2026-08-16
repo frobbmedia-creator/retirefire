@@ -3,57 +3,10 @@
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { MoneyInput } from "@/components/ui/money-input";
-import {
-  calculateSepp,
-  type SeppCalculationInput,
-  type SeppLifeExpectancyTable,
-  type SeppMethod,
-} from "@/lib/sepp";
+import { seppUiModel } from "@/lib/sepp-ui-model";
 
-export type SeppUiModel = Readonly<{
-  phase: "review_pending" | "unavailable";
-  inputState: "recognized" | "invalid";
-  exposesMethodology: true;
-  exposesExampleInputs: true;
-  paymentOutput: null;
-  message: string;
-}>;
-
-const REVIEW_PENDING_MESSAGE =
-  "Payment output is unavailable while independent professional validation is pending.";
-const UNAVAILABLE_MESSAGE =
-  "Payment output is unavailable because the calculator release status is not recognized as review-pending.";
-
-/**
- * Convert the governed SEPP core into a public, fail-closed UI state.
- * Never return the raw result: it contains a numeric payment even though the
- * current core marks that result non-actionable.
- */
-export function seppUiModel(
-  registryStatus: unknown,
-  inputs: unknown,
-): SeppUiModel {
-  if (registryStatus !== "blocked_external_review") {
-    return {
-      phase: "unavailable",
-      inputState: "invalid",
-      exposesMethodology: true,
-      exposesExampleInputs: true,
-      paymentOutput: null,
-      message: UNAVAILABLE_MESSAGE,
-    };
-  }
-
-  const result = calculateSepp(inputs as SeppCalculationInput);
-  return {
-    phase: "review_pending",
-    inputState: result.ok ? "recognized" : "invalid",
-    exposesMethodology: true,
-    exposesExampleInputs: true,
-    paymentOutput: null,
-    message: REVIEW_PENDING_MESSAGE,
-  };
-}
+type PreviewMethod = "required-minimum-distribution" | "fixed-amortization";
+type PreviewTable = "single-life" | "uniform-lifetime";
 
 export function SeppCalculator({ registryStatus }: { registryStatus: unknown }) {
   const [accountBalance, setAccountBalance] = useState(400_000);
@@ -61,35 +14,42 @@ export function SeppCalculator({ registryStatus }: { registryStatus: unknown }) 
   const [firstDistributionDate, setFirstDistributionDate] =
     useState("2023-01-15");
   const [distributionYear, setDistributionYear] = useState(2023);
-  const [method, setMethod] = useState<Exclude<SeppMethod, "fixed-annuitization">>(
+  const [method, setMethod] = useState<PreviewMethod>(
     "required-minimum-distribution",
   );
   const [lifeExpectancyTable, setLifeExpectancyTable] =
-    useState<Exclude<SeppLifeExpectancyTable, "joint-and-last-survivor">>(
-      "single-life",
-    );
+    useState<PreviewTable>("single-life");
   const [interestRatePct, setInterestRatePct] = useState(4);
 
-  const exampleInputs = useMemo<SeppCalculationInput>(() => {
-    const common = {
+  const exampleInputs = useMemo(
+    () =>
+      method === "required-minimum-distribution"
+        ? {
+            accountBalance,
+            birthDate,
+            firstDistributionDate,
+            lifeExpectancyTable,
+            method,
+            distributionYear,
+          }
+        : {
+            accountBalance,
+            birthDate,
+            firstDistributionDate,
+            lifeExpectancyTable,
+            method,
+            interestRate: interestRatePct / 100,
+          },
+    [
       accountBalance,
       birthDate,
+      distributionYear,
       firstDistributionDate,
+      interestRatePct,
       lifeExpectancyTable,
-    };
-
-    return method === "required-minimum-distribution"
-      ? { ...common, method, distributionYear }
-      : { ...common, method, interestRate: interestRatePct / 100 };
-  }, [
-    accountBalance,
-    birthDate,
-    distributionYear,
-    firstDistributionDate,
-    interestRatePct,
-    lifeExpectancyTable,
-    method,
-  ]);
+      method,
+    ],
+  );
   const model = useMemo(
     () => seppUiModel(registryStatus, exampleInputs),
     [exampleInputs, registryStatus],
@@ -156,9 +116,7 @@ export function SeppCalculator({ registryStatus }: { registryStatus: unknown }) 
             className={selectClass}
             value={method}
             onChange={(event) =>
-              setMethod(
-                event.target.value as Exclude<SeppMethod, "fixed-annuitization">,
-              )
+              setMethod(event.target.value as PreviewMethod)
             }
           >
             <option value="required-minimum-distribution">
@@ -176,12 +134,7 @@ export function SeppCalculator({ registryStatus }: { registryStatus: unknown }) 
             className={selectClass}
             value={lifeExpectancyTable}
             onChange={(event) =>
-              setLifeExpectancyTable(
-                event.target.value as Exclude<
-                  SeppLifeExpectancyTable,
-                  "joint-and-last-survivor"
-                >,
-              )
+              setLifeExpectancyTable(event.target.value as PreviewTable)
             }
           >
             <option value="single-life">Single Life Table</option>
@@ -228,7 +181,7 @@ export function SeppCalculator({ registryStatus }: { registryStatus: unknown }) 
         </p>
         {model.phase === "review_pending" && model.inputState === "invalid" && (
           <p className="mt-2 text-xs leading-relaxed text-zinc-500">
-            These example values do not currently form a supported core input.
+            These example values do not currently form a recognized input shape.
             No calculation details are exposed in review-pending mode.
           </p>
         )}

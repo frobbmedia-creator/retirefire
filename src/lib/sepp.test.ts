@@ -11,7 +11,7 @@ import {
   SEPP_120_PERCENT_MIDTERM_RATES,
   SEPP_RATE_TABLE_INTEGRITY,
 } from "./sepp-rates";
-import { seppUiModel } from "../components/calculators/SeppCalculator";
+import { seppUiModel } from "./sepp-ui-model";
 
 function errorText(result: ReturnType<typeof calculateSepp>): string {
   assert.equal(result.ok, false);
@@ -388,7 +388,9 @@ for (const birthDate of ["2013-06-15", "1903-06-15"]) {
 
 assert.equal(SEPP_EXTERNAL_REVIEW_STATUS, "pending");
 
-// A blocked public UI must not leak the core's otherwise-computed payment.
+// A blocked public UI must not leak a payment the core can already compute.
+assert(rmd.ok);
+assert.equal(rmd.annualPayment, 11_049.72);
 const blockedUiModel = seppUiModel("blocked_external_review", {
   ...rmdBaseInput,
   method: "required-minimum-distribution",
@@ -404,6 +406,37 @@ assert.deepEqual(blockedUiModel, {
 });
 assert.doesNotMatch(JSON.stringify(blockedUiModel), /11049\.72/);
 assert.doesNotMatch(JSON.stringify(blockedUiModel), /IRS-approved calculator/i);
+
+assert(amortization.ok);
+assert.equal(amortization.annualPayment, 21_101.63);
+const blockedAmortizationUi = seppUiModel("blocked_external_review", {
+  ...baseInput,
+  method: "fixed-amortization",
+  interestRate: 0.04,
+});
+assert.equal(blockedAmortizationUi.phase, "review_pending");
+assert.equal(blockedAmortizationUi.inputState, "recognized");
+assert.equal(blockedAmortizationUi.paymentOutput, null);
+assert.doesNotMatch(JSON.stringify(blockedAmortizationUi), /21101\.63/);
+assert.doesNotMatch(JSON.stringify(blockedAmortizationUi), /18\.955879/);
+
+// Classification is structural only. An otherwise-complete example that the
+// core rejects for a rate-ceiling reason must stay recognized so the UI model
+// cannot act as a calculateSepp oracle.
+const overCeiling = calculateSepp({
+  ...baseInput,
+  method: "fixed-amortization",
+  interestRate: 0.99,
+});
+assert.equal(overCeiling.ok, false);
+const overCeilingUi = seppUiModel("blocked_external_review", {
+  ...baseInput,
+  method: "fixed-amortization",
+  interestRate: 0.99,
+});
+assert.equal(overCeilingUi.phase, "review_pending");
+assert.equal(overCeilingUi.inputState, "recognized");
+assert.equal(overCeilingUi.paymentOutput, null);
 
 // Unknown release states and malformed runtime inputs fail closed at the
 // client boundary rather than inheriting an accidentally permissive default.
