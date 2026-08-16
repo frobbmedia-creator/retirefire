@@ -4,6 +4,7 @@ import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { PlannerShell } from "@/components/planner/PlannerShell";
 import { CalculatorHub } from "@/components/calculators/CalculatorHub";
 import { CalculatorSeoSection } from "@/components/calculators/CalculatorSeoSection";
+import { FailureModes } from "@/components/calculators/FailureModes";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { CalculatorSeoContent } from "@/content/calculator-seo";
 import {
@@ -79,9 +80,35 @@ export function CalculatorPageLayout({
       {children}
 
       <div className="mt-10">
+        <p className="mb-4 text-sm leading-relaxed text-zinc-500">
+          Results below are educational illustrations under stated assumptions — not
+          forecasts.{" "}
+          <TrackedLink
+            href="/methodology"
+            className="inline-flex min-h-11 items-center text-emerald-400 hover:underline"
+            eventName={AnalyticsEvents.CALCULATOR_INTERACT}
+            eventProps={calculationAnalyticsProps(calculatorId, {
+              action: "methodology_open",
+            })}
+          >
+            Methodology
+          </TrackedLink>
+          {" · "}
+          <TrackedLink
+            href="/disclaimer"
+            className="inline-flex min-h-11 items-center text-emerald-400 hover:underline"
+            eventName={AnalyticsEvents.CALCULATOR_INTERACT}
+            eventProps={calculationAnalyticsProps(calculatorId, {
+              action: "risk_disclosure_open",
+            })}
+          >
+            Disclaimer
+          </TrackedLink>
+        </p>
         <PlannerShell sharePath={sharePath}>
           <CalculatorHub showHeading={false} tools={tools} />
         </PlannerShell>
+        <FailureModes />
       </div>
 
       {seo && <CalculatorSeoSection content={seo} />}
