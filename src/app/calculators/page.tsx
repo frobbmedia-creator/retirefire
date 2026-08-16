@@ -71,6 +71,11 @@ const TOOLS = [
     body: "Estimate current-year incremental regular federal income tax for one proposed conversion using progressive brackets.",
   },
   {
+    href: "/calculators/72t-sepp",
+    title: "SEPP methodology preview — validation pending",
+    body: "Explore Notice 2022-6 example inputs, methodology, limitations, and official sources without an actionable payment output.",
+  },
+  {
     href: "/calculators/healthcare-budget",
     title: "Healthcare Before Medicare",
     body: "Budget premiums, out-of-pocket costs, subsidies, and medical inflation through age 65.",

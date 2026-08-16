@@ -97,6 +97,19 @@ assert(
   ),
 );
 
+// The public SEPP preview must inherit a blocked release state and link the
+// governing Notice directly, rather than implying review or approval.
+const seppMethod = CALCULATION_REGISTRY.find((method) => method.id === "sepp-72t");
+assert(seppMethod);
+assert.equal(seppMethod.status, "blocked_external_review");
+assert(
+  seppMethod.sources.some(
+    (source) =>
+      source.label === "IRS Notice 2022-6" &&
+      source.href === "https://www.irs.gov/pub/irs-drop/n-22-06.pdf",
+  ),
+);
+
 const baseMethod = CALCULATION_REGISTRY[0]!;
 
 function issuesFor(patch: Record<string, unknown>): string {

@@ -35,6 +35,7 @@ const FINRA_MONTE_CARLO =
 const IRS_ROTH = "https://www.irs.gov/publications/p590a";
 const IRS_2026_TAX = "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf";
 const IRS_SEPP = "https://www.irs.gov/retirement-plans/substantially-equal-periodic-payments";
+const IRS_NOTICE_2022_6 = "https://www.irs.gov/pub/irs-drop/n-22-06.pdf";
 const SSA_EARLY_RETIREMENT =
   "https://www.ssa.gov/oact/quickcalc/earlyretire.html";
 const SSA_DELAYED_RETIREMENT =
@@ -279,7 +280,10 @@ export const CALCULATION_REGISTRY: readonly CalculationMethod[] = [
     nextReviewTrigger: "When Notice 2022-6 implementation receives external review",
     assumptions: ["IRS Notice 2022-6 is the governing method", "External professional review is required"],
     exclusions: ["Actionable payment guidance before review", "Individual tax advice", "Automatic rate retrieval"],
-    sources: [{ label: "IRS SEPP guidance", href: IRS_SEPP }],
+    sources: [
+      { label: "IRS Notice 2022-6", href: IRS_NOTICE_2022_6 },
+      { label: "IRS SEPP guidance", href: IRS_SEPP },
+    ],
   },
 ] as const;
 

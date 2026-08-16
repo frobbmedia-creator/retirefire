@@ -11,6 +11,7 @@ import {
   SEPP_120_PERCENT_MIDTERM_RATES,
   SEPP_RATE_TABLE_INTEGRITY,
 } from "./sepp-rates";
+import { seppUiModel } from "../components/calculators/SeppCalculator";
 
 function errorText(result: ReturnType<typeof calculateSepp>): string {
   assert.equal(result.ok, false);
@@ -386,5 +387,39 @@ for (const birthDate of ["2013-06-15", "1903-06-15"]) {
 }
 
 assert.equal(SEPP_EXTERNAL_REVIEW_STATUS, "pending");
+
+// A blocked public UI must not leak the core's otherwise-computed payment.
+const blockedUiModel = seppUiModel("blocked_external_review", {
+  ...rmdBaseInput,
+  method: "required-minimum-distribution",
+});
+assert.deepEqual(blockedUiModel, {
+  phase: "review_pending",
+  inputState: "recognized",
+  exposesMethodology: true,
+  exposesExampleInputs: true,
+  paymentOutput: null,
+  message:
+    "Payment output is unavailable while independent professional validation is pending.",
+});
+assert.doesNotMatch(JSON.stringify(blockedUiModel), /11049\.72/);
+assert.doesNotMatch(JSON.stringify(blockedUiModel), /IRS-approved calculator/i);
+
+// Unknown release states and malformed runtime inputs fail closed at the
+// client boundary rather than inheriting an accidentally permissive default.
+for (const registryStatus of ["active", "reviewed", "", null, undefined]) {
+  const model = seppUiModel(registryStatus, {
+    ...rmdBaseInput,
+    method: "required-minimum-distribution",
+  });
+  assert.equal(model.phase, "unavailable");
+  assert.equal(model.paymentOutput, null);
+  assert.doesNotMatch(JSON.stringify(model), /11049\.72/);
+}
+
+const malformedUiModel = seppUiModel("blocked_external_review", null);
+assert.equal(malformedUiModel.phase, "review_pending");
+assert.equal(malformedUiModel.inputState, "invalid");
+assert.equal(malformedUiModel.paymentOutput, null);
 
 console.log("All SEPP checks passed; external review remains pending.");
