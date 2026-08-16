@@ -31,7 +31,7 @@ export default function BlogIndexPage() {
       </h1>
       <p className="mt-3 text-zinc-400">
         Short, evidence-oriented explainers — no product pitches. Pair with the{" "}
-        <Link href="/#calculators" className="text-emerald-400 hover:underline">
+        <Link href="/calculators" className="text-emerald-400 hover:underline">
           calculators
         </Link>{" "}
         and{" "}

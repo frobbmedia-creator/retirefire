@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
-import { shouldShowQuickYears } from "../components/home/HomeQuickCalculator";
+import { shouldShowQuickYears } from "../lib/quick-years";
 import { DECISION_PAGES } from "./decision-pages";
 
 assert.ok(DECISION_PAGES.length >= 15, "expected at least 15 decision pages");
@@ -116,7 +116,7 @@ assert.match(
 );
 assert.match(
   resultsRegion,
-  /FailureModes/,
+  /<FailureModes\b/,
   "Evidence-linked FailureModes must sit adjacent to calculator results.",
 );
 
@@ -133,7 +133,6 @@ for (const mode of [
   "healthcare",
   "housing",
   "sequence",
-  "tax",
   "longevity",
   "lifestyle",
 ] as const) {
@@ -143,6 +142,12 @@ for (const mode of [
     `FailureModes must include the ${mode} risk mode`,
   );
 }
+assert.match(failureModes, /id: "taxes"/, "FailureModes must name the taxes mode");
+assert.match(
+  failureModes,
+  /title: "Taxes"/,
+  "FailureModes must title the taxes mode",
+);
 assert.match(
   failureModes,
   /\/resources\/sequence-risk-guide/,
@@ -168,6 +173,53 @@ assert.match(
   /MoneyInput/,
   "Homepage quick calculator must reuse MoneyInput.",
 );
+assert.match(
+  homeQuick,
+  /from ["']@\/lib\/quick-years["']/,
+  "Homepage years gating must live in the pure quick-years helper",
+);
+
+const scenarioCompare = readFileSync(
+  join(workspaceRoot, "src/components/calculators/ScenarioCompare.tsx"),
+  "utf8",
+);
+assert.doesNotMatch(
+  scenarioCompare,
+  /min-w-\[/,
+  "Scenario Compare must not lock a minimum table width on mobile",
+);
+assert.match(
+  scenarioCompare,
+  /sm:hidden/,
+  "Scenario Compare must stack comparison cards below sm",
+);
+assert.match(
+  scenarioCompare,
+  /min-h-11/,
+  "Scenario Compare pin/clear controls must keep 44px targets",
+);
+
+const inboundHashFiles = [
+  "src/app/calculators/page.tsx",
+  "src/app/approach/page.tsx",
+  "src/app/methodology/page.tsx",
+  "src/app/blog/[slug]/page.tsx",
+  "src/app/resources/coast-fire-checklist/page.tsx",
+  "src/app/blog/page.tsx",
+] as const;
+for (const file of inboundHashFiles) {
+  const text = readFileSync(join(workspaceRoot, file), "utf8");
+  assert.doesNotMatch(
+    text,
+    /\/#calculators/,
+    `${file} must retarget /#calculators to /calculators`,
+  );
+  assert.doesNotMatch(
+    text,
+    /\/#scenario-compare/,
+    `${file} must retarget /#scenario-compare to /calculators`,
+  );
+}
 
 assert.equal(
   typeof shouldShowQuickYears,

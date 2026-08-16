@@ -159,3 +159,106 @@ exit 0; no whitespace errors.
 - Existing `SensitivityStrip` chips remain shorter than 44px. This task did
   not add those controls; new pin/clear and methodology links meet the target.
 - Existing npm audit findings (3 moderate / 3 high) were left unchanged.
+
+## Review fix — Round 1
+
+### Outcome
+
+Addressed the Important quality findings without remounting the homepage
+quick calculator and without adding `"compare"` to live `tools` arrays.
+
+- `yearsRow` now labels incomparable timelines `Not comparable` instead of
+  `Unchanged`.
+- `boolRow` uses direction `changed` for boolean flips. `deltaBadgeText`
+  renders `Now yes` / `Now no` as-is, so `Unchanged: Now yes` cannot appear.
+- Content tests match `/<FailureModes\b/` and require `id: "taxes"` /
+  `title: "Taxes"`.
+- Adjacent methodology copy is a plain sentence, then a `flex flex-wrap` row
+  of `min-h-11` Methodology / Disclaimer links.
+- `shouldShowQuickYears` lives in `src/lib/quick-years.ts`. Compare row
+  builders live in `src/lib/scenario-compare-rows.ts`.
+- Inbound `/#calculators` and `/#scenario-compare` hashes now go to
+  `/calculators`. `CalculatorHub` in-page `#scenario-compare` is unchanged.
+
+Homepage `page.tsx` remains checkup-only Hero. SEPP, historical, Roth, and
+paid-plan gates were not touched.
+
+### RED / GREEN evidence
+
+Missing-module RED after pointing tests at the new helpers:
+
+```text
+npx tsx src/content/decision-pages.test.ts
+Error: Cannot find module '../lib/quick-years'
+
+npx tsx src/lib/scenario-compare-rows.test.ts
+Error: Cannot find module './scenario-compare-rows'
+```
+
+Contract RED after extracting the previous helpers unchanged:
+
+```text
+npx tsx src/lib/scenario-compare-rows.test.ts
+AssertionError [ERR_ASSERTION]: incomparable years must not be labeled Unchanged
+  actual: 'Unchanged'
+```
+
+GREEN after the contract fix and hash retargets:
+
+```text
+npx tsx src/lib/scenario-compare-rows.test.ts
+All scenario-compare row checks passed.
+
+npx tsx src/content/decision-pages.test.ts
+All 15 decision-page checks passed.
+Calculator-page content invariants passed.
+```
+
+### Files changed
+
+- `src/lib/scenario-compare-rows.ts` — extracted compare contract.
+- `src/lib/scenario-compare-rows.test.ts` — years/bool/badge assertions.
+- `src/lib/quick-years.ts` — extracted years-gating helper.
+- `src/components/calculators/ScenarioCompare.tsx` — view only.
+- `src/components/home/HomeQuickCalculator.tsx` — imports the lib helper.
+- `src/components/calculators/CalculatorPageLayout.tsx` — sentence + 44px row.
+- `src/content/decision-pages.test.ts` — JSX FailureModes lock, taxes title,
+  mobile compare source lock, inbound hash retargets.
+- `src/app/calculators/page.tsx`
+- `src/app/approach/page.tsx`
+- `src/app/methodology/page.tsx`
+- `src/app/blog/page.tsx`
+- `src/app/blog/[slug]/page.tsx`
+- `src/app/resources/coast-fire-checklist/page.tsx`
+
+### Bounded verification
+
+```text
+npx tsx src/content/decision-pages.test.ts
+exit 0
+
+npx tsx src/lib/scenario-compare-rows.test.ts
+exit 0
+
+npm run test:content
+exit 0
+
+npm run lint
+exit 0
+
+npx tsc --noEmit
+exit 0
+
+git diff --check
+exit 0
+```
+
+`npm run build` was not rerun; lint and TypeScript were clean.
+
+### Self-review
+
+- Completeness: all four Important items from this round are closed.
+- Quality: badge text is now a pure function of direction + label.
+- YAGNI: no homepage remount, no compare tool added to live pages.
+- Testing: “Unchanged: Now yes” cannot return; incomparable years cannot
+  be labeled Unchanged.

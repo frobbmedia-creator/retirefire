@@ -80,12 +80,14 @@ export function CalculatorPageLayout({
       {children}
 
       <div className="mt-10">
-        <p className="mb-4 text-sm leading-relaxed text-zinc-500">
+        <p className="mb-3 text-sm leading-relaxed text-zinc-500">
           Results below are educational illustrations under stated assumptions — not
-          forecasts.{" "}
+          forecasts.
+        </p>
+        <div className="mb-4 flex flex-wrap gap-x-4 gap-y-1">
           <TrackedLink
             href="/methodology"
-            className="inline-flex min-h-11 items-center text-emerald-400 hover:underline"
+            className="inline-flex min-h-11 items-center text-sm text-emerald-400 hover:underline"
             eventName={AnalyticsEvents.CALCULATOR_INTERACT}
             eventProps={calculationAnalyticsProps(calculatorId, {
               action: "methodology_open",
@@ -93,10 +95,9 @@ export function CalculatorPageLayout({
           >
             Methodology
           </TrackedLink>
-          {" · "}
           <TrackedLink
             href="/disclaimer"
-            className="inline-flex min-h-11 items-center text-emerald-400 hover:underline"
+            className="inline-flex min-h-11 items-center text-sm text-emerald-400 hover:underline"
             eventName={AnalyticsEvents.CALCULATOR_INTERACT}
             eventProps={calculationAnalyticsProps(calculatorId, {
               action: "risk_disclosure_open",
@@ -104,7 +105,7 @@ export function CalculatorPageLayout({
           >
             Disclaimer
           </TrackedLink>
-        </p>
+        </div>
         <PlannerShell sharePath={sharePath}>
           <CalculatorHub showHeading={false} tools={tools} />
         </PlannerShell>

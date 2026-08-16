@@ -614,7 +614,7 @@ export default function MethodologyPage() {
       </p>
       <p className="mt-4">
         <Link
-          href="/#calculators"
+          href="/calculators"
           className="text-sm font-medium text-emerald-400 hover:underline"
         >
           ← Back to calculators
