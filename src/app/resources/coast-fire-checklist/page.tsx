@@ -101,7 +101,7 @@ export default function CoastFireChecklistPage() {
 
       <div className="mt-4 rounded-xl border border-amber-500/20 bg-amber-500/5 px-4 py-3 text-sm text-amber-100/90">
         Tip: pin a baseline in{" "}
-        <Link href="/#scenario-compare" className="underline-offset-2 hover:underline">
+        <Link href="/calculators" className="underline-offset-2 hover:underline">
           Scenario compare
         </Link>
         , then change return or spending and re-check this list.

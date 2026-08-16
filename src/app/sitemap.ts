@@ -72,6 +72,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     })),
     {
+      url: `${base}/calculators/72t-sepp`,
+      lastModified: new Date("2026-08-15"),
+      changeFrequency: "monthly",
+      priority: 0.65,
+    },
+    {
       url: `${base}/pro`,
       lastModified: new Date("2026-08-10"),
       changeFrequency: "monthly",

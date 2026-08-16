@@ -55,10 +55,10 @@ const TOOLS = {
   "roth-conversion": {
     title: "Roth Conversion Calculator for Early Retirement",
     description:
-      "Estimate a multi-year Roth conversion, a simple federal tax cost, and the money left in your traditional retirement account.",
+      "Estimate the incremental regular federal income tax from one proposed 2026 Roth conversion using progressive brackets.",
     component: RothConversionCalculator,
     explanation:
-      "Some early retirees have low-income years before the government requires withdrawals from traditional retirement accounts. A complete plan should also consider federal and state taxes, health-insurance assistance, and Roth withdrawal rules.",
+      "Enter current 2026 federal taxable income after deductions. The estimate adds one proposed conversion, applies ordinary-income brackets progressively, and excludes state tax, credits, capital-gain interactions, ACA assistance, Medicare IRMAA, and multiyear optimization.",
     related: [
       ["/early-retirement-health-insurance", "Healthcare before Medicare"],
       ["/retire-at-55", "Retire at 55 guide"],

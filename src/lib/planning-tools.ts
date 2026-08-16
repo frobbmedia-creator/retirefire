@@ -1,4 +1,8 @@
 import { calculateFireNumber, calculateYearsToFire } from "@/lib/calculations";
+import {
+  estimateFederalIncomeTax,
+  type FederalTaxInput,
+} from "@/lib/federal-tax";
 
 export function retirementAgeEstimate(input: {
   currentAge: number;
@@ -63,21 +67,8 @@ export function guardrailRange(input: {
   };
 }
 
-export function rothConversionEstimate(input: {
-  pretaxBalance: number;
-  annualConversion: number;
-  years: number;
-  marginalTaxRate: number;
-}) {
-  const converted = Math.min(
-    Math.max(0, input.pretaxBalance),
-    Math.max(0, input.annualConversion) * Math.max(0, input.years),
-  );
-  return {
-    converted,
-    estimatedFederalTax: converted * Math.max(0, input.marginalTaxRate),
-    remainingPretax: Math.max(0, input.pretaxBalance - converted),
-  };
+export function rothConversionEstimate(input: FederalTaxInput) {
+  return estimateFederalIncomeTax(input);
 }
 
 export function healthcareBudget(input: {

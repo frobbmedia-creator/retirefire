@@ -54,7 +54,7 @@ const TAG_CALCULATOR: Record<string, { href: string; label: string }> = {
     label: "Methodology",
   },
   comparison: {
-    href: "/#scenario-compare",
+    href: "/calculators",
     label: "Scenario A/B compare",
   },
   "semi-retirement": {
@@ -237,7 +237,7 @@ export default async function BlogPostPage({ params }: Props) {
             </li>
             <li>
               <Link
-                href="/#scenario-compare"
+                href="/calculators"
                 className="rounded-full bg-zinc-950/50 px-2.5 py-1 text-zinc-400 ring-1 ring-zinc-800 hover:text-emerald-400"
               >
                 Compare A/B

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { formatCurrency } from "@/lib/format";
 
@@ -15,6 +15,27 @@ type MoneyInputProps = {
   step?: number;
   className?: string;
 };
+
+/** Convert a user-entered currency draft to a bounded number without losing decimals. */
+export function normalizeMoneyDraft(raw: string, min: number, max?: number): number {
+  const cleaned = raw.replace(/[$,\s]/g, "");
+  let value = Number(cleaned);
+  if (!Number.isFinite(value)) value = 0;
+  value = Math.max(min, value);
+  return max == null ? value : Math.min(max, value);
+}
+
+/** Preserve an externally controlled value exactly when it becomes the active input draft. */
+export function moneyDraftForValue(value: number): string {
+  return value ? String(value) : "";
+}
+
+/** Format the blurred input without rounding away cents from a decimal planner value. */
+export function moneyInputDisplay(value: number): string {
+  return value
+    ? formatCurrency(value, { cents: !Number.isInteger(value) }).replace("$", "").trim()
+    : "";
+}
 
 /**
  * Mobile-friendly currency input: formatted when blurred, raw digits when focused.
@@ -32,23 +53,22 @@ export function MoneyInput({
 }: MoneyInputProps) {
   const inputId = id ?? label.replace(/\s+/g, "-").toLowerCase();
   const [focused, setFocused] = useState(false);
-  const [draft, setDraft] = useState(value ? String(Math.round(value)) : "");
+  const [draft, setDraft] = useState(moneyDraftForValue(value));
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setDraft(moneyDraftForValue(value));
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [value]);
 
   function commit(raw: string) {
-    const cleaned = raw.replace(/[$,\s]/g, "");
-    let n = Number(cleaned);
-    if (!Number.isFinite(n)) n = 0;
-    if (min != null) n = Math.max(min, n);
-    if (max != null) n = Math.min(max, n);
+    const n = normalizeMoneyDraft(raw, min, max);
     onChange(n);
-    setDraft(n ? String(Math.round(n)) : "");
+    setDraft(moneyDraftForValue(n));
   }
 
-  const display = focused
-    ? draft
-    : value
-      ? formatCurrency(value).replace("$", "").trim()
-      : "";
+  const display = focused ? draft : moneyInputDisplay(value);
 
   return (
     <div className={cn("flex w-full flex-col gap-1.5", className)}>
@@ -75,7 +95,7 @@ export function MoneyInput({
           value={display}
           onFocus={() => {
             setFocused(true);
-            setDraft(value ? String(Math.round(value)) : "");
+            setDraft(moneyDraftForValue(value));
           }}
           onBlur={() => {
             setFocused(false);
@@ -101,7 +121,7 @@ export function MoneyInput({
             onClick={() => {
               const next = Math.max(min, (value || 0) - step);
               onChange(next);
-              setDraft(next ? String(Math.round(next)) : "");
+              setDraft(moneyDraftForValue(next));
             }}
           >
             −
@@ -117,7 +137,7 @@ export function MoneyInput({
                   ? Math.min(max, (value || 0) + step)
                   : (value || 0) + step;
               onChange(next);
-              setDraft(String(Math.round(next)));
+              setDraft(moneyDraftForValue(next));
             }}
           >
             +

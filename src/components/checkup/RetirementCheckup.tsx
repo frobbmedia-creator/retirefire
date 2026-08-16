@@ -65,7 +65,7 @@ export function RetirementCheckup() {
         : AnalyticsEvents.CHECKUP_STEP,
       nextStep === 4
         ? { status: result.status }
-        : { step: nextStep },
+        : { step: `step_${nextStep}` },
     );
     setStep(nextStep);
   }

@@ -67,8 +67,13 @@ const TOOLS = [
   },
   {
     href: "/calculators/roth-conversion",
-    title: "Roth Conversion Runway",
-    body: "Estimate how much money to move from a traditional retirement account to a Roth account over several years.",
+    title: "2026 Roth Conversion Estimate",
+    body: "Estimate current-year incremental regular federal income tax for one proposed conversion using progressive brackets.",
+  },
+  {
+    href: "/calculators/72t-sepp",
+    title: "SEPP methodology preview — validation pending",
+    body: "Explore Notice 2022-6 example inputs, methodology, limitations, and official sources without an actionable payment output.",
   },
   {
     href: "/calculators/healthcare-budget",
@@ -76,7 +81,7 @@ const TOOLS = [
     body: "Budget premiums, out-of-pocket costs, subsidies, and medical inflation through age 65.",
   },
   {
-    href: "/#scenario-compare",
+    href: "/calculators",
     title: "Scenario A/B compare",
     body: "Pin a baseline and compare FIRE, years, Coast, and Barista side by side.",
   },
@@ -128,8 +133,8 @@ export default function CalculatorsIndexPage() {
         </Link>
         . Every detailed tool shares assumptions and can be linked via URL.
         Coast and Years include a free basic stress test. Or use the{" "}
-        <Link href="/#calculators" className="text-emerald-400 hover:underline">
-          all-in-one hub on the homepage
+        <Link href="/calculators" className="text-emerald-400 hover:underline">
+          all-in-one calculator hub
         </Link>
         .
       </p>

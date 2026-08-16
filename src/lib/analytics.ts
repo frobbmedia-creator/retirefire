@@ -4,7 +4,61 @@
  * No-ops safely when providers are unavailable.
  */
 
-export type AnalyticsProps = Record<string, string | number | boolean | undefined>;
+import { CALCULATION_REGISTRY, calculationVersion } from "@/lib/calculation-registry";
+
+export const ANALYTICS_PROP_ALLOWLIST = [
+  "calculator",
+  "methodology_version",
+  "status",
+  "validation_error",
+  "action",
+  "scenario_band",
+  "source",
+  "destination",
+  "path",
+  "tool",
+  "step",
+] as const;
+
+type AnalyticsProperty = (typeof ANALYTICS_PROP_ALLOWLIST)[number];
+type AnalyticsValue = string;
+
+/** Finite categories prevent values smuggled into otherwise permitted keys. */
+export const ANALYTICS_ALLOWED_VALUES: Record<AnalyticsProperty, readonly string[]> = {
+  calculator: [
+    "fire",
+    "years",
+    "coast",
+    "barista",
+    "savings-rate",
+    "monte-carlo",
+    "retirement-age",
+    "portfolio-readiness",
+    "withdrawal-guardrails",
+    "healthcare-budget",
+    "historical-scenarios",
+    "roth-conversion",
+    "sepp-72t",
+  ],
+  methodology_version: [...new Set(CALCULATION_REGISTRY.map((method) => method.version))],
+  status: ["started", "valid_result", "complete", "on-track", "close", "needs-work"],
+  validation_error: ["invalid_input", "unsupported_state", "calculation_error"],
+  action: ["assumption_interaction", "methodology_open", "risk_disclosure_open"],
+  scenario_band: ["under_5_years", "5_to_10_years", "over_10_years"],
+  source: ["homepage_hero", "homepage_feature_card", "checkup_results"],
+  destination: ["calculators"],
+  path: [
+    "/calculators/fire-number",
+    "/calculators/years-to-fire",
+    "/calculators/coast-fire",
+    "/calculators/barista-fire",
+    "coast-age-table",
+  ],
+  tool: ["coast", "years"],
+  step: ["step_2", "step_3"],
+};
+
+export type AnalyticsProps = Partial<Record<AnalyticsProperty, AnalyticsValue>>;
 
 declare global {
   interface Window {
@@ -17,20 +71,46 @@ declare global {
   }
 }
 
-function cleanProps(props?: AnalyticsProps): Record<string, string | number | boolean> {
+function isAllowedAnalyticsValue(key: AnalyticsProperty, value: unknown): value is AnalyticsValue {
+  if (typeof value !== "string") return false;
+  return ANALYTICS_ALLOWED_VALUES[key].includes(value);
+}
+
+/** Attach the governed calculation identity and version to a categorical event. */
+export function calculationAnalyticsProps(
+  calculator: string,
+  props: AnalyticsProps = {},
+): AnalyticsProps {
+  const methodologyVersion = calculationVersion(calculator);
+  return methodologyVersion === "unknown"
+    ? props
+    : { ...props, calculator, methodology_version: methodologyVersion };
+}
+
+/** Build a privacy-safe lifecycle event for a governed calculator. */
+export function calculatorLifecycleProps(
+  calculator: string,
+  status: "started" | "valid_result",
+): AnalyticsProps {
+  return calculationAnalyticsProps(calculator, { status });
+}
+
+/** Keep event data categorical and operational; raw financial inputs never leave the client. */
+export function sanitizeAnalyticsProps(props?: Record<string, unknown>): AnalyticsProps {
   if (!props) return {};
-  const out: Record<string, string | number | boolean> = {};
-  for (const [k, v] of Object.entries(props)) {
-    if (v === undefined) continue;
-    out[k] = v;
+  const out: AnalyticsProps = {};
+  for (const [key, value] of Object.entries(props)) {
+    if (!ANALYTICS_PROP_ALLOWLIST.includes(key as AnalyticsProperty)) continue;
+    const allowedKey = key as AnalyticsProperty;
+    if (isAllowedAnalyticsValue(allowedKey, value)) out[allowedKey] = value;
   }
   return out;
 }
 
 /** Track a named conversion / engagement event across available providers. */
-export function trackEvent(name: string, props?: AnalyticsProps): void {
+export function trackEvent(name: string, props?: Record<string, unknown>): void {
   if (typeof window === "undefined") return;
-  const data = cleanProps(props);
+  const data = sanitizeAnalyticsProps(props);
 
   try {
     // Vercel Analytics custom events (when available)

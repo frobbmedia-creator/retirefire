@@ -1,14 +1,20 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { PlannerShell } from "@/components/planner/PlannerShell";
 import { CalculatorHub } from "@/components/calculators/CalculatorHub";
 import { CalculatorSeoSection } from "@/components/calculators/CalculatorSeoSection";
+import { FailureModes } from "@/components/calculators/FailureModes";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { CalculatorSeoContent } from "@/content/calculator-seo";
 import {
   breadcrumbJsonLd,
   softwareApplicationJsonLd,
 } from "@/lib/seo";
+import {
+  AnalyticsEvents,
+  calculationAnalyticsProps,
+} from "@/lib/analytics";
 
 type Tool = "fire" | "years" | "coast" | "barista" | "savings";
 
@@ -27,6 +33,8 @@ export function CalculatorPageLayout({
   seo?: CalculatorSeoContent;
   children?: ReactNode;
 }) {
+  const calculatorId = tools[0] === "savings" ? "savings-rate" : tools[0];
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
       {seo && (
@@ -72,21 +80,62 @@ export function CalculatorPageLayout({
       {children}
 
       <div className="mt-10">
+        <p className="mb-3 text-sm leading-relaxed text-zinc-500">
+          Results below are educational illustrations under stated assumptions — not
+          forecasts.
+        </p>
+        <div className="mb-4 flex flex-wrap gap-x-4 gap-y-1">
+          <TrackedLink
+            href="/methodology"
+            className="inline-flex min-h-11 items-center text-sm text-emerald-400 hover:underline"
+            eventName={AnalyticsEvents.CALCULATOR_INTERACT}
+            eventProps={calculationAnalyticsProps(calculatorId, {
+              action: "methodology_open",
+            })}
+          >
+            Methodology
+          </TrackedLink>
+          <TrackedLink
+            href="/disclaimer"
+            className="inline-flex min-h-11 items-center text-sm text-emerald-400 hover:underline"
+            eventName={AnalyticsEvents.CALCULATOR_INTERACT}
+            eventProps={calculationAnalyticsProps(calculatorId, {
+              action: "risk_disclosure_open",
+            })}
+          >
+            Disclaimer
+          </TrackedLink>
+        </div>
         <PlannerShell sharePath={sharePath}>
           <CalculatorHub showHeading={false} tools={tools} />
         </PlannerShell>
+        <FailureModes />
       </div>
 
       {seo && <CalculatorSeoSection content={seo} />}
 
       <p className="mt-10 text-sm text-zinc-500">
-        <Link href="/methodology" className="text-emerald-400 hover:underline">
+        <TrackedLink
+          href="/methodology"
+          className="text-emerald-400 hover:underline"
+          eventName={AnalyticsEvents.CALCULATOR_INTERACT}
+          eventProps={calculationAnalyticsProps(calculatorId, {
+            action: "methodology_open",
+          })}
+        >
           Methodology
-        </Link>
+        </TrackedLink>
         {" · "}
-        <Link href="/disclaimer" className="text-emerald-400 hover:underline">
+        <TrackedLink
+          href="/disclaimer"
+          className="text-emerald-400 hover:underline"
+          eventName={AnalyticsEvents.CALCULATOR_INTERACT}
+          eventProps={calculationAnalyticsProps(calculatorId, {
+            action: "risk_disclosure_open",
+          })}
+        >
           Disclaimer
-        </Link>
+        </TrackedLink>
         {" · "}
         <Link href="/#faq" className="text-emerald-400 hover:underline">
           FAQ

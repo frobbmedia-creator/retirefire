@@ -1,6 +1,7 @@
 "use client";
 
-import { Coffee } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Clock3, Coffee } from "lucide-react";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -81,20 +82,33 @@ export function BaristaFireCalculator() {
         </div>
 
         <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4 text-sm text-zinc-300">
-          <p>
-            Work income covers about{" "}
-            <span className="font-medium text-orange-300">
-              {formatPercent(barista.workCoverage)}
-            </span>{" "}
-            of spending. Portfolio withdrawals need to cover{" "}
-            <span className="font-medium text-zinc-100">
-              {formatCurrency(barista.gapExpenses)}
+          <p className="flex items-start gap-2" role="status">
+            <BaristaStatusIcon
+              alreadyThere={y.alreadyThere}
+              unreachable={y.unreachable}
+            />
+            <span>
+              <span className="font-medium text-zinc-100">
+                {y.alreadyThere
+                  ? "Status: already at Barista FIRE under these assumptions. "
+                  : y.unreachable
+                    ? "Status: Barista timeline unreachable with current savings. "
+                    : `Status: about ${formatYears(y.years ?? 0)} years to the barista number. `}
+              </span>
+              Work income covers about{" "}
+              <span className="font-medium text-orange-300">
+                {formatPercent(barista.workCoverage)}
+              </span>{" "}
+              of spending. Portfolio withdrawals need to cover{" "}
+              <span className="font-medium text-zinc-100">
+                {formatCurrency(barista.gapExpenses)}
+              </span>
+              /year at {formatPercent(withdrawalRate)} → a nest egg of{" "}
+              <span className="font-medium text-orange-300">
+                {formatCurrency(barista.baristaNumber)}
+              </span>{" "}
+              (vs {formatCurrency(barista.fullFireNumber)} for full FIRE).
             </span>
-            /year at {formatPercent(withdrawalRate)} → a nest egg of{" "}
-            <span className="font-medium text-orange-300">
-              {formatCurrency(barista.baristaNumber)}
-            </span>{" "}
-            (vs {formatCurrency(barista.fullFireNumber)} for full FIRE).
           </p>
         </div>
 
@@ -105,12 +119,51 @@ export function BaristaFireCalculator() {
           <span className="font-mono text-zinc-400">
             barista = max(0, expenses − work income) ÷ withdrawal rate
           </span>
-          . Healthcare, taxes, and job reliability are not modeled. Educational
-          only. Compare with Coast if your question is stopping contributions,
-          not partial work income.
+          . Healthcare, taxes, housing, and job reliability are not modeled —
+          see{" "}
+          <Link href="#failure-modes" className="text-emerald-400/90 hover:underline">
+            ways a plan can miss
+          </Link>
+          . Educational only. Compare with Coast if your question is stopping
+          contributions, not partial work income.{" "}
+          <Link
+            href="/methodology"
+            className="text-emerald-400/90 underline-offset-2 hover:underline"
+          >
+            Methodology
+          </Link>
+          .
         </p>
       </CardContent>
     </Card>
+  );
+}
+
+function BaristaStatusIcon({
+  alreadyThere,
+  unreachable,
+}: {
+  alreadyThere: boolean;
+  unreachable: boolean;
+}) {
+  if (alreadyThere) {
+    return (
+      <CheckCircle2
+        className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400"
+        aria-hidden
+      />
+    );
+  }
+  if (unreachable) {
+    return (
+      <AlertTriangle
+        className="mt-0.5 h-4 w-4 shrink-0 text-amber-300"
+        aria-hidden
+      />
+    );
+  }
+  return (
+    <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-orange-300" aria-hidden />
   );
 }
 

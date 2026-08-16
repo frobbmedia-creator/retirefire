@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
+import {
+  CALCULATION_REGISTRY,
+  calculationVersion,
+} from "@/lib/calculation-registry";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/methodology", {
@@ -268,10 +272,15 @@ export default function MethodologyPage() {
             9. What we deliberately omit (for now)
           </h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-zinc-400">
-            <li>Taxes (ordinary income, capital gains, RMDs, NIIT)</li>
+            <li>
+              Comprehensive tax planning, including capital gains, RMDs, NIIT,
+              state taxes, and multiyear Roth optimization
+            </li>
             <li>Investment fees and advisory costs</li>
-            <li>Social Security, pensions, and annuities</li>
-            <li>Healthcare and ACA subsidy cliffs</li>
+            <li>
+              Personalized Social Security, pension, annuity, and ACA subsidy
+              analysis
+            </li>
             <li>Taxes on withdrawals, account types, and rebalancing rules inside stress tests</li>
             <li>Historical cycle backtesting (cFIREsim-style overlapping periods)</li>
             <li>Inflation shocks, currency risk, and home equity strategies</li>
@@ -340,8 +349,248 @@ export default function MethodologyPage() {
           </p>
         </section>
 
+        <section id="historical-scenarios">
+          <h2 className="text-xl font-semibold text-zinc-50">
+            11. Historical retirement scenarios
+          </h2>
+          <p className="mt-3 text-zinc-400">
+            Historical scenario results use overlapping, contiguous periods from
+            a verified annual return series. Each cycle applies withdrawals at
+            the beginning of the year, then applies the year&apos;s portfolio
+            return and reports the ending balance in real dollars. The cycle
+            denominator is the number of full-horizon periods available in that
+            verified series.
+          </p>
+          <p className="mt-3 text-zinc-400">
+            Historical scenarios are not future probabilities. RetireFire keeps
+            this tool unavailable until its source, transformation method,
+            coverage, and checksum can be independently reproduced.
+          </p>
+        </section>
+
+        <section id="roth-conversion-tax">
+          <h2 className="text-xl font-semibold text-zinc-50">
+            12. Current-year Roth conversion tax estimate
+          </h2>
+          <p className="mt-3 text-zinc-400">
+            The Roth calculator estimates regular federal income tax for tax
+            year 2026 only. It treats the entered current taxable income as
+            income after the standard or itemized deduction, caps the conversion
+            at the traditional account balance, adds the applied conversion to
+            taxable income, and traverses the selected filing status&apos;s ordinary
+            income brackets progressively.
+          </p>
+          <pre className="mt-4 overflow-x-auto rounded-xl bg-zinc-900 p-4 font-mono text-sm text-emerald-300 ring-1 ring-zinc-800">
+            Applied conversion = min(desired conversion, traditional balance){"\n"}
+            Tax after = progressive tax(current taxable income + applied conversion){"\n"}
+            Incremental tax = tax after − tax before{"\n"}
+            Effective rate = incremental tax ÷ applied conversion (if conversion &gt; 0){"\n"}
+            If applied conversion = $0: effective rate = N/A
+          </pre>
+          <p className="mt-3 text-zinc-400">
+            The model assumes the entire applied conversion is taxable. It does
+            not calculate nondeductible IRA or plan basis or applicable pro-rata
+            treatment. IRS guidance explains that a traditional-IRA conversion
+            may be partly nontaxable when it returns basis; see{" "}
+            <a
+              href="https://www.irs.gov/publications/p590a"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              IRS Publication 590-A
+            </a>
+            . The model also does not subtract the standard deduction a second
+            time. Its 2026 standard-deduction amounts and bracket thresholds
+            come from{" "}
+            <a
+              href="https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Revenue Procedure 2025-32
+            </a>
+            , effective for taxable years beginning in 2026. This is methodology
+            version {calculationVersion("roth-conversion")} and a current-year
+            illustration, not a multiyear or lifetime tax-savings forecast.
+          </p>
+          <p className="mt-3 text-zinc-400">
+            Explicit exclusions include state and local tax, AMT, NIIT, credits,
+            deduction changes, capital-gain and qualified-dividend interactions,
+            nondeductible IRA or plan basis and pro-rata treatment, ACA premium
+            tax credits, Medicare IRMAA, future law, multiyear optimization,
+            withholding and estimated-tax penalties, and the opportunity cost
+            of paying conversion tax.
+          </p>
+        </section>
+
+        <section id="social-security-estimates">
+          <h2 className="text-xl font-semibold text-zinc-50">
+            13. Social Security claim and federal taxable-benefit estimates
+          </h2>
+          <p className="mt-3 text-zinc-400">
+            The claim-age estimate starts with the retired worker&apos;s own SSA
+            monthly estimate at full retirement age. Full retirement age follows
+            SSA&apos;s birth-year schedule. For a January 1 birthday, SSA says to use
+            the prior birth year. Claim ages are whole months from age 62 through
+            exactly age 70.
+          </p>
+          <pre className="mt-4 overflow-x-auto rounded-xl bg-zinc-900 p-4 font-mono text-sm text-emerald-300 ring-1 ring-zinc-800">
+            First 36 early months: reduce 5/9 of 1% per month{"\n"}
+            Additional early months: reduce 5/12 of 1% per month{"\n"}
+            After FRA: apply the birth-year delayed-credit rate monthly{"\n"}
+            Delayed credits stop at age 70{"\n"}
+            Estimated monthly benefit: next lower whole dollar
+          </pre>
+          <p className="mt-3 text-zinc-400">
+            The monthly early-retirement rules and FRA schedule come from SSA&apos;s{" "}
+            <a
+              href="https://www.ssa.gov/oact/quickcalc/earlyretire.html"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Benefit Reduction for Early Retirement
+            </a>
+            . Delayed-credit rates and the age-70 stop come from SSA&apos;s{" "}
+            <a
+              href="https://www.ssa.gov/benefits/retirement/planner/delayret.html"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Delayed Retirement Credits
+            </a>
+            . Dollar rounding and golden cases were checked against the{" "}
+            <a
+              href="https://www.ssa.gov/policy/docs/statcomps/supplement/2025/apnc.html"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Annual Statistical Supplement, 2025, Appendix C
+            </a>
+            . This is method v{calculationVersion("social-security-claim")}.
+          </p>
+          <p className="mt-3 text-zinc-400">
+            The separate taxable-benefit estimate implements Worksheet 1 from{" "}
+            <a
+              href="https://www.irs.gov/pub/irs-pdf/p915.pdf"
+              className="text-emerald-400 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+            >
+              IRS Publication 915 (2025)
+            </a>
+            , applicable to 2025 federal income tax returns and the latest
+            completed publication reviewed on August 15, 2026. It supports all
+            five individual filing statuses. Married-filing-separately users
+            must say whether they lived with a spouse at any time during 2025.
+          </p>
+          <pre className="mt-4 overflow-x-auto rounded-xl bg-zinc-900 p-4 font-mono text-sm text-emerald-300 ring-1 ring-zinc-800">
+            Provisional income = other income + tax-exempt interest{"\n"}
+            {"                     "}+ 50% of gross Social Security{"\n"}
+            Lower: $25,000 single/HOH/QSS/MFS apart · $32,000 joint{"\n"}
+            Upper: $34,000 single/HOH/QSS/MFS apart · $44,000 joint{"\n"}
+            MFS lived with spouse: direct 85% worksheet branch{"\n"}
+            Maximum included in federal taxable income: 85% of benefits
+          </pre>
+          <p className="mt-3 text-zinc-400">
+            Gross benefits are cash received and reduce the later portfolio gap;
+            the federally taxable portion is only the amount included in federal
+            taxable income. It is not the tax owed and is never substituted for
+            gross income. This is method v
+            {calculationVersion("social-security-taxable")}. Manual benefit mode
+            remains available for a user who already has an SSA estimate.
+          </p>
+          <p className="mt-3 text-zinc-400">
+            The models do not provide individualized claiming advice and exclude
+            earnings-record calculations, COLAs, the retirement earnings test,
+            spousal and survivor benefits, state tax, total federal tax, lump-sum
+            elections, ordinary repayment and Form SSA-1099/RRB-1099 net box 5
+            handling, special Publication 915 adjustments, and future law. The
+            taxable model uses the entered gross annual benefit. Exact inputs and
+            results remain client-side.
+          </p>
+        </section>
+
         <section>
-          <h2 className="text-xl font-semibold text-zinc-50">11. Further reading</h2>
+          <h2 className="text-xl font-semibold text-zinc-50">
+            14. Calculation governance
+          </h2>
+          <p className="mt-3 text-zinc-400">
+            Every calculation tracked here has a stable methodology version and
+            review record. Status is intentionally visible: development and beta
+            entries are not validated planning advice, and SEPP remains blocked
+            until external review is complete.
+          </p>
+          <div className="mt-4 overflow-x-auto rounded-xl ring-1 ring-zinc-800">
+            <table className="w-full min-w-[1280px] text-left text-sm">
+              <thead className="bg-zinc-900 text-zinc-400">
+                <tr>
+                  <th className="px-4 py-3 font-medium">Method</th>
+                  <th className="px-4 py-3 font-medium">Version</th>
+                  <th className="px-4 py-3 font-medium">Status</th>
+                  <th className="px-4 py-3 font-medium">Effective date</th>
+                  <th className="px-4 py-3 font-medium">Last review</th>
+                  <th className="px-4 py-3 font-medium">Review cadence</th>
+                  <th className="px-4 py-3 font-medium">Next review trigger</th>
+                  <th className="px-4 py-3 font-medium">Assumptions</th>
+                  <th className="px-4 py-3 font-medium">Material exclusions</th>
+                  <th className="px-4 py-3 font-medium">Sources</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-800 text-zinc-300">
+                {CALCULATION_REGISTRY.map((method) => (
+                  <tr key={method.id}>
+                    <td className="px-4 py-3 font-medium text-zinc-100">
+                      {method.name}
+                    </td>
+                    <td className="px-4 py-3 font-mono text-xs">{method.version}</td>
+                    <td className="px-4 py-3">{method.status.replaceAll("_", " ")}</td>
+                    <td className="px-4 py-3 whitespace-nowrap">{method.effectiveDate}</td>
+                    <td className="px-4 py-3 whitespace-nowrap">{method.lastReviewed}</td>
+                    <td className="px-4 py-3 text-zinc-400">{method.reviewCadence}</td>
+                    <td className="px-4 py-3 text-zinc-400">{method.nextReviewTrigger}</td>
+                    <td className="px-4 py-3 text-zinc-400">
+                      <ul className="list-disc space-y-1 pl-4">
+                        {method.assumptions.map((assumption) => (
+                          <li key={assumption}>{assumption}</li>
+                        ))}
+                      </ul>
+                    </td>
+                    <td className="px-4 py-3 text-zinc-400">
+                      <ul className="list-disc space-y-1 pl-4">
+                        {method.exclusions.map((exclusion) => (
+                          <li key={exclusion}>{exclusion}</li>
+                        ))}
+                      </ul>
+                    </td>
+                    <td className="px-4 py-3">
+                      {method.sources.map((source, index) => (
+                        <span key={source.href}>
+                          {index > 0 ? ", " : ""}
+                          <a
+                            href={source.href}
+                            className="text-emerald-400 hover:underline"
+                            rel="noreferrer"
+                            target="_blank"
+                          >
+                            {source.label}
+                          </a>
+                        </span>
+                      ))}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-zinc-50">15. Further reading</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-zinc-400">
             <li>
               Bengen (1994) and Trinity Study papers (library / journal access)
@@ -365,7 +614,7 @@ export default function MethodologyPage() {
       </p>
       <p className="mt-4">
         <Link
-          href="/#calculators"
+          href="/calculators"
           className="text-sm font-medium text-emerald-400 hover:underline"
         >
           ← Back to calculators

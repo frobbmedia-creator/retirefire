@@ -10,10 +10,13 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
+  loadPlannerState,
   PLANNER_DEFAULTS,
-  stateFromSearchParams,
+  parsePlannerSearchParams,
+  resolveInitialPlannerState,
+  savePlannerState,
   stateToQueryString,
   type PlannerState,
 } from "@/lib/planner-state";
@@ -29,6 +32,10 @@ import {
   type YearsToFireResult,
 } from "@/lib/calculations";
 import { FIRE_STYLES, type FireStyleId } from "@/lib/constants";
+import type {
+  PlannerMutation,
+  UserPlannerMutationSource,
+} from "@/lib/calculator-lifecycle";
 
 type PlannerContextValue = {
   state: PlannerState;
@@ -36,6 +43,7 @@ type PlannerContextValue = {
   patch: (partial: Partial<PlannerState>) => void;
   reset: () => void;
   setFireStyle: (style: FireStyleId) => void;
+  plannerMutation: PlannerMutation | null;
   /** Effective real return used in projections (decimal) */
   realReturn: number;
   withdrawalRate: number;
@@ -55,50 +63,71 @@ export function PlannerProvider({
   children: ReactNode;
   sharePath?: string;
 }) {
-  const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const hydrated = useRef(false);
+  const mutationSequence = useRef(0);
+  const [hydrationReady, setHydrationReady] = useState(false);
+  const [state, setState] = useState<PlannerState>(PLANNER_DEFAULTS);
+  const [plannerMutation, setPlannerMutation] = useState<PlannerMutation | null>(null);
 
-  const [state, setState] = useState<PlannerState>(() =>
-    stateFromSearchParams(new URLSearchParams(searchParams.toString())),
-  );
+  const recordUserMutation = useCallback((source: UserPlannerMutationSource) => {
+    mutationSequence.current += 1;
+    setPlannerMutation({ sequence: mutationSequence.current, source });
+  }, []);
 
-  // Hydrate once from URL when params change externally (back/forward)
+  // Resolve URL, storage, and defaults only after the browser has hydrated.
   useEffect(() => {
-    if (!hydrated.current) {
-      hydrated.current = true;
-      setState(stateFromSearchParams(new URLSearchParams(searchParams.toString())));
-      return;
-    }
-  }, [searchParams]);
+    if (hydrated.current) return;
+    const url = parsePlannerSearchParams(new URLSearchParams(window.location.search));
+    const stored = loadPlannerState(window.localStorage);
+    setState(resolveInitialPlannerState(url, stored));
+    hydrated.current = true;
+    setHydrationReady(true);
+  }, []);
 
-  // Debounced URL sync
+  // Browser history is an external state change; apply only valid URL scenarios.
   useEffect(() => {
-    if (!hydrated.current) return;
+    if (!hydrationReady) return;
+    const updateFromHistory = () => {
+      const url = parsePlannerSearchParams(new URLSearchParams(window.location.search));
+      if (url.ok) setState(url.state);
+    };
+    window.addEventListener("popstate", updateFromHistory);
+    return () => window.removeEventListener("popstate", updateFromHistory);
+  }, [hydrationReady]);
+
+  // Persist and sync the URL only after hydration. Native history avoids router replace loops.
+  useEffect(() => {
+    if (!hydrationReady) return;
+    savePlannerState(window.localStorage, state);
     const q = stateToQueryString(state);
-    const current = searchParams.toString();
+    const current = window.location.search.slice(1);
     if (q === current) return;
 
     const t = window.setTimeout(() => {
       const url = q ? `${pathname}?${q}` : pathname;
-      router.replace(url, { scroll: false });
+      window.history.replaceState(window.history.state, "", url);
     }, 350);
     return () => window.clearTimeout(t);
-  }, [state, pathname, router, searchParams]);
+  }, [state, pathname, hydrationReady]);
 
   const setField = useCallback(
     <K extends keyof PlannerState>(key: K, value: PlannerState[K]) => {
       setState((prev) => ({ ...prev, [key]: value }));
+      recordUserMutation("field");
     },
-    [],
+    [recordUserMutation],
   );
 
   const patch = useCallback((partial: Partial<PlannerState>) => {
     setState((prev) => ({ ...prev, ...partial }));
-  }, []);
+    recordUserMutation("patch");
+  }, [recordUserMutation]);
 
-  const reset = useCallback(() => setState({ ...PLANNER_DEFAULTS }), []);
+  const reset = useCallback(() => {
+    setState({ ...PLANNER_DEFAULTS });
+    recordUserMutation("reset");
+  }, [recordUserMutation]);
 
   const setFireStyle = useCallback((style: FireStyleId) => {
     const preset = FIRE_STYLES.find((s) => s.id === style);
@@ -107,7 +136,8 @@ export function PlannerProvider({
       fireStyle: style,
       annualExpenses: preset ? preset.spendingHint : prev.annualExpenses,
     }));
-  }, []);
+    recordUserMutation("preset");
+  }, [recordUserMutation]);
 
   const realReturn = useMemo(
     () =>
@@ -186,6 +216,7 @@ export function PlannerProvider({
       patch,
       reset,
       setFireStyle,
+      plannerMutation,
       realReturn,
       withdrawalRate,
       fire,
@@ -200,6 +231,7 @@ export function PlannerProvider({
       patch,
       reset,
       setFireStyle,
+      plannerMutation,
       realReturn,
       withdrawalRate,
       fire,

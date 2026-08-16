@@ -191,7 +191,7 @@ export default function ApproachPage() {
 
       <div className="mt-12 flex flex-wrap gap-4 text-sm">
         <Link
-          href="/#calculators"
+          href="/calculators"
           className="font-medium text-emerald-400 hover:underline"
         >
           ← Open calculators
