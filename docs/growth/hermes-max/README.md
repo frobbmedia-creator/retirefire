@@ -7,7 +7,7 @@
 | `GO.txt` | One-screen start order |
 | `DAY1_EXECUTE.md` | **Run this first session** |
 | `LINKEDIN_UPDATE.md` | Frank Peake + Frobb Media — **$5k/mo agents** + full project stack |
-| `FROBB_MEDIA_OFFER.md` | What $5k/month includes; DM script |
+| `FROBB_MEDIA_OFFER.md` | $5k/mo model. Context = one line in “also a Frobb creation.” |
 | `MAX_READ_THIS_FIRST.md` | Accounts, rules, daily cadence |
 | `TARGETS.md` | Subreddits + Facebook groups |
 | `POSTS_READY.md` | Copy to rewrite 20%+ before posting |

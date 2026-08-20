@@ -1,15 +1,19 @@
-# MAX — LINKEDIN: SELL AGENT ORCHESTRATION + LIST EVERY PROJECT
+# MAX — LINKEDIN: $5k AGENTS. PRODUCTS ARE A NOTE.
 
-**Commercial lead:** Frobb Media sells AI agent orchestration to businesses at **$5,000/month**.  
-**Proof:** the full product stack (RetireFire, My Place, Arya, Frobbex, Context, automation).  
-**Do not** lead with FGH Medical. Keep Boca Skin as a lower experience row.
+Lead: Frobb Media sells **$5k/month agent orchestration** (unlimited agents/automations/support; 24h live; 7-day first automation).
+
+**Context, RetireFire, My Place, Arya, Frobbex** = other Frobb creations. One short “also shipping” note. Do not make Context the pitch.
+
+FGH Medical is not the headline.
+
+Internal model only: https://youtu.be/FIhj0yb9KPI — do not mention it publicly.
 
 | Profile | URL |
 |---------|-----|
 | Frank Peake | https://www.linkedin.com/in/frank-peake-09980411 |
 | Frobb Media | https://www.linkedin.com/in/frobb-media-63051b3a7 |
 
-Offer one-pager (use for DMs): `FROBB_MEDIA_OFFER.md`
+Read `FROBB_MEDIA_OFFER.md` before any DM.
 
 ---
 
@@ -17,7 +21,7 @@ Offer one-pager (use for DMs): `FROBB_MEDIA_OFFER.md`
 
 ### Headline
 ```
-Founder, Frobb Media | AI agents for businesses ($5k/mo) | RetireFire · My Place · Arya · Frobbex
+Founder, Frobb Media | AI agents for businesses · $5k/month | Boca Raton
 ```
 
 ### Website
@@ -25,26 +29,17 @@ Founder, Frobb Media | AI agents for businesses ($5k/mo) | RetireFire · My Plac
 
 ### About (replace all)
 ```
-I’m Frank Peake. I run Frobb Media.
+I’m Frank Peake. I run Frobb Media in Boca Raton / Miami.
 
-What we sell:
-AI agent orchestration for businesses — $5,000/month. We install agents on a real queue (leads, claims, permitting, inbox) and run them with human review. Not a chatbot. Not a seat license.
+What businesses buy:
+$5,000/month. Unlimited AI agents, automations, and support on a real queue — leads, insurance claims, construction permitting, or inbox. Agent live in 24 hours. First automation in 7 days. Weekly numbers, not demos. We run the agents. Not a chatbot seat.
 
-What we also build (proof we ship):
-• RetireFire.net — free FIRE calculators, published math. Live.
-• My Place — private family app (rooms, messaging, video).
-• Arya — science-verified health advocate.
-• Frobbex — safety-first layer for local AI computer-use.
-• Context — AI utilities and growth tools.
-• Niche automation — construction permitting and insurance claims.
-• Content systems — autonomous publishing for brands.
+Also a Frobb creation (not the offer): RetireFire.net (live FIRE calculators), My Place (private family app), Arya (science-verified health advocate), Frobbex (safe AI computer-use), Context (AI utilities).
 
-Frobb Media is the studio. The $5k engagement is the B2B offer.
+I also operate FGH Medical / Boca Skin and Body Med.
 
-I also operate FGH Medical / Boca Skin and Body Med in South Florida.
-
-If you want an AI employee on a real queue, message me.
-Live product: https://retirefire.net
+If you have a queue a sharp operator should already be running, message me.
+https://retirefire.net
 ```
 
 ### Featured
@@ -52,47 +47,31 @@ Live product: https://retirefire.net
 2. https://retirefire.net
 3. https://retirefire.net/methodology
 
-### Experience (this order, all Current unless noted)
+### Experience (Current)
 
-**Founder — Frobb Media** · 2025 – Present
+**Founder — Frobb Media**
 ```
-AI operations studio. We sell agent orchestration to businesses at $5k/month (leads, claims, permitting, inbox) and ship our own products: RetireFire, My Place, Arya, Frobbex, Context.
+AI operations studio. $5k/month: we install and run agents on a client’s real queue (leads, claims, permitting, inbox). Unlimited agents/automations/support. 24-hour standup, 7-day first automation, weekly outcomes.
+
+Also shipping: RetireFire.net, My Place, Arya, Frobbex, Context.
 ```
 
 **Founder — RetireFire** · Jul 2026 – Present
 ```
-Free FIRE calculators: Coast, Barista, FIRE number, years-to-FI, 72(t), educational Monte Carlo. Published math. https://retirefire.net
-```
-
-**Founder — My Place** · Current
-```
-Private family app: rooms, messaging, video. Always-open home — not public social media.
-```
-
-**Founder — Arya** · Current
-```
-Science-verified health advocate. Evidence-based wellness. No hype.
-```
-
-**Founder — Frobbex** · Current
-```
-Safe execution layer for local AI computer-use (MCP / secure tunnel).
-```
-
-**Founder — Context** · Current
-```
-AI utilities: browser analysis, group marketing, operator tools.
+Free FIRE calculators: Coast, Barista, FIRE number, years-to-FI, 72(t), educational Monte Carlo. https://retirefire.net
 ```
 
 **FGH Medical / Boca Skin and Body Med** — keep, move below. Do not delete.
 
+Do **not** add a separate LinkedIn job for Context. It is a line under Frobb Media.
+
 ---
 
-## 2. Frobb Media (studio)
+## 2. Frobb Media
 
 ### Headline
 ```
-Frobb Media · AI agent orchestration for businesses · $5k/mo operators · RetireFire · My Place · Arya
+Frobb Media · AI agents for businesses · $5k/month operators
 ```
 
 ### Website
@@ -100,34 +79,26 @@ Frobb Media · AI agent orchestration for businesses · $5k/mo operators · Reti
 
 ### About (replace all)
 ```
-Frobb Media installs and runs AI agents inside businesses.
+Frobb Media installs AI agents in businesses and runs them.
 
-Offer: $5,000/month. One real workflow live — lead intake, insurance claims, construction permitting, or customer inbox — with orchestration and human review. Not a chatbot wrapper.
+$5,000/month — unlimited agents, automations, and support. One real queue: leads, insurance claims, construction permitting, or inbox. Agent live in 24 hours. First automation in 7 days.
 
-We also ship our own products:
-• RetireFire.net — free FIRE calculators (live)
-• My Place — private family app
-• Arya — science-verified health advocate
-• Frobbex — safe local AI computer-use
-• Context — AI utilities
-• Content systems and niche automation
+Also a Frobb creation: RetireFire.net, My Place, Arya, Frobbex, Context.
 
 Founder: Frank Peake. Boca Raton / Miami.
 
-Want an AI employee on a queue you already have? Message us.
+Want an agent on a queue you already have? Message us.
 https://retirefire.net
 ```
 
-### Current position description
-Use the About offer paragraph. Overwrite any “we help creators monetize short-form” copy.
+Overwrite any “we help creators monetize short-form” copy.
 
 ---
 
 ## 3. Company Page (only if it already exists)
 
-Tagline: `AI agent orchestration for businesses. $5k/month. We run the agents.`  
-About: section 2. Website: https://retirefire.net  
-Do not create a new Company Page today.
+Tagline: `AI agents for businesses. $5k/month. We run them.`  
+About: section 2. Do not create a new page today.
 
 ---
 
@@ -135,50 +106,43 @@ Do not create a new Company Page today.
 
 ### Frank Peake
 ```
-What I sell, and what I build.
+What I sell:
 
-Sell: Frobb Media installs AI agents in your business for $5k/month. Real queue — leads, claims, permitting, or inbox. We orchestrate them. You do not get another chatbot.
+$5k/month. We put AI agents on a real business queue — claims, permits, leads, inbox — and run them. Unlimited agents + automations + support. Live in 24 hours. First automation in 7 days.
 
-Build (proof):
-• RetireFire.net — live FIRE calculators
-• My Place — private family app
-• Arya — science-verified health advocate
-• Frobbex — safe AI computer-use
-• Context — AI utilities
+Not another chatbot.
 
-If you have a pile of work a sharp operator should already be doing, message me.
+Also a Frobb creation: RetireFire.net, My Place, Arya, Frobbex, Context.
 
-https://retirefire.net
+If a sharp operator should already be working a pile for you, message me.
 ```
 
 ### Frobb Media
 ```
-Frobb Media offer:
+Frobb Media — $5k/month AI agents for businesses.
 
-$5,000/month — we put AI agents on a real business queue (leads, claims, permitting, inbox) and run them.
+Unlimited agents. Unlimited automations. Support.
+24-hour standup. 7-day first automation.
 
-Not software seats. Operators.
-
-Products we also ship: RetireFire.net (live), My Place, Arya, Frobbex, Context.
+Also a Frobb creation: RetireFire.net, My Place, Arya, Frobbex, Context.
 
 Frank Peake. Boca Raton.
-https://retirefire.net
 ```
 
-DM reply (inbound only, no blast):
+DM reply (inbound only):
 ```
-Yes — $5k/month, one live workflow, we run the agents. Which queue is overflowing: leads, claims, permits, or inbox?
+Yes — $5k/month, unlimited agents/automations on one live queue. Agent in 24 hours, first automation in 7 days. Which pile is overflowing: leads, claims, permits, or inbox?
 ```
 
-Do **not** drop the price in Reddit or FIRE Facebook groups. Those channels stay RetireFire-value. LinkedIn is the sales floor.
+Do **not** pitch $5k in Reddit or FIRE Facebook groups.
 
 ---
 
 ## 5. Done check
 
-- [ ] Frank headline has Frobb Media + $5k agents + product names
-- [ ] Both Abouts open with the agent offer, then the full project list
-- [ ] Experience rows exist for every product
+- [ ] Headlines are $5k agents — Context is not in the headline
+- [ ] About: offer first, then one “also a Frobb creation” sentence that includes Context
+- [ ] No separate Context job row
 - [ ] FGH is not the headline
-- [ ] One post each; no Reddit/FB FIRE spam of the $5k offer
+- [ ] One post each
 - [ ] Telegram Frank the URLs

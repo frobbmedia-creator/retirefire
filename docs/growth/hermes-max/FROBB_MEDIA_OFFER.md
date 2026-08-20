@@ -1,60 +1,64 @@
-# Frobb Media — Agent orchestration for businesses
+# Frobb Media — $5k/month AI agents (operating model)
 
 **Price:** $5,000 / month  
-**What we sell:** AI employees that run a real queue in your business — not chatbots, not “prompt seats.”  
-**Who:** Frank Peake / Frobb Media · Boca Raton / Miami
+**Package:** Unlimited agents · unlimited automations · support  
+**Speed:** Agent live in **24 hours**. First real automation in **7 days**.  
+**Concept we run:** Nick Vasilescu / The Next New Thing — [He earns $5k building agents](https://youtu.be/FIhj0yb9KPI)  
+**Do not name-drop Nick on LinkedIn or in client DMs.** Use the model. Our stack, our names.
 
 ---
 
-## One-liner
-We install and orchestrate AI agents inside your operation for **$5k/month**. They take work off humans: leads, intake, claims, permitting, inbox, follow-up.
+## What the client is buying
 
-## What $5k/month is
+They are not buying Hermes, Orgo, or “AI seats.” They are buying **an operator that installs agents on a real queue and keeps them working.**
 
-Not software. Not a dashboard you babysit. **Done-with-you agents, run for you.**
+| Promise | Detail |
+|---------|--------|
+| $5k/month | Simple retainer. Unlimited agents + automations + support on the contracted business. |
+| First itch | We find one repetitive, valuable workflow and kill it first. |
+| 24 hours | An agent is running (mail/chat/computer) so they can feel it. |
+| 7 days | First automation that moves real work (leads, claims, permits, inbox). |
+| Weekly | Outcome review: hours saved, files moved, replies sent — numbers, not vibes. |
 
-| You get | You do not get |
-|---------|----------------|
-| 1 primary workflow live (leads **or** claims **or** permitting **or** customer inbox) | A chatbot dumped on your site |
-| Agent orchestration (handoffs, tools, human review) | Unlimited mystery “AI employees” |
-| Weekly operating report | A 12-month IT project |
-| Telegram/email escalation when a human must step in | Fine-print token billing |
-| Setup aimed at **14 days** | Custom LLM research lab |
+## Delivery stack
 
-After the first workflow is stable, extra workflows are a scoped add-on — not thrown in “for free” and then ignored.
+| Job | What Frobb uses |
+|-----|-----------------|
+| Agent harness | **Hermes Max** |
+| Computer the agent can drive | **Frobbex** — safe local computer-use |
+| Mail / phone / chat | Inbox + iMessage/Telegram/Slack as the client already works |
+| Tool connections | Client’s existing software |
+| Studio | **Frobb Media** |
 
-## Who it is for
-- Owner-operated businesses that already have lead flow or a claims/permits pile
-- Construction / trades (permitting)
-- Insurance / restoration (claims intake)
-- Clinics and local services (leads + follow-up)
-- Anyone drowning in repetitive coordination, not in need of another SaaS login
+## First itch (sales + delivery)
 
-## Who it is not for
-- People who want ChatGPT “set up”
-- Companies that will not let an agent touch a real inbox or form
-- Anyone shopping $99/month AI wrappers
+1. What queue is overflowing — leads, claims, permits, or inbox?
+2. Where does that work live today?
+3. What is a win in 30 days?
+4. Who can let an agent touch that queue this week?
 
-## Proof we ship (not vapor)
-Frobb Media also builds and runs products in public:
+Close line:
+```
+$5k/month, unlimited agents and automations on that queue. Agent live in 24 hours. First automation in 7 days. Not a chatbot — we run it.
+```
+
+Do **not** discount on the first reply.
+
+## Also a Frobb creation (note only — not the pitch)
+
+Other things we have built. Mention in About / “also shipping.” Do not sell these as the $5k offer.
 
 - **RetireFire.net** — live FIRE calculators
 - **My Place** — private family app
 - **Arya** — science-verified health advocate
-- **Frobbex** — safe local AI computer-use layer
-- **Context** — AI utilities / growth tools
+- **Frobbex** — safe computer-use layer
+- **Context** — another Frobb product (AI utilities / browser analyzer / growth tools)
+- Niche automation — permitting + claims
 
-The $5k offer is the **B2B line**. The products are how we prove we can ship.
+## Channels
+- **LinkedIn + warm phone list** = sell the $5k offer
+- **Reddit / FIRE Facebook** = RetireFire value only. Never pitch $5k agents there.
 
-## CTA (use this)
-```
-If you want an AI employee on a real queue — leads, claims, permitting, or inbox — Frobb Media runs that for $5k/month. I am Frank. Direct message me.
-```
-
-## Discovery questions (Max / Frank, first reply)
-1. What queue is actually overflowing (leads, claims, permits, inbox)?
-2. Where does that work live today (email, GHL, spreadsheet, paper)?
-3. What is a win in 30 days (hours saved, response time, files moved)?
-4. Who signs off on letting an agent touch that queue?
-
-Do **not** discount in the first message. Do **not** pitch RetireFire Pro as this offer. Do **not** spam LinkedIn connections with the price 20 times a day. Profile + 1 post + reply to inbound.
+## Retention (every week)
+- Numbers: what the agent did
+- One new automation from a new itch they named

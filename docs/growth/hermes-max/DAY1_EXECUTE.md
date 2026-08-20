@@ -133,7 +133,7 @@ Open LINKEDIN_UPDATE.md in this folder. Paste. Do not invent new bios.
 1. Frank Peake: https://www.linkedin.com/in/frank-peake-09980411
 2. Frobb Media: https://www.linkedin.com/in/frobb-media-63051b3a7
 
-Keep FGH Medical / Boca Skin as a **lower** experience row only. Headline and About must **lead with Frobb Media agent orchestration at $5k/month**, then list the full stack: RetireFire, My Place, Arya, Frobbex, Context. Do not pitch $5k agents in Reddit or FIRE Facebook groups.
+Keep FGH Medical / Boca Skin as a **lower** experience row only. Headline and About **lead with $5k/month agents**. Context, RetireFire, My Place, Arya, Frobbex = one “also a Frobb creation” note — not the pitch. Do not pitch $5k agents in Reddit or FIRE Facebook groups. Do not mention the YouTube playbook publicly.
 Then publish the two posts in LINKEDIN_UPDATE.md (one from each profile).
 
 ---
