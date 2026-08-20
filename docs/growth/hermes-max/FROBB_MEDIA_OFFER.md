@@ -1,64 +1,56 @@
-# Frobb Media — $5k/month AI agents (operating model)
+# Frobb Media — $5k/month AI agents
 
 **Price:** $5,000 / month  
 **Package:** Unlimited agents · unlimited automations · support  
 **Speed:** Agent live in **24 hours**. First real automation in **7 days**.  
-**Concept we run:** Nick Vasilescu / The Next New Thing — [He earns $5k building agents](https://youtu.be/FIhj0yb9KPI)  
-**Do not name-drop Nick on LinkedIn or in client DMs.** Use the model. Our stack, our names.
+**Internal model:** https://youtu.be/FIhj0yb9KPI — use it, do not name-drop it.
+
+Everything we have built is **company information and credibility for this offer.** It is not a side menu. $5k is the product. The builds are why we can charge it.
 
 ---
 
-## What the client is buying
+## The offer
 
-They are not buying Hermes, Orgo, or “AI seats.” They are buying **an operator that installs agents on a real queue and keeps them working.**
+We install AI agents on a real queue (leads, claims, permitting, inbox) and run them.
 
-| Promise | Detail |
-|---------|--------|
-| $5k/month | Simple retainer. Unlimited agents + automations + support on the contracted business. |
-| First itch | We find one repetitive, valuable workflow and kill it first. |
-| 24 hours | An agent is running (mail/chat/computer) so they can feel it. |
-| 7 days | First automation that moves real work (leads, claims, permits, inbox). |
-| Weekly | Outcome review: hours saved, files moved, replies sent — numbers, not vibes. |
+Most “AI employees” cannot use a computer and cannot see each other. We built the tools that fix that, we run them on our own businesses every day, and we install the same class of operator for clients.
 
-## Delivery stack
+Close:
+```
+$5k/month. Unlimited agents and automations on your queue. Live in 24 hours, first automation in 7 days. We already run this stack on our own companies — that is the credibility. Not a chatbot.
+```
 
-| Job | What Frobb uses |
-|-----|-----------------|
-| Agent harness | **Hermes Max** |
-| Computer the agent can drive | **Frobbex** — safe local computer-use |
-| Mail / phone / chat | Inbox + iMessage/Telegram/Slack as the client already works |
-| Tool connections | Client’s existing software |
-| Studio | **Frobb Media** |
+---
 
-## First itch (sales + delivery)
+## Company: everything we built, and why it belongs in the $5k
+
+| Build | What it is | Why it is $5k credibility |
+|-------------------|---------------------------|
+| **Frobb Media** | AI operations studio. Parent. | The company you hire. |
+| **Hermes Max** | Autonomous computer-use agent we already run on a Mac (ops, publishing, inbox). | We operate agents in production on ourselves. Not a slide. |
+| **Frobbex** | Safety-first local computer-use / execution layer (MCP, permission boundary). | An agent that cannot safely use a computer is a demo. This is the missing layer. |
+| **Meta Operator** | Multi-agent orchestration — agents that can see each other’s work. | Businesses need a team, not five chatbots that never meet. |
+| **RetireFire.net** | Live FIRE calculators: Coast, Barista, Monte Carlo, 72(t), Stripe, SEO. | Shipped consumer software, payments, public math. We finish and run products. |
+| **My Place** | Private family app — rooms, messaging, video. Not public social. | Real product UX, not a script wrapped in a landing page. |
+| **Arya** | Science-verified health advocate: voice, visual, content system. | We can give an agent a consistent identity and operating voice. That is an “AI employee.” |
+| **Context** | AI utilities, browser analyzer, growth tools. | We study how work actually happens in the browser before we automate it. |
+| **Permitting + claims** | Construction permitting and insurance-claims workflows. | Same verticals we sell into. Not tourists. |
+| **Publishing pipeline** | Autonomous content/ops: Drive inbox, Telegram, X, Mac watcher. | Fulfillment muscle. We already run agents against a daily operating cadence. |
+| **FGH Medical / Boca Skin** | Operating South Florida healthcare business. | We are owner-operators. We know what a real queue feels like. |
+
+Do not hide any of this. It is the company.
+
+---
+
+## First itch
 
 1. What queue is overflowing — leads, claims, permits, or inbox?
 2. Where does that work live today?
 3. What is a win in 30 days?
 4. Who can let an agent touch that queue this week?
 
-Close line:
-```
-$5k/month, unlimited agents and automations on that queue. Agent live in 24 hours. First automation in 7 days. Not a chatbot — we run it.
-```
-
-Do **not** discount on the first reply.
-
-## Also a Frobb creation (note only — not the pitch)
-
-Other things we have built. Mention in About / “also shipping.” Do not sell these as the $5k offer.
-
-- **RetireFire.net** — live FIRE calculators
-- **My Place** — private family app
-- **Arya** — science-verified health advocate
-- **Frobbex** — safe computer-use layer
-- **Context** — another Frobb product (AI utilities / browser analyzer / growth tools)
-- Niche automation — permitting + claims
+Do not discount on the first reply.
 
 ## Channels
-- **LinkedIn + warm phone list** = sell the $5k offer
-- **Reddit / FIRE Facebook** = RetireFire value only. Never pitch $5k agents there.
-
-## Retention (every week)
-- Numbers: what the agent did
-- One new automation from a new itch they named
+- **LinkedIn + warm list** = $5k offer + full company credibility
+- **Reddit / FIRE Facebook** = RetireFire value only. No $5k pitch there.
