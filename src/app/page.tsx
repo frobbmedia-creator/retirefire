@@ -1,4 +1,6 @@
 import { Hero } from "@/components/home/Hero";
+import { TrustStrip } from "@/components/home/TrustStrip";
+import { FaqSection, FaqJsonLd } from "@/components/home/FaqSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE } from "@/lib/constants";
 import {
@@ -30,8 +32,11 @@ export default function HomePage() {
           url: `https://${SITE.domain}`,
         })}
       />
+      <FaqJsonLd />
 
       <Hero />
+      <TrustStrip />
+      <FaqSection />
     </>
   );
 }

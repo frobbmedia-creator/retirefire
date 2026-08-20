@@ -8,9 +8,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const launched = new Date("2026-07-01");
   const resourcesUpdated = new Date("2026-07-15");
   const seoPass = new Date("2026-08-12");
+  const aryaSeries = new Date("2026-08-20");
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: base, lastModified: seoPass, changeFrequency: "weekly", priority: 1 },
+    { url: base, lastModified: aryaSeries, changeFrequency: "weekly", priority: 1 },
     {
       url: `${base}/calculators`,
       lastModified: seoPass,
@@ -124,6 +125,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: resourcesUpdated,
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: `${base}/series/arya-21-day`,
+      lastModified: aryaSeries,
+      changeFrequency: "weekly",
+      priority: 0.88,
     },
     {
       url: `${base}/disclaimer`,

@@ -21,6 +21,7 @@ export function Footer() {
       label: "Learn",
       links: [
         ["/blog", "Blog"],
+        ["/series/arya-21-day", "Arya 21-Day Series"],
         ["/guides", "Guides"],
         ["/research", "Research"],
         ["/resources", "Resources"],
