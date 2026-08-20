@@ -75,7 +75,7 @@
 | Homepage FAQ + TrustStrip | `[x]` | Shipped 2026-08-20 |
 | Shareable result objects | `[ ]` | Next |
 | Email capture live | `[ ]` | High priority after indexation |
-| Social account activation | `[!]` | Requires CEO ownership of X / LinkedIn — posts ready in `22-social-wave-arya-boost.md` |
+| Social account activation | `[~]` | X / LinkedIn still need CEO claim. **Reddit + Facebook groups: Hermes Max standing job in `hermes-max/`** (Frank Peake / frankpeake1@gmail.com) |
 | Video embeds (top 6 clips) | `[ ]` | CDN/hosting next; files in Drive |
 
 ---
@@ -126,5 +126,6 @@
 | `20-lean-fire-pillar-cluster-pack.md` | Lean FIRE cluster |
 | `21-arya-series-deployment.md` | Arya 21-day assets + next steps |
 | `22-social-wave-arya-boost.md` | **Ready-to-post social captions** |
+| `hermes-max/` | **Hermes Max standing job: Reddit (frankpeake1@gmail.com) + Facebook groups (Frank Peake)** |
 | `docs/reports/` | Weekly Monday metrics |
 | `EXECUTION-SPEC-v1.md` | Full handoff spec snapshot |
