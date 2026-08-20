@@ -9,9 +9,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const resourcesUpdated = new Date("2026-07-15");
   const seoPass = new Date("2026-08-12");
   const aryaSeries = new Date("2026-08-20");
+  const moneyBoost = new Date("2026-08-20");
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: base, lastModified: aryaSeries, changeFrequency: "weekly", priority: 1 },
+    { url: base, lastModified: moneyBoost, changeFrequency: "weekly", priority: 1 },
     {
       url: `${base}/calculators`,
       lastModified: seoPass,
@@ -163,7 +164,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${base}/${page.slug}`,
     lastModified: new Date(page.dateModified),
     changeFrequency: "monthly" as const,
-    priority: 0.82,
+    priority: 0.85,
   }));
 
   return [...staticRoutes, ...decisionPages, ...posts];

@@ -1,6 +1,6 @@
 # Social Wave — Arya Rank + Conversion Push
 
-**Use now.** Captions adapted from Drive `copy.json`. Post on X + FB RetireFire page. Always link the matching tool.
+**Use now.** Captions adapted from Drive `copy.json` + new money pages. Post on X + FB RetireFire page. Always link the matching tool.
 
 ## Priority post order (highest leverage first)
 
@@ -24,17 +24,32 @@
 ### 6. Series hub
 **X:** 21 short lessons with Arya: FIRE number, Coast, Barista, Monte Carlo, sequence risk.\n\nEach day links to a free transparent tool. No account.\n\nStart here → retirefire.net/series/arya-21-day
 
+### 7. Money-page wave (new this boost)
+**X:** Can you retire with $1 million?\n\nAt 3–4% it supports roughly $30k–$40k of portfolio spending before taxes. Whether that is enough depends on your actual lifestyle, healthcare, and later income.\n\nHonest math (no soft language): retirefire.net/can-i-retire-with-1-million
+
+**X:** Retiring at 50 is a funding problem with clocks.\n\nMedicare at 65. Social Security as early as 62. A portfolio that may need to last 40+ years.\n\nClear ranges + bridges: retirefire.net/retire-at-50
+
+**X:** $750k is not automatically enough or too little.\n\nTranslate the balance into annual spending first, then stress taxes, healthcare, and sequence risk.\n\nretirefire.net/can-i-retire-with-750k
+
 ## Decision-page share pack (SEO + social)
 
+- retirefire.net/retire-at-40
+- retirefire.net/retire-at-45
 - retirefire.net/retire-at-50
+- retirefire.net/can-i-retire-with-500k
+- retirefire.net/can-i-retire-with-750k
 - retirefire.net/can-i-retire-with-1-million
+- retirefire.net/can-i-retire-with-1-5-million
+- retirefire.net/can-i-retire-with-2-million
+- retirefire.net/can-i-retire-with-3-million
 - retirefire.net/coast-fire-by-age
 - retirefire.net/fire-number-by-spending
 - retirefire.net/resources/sequence-risk-guide
+- retirefire.net/series/arya-21-day
 
 ## Cadence
 
-- 1 priority clip/post per day for 6 days
+- 1 priority clip/post per day for 6–7 days
 - Then alternate decision-page links + remaining series days
 - Pin the series hub or checkup on profile
 
@@ -42,4 +57,5 @@
 
 - [ ] Post D01 + checkup link today
 - [ ] Post D15 + coast calculator tomorrow
-- [ ] Request GSC indexing on series + money URLs
+- [ ] Request GSC indexing on the full list in `15-technical-seo-audit.md`
+- [ ] Post at least one money-page URL this week

@@ -53,15 +53,17 @@ const swrTable = (annualSpending: number): DecisionTable => ({
   }),
 });
 
-function retireAtPage(age: 45 | 50 | 55 | 60): DecisionPage {
+function retireAtPage(age: 40 | 45 | 50 | 55 | 60): DecisionPage {
   const horizon =
-    age === 45
-      ? "50 years or more"
-      : age === 50
-        ? "40 years or more"
-        : age === 55
-          ? "35–40 years"
-          : "30–35 years";
+    age === 40
+      ? "50–55 years or more"
+      : age === 45
+        ? "50 years or more"
+        : age === 50
+          ? "40 years or more"
+          : age === 55
+            ? "35–40 years"
+            : "30–35 years";
   const bridge = 62 - age;
   const medicareBridge = 65 - age;
   return {
@@ -69,7 +71,7 @@ function retireAtPage(age: 45 | 50 | 55 | 60): DecisionPage {
     title: `How much do you need to retire at ${age}?`,
     description: `Estimate the portfolio needed to retire at ${age}, including spending, withdrawal-rate, healthcare, Social Security, and sequence-risk considerations.`,
     eyebrow: `Retire by age ${age}`,
-    datePublished: age === 45 ? expanded : published,
+    datePublished: age === 40 || age === 45 ? expanded : published,
     dateModified: expanded,
     intro: [
       `Retiring at ${age} is not one number. It is a funding problem with several clocks: your portfolio may need to support roughly ${horizon}, Medicare does not normally begin until 65, and Social Security cannot start before 62.`,
@@ -132,6 +134,7 @@ function retireAtPage(age: 45 | 50 | 55 | 60): DecisionPage {
     ],
     related: [
       { href: "/fire-number-by-spending", label: "FIRE number by spending" },
+      { href: "/can-i-retire-with-1-million", label: "Can I retire with $1M?" },
       { href: "/fire-calculator-with-social-security", label: "Include Social Security" },
       { href: "/early-retirement-health-insurance", label: "Healthcare before Medicare" },
       { href: "/series/arya-21-day", label: "Arya 21-day series" },
@@ -142,16 +145,22 @@ function retireAtPage(age: 45 | 50 | 55 | 60): DecisionPage {
   };
 }
 
-function portfolioPage(amount: 500_000 | 1_000_000 | 2_000_000 | 3_000_000): DecisionPage {
+function portfolioPage(
+  amount: 500_000 | 750_000 | 1_000_000 | 1_500_000 | 2_000_000 | 3_000_000,
+): DecisionPage {
   const labelMap: Record<number, string> = {
     500_000: "$500,000",
+    750_000: "$750,000",
     1_000_000: "$1 million",
+    1_500_000: "$1.5 million",
     2_000_000: "$2 million",
     3_000_000: "$3 million",
   };
   const slugMap: Record<number, string> = {
     500_000: "500k",
+    750_000: "750k",
     1_000_000: "1-million",
+    1_500_000: "1-5-million",
     2_000_000: "2-million",
     3_000_000: "3-million",
   };
@@ -167,7 +176,13 @@ function portfolioPage(amount: 500_000 | 1_000_000 | 2_000_000 | 3_000_000): Dec
     title: `Can I retire with ${label}?`,
     description: `See the annual spending ${label} may support at 3%, 3.5%, and 4%, then test taxes, healthcare, Social Security, and flexibility.`,
     eyebrow: "Portfolio reality check",
-    datePublished: amount === 500_000 || amount === 3_000_000 ? expanded : published,
+    datePublished:
+      amount === 500_000 ||
+      amount === 750_000 ||
+      amount === 1_500_000 ||
+      amount === 3_000_000
+        ? expanded
+        : published,
     dateModified: expanded,
     intro: [
       `${label} is not automatically enough or insufficient. The answer depends primarily on how much the portfolio must supply each year, for how long, and how flexible that spending is after weak markets.`,
@@ -225,6 +240,8 @@ function portfolioPage(amount: 500_000 | 1_000_000 | 2_000_000 | 3_000_000): Dec
     ],
     related: [
       { href: "/calculators/fire-number", label: "FIRE Number calculator" },
+      { href: "/can-i-retire-with-1-million", label: "Can I retire with $1M?" },
+      { href: "/can-i-retire-with-500k", label: "Can I retire with $500k?" },
       { href: "/fire-calculator-with-social-security", label: "Add Social Security" },
       { href: "/series/arya-21-day", label: "Arya 21-day series" },
       { href: "/blog/safe-withdrawal-rate-3-vs-4-percent", label: "Compare withdrawal rates" },
@@ -314,6 +331,7 @@ const evergreenPages: DecisionPage[] = [
     ],
     related: [
       { href: "/calculators/fire-number", label: "Calculate your FIRE number" },
+      { href: "/can-i-retire-with-1-million", label: "Can I retire with $1M?" },
       { href: "/series/arya-21-day", label: "Arya 21-day series" },
       { href: "/blog/lean-regular-fat-fire-numbers-2026", label: "Lean, Regular, and Fat examples" },
       { href: "/blog/safe-withdrawal-rate-3-vs-4-percent", label: "Choose a planning range" },
@@ -453,6 +471,7 @@ const evergreenPages: DecisionPage[] = [
       { href: "/calculators/coast-fire", label: "Coast FIRE calculator" },
       { href: "/calculators/barista-fire", label: "Model part-time income" },
       { href: "/fire-calculator-with-social-security", label: "Add later income" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
     ],
     calculatorHref: "/calculators/coast-fire",
     calculatorLabel: "Run a household Coast scenario",
@@ -517,6 +536,7 @@ const evergreenPages: DecisionPage[] = [
       { href: "/retire-at-50", label: "Retire at 50" },
       { href: "/retire-at-55", label: "Retire at 55" },
       { href: "/fire-calculator-with-pension", label: "Include pension income" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
     ],
     calculatorHref: "/calculators/fire-number",
     calculatorLabel: "Open the full FIRE calculator",
@@ -581,6 +601,7 @@ const evergreenPages: DecisionPage[] = [
       { href: "/fire-calculator-with-social-security", label: "Include Social Security" },
       { href: "/calculators/fire-number", label: "FIRE Number calculator" },
       { href: "/can-i-retire-with-1-million", label: "Test a $1M portfolio" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
     ],
     calculatorHref: "/calculators/fire-number",
     calculatorLabel: "Open the full FIRE calculator",
@@ -650,6 +671,7 @@ const evergreenPages: DecisionPage[] = [
       { href: "/blog/barista-fire-healthcare-benefits-cliffs", label: "Benefits-cliff guide" },
       { href: "/retire-at-50", label: "Retiring at 50" },
       { href: "/retire-at-55", label: "Retiring at 55" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
     ],
     calculatorHref: "/calculators/fire-number",
     calculatorLabel: "Add healthcare to annual spending",
@@ -718,11 +740,13 @@ const evergreenPages: DecisionPage[] = [
       },
     ],
     related: [
+      { href: "/retire-at-40", label: "Retire at 40" },
       { href: "/retire-at-45", label: "Retire at 45" },
       { href: "/retire-at-50", label: "Retire at 50" },
       { href: "/retire-at-55", label: "Retire at 55" },
       { href: "/retire-at-60", label: "Retire at 60" },
       { href: "/fire-number-by-spending", label: "FIRE number by spending" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
     ],
     calculatorHref: "/calculators/years-to-fire",
     calculatorLabel: "Estimate your timeline",
@@ -800,6 +824,7 @@ const researchPages: DecisionPage[] = [
       { href: "/calculators/years-to-fire", label: "Years to FIRE calculator" },
       { href: "/resources/sequence-risk-guide", label: "Sequence-risk guide" },
       { href: "/blog/years-to-fire-which-lever-moves-the-needle", label: "Compare the levers" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
     ],
     calculatorHref: "/calculators/years-to-fire",
     calculatorLabel: "Model your next year",
@@ -873,6 +898,7 @@ const researchPages: DecisionPage[] = [
       { href: "/retire-at-55", label: "Retire at 55 guide" },
       { href: "/retire-at-60", label: "Retire at 60 guide" },
       { href: "/early-retirement-health-insurance", label: "Healthcare bridge" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
     ],
     calculatorHref: "/calculators/years-to-fire",
     calculatorLabel: "Compare retirement dates",
@@ -950,6 +976,7 @@ const researchPages: DecisionPage[] = [
       { href: "/methodology", label: "RetireFire methodology" },
       { href: "/blog/why-simple-fire-calculators-fail", label: "Simple calculator limitations" },
       { href: "/blog/monte-carlo-vs-historical-cycles-fire", label: "Monte Carlo vs history" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
     ],
     calculatorHref: "/calculators",
     calculatorLabel: "Compare transparent calculators",
@@ -961,12 +988,15 @@ const researchPages: DecisionPage[] = [
 ];
 
 export const DECISION_PAGES: DecisionPage[] = [
+  retireAtPage(40),
   retireAtPage(45),
   retireAtPage(50),
   retireAtPage(55),
   retireAtPage(60),
   portfolioPage(500_000),
+  portfolioPage(750_000),
   portfolioPage(1_000_000),
+  portfolioPage(1_500_000),
   portfolioPage(2_000_000),
   portfolioPage(3_000_000),
   ...evergreenPages,
