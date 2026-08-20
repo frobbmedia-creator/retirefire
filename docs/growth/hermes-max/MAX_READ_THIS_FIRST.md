@@ -15,7 +15,7 @@ Spam gets Frank banned. Value posts get traffic. Follow this file exactly.
 Market **RetireFire.net** (free FIRE calculators + optional Pro) on:
 
 1. **Facebook Groups** — post as **Frank Peake** (personal profile)
-2. **Reddit** — log in with **frankpeake1@gmail.com**
+2. **Reddit** — log in with **frobbmedia@gmail.com**
 
 Goal: real humans click the **free retirement checkup**, run numbers, some convert to Pro later.
 Do **not** pitch Pro in groups. Never mention Stripe, $79, $9, or “buy.”
@@ -37,19 +37,17 @@ Soft CTA only: “run your own numbers” / “free, no account.”
 
 **Groups require a personal profile.** If Facebook offers “post as Page,” switch to **Frank Peake**.
 
-### Reddit — frankpeake1@gmail.com
+### Reddit — frobbmedia@gmail.com
 
 | Item | Value |
 |------|--------|
-| Login email | **frankpeake1@gmail.com** |
-| Preferred username | `frankpeake1` (if taken: `FrankPeake` then `fp_retirefire`) |
-| Password | Use Mac keychain / existing Google login / already-saved Reddit session. Do **not** invent a password and email it. |
-| If no Reddit account exists | Create one with frankpeake1@gmail.com. Username `frankpeake1`. Skip all “interests.” |
-| If Google login is offered | Use frankpeake1@gmail.com Google SSO. |
+| Login email | **frobbmedia@gmail.com** |
+| Account | The **existing** Reddit user already on this Gmail. Do not invent a new username. Do not create a second Reddit account. |
+| How to sign in | reddit.com → Log in → Continue with Google if shown → **frobbmedia@gmail.com**. Else email/password already saved on the Mac for that Gmail. |
+| If Chrome has a Reddit session | Use it only if the logged-in email is frobbmedia@gmail.com. If it is any other Gmail, sign out and switch. |
 | Profile | See §3 |
 
-**Do not use Frankpeake1 X account, Frobbops, or frobbmedia@gmail.com for Reddit.**
-Reddit identity is **frankpeake1@gmail.com only**.
+**Reddit identity is frobbmedia@gmail.com only. Never frankpeake1@gmail.com. Never a fresh throwaway.**
 
 ---
 
@@ -78,11 +76,11 @@ Reddit identity is **frankpeake1@gmail.com only**.
 ### 3A. Reddit account
 
 1. Open reddit.com in Chrome (not a private window you will lose).
-2. Log in or create with **frankpeake1@gmail.com**.
+2. Log in with **frobbmedia@gmail.com** (Google SSO preferred). Use the account that already exists. **Do not create a new Reddit user.**
 3. Settings → profile:
-   - Display name: Frank Peake
-   - About: `Building free, transparent FIRE calculators at retirefire.net. Numbers over slogans. Educational only.`
-   - Avatar: RetireFire flame if it’s on disk (`~/` search `retirefire-icon` or pull from https://retirefire.net). Else a simple dark/emerald mark. Not a random meme.
+   - Display name: Frank Peake (only if the existing name is blank or junk — do not rename a known handle people already recognize)
+   - About, if empty: `Building free, transparent FIRE calculators at retirefire.net. Numbers over slogans. Educational only.`
+   - Avatar: RetireFire flame if it’s on disk (`~/` search `retirefire-icon` or pull from https://retirefire.net). Else leave as-is.
 4. Subscribe to the subreddits in TARGETS.md.
 5. **Do not post a link today if karma is under 20.** Comment only (kit in POSTS_READY.md).
 
@@ -187,11 +185,11 @@ Secondary (match the topic):
 
 UTM (always):
 
-- Reddit: `?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1`
+- Reddit: `?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia`
 - Facebook groups: `?utm_source=facebook&utm_medium=group&utm_campaign=frank_peake`
 
 Example:
-`https://retirefire.net/retirement-checkup?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1`
+`https://retirefire.net/retirement-checkup?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia`
 
 ---
 
@@ -245,7 +243,7 @@ By 7 days from first run:
 
 1. Read TARGETS.md and POSTS_READY.md in this same folder.
 2. Confirm Facebook = Frank Peake.
-3. Confirm Reddit = frankpeake1@gmail.com (create if needed).
+3. Confirm Reddit = **frobbmedia@gmail.com** (existing account — do not create another).
 4. Subscribe / join targets.
 5. Do today’s comments.
 6. Publish **one** value post on the platform that is due (FB if odd date, Reddit if even date — unless warmup).

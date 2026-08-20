@@ -4,10 +4,10 @@ Read MAX_READ_THIS_FIRST.md in this folder. Then TARGETS.md and POSTS_READY.md.
 
 Job: market retirefire.net
 - Facebook groups as FRANK PEAKE (personal profile, not the Page)
-- Reddit logged in as frankpeake1@gmail.com (username frankpeake1)
+- Reddit logged in as frobbmedia@gmail.com (use the existing Reddit account on that Gmail — do not create a second one)
 
 Today:
-1. Login / create Reddit with frankpeake1@gmail.com. Fill profile.
+1. Open Reddit. Log in with frobbmedia@gmail.com (Google SSO if offered). Use that existing user.
 2. Join FB groups in TARGETS.md as Frank Peake (max 4 join requests if not already in).
 3. 8+ Reddit comments (no links if karma < 20).
 4. 4+ FB group comments.

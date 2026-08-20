@@ -3,7 +3,7 @@
 Pick one. Change numbers, opening line, and example spend so two communities never see the same text the same week.
 Always append the matching UTM.
 
-Reddit UTM: `?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1`
+Reddit UTM: `?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia`
 Facebook UTM: `?utm_source=facebook&utm_medium=group&utm_campaign=frank_peake`
 
 Primary URL: `https://retirefire.net/retirement-checkup`
@@ -200,9 +200,9 @@ I also don’t trust a single coast number, so I run a basic 1,000-path sequence
 
 I built the free version I wanted (no account, formulas published):
 
-https://retirefire.net/calculators/coast-fire?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1
+https://retirefire.net/calculators/coast-fire?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia
 
-Methodology: https://retirefire.net/methodology?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1
+Methodology: https://retirefire.net/methodology?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia
 
 I’m the person who maintains it — flagging that up front. Educational only, not advice. Roast the model if you want; that’s why the assumptions are listed.
 ```
@@ -225,7 +225,7 @@ SWR is a finish-line lever:
 
 I got tired of tools that won’t show the formula, so I published one place with FIRE number / years / Coast / Barista, shared assumptions, and a free 1k-path stress test on Coast & Years.
 
-https://retirefire.net/retirement-checkup?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1
+https://retirefire.net/retirement-checkup?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia
 
 I maintain it. Core tools are free, no account. Educational only.
 
@@ -245,9 +245,9 @@ What I found more useful than a single Lean number: years-to-FI at a high saving
 
 Wrote the path + tables here:
 
-https://retirefire.net/blog/lean-fire-path-years-savings-rate?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1
+https://retirefire.net/blog/lean-fire-path-years-savings-rate?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia
 
-Free calc: https://retirefire.net/calculators/fire-number?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1
+Free calc: https://retirefire.net/calculators/fire-number?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia
 
 I built the tools. Assumptions listed. Educational only — not advice. Tell me where the tables are wrong.
 ```
@@ -257,7 +257,7 @@ I built the tools. Assumptions listed. Educational only — not advice. Tell me 
 ```
 RetireFire — free FIRE calculators with published math (Coast, Barista, FIRE number, years-to-FI, 72(t)/SEPP) plus a free 1,000-path educational Monte Carlo on Coast & Years. No account for core tools.
 
-https://retirefire.net?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1
+https://retirefire.net?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia
 
 I’m the builder. Looking for people to break the models. Educational only.
 ```
@@ -275,7 +275,7 @@ If you claim at 70, the portfolio has to bridge the gap. A bad market in those b
 
 I walked through the portfolio impact (US, educational):
 
-https://retirefire.net/blog/social-security-62-vs-70-fire?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1
+https://retirefire.net/blog/social-security-62-vs-70-fire?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia
 
 Not a claim-age recommendation. I’m the author. Roast the framing.
 ```
@@ -291,7 +291,7 @@ Not a claim-age recommendation. I’m the author. Roast the framing.
 
 I built a free SEPP calculator with the three IRS methods because every blog post I read skipped the actual numbers.
 
-https://retirefire.net/calculators/72t-sepp?utm_source=reddit&utm_medium=organic&utm_campaign=frankpeake1
+https://retirefire.net/calculators/72t-sepp?utm_source=reddit&utm_medium=organic&utm_campaign=frobbmedia
 
 I maintain it. Not tax advice. If you’re actually doing this, a CPA is not optional.
 ```

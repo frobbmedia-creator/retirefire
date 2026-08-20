@@ -4,9 +4,9 @@ Read rules on every community before posting. If they ban promo, comments only.
 
 ---
 
-## REDDIT (login: frankpeake1@gmail.com)
+## REDDIT (login: frobbmedia@gmail.com)
 
-Post as **frankpeake1**. Subscribe to all of these today.
+Post as the **existing Reddit user on frobbmedia@gmail.com**. Subscribe to all of these today.
 
 ### Tier A — live here daily
 

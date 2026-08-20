@@ -13,6 +13,6 @@
 Identities:
 
 - Facebook groups: **Frank Peake** personal profile (not the Boca Skin Page)
-- Reddit: **frankpeake1@gmail.com** → username `frankpeake1`
+- Reddit: **frobbmedia@gmail.com** (existing Reddit account on that Gmail — never a second user)
 
 Product: https://retirefire.net
