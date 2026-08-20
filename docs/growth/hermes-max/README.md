@@ -6,7 +6,8 @@
 |------|------|
 | `GO.txt` | One-screen start order |
 | `DAY1_EXECUTE.md` | **Run this first session** |
-| `LINKEDIN_UPDATE.md` | Paste-ready updates for Frank Peake + Frobb Media LinkedIn |
+| `LINKEDIN_UPDATE.md` | Frank Peake + Frobb Media — **$5k/mo agents** + full project stack |
+| `FROBB_MEDIA_OFFER.md` | What $5k/month includes; DM script |
 | `MAX_READ_THIS_FIRST.md` | Accounts, rules, daily cadence |
 | `TARGETS.md` | Subreddits + Facebook groups |
 | `POSTS_READY.md` | Copy to rewrite 20%+ before posting |
@@ -20,4 +21,6 @@ Identities:
 - LinkedIn person: https://www.linkedin.com/in/frank-peake-09980411
 - LinkedIn brand: https://www.linkedin.com/in/frobb-media-63051b3a7
 
-Product: https://retirefire.net
+Sell (LinkedIn only): Frobb Media agent orchestration · $5,000/month
+Product (Reddit/FB/X): https://retirefire.net
+

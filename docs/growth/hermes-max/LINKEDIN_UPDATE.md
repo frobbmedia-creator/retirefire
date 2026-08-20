@@ -1,180 +1,184 @@
-# MAX — MAKE BOTH LINKEDIN PROFILES CURRENT (NOW)
+# MAX — LINKEDIN: SELL AGENT ORCHESTRATION + LIST EVERY PROJECT
 
-This is a **replace**, not an add-on. The public identity is **Frank Peake** and **Frobb Media** as they are today.
+**Commercial lead:** Frobb Media sells AI agent orchestration to businesses at **$5,000/month**.  
+**Proof:** the full product stack (RetireFire, My Place, Arya, Frobbex, Context, automation).  
+**Do not** lead with FGH Medical. Keep Boca Skin as a lower experience row.
 
-- Frank’s headline currently says FGH Medical. **That is outdated. Overwrite it.**
-- Frobb Media currently reads like a generic creator agency. **Overwrite it.**
-- Keep FGH Medical / Boca Skin only as a **secondary** experience row. It is not the headline, website, About, or Featured.
+| Profile | URL |
+|---------|-----|
+| Frank Peake | https://www.linkedin.com/in/frank-peake-09980411 |
+| Frobb Media | https://www.linkedin.com/in/frobb-media-63051b3a7 |
 
-Paste exactly. ~15 minutes.
-
-| Profile | URL | Job |
-|---------|-----|-----|
-| Frank Peake | https://www.linkedin.com/in/frank-peake-09980411 | Current founder identity |
-| Frobb Media | https://www.linkedin.com/in/frobb-media-63051b3a7 | Current studio identity |
-
-If you admin a **Frobb Media Company Page**, update that with section 3. If none exists, do not create one today.
+Offer one-pager (use for DMs): `FROBB_MEDIA_OFFER.md`
 
 ---
 
-## 1. Frank Peake — current person
+## 1. Frank Peake
 
-Open intro → pencil. Replace headline, About, website.
-
-### Name
-Frank Peake
-
-### Headline (CURRENT — replace the FGH Medical headline)
+### Headline
 ```
-Founder, Frobb Media · Building RetireFire.net (free FIRE calculators)
+Founder, Frobb Media | AI agents for businesses ($5k/mo) | RetireFire · My Place · Arya · Frobbex
 ```
 
-### Location
-Boca Raton, Florida, United States
-
-### Website (CURRENT)
-`https://retirefire.net`  
-Label: RetireFire
-
-### About (CURRENT — replace all)
-```
-I’m Frank Peake. I run Frobb Media, an AI operations studio, and I build RetireFire.
-
-RetireFire (retirefire.net) is a free FIRE planning suite: FIRE number, years to FI, Coast FIRE, Barista FIRE, 72(t)/SEPP, and a 1,000-path educational Monte Carlo. Core tools need no account. Formulas are published. Educational only — not financial advice.
-
-Coast FIRE is a stop-saving question, not a quit-your-job number. I built the calculator I wished existed.
-
-Frobb Media is the studio: AI-assisted operations, content systems, and products we actually ship.
-
-Based in Boca Raton / Miami.
-
-https://retirefire.net
-```
-
-### Featured (CURRENT — RetireFire first)
-1. https://retirefire.net/retirement-checkup — Free 3-minute retirement checkup
-2. https://retirefire.net/calculators/coast-fire — Coast FIRE calculator
-3. https://retirefire.net/methodology — Published methodology
-
-Remove Boca Skin from Featured if it is pinned at the top. It can stay lower or come off.
-
-### Experience — CURRENT stack (top of profile)
-
-**1. Founder — Frobb Media**  
-Current. Start 2025 – Present (keep an older start date if one already exists).
-```
-AI operations studio. We ship products and automation, not slide decks.
-
-Flagship consumer product: RetireFire.net — free FIRE calculators with published math.
-
-Also: content systems, lead/ops automation, niche service workflows.
-```
-
-**2. Founder — RetireFire**  
-Current. Jul 2026 – Present.
-```
-Free FIRE calculators: Coast, Barista, FIRE number, years-to-FI, sequence stress test. No account on core tools. Educational software — not advice.
-https://retirefire.net
-```
-
-**3. FGH Medical / Boca Skin and Body Med**  
-Leave the row. If LinkedIn allows, it may stay Current as a second business — but it must sit **below** Frobb Media and RetireFire. Do not let it remain the top headline. Do not delete the company history.
-
----
-
-## 2. Frobb Media — current studio
-
-Open: https://www.linkedin.com/in/frobb-media-63051b3a7
-
-This profile is the **studio**, not a second Frank. Voice = we.
-
-### Name
-Frobb Media
-
-### Headline (CURRENT — replace)
-```
-Frobb Media · AI operations studio · Makers of RetireFire.net
-```
-
-### Location
-Boca Raton, Florida, United States
-
-### Website (CURRENT)
+### Website
 `https://retirefire.net`
 
-### About (CURRENT — replace all)
+### About (replace all)
 ```
-Frobb Media is Frank Peake’s AI operations studio.
+I’m Frank Peake. I run Frobb Media.
 
-We build and run products:
+What we sell:
+AI agent orchestration for businesses — $5,000/month. We install agents on a real queue (leads, claims, permitting, inbox) and run them with human review. Not a chatbot. Not a seat license.
 
-• RetireFire.net — free FIRE calculators with transparent math (Coast, Barista, FIRE number, years to FI, 72(t)/SEPP, educational 1,000-path stress tests). No account for core tools.
-• Content and publishing systems
-• Lead handling and niche service automation
+What we also build (proof we ship):
+• RetireFire.net — free FIRE calculators, published math. Live.
+• My Place — private family app (rooms, messaging, video).
+• Arya — science-verified health advocate.
+• Frobbex — safety-first layer for local AI computer-use.
+• Context — AI utilities and growth tools.
+• Niche automation — construction permitting and insurance claims.
+• Content systems — autonomous publishing for brands.
 
-RetireFire is educational software, not financial, tax, or legal advice.
+Frobb Media is the studio. The $5k engagement is the B2B offer.
 
-Run the free checkup: https://retirefire.net/retirement-checkup
+I also operate FGH Medical / Boca Skin and Body Med in South Florida.
+
+If you want an AI employee on a real queue, message me.
+Live product: https://retirefire.net
 ```
 
-### Featured (CURRENT)
-1. https://retirefire.net — RetireFire
-2. https://retirefire.net/retirement-checkup — Free retirement checkup
-3. https://retirefire.net/series/arya-21-day — 21-day FIRE series
+### Featured
+1. https://retirefire.net/retirement-checkup
+2. https://retirefire.net
+3. https://retirefire.net/methodology
 
-### Current position text
-If this profile lists a job, title = Founder / Studio at Frobb Media. Description = the About block, shortened. Do **not** leave “we help creators turn short-form content into a monetization system” as the lead sentence.
+### Experience (this order, all Current unless noted)
+
+**Founder — Frobb Media** · 2025 – Present
+```
+AI operations studio. We sell agent orchestration to businesses at $5k/month (leads, claims, permitting, inbox) and ship our own products: RetireFire, My Place, Arya, Frobbex, Context.
+```
+
+**Founder — RetireFire** · Jul 2026 – Present
+```
+Free FIRE calculators: Coast, Barista, FIRE number, years-to-FI, 72(t), educational Monte Carlo. Published math. https://retirefire.net
+```
+
+**Founder — My Place** · Current
+```
+Private family app: rooms, messaging, video. Always-open home — not public social media.
+```
+
+**Founder — Arya** · Current
+```
+Science-verified health advocate. Evidence-based wellness. No hype.
+```
+
+**Founder — Frobbex** · Current
+```
+Safe execution layer for local AI computer-use (MCP / secure tunnel).
+```
+
+**Founder — Context** · Current
+```
+AI utilities: browser analysis, group marketing, operator tools.
+```
+
+**FGH Medical / Boca Skin and Body Med** — keep, move below. Do not delete.
 
 ---
 
-## 3. Frobb Media Company Page (only if it already exists)
+## 2. Frobb Media (studio)
 
-**Name:** Frobb Media  
-**Tagline:** AI operations studio. Makers of RetireFire.net.  
-**Website:** https://retirefire.net  
-**Industry:** Software Development  
-**Location:** Boca Raton, Florida  
-**About:** same as section 2 About.
+### Headline
+```
+Frobb Media · AI agent orchestration for businesses · $5k/mo operators · RetireFire · My Place · Arya
+```
 
-Do not create a new Company Page in this session.
+### Website
+`https://retirefire.net`
+
+### About (replace all)
+```
+Frobb Media installs and runs AI agents inside businesses.
+
+Offer: $5,000/month. One real workflow live — lead intake, insurance claims, construction permitting, or customer inbox — with orchestration and human review. Not a chatbot wrapper.
+
+We also ship our own products:
+• RetireFire.net — free FIRE calculators (live)
+• My Place — private family app
+• Arya — science-verified health advocate
+• Frobbex — safe local AI computer-use
+• Context — AI utilities
+• Content systems and niche automation
+
+Founder: Frank Peake. Boca Raton / Miami.
+
+Want an AI employee on a queue you already have? Message us.
+https://retirefire.net
+```
+
+### Current position description
+Use the About offer paragraph. Overwrite any “we help creators monetize short-form” copy.
 
 ---
 
-## 4. Posts after save (one each)
+## 3. Company Page (only if it already exists)
+
+Tagline: `AI agent orchestration for businesses. $5k/month. We run the agents.`  
+About: section 2. Website: https://retirefire.net  
+Do not create a new Company Page today.
+
+---
+
+## 4. Posts (one each)
 
 ### Frank Peake
 ```
-Current work: I run Frobb Media and I build RetireFire.
+What I sell, and what I build.
 
-RetireFire is the free FIRE calculator I wanted — published math, Coast ≠ “quit today,” and a 1,000-path stress test instead of one green number.
+Sell: Frobb Media installs AI agents in your business for $5k/month. Real queue — leads, claims, permitting, or inbox. We orchestrate them. You do not get another chatbot.
 
-https://retirefire.net/retirement-checkup
+Build (proof):
+• RetireFire.net — live FIRE calculators
+• My Place — private family app
+• Arya — science-verified health advocate
+• Frobbex — safe AI computer-use
+• Context — AI utilities
 
-Educational only — not financial advice.
+If you have a pile of work a sharp operator should already be doing, message me.
+
+https://retirefire.net
 ```
 
 ### Frobb Media
 ```
-Frobb Media, current:
+Frobb Media offer:
 
-We ship RetireFire — free FIRE calculators (Coast, Barista, FIRE number, years to FI) plus an educational Monte Carlo. Math is public. Core tools are free.
+$5,000/month — we put AI agents on a real business queue (leads, claims, permitting, inbox) and run them.
 
+Not software seats. Operators.
+
+Products we also ship: RetireFire.net (live), My Place, Arya, Frobbex, Context.
+
+Frank Peake. Boca Raton.
 https://retirefire.net
-
-Studio + product. Educational only.
 ```
+
+DM reply (inbound only, no blast):
+```
+Yes — $5k/month, one live workflow, we run the agents. Which queue is overflowing: leads, claims, permits, or inbox?
+```
+
+Do **not** drop the price in Reddit or FIRE Facebook groups. Those channels stay RetireFire-value. LinkedIn is the sales floor.
 
 ---
 
-## 5. Done check (do not Telegram until these are true)
+## 5. Done check
 
-- [ ] Frank headline is Frobb Media + RetireFire — **not** FGH Medical
-- [ ] Frank website is retirefire.net
-- [ ] Frank About is the CURRENT block above
-- [ ] Frobb Media + RetireFire are the top two experience rows
-- [ ] Frobb Media headline is the CURRENT studio line
-- [ ] Frobb Media About no longer leads with generic creator-agency copy
-- [ ] One post from each
-- [ ] Telegram Frank: both profile URLs + screenshots of the new headlines
-
-If LinkedIn session is on the old medical headline after save, refresh and fix. That headline is the whole point of this job.
+- [ ] Frank headline has Frobb Media + $5k agents + product names
+- [ ] Both Abouts open with the agent offer, then the full project list
+- [ ] Experience rows exist for every product
+- [ ] FGH is not the headline
+- [ ] One post each; no Reddit/FB FIRE spam of the $5k offer
+- [ ] Telegram Frank the URLs
