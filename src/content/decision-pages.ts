@@ -30,6 +30,7 @@ export type DecisionPage = {
 };
 
 const published = "2026-08-12";
+const expanded = "2026-08-20";
 const money = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
@@ -52,8 +53,15 @@ const swrTable = (annualSpending: number): DecisionTable => ({
   }),
 });
 
-function retireAtPage(age: 50 | 55 | 60): DecisionPage {
-  const horizon = age === 50 ? "40 years or more" : age === 55 ? "35–40 years" : "30–35 years";
+function retireAtPage(age: 45 | 50 | 55 | 60): DecisionPage {
+  const horizon =
+    age === 45
+      ? "50 years or more"
+      : age === 50
+        ? "40 years or more"
+        : age === 55
+          ? "35–40 years"
+          : "30–35 years";
   const bridge = 62 - age;
   const medicareBridge = 65 - age;
   return {
@@ -61,8 +69,8 @@ function retireAtPage(age: 50 | 55 | 60): DecisionPage {
     title: `How much do you need to retire at ${age}?`,
     description: `Estimate the portfolio needed to retire at ${age}, including spending, withdrawal-rate, healthcare, Social Security, and sequence-risk considerations.`,
     eyebrow: `Retire by age ${age}`,
-    datePublished: published,
-    dateModified: published,
+    datePublished: age === 45 ? expanded : published,
+    dateModified: expanded,
     intro: [
       `Retiring at ${age} is not one number. It is a funding problem with several clocks: your portfolio may need to support roughly ${horizon}, Medicare does not normally begin until 65, and Social Security cannot start before 62.`,
       "The fastest honest estimate starts with annual spending, divides by a planning withdrawal rate, and then separates income that begins later from expenses that begin immediately.",
@@ -126,6 +134,7 @@ function retireAtPage(age: 50 | 55 | 60): DecisionPage {
       { href: "/fire-number-by-spending", label: "FIRE number by spending" },
       { href: "/fire-calculator-with-social-security", label: "Include Social Security" },
       { href: "/early-retirement-health-insurance", label: "Healthcare before Medicare" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
       { href: "/blog/safe-withdrawal-rate-3-vs-4-percent", label: "Withdrawal-rate deep dive" },
     ],
     calculatorHref: "/calculators/fire-number",
@@ -133,9 +142,21 @@ function retireAtPage(age: 50 | 55 | 60): DecisionPage {
   };
 }
 
-function portfolioPage(amount: 1_000_000 | 2_000_000): DecisionPage {
-  const label = amount === 1_000_000 ? "$1 million" : "$2 million";
-  const slugAmount = amount === 1_000_000 ? "1-million" : "2-million";
+function portfolioPage(amount: 500_000 | 1_000_000 | 2_000_000 | 3_000_000): DecisionPage {
+  const labelMap: Record<number, string> = {
+    500_000: "$500,000",
+    1_000_000: "$1 million",
+    2_000_000: "$2 million",
+    3_000_000: "$3 million",
+  };
+  const slugMap: Record<number, string> = {
+    500_000: "500k",
+    1_000_000: "1-million",
+    2_000_000: "2-million",
+    3_000_000: "3-million",
+  };
+  const label = labelMap[amount];
+  const slugAmount = slugMap[amount];
   const rows = [0.03, 0.035, 0.04].map((rate) => [
     `${(rate * 100).toFixed(rate === 0.035 ? 1 : 0)}%`,
     money.format(amount * rate),
@@ -146,8 +167,8 @@ function portfolioPage(amount: 1_000_000 | 2_000_000): DecisionPage {
     title: `Can I retire with ${label}?`,
     description: `See the annual spending ${label} may support at 3%, 3.5%, and 4%, then test taxes, healthcare, Social Security, and flexibility.`,
     eyebrow: "Portfolio reality check",
-    datePublished: published,
-    dateModified: published,
+    datePublished: amount === 500_000 || amount === 3_000_000 ? expanded : published,
+    dateModified: expanded,
     intro: [
       `${label} is not automatically enough or insufficient. The answer depends primarily on how much the portfolio must supply each year, for how long, and how flexible that spending is after weak markets.`,
       "Translate the balance into spending first. Then add later income and liabilities rather than comparing the account balance with someone else’s retirement number.",
@@ -205,6 +226,7 @@ function portfolioPage(amount: 1_000_000 | 2_000_000): DecisionPage {
     related: [
       { href: "/calculators/fire-number", label: "FIRE Number calculator" },
       { href: "/fire-calculator-with-social-security", label: "Add Social Security" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
       { href: "/blog/safe-withdrawal-rate-3-vs-4-percent", label: "Compare withdrawal rates" },
       { href: "/resources/sequence-risk-guide", label: "Sequence-risk guide" },
     ],
@@ -242,7 +264,7 @@ const evergreenPages: DecisionPage[] = [
       "Compare FIRE portfolio targets for $30,000–$150,000 of annual spending at 3%, 3.5%, and 4% planning withdrawal rates.",
     eyebrow: "Original planning table",
     datePublished: published,
-    dateModified: published,
+    dateModified: expanded,
     intro: [
       "Annual spending is the strongest direct input in a simple FIRE target. Every permanent $10,000 of portfolio-funded spending adds $250,000 at 4%, about $286,000 at 3.5%, or about $333,000 at 3%.",
       "Use this table as a sensitivity map, not a verdict. Replace the example row with your own all-in spending and account separately for taxes, later income, fees, and large irregular expenses.",
@@ -292,6 +314,7 @@ const evergreenPages: DecisionPage[] = [
     ],
     related: [
       { href: "/calculators/fire-number", label: "Calculate your FIRE number" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
       { href: "/blog/lean-regular-fat-fire-numbers-2026", label: "Lean, Regular, and Fat examples" },
       { href: "/blog/safe-withdrawal-rate-3-vs-4-percent", label: "Choose a planning range" },
     ],
@@ -305,7 +328,7 @@ const evergreenPages: DecisionPage[] = [
       "Compare illustrative Coast FIRE numbers from age 25 to 60 for a $1.5 million target at a 5% real return and retirement at 65.",
     eyebrow: "Original age table",
     datePublished: published,
-    dateModified: published,
+    dateModified: expanded,
     intro: [
       "A Coast FIRE number is the amount invested today that could grow to a future FIRE target without additional retirement contributions. Age matters because compounding has more years to work.",
       "The table holds the target, retirement age, and real return constant so you can see the age effect clearly. It is not a forecast.",
@@ -356,6 +379,7 @@ const evergreenPages: DecisionPage[] = [
     ],
     related: [
       { href: "/calculators/coast-fire", label: "Coast FIRE calculator" },
+      { href: "/series/arya-21-day", label: "Arya 21-day series" },
       { href: "/blog/coast-fire-by-age-tables", label: "More Coast age examples" },
       { href: "/resources/coast-fire-checklist", label: "Coast assumptions checklist" },
       { href: "/blog/how-to-stress-test-coast-fire-number", label: "Stress-test the result" },
@@ -374,7 +398,7 @@ const evergreenPages: DecisionPage[] = [
       "Plan Coast FIRE for two people using shared spending, separate retirement dates, account ownership, benefits, and survivor scenarios.",
     eyebrow: "Household planning",
     datePublished: published,
-    dateModified: published,
+    dateModified: expanded,
     intro: [
       "Couples do not need two independent Coast FIRE numbers if they fund one shared household. They need a household target that respects different ages, account ownership, benefit dates, and what happens when one income or one person is gone.",
       "Start with shared spending, then model each partner’s timeline rather than averaging ages and hoping the difference disappears.",
@@ -440,7 +464,7 @@ const evergreenPages: DecisionPage[] = [
       "Estimate how Social Security may reduce the later portfolio-funded spending gap without incorrectly using future benefits to fund the early-retirement bridge.",
     eyebrow: "Two-phase retirement math",
     datePublished: published,
-    dateModified: published,
+    dateModified: expanded,
     intro: [
       "Social Security can reduce the amount a portfolio must provide after benefits begin. It does not fund the years before claiming, and a simple subtraction can understate the bridge required for early retirement.",
       "Use the calculator below for the later steady-state gap, then separately reserve for the pre-benefit years.",
@@ -505,7 +529,7 @@ const evergreenPages: DecisionPage[] = [
       "Estimate how pension income changes a portfolio target while keeping pension start dates, inflation protection, survivor benefits, and the bridge visible.",
     eyebrow: "Income-gap calculator",
     datePublished: published,
-    dateModified: published,
+    dateModified: expanded,
     intro: [
       "A pension can shrink the portfolio-funded spending gap, but only after payments begin and only for as long as the chosen benefit continues. Treat a pension as an income stream, not as a reason to ignore timing or survivor risk.",
       "Use the quick calculator for a steady-state estimate, then separately fund any years before the pension starts.",
@@ -569,7 +593,7 @@ const evergreenPages: DecisionPage[] = [
       "Plan the health-insurance bridge before Medicare using premiums, out-of-pocket exposure, household income, plan changes, and a dedicated contingency.",
     eyebrow: "Healthcare before Medicare",
     datePublished: published,
-    dateModified: published,
+    dateModified: expanded,
     intro: [
       "Healthcare is not a footnote in early retirement. Before Medicare eligibility, premiums and out-of-pocket costs can change the spending target by hundreds of thousands of dollars when converted into a portfolio requirement.",
       "This page is a budgeting framework, not insurance or tax advice. Obtain current quotes for your household and state before making an employment decision.",
@@ -637,7 +661,7 @@ const evergreenPages: DecisionPage[] = [
       "Understand how age affects FIRE through retirement horizon, healthcare, benefit timing, flexibility, and sequence risk—not through a different core formula.",
     eyebrow: "Age and retirement math",
     datePublished: published,
-    dateModified: published,
+    dateModified: expanded,
     intro: [
       "The core FIRE formula does not contain age: annual portfolio-funded spending divided by a planning withdrawal rate. Age changes the surrounding assumptions—how long withdrawals may last, when healthcare and benefits begin, and how much time remains to recover from a poor sequence.",
       "Use age to choose stress tests and phases, not to manufacture a universal age-based target.",
@@ -652,6 +676,7 @@ const evergreenPages: DecisionPage[] = [
           headers: ["Starting age", "Illustrative horizon", "Planning emphasis"],
           rows: [
             ["40", "50+ years", "Very long horizon, healthcare bridge, high flexibility value"],
+            ["45", "45–50 years", "Long healthcare bridge, sequence risk, benefit timing"],
             ["50", "40+ years", "Medicare and Social Security bridges, sequence risk"],
             ["55", "35–40 years", "Healthcare bridge, account access, later-income phases"],
             ["60", "30–35 years", "Benefit timing, healthcare transition, tax windows"],
@@ -693,6 +718,7 @@ const evergreenPages: DecisionPage[] = [
       },
     ],
     related: [
+      { href: "/retire-at-45", label: "Retire at 45" },
       { href: "/retire-at-50", label: "Retire at 50" },
       { href: "/retire-at-55", label: "Retire at 55" },
       { href: "/retire-at-60", label: "Retire at 60" },
@@ -711,7 +737,7 @@ const researchPages: DecisionPage[] = [
       "See how one additional year of contributions and 5% real growth changes portfolios from $100,000 to $1 million, with the assumptions kept visible.",
     eyebrow: "RetireFire Research",
     datePublished: published,
-    dateModified: published,
+    dateModified: expanded,
     intro: [
       "One more working year affects a FIRE plan through new contributions, potential portfolio growth, one fewer year of withdrawals, and sometimes lower annual spending or better benefits. The first two effects are easy to isolate.",
       "This table holds the annual contribution at $40,000 and the illustrative real return at 5%. Actual markets do not deliver a smooth return, and waiting has a life cost that a portfolio table cannot value.",
@@ -789,7 +815,7 @@ const researchPages: DecisionPage[] = [
       "Compare planning horizons, Medicare gaps, Social Security bridges, and account-access considerations when retirement begins at 50, 55, or 60.",
     eyebrow: "RetireFire Research",
     datePublished: published,
-    dateModified: published,
+    dateModified: expanded,
     intro: [
       "The same annual spending can produce very different implementation problems at 50, 55, and 60. The core portfolio formula is unchanged; the length of the healthcare, benefit, and account-access bridges is not.",
       "This comparison isolates those timelines so a later benefit is not accidentally used to pay an earlier bill.",
@@ -862,7 +888,7 @@ const researchPages: DecisionPage[] = [
       "Seven assumptions that make FIRE calculators produce different answers, plus a checklist for comparing tools without mistaking precision for truth.",
     eyebrow: "RetireFire Research",
     datePublished: published,
-    dateModified: published,
+    dateModified: expanded,
     intro: [
       "Two FIRE calculators can receive the same balance and spending but return different dates. That does not automatically mean one is broken. They may be answering different questions with different timing, inflation, contribution, and withdrawal conventions.",
       "A useful calculator publishes those conventions. A useful comparison changes one assumption at a time.",
@@ -935,11 +961,14 @@ const researchPages: DecisionPage[] = [
 ];
 
 export const DECISION_PAGES: DecisionPage[] = [
+  retireAtPage(45),
   retireAtPage(50),
   retireAtPage(55),
   retireAtPage(60),
+  portfolioPage(500_000),
   portfolioPage(1_000_000),
   portfolioPage(2_000_000),
+  portfolioPage(3_000_000),
   ...evergreenPages,
   ...researchPages,
 ];
