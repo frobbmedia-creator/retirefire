@@ -6,7 +6,8 @@
 |------|------|
 | `GO.txt` | One-screen start order |
 | `DAY1_EXECUTE.md` | **Run this first session** |
-| `LINKEDIN_UPDATE.md` | Company (all builds) + clean $5k offer. Do not mix. |
+| `LINKEDIN_AUDIT.md` | Graphics + content punch list. **Frobb logo stays.** |
+| `LINKEDIN_UPDATE.md` | Company (all builds) + clean $5k offer |
 | `FROBB_MEDIA_OFFER.md` | Offer only: price, queue, time. |
 | `MAX_READ_THIS_FIRST.md` | Accounts, rules, daily cadence |
 | `TARGETS.md` | Subreddits + Facebook groups |
