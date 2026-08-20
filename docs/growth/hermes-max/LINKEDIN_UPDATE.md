@@ -1,187 +1,180 @@
-# MAX — UPDATE BOTH LINKEDIN PROFILES NOW
+# MAX — MAKE BOTH LINKEDIN PROFILES CURRENT (NOW)
 
-Do this after (or during) DAY1. ~15 minutes. Paste. Do not rewrite from scratch.
-Do **not** delete Boca Skin / FGH Medical. Add RetireFire + Frobb Media on top.
+This is a **replace**, not an add-on. The public identity is **Frank Peake** and **Frobb Media** as they are today.
 
-Logins: Chrome as Frank. If LinkedIn asks which profile, switch as needed.
+- Frank’s headline currently says FGH Medical. **That is outdated. Overwrite it.**
+- Frobb Media currently reads like a generic creator agency. **Overwrite it.**
+- Keep FGH Medical / Boca Skin only as a **secondary** experience row. It is not the headline, website, About, or Featured.
 
-| Profile | URL |
-|---------|-----|
-| Frank Peake (person) | https://www.linkedin.com/in/frank-peake-09980411 |
-| Frobb Media (brand) | https://www.linkedin.com/in/frobb-media-63051b3a7 |
+Paste exactly. ~15 minutes.
 
-If a **Company Page** named Frobb Media also exists (Me → Pages / Admin), apply the Frobb Media **Page** copy at the bottom too.
+| Profile | URL | Job |
+|---------|-----|-----|
+| Frank Peake | https://www.linkedin.com/in/frank-peake-09980411 | Current founder identity |
+| Frobb Media | https://www.linkedin.com/in/frobb-media-63051b3a7 | Current studio identity |
+
+If you admin a **Frobb Media Company Page**, update that with section 3. If none exists, do not create one today.
 
 ---
 
-## 1. Frank Peake — person
+## 1. Frank Peake — current person
 
-Open: https://www.linkedin.com/in/frank-peake-09980411 → pencil on intro.
+Open intro → pencil. Replace headline, About, website.
 
 ### Name
-Frank Peake  
-(do not change)
+Frank Peake
 
-### Headline (replace)
+### Headline (CURRENT — replace the FGH Medical headline)
 ```
-Building RetireFire.net — free FIRE calculators | Founder, Frobb Media | Boca Raton
+Founder, Frobb Media · Building RetireFire.net (free FIRE calculators)
 ```
 
 ### Location
-Boca Raton, Florida, United States  
-(keep)
+Boca Raton, Florida, United States
 
-### Contact / website
-Set **Website** to: `https://retirefire.net`  
-Website label: Personal website  
-Keep Boca Skin in Experience (below). Do not erase the medical company.
+### Website (CURRENT)
+`https://retirefire.net`  
+Label: RetireFire
 
-### About (replace)
+### About (CURRENT — replace all)
 ```
-I build tools and operating systems for businesses — and I got tired of retirement calculators that hide their math.
+I’m Frank Peake. I run Frobb Media, an AI operations studio, and I build RetireFire.
 
-RetireFire (retirefire.net) is a free FIRE planning suite: FIRE number, years to FI, Coast FIRE, Barista FIRE, 72(t)/SEPP, and a 1,000-path educational Monte Carlo. No account for the core tools. Formulas published. Educational only — not financial advice.
+RetireFire (retirefire.net) is a free FIRE planning suite: FIRE number, years to FI, Coast FIRE, Barista FIRE, 72(t)/SEPP, and a 1,000-path educational Monte Carlo. Core tools need no account. Formulas are published. Educational only — not financial advice.
 
-Coast FIRE is a stop-saving question, not a quit-your-job number. That’s the distinction I wish more calculators made.
+Coast FIRE is a stop-saving question, not a quit-your-job number. I built the calculator I wished existed.
 
-Frobb Media is the studio behind the products: AI-assisted operations, content systems, and niche automation.
+Frobb Media is the studio: AI-assisted operations, content systems, and products we actually ship.
 
-I also operate in South Florida healthcare (FGH Medical / Boca Skin and Body Med).
+Based in Boca Raton / Miami.
 
-If you plan early retirement or semi-retirement, run your own numbers: https://retirefire.net
-```
-
-### Featured
-Add these links (top of Featured):
-1. https://retirefire.net/retirement-checkup — title: Free 3-minute retirement checkup
-2. https://retirefire.net/calculators/coast-fire — title: Coast FIRE calculator (free)
-3. https://retirefire.net/methodology — title: Published methodology
-
-### Experience — ADD (do not remove FGH Medical)
-
-**Job 1 — add, current**
-- Title: Founder
-- Company: RetireFire (create company if missing; website retirefire.net)
-- Type: Self-employed / Founder
-- Location: Boca Raton, Florida (or Remote)
-- Start: Jul 2026 – Present
-- Description:
-```
-Free, evidence-based FIRE calculators with published assumptions. Coast, Barista, FIRE number, years-to-FI, sequence stress test (1,000 paths). Core tools stay free. Educational software — not advice.
 https://retirefire.net
 ```
 
-**Job 2 — add, current**
-- Title: Founder
-- Company: Frobb Media
-- Start: 2025 – Present (if an older date already exists, keep it)
-- Description:
+### Featured (CURRENT — RetireFire first)
+1. https://retirefire.net/retirement-checkup — Free 3-minute retirement checkup
+2. https://retirefire.net/calculators/coast-fire — Coast FIRE calculator
+3. https://retirefire.net/methodology — Published methodology
+
+Remove Boca Skin from Featured if it is pinned at the top. It can stay lower or come off.
+
+### Experience — CURRENT stack (top of profile)
+
+**1. Founder — Frobb Media**  
+Current. Start 2025 – Present (keep an older start date if one already exists).
 ```
-AI-assisted business operations and product studio. Live consumer product: RetireFire.net. Also content systems and automated niche services.
+AI operations studio. We ship products and automation, not slide decks.
+
+Flagship consumer product: RetireFire.net — free FIRE calculators with published math.
+
+Also: content systems, lead/ops automation, niche service workflows.
 ```
 
-**FGH Medical / Boca Skin** — leave as-is unless the title is blank. Do not delete.
+**2. Founder — RetireFire**  
+Current. Jul 2026 – Present.
+```
+Free FIRE calculators: Coast, Barista, FIRE number, years-to-FI, sequence stress test. No account on core tools. Educational software — not advice.
+https://retirefire.net
+```
 
-### Open to / services
-If “Open to” is on: keep networking. Do not turn it into “hire me as a coach.”
-Services: you may add “Retirement planning software” / “Financial tools” if LinkedIn offers it. Skip if it looks spammy.
+**3. FGH Medical / Boca Skin and Body Med**  
+Leave the row. If LinkedIn allows, it may stay Current as a second business — but it must sit **below** Frobb Media and RetireFire. Do not let it remain the top headline. Do not delete the company history.
 
 ---
 
-## 2. Frobb Media — brand profile
+## 2. Frobb Media — current studio
 
 Open: https://www.linkedin.com/in/frobb-media-63051b3a7
 
-This is the brand presence. Voice = studio, not “I”. Keep creator-systems language, add the live product.
+This profile is the **studio**, not a second Frank. Voice = we.
 
 ### Name
-Frobb Media  
-(do not change to RetireFire)
+Frobb Media
 
-### Headline (replace)
+### Headline (CURRENT — replace)
 ```
-AI operations studio · RetireFire.net (free FIRE calculators) · content systems for brands
+Frobb Media · AI operations studio · Makers of RetireFire.net
 ```
 
-### Website
+### Location
+Boca Raton, Florida, United States
+
+### Website (CURRENT)
 `https://retirefire.net`
 
-### About (replace)
+### About (CURRENT — replace all)
 ```
-Frobb Media builds AI-assisted operations and products.
+Frobb Media is Frank Peake’s AI operations studio.
 
-Live product: RetireFire — free FIRE calculators with transparent math. FIRE number, Coast, Barista, years to FI, 72(t)/SEPP, and educational 1,000-path market stress tests. No account required for core tools. https://retirefire.net
+We build and run products:
 
-We also build content and automation systems for brands: publishing pipelines, lead handling, and niche service automation.
+• RetireFire.net — free FIRE calculators with transparent math (Coast, Barista, FIRE number, years to FI, 72(t)/SEPP, educational 1,000-path stress tests). No account for core tools.
+• Content and publishing systems
+• Lead handling and niche service automation
 
-Educational tools only. RetireFire is not financial, tax, or legal advice.
+RetireFire is educational software, not financial, tax, or legal advice.
 
 Run the free checkup: https://retirefire.net/retirement-checkup
 ```
 
-### Featured
+### Featured (CURRENT)
 1. https://retirefire.net — RetireFire
 2. https://retirefire.net/retirement-checkup — Free retirement checkup
 3. https://retirefire.net/series/arya-21-day — 21-day FIRE series
 
-### Experience / current position
-If this profile has a “Frobb Media” current role, set the description to the About paragraph above (shortened). Add RetireFire as a product, not a rename.
+### Current position text
+If this profile lists a job, title = Founder / Studio at Frobb Media. Description = the About block, shortened. Do **not** leave “we help creators turn short-form content into a monetization system” as the lead sentence.
 
 ---
 
-## 3. Frobb Media Company Page (only if it exists)
+## 3. Frobb Media Company Page (only if it already exists)
 
-Search LinkedIn: Frobb Media → Admin / Company page.
+**Name:** Frobb Media  
+**Tagline:** AI operations studio. Makers of RetireFire.net.  
+**Website:** https://retirefire.net  
+**Industry:** Software Development  
+**Location:** Boca Raton, Florida  
+**About:** same as section 2 About.
 
-**Tagline:** AI operations studio. Makers of RetireFire.net.
-**Website:** https://retirefire.net
-**About:** use the Frobb Media About block above.
-**Industry:** Software Development or Online Media
-**Location:** Boca Raton, Florida
-
-If no Company Page exists, **do not create one today**. Updating the two existing profiles is the job.
+Do not create a new Company Page in this session.
 
 ---
 
-## 4. Posts (one each, after profiles save)
+## 4. Posts after save (one each)
 
-### Frank Peake — first post
+### Frank Peake
 ```
-Most FIRE calculators give you one number and hide the assumptions.
+Current work: I run Frobb Media and I build RetireFire.
 
-I built the version I wanted: Coast vs “I can retire” as two different questions, published formulas, and a free 1,000-path stress test so you see a range instead of a green light.
-
-Core tools stay free. No account.
+RetireFire is the free FIRE calculator I wanted — published math, Coast ≠ “quit today,” and a 1,000-path stress test instead of one green number.
 
 https://retirefire.net/retirement-checkup
 
 Educational only — not financial advice.
 ```
 
-### Frobb Media — first post
+### Frobb Media
 ```
-We just shipped a live product: RetireFire.
+Frobb Media, current:
 
-Free FIRE calculators (Coast, Barista, FIRE number, years to FI) plus an educational Monte Carlo. Math is public. No email wall on the core tools.
+We ship RetireFire — free FIRE calculators (Coast, Barista, FIRE number, years to FI) plus an educational Monte Carlo. Math is public. Core tools are free.
 
 https://retirefire.net
 
-Frobb Media builds the studio layer. RetireFire is the consumer tool. Educational only.
+Studio + product. Educational only.
 ```
-
-Do not hashtag-dump. 0–3 tags max: #FIRE #RetirementPlanning
 
 ---
 
-## 5. Done check
+## 5. Done check (do not Telegram until these are true)
 
-- [ ] Frank headline mentions RetireFire.net
+- [ ] Frank headline is Frobb Media + RetireFire — **not** FGH Medical
 - [ ] Frank website is retirefire.net
-- [ ] Frank About pasted
-- [ ] Frank Featured has 3 RetireFire links
-- [ ] RetireFire + Frobb Media experience added; FGH Medical still there
-- [ ] Frobb Media headline + About pasted
-- [ ] One post from Frank, one from Frobb Media
-- [ ] Telegram Frank both profile URLs + post URLs
+- [ ] Frank About is the CURRENT block above
+- [ ] Frobb Media + RetireFire are the top two experience rows
+- [ ] Frobb Media headline is the CURRENT studio line
+- [ ] Frobb Media About no longer leads with generic creator-agency copy
+- [ ] One post from each
+- [ ] Telegram Frank: both profile URLs + screenshots of the new headlines
 
-If LinkedIn limits posts for new activity: save profiles first, queue posts, try posts once. Do not create a third LinkedIn account.
+If LinkedIn session is on the old medical headline after save, refresh and fix. That headline is the whole point of this job.

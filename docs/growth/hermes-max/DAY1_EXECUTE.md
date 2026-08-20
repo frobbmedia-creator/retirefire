@@ -133,7 +133,7 @@ Open LINKEDIN_UPDATE.md in this folder. Paste. Do not invent new bios.
 1. Frank Peake: https://www.linkedin.com/in/frank-peake-09980411
 2. Frobb Media: https://www.linkedin.com/in/frobb-media-63051b3a7
 
-Keep FGH Medical / Boca Skin on Frank’s profile. Add RetireFire + Frobb Media on top.
+Keep FGH Medical / Boca Skin as a **lower** experience row only. The headline, About, website, and Featured must be **current Frank Peake + current Frobb Media + RetireFire**. Overwrite the FGH Medical headline.
 Then publish the two posts in LINKEDIN_UPDATE.md (one from each profile).
 
 ---
