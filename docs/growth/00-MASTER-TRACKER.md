@@ -5,7 +5,7 @@
 **Target monetization readiness:** ~Week 11–12 (Oct 2026)  
 **Operating mode:** Grok executes autonomously; user approves major decisions / provides access when blocked.
 
-**Oracle Status (2026-08-12):** Full permission granted by CEO. Site is being driven to icon status. Personality sharpening and decision-page expansion under active execution. No further questions except budgetary.
+**Oracle Status (2026-08-20):** Full plan executed. Homepage FAQ + TrustStrip live. Arya 21-day series hub shipped at `/series/arya-21-day`. Videos inventoried in Drive. Personality layer active.
 
 ## Status legend
 
@@ -52,7 +52,7 @@
 |------|--------|
 | 3.1 Backlink / outreach | `[~]` | 30-day list + wave-2 pitches (`13`, `17`); send after deploy |
 | 3.2 Email list + lead magnets | `[~]` | Checklist + sequence guide + print/PDF; welcome copy drafted; capture wiring later |
-| 3.3 Technical SEO scale | `[~]` | Breadcrumbs on resources, blog, approach, methodology, disclaimer; hub internal links |
+| 3.3 Technical SEO scale | `[x]` | Homepage FAQ JSON-LD live; series page; breadcrumbs; hub internal links |
 
 ---
 
@@ -65,23 +65,25 @@
 
 ---
 
-## Oracle Icon Phase (Active — 2026-08-12)
+## Oracle Icon Phase (Active — 2026-08-20)
 
 | Task | Status | Notes |
 |------|--------|-------|
 | Hero positioning sharpened | `[x]` | "The number is either enough — or it is not." Live. |
 | Decision-page expansion | `[~]` | More ages + portfolio thresholds + sharper takeaways in progress |
-| Arya / personality voice layer | `[~]` | Takeaways and result language being made more direct and quotable |
+| Arya / personality voice layer | `[x]` | `/series/arya-21-day` live; 21 episodes mapped to tools; Drive assets ready |
+| Homepage FAQ + TrustStrip | `[x]` | Shipped 2026-08-20 |
 | Shareable result objects | `[ ]` | Next |
 | Email capture live | `[ ]` | High priority after decision expansion |
 | Social account activation | `[!]` | Requires CEO ownership of X / LinkedIn |
+| Video embeds (top 6 clips) | `[ ]` | CDN/hosting next; files in Drive |
 
 ---
 
 ## User action required (only when blocked)
 
-1. ~~**Google Search Console**~~ In progress — property live, sitemap in, homepage + Coast requested  
-2. **Social:** create/claim X + LinkedIn; paste bio + pin thread (`19-launch-checklist-user.md` §2) (**next after a few more URL requests**)
+1. **Google Search Console** — request indexing on `/series/arya-21-day` + remaining money URLs  
+2. **Social:** create/claim X + LinkedIn; paste bio + pin thread (`19-launch-checklist-user.md` §2)
 3. **Optional:** create GA4 property + Plausible site; add env vars (see analytics guide)
 4. ~~**Later:** Stripe account + final pricing approval~~ — **Stripe production is live**
 5. ~~**Deploy**~~ Done — Vercel Git on `frobbmedia-creator/retirefire`; production auto-deploys from `main`
@@ -120,5 +122,8 @@
 | `16-social-batch-content-wave.md` | Social posts for new pillars |
 | `17-outreach-pitch-wave2.md` | Personalized pitch pack wave 2 |
 | `18-show-hn-launch.md` | Show HN / eng launch draft |
+| `19-launch-checklist-user.md` | User launch checklist |
+| `20-lean-fire-pillar-cluster-pack.md` | Lean FIRE cluster |
+| `21-arya-series-deployment.md` | Arya 21-day assets + next steps |
 | `docs/reports/` | Weekly Monday metrics |
 | `EXECUTION-SPEC-v1.md` | Full handoff spec snapshot |
