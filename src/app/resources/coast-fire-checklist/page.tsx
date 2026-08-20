@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { PrintButton } from "@/components/ui/print-button";
+import { LeadCapture } from "@/components/leads/LeadCapture";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/resources/coast-fire-checklist", {
@@ -174,10 +175,7 @@ export default function CoastFireChecklistPage() {
             </Link>
           </li>
         </ul>
-        <p className="mt-4 text-xs text-zinc-600">
-          Email lead-magnet capture is planned later; this checklist is free
-          with no account required.
-        </p>
+        <LeadCapture source="coast_checklist" />
       </section>
     </div>
   );

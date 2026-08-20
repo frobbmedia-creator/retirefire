@@ -74,8 +74,8 @@
 | Arya / personality voice layer | `[x]` | `/series/arya-21-day` live; SeriesStrip on homepage; Drive assets ready |
 | Homepage FAQ + TrustStrip | `[x]` | Shipped 2026-08-20 |
 | Shareable result objects | `[ ]` | Next |
-| Email capture live | `[ ]` | High priority after indexation |
-| Social account activation | `[~]` | X / LinkedIn still need CEO claim. **Reddit + Facebook groups: Hermes Max standing job in `hermes-max/`** (Frank Peake on FB / frobbmedia@gmail.com on Reddit) |
+| Email capture live | `[x]` | Optional email on checklist, sequence guide, checkup results (`email_leads`). Content is not gated. |
+| Social account activation | `[~]` | **Max day-1 live** (`hermes-max/DAY1_EXECUTE.md`): Reddit frobbmedia@gmail.com, FB Frank Peake, X Frankpeake1. LinkedIn still needs CEO claim. |
 | Video embeds (top 6 clips) | `[ ]` | CDN/hosting next; files in Drive |
 
 ---

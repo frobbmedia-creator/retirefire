@@ -36,3 +36,13 @@ CREATE TABLE IF NOT EXISTS stripe_webhook_events (
   event_type text NOT NULL,
   processed_at timestamptz NOT NULL DEFAULT now()
 );
+
+CREATE TABLE IF NOT EXISTS email_leads (
+  id uuid PRIMARY KEY,
+  email text NOT NULL UNIQUE,
+  source text NOT NULL,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS email_leads_source_idx ON email_leads(source);
+

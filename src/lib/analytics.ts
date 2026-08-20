@@ -45,7 +45,13 @@ export const ANALYTICS_ALLOWED_VALUES: Record<AnalyticsProperty, readonly string
   validation_error: ["invalid_input", "unsupported_state", "calculation_error"],
   action: ["assumption_interaction", "methodology_open", "risk_disclosure_open"],
   scenario_band: ["under_5_years", "5_to_10_years", "over_10_years"],
-  source: ["homepage_hero", "homepage_feature_card", "checkup_results"],
+  source: [
+    "homepage_hero",
+    "homepage_feature_card",
+    "checkup_results",
+    "coast_checklist",
+    "sequence_guide",
+  ],
   destination: ["calculators"],
   path: [
     "/calculators/fire-number",
@@ -148,4 +154,5 @@ export const AnalyticsEvents = {
   CHECKUP_STEP: "checkup_step",
   CHECKUP_COMPLETE: "checkup_complete",
   PRO_INTEREST: "pro_interest",
+  EMAIL_CAPTURE: "email_capture",
 } as const;

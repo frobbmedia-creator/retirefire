@@ -13,6 +13,7 @@ import {
 import { calculateRetirementCheckup } from "@/lib/retirement-checkup";
 import { formatCurrency } from "@/lib/format";
 import { AnalyticsEvents, trackEvent } from "@/lib/analytics";
+import { LeadCapture } from "@/components/leads/LeadCapture";
 
 type Answers = {
   currentAge: number;
@@ -411,6 +412,14 @@ function Results({
             Read how the math works
           </Link>
         </div>
+      </div>
+
+      <div className="mt-5">
+        <LeadCapture
+          source="checkup_results"
+          heading="Want the next planning note?"
+          blurb="Optional. Get occasional FIRE planning notes. This checkup stays free with no account."
+        />
       </div>
 
       <div className="mt-5 rounded-2xl bg-emerald-500/10 p-5 ring-1 ring-emerald-500/25">

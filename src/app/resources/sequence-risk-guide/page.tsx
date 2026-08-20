@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { PrintButton } from "@/components/ui/print-button";
+import { LeadCapture } from "@/components/leads/LeadCapture";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/resources/sequence-risk-guide", {
@@ -200,6 +201,9 @@ export default function SequenceRiskGuidePage() {
           . Not a forecast.
         </p>
       </section>
+      <div className="mt-8">
+        <LeadCapture source="sequence_guide" />
+      </div>
     </div>
   );
 }

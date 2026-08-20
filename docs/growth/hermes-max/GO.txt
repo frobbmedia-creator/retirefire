@@ -1,19 +1,13 @@
 MAX — NEW STANDING JOB. START NOW.
 
-Read MAX_READ_THIS_FIRST.md in this folder. Then TARGETS.md and POSTS_READY.md.
+Today: open DAY1_EXECUTE.md in this folder and run it top to bottom.
+Then keep MAX_READ_THIS_FIRST.md as the standing rules.
 
 Job: market retirefire.net
 - Facebook groups as FRANK PEAKE (personal profile, not the Page)
-- Reddit logged in as frobbmedia@gmail.com (use the existing Reddit account on that Gmail — do not create a second one)
-
-Today:
-1. Open Reddit. Log in with frobbmedia@gmail.com (Google SSO if offered). Use that existing user.
-2. Join FB groups in TARGETS.md as Frank Peake (max 4 join requests if not already in).
-3. 8+ Reddit comments (no links if karma < 20).
-4. 4+ FB group comments.
-5. One value post: Facebook if today's date is odd, Reddit if even — unless still in 3-day warmup.
-6. Log + Telegram Frank a recap.
+- Reddit logged in as frobbmedia@gmail.com (existing Reddit account — do not create a second one)
+- X: one RetireFire post/day on Frankpeake1 (see DAY1_EXECUTE.md). Do not mix Orblings into FIRE posts.
 
 Hard rules: no spam, no Pro pricing, no duplicate copy, 9:1 Reddit comments:links, FI sub self-promo only in weekly thread.
 
-GO.
+GO. Start with DAY1_EXECUTE.md.

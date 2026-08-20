@@ -33,10 +33,10 @@ try {
     SELECT count(*)::int AS count
     FROM information_schema.tables
     WHERE table_schema = 'public'
-      AND table_name IN ('users', 'user_sessions', 'entitlements', 'stripe_webhook_events')
+      AND table_name IN ('users', 'user_sessions', 'entitlements', 'stripe_webhook_events', 'email_leads')
   `;
-  if (rows[0]?.count !== 4) throw new Error("Account schema verification failed");
-  console.log("Database migration complete: 4 account tables verified.");
+  if (rows[0]?.count !== 5) throw new Error("Account schema verification failed");
+  console.log("Database migration complete: 5 account tables verified.");
 } finally {
   await sql.end();
 }
