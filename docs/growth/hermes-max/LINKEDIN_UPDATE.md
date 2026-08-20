@@ -1,18 +1,16 @@
-# MAX — LINKEDIN PROFILES (company first, offer second)
+# MAX — LINKEDIN: COMPANY INFO + A CLEAN OFFER
 
-Two jobs on the same profile. Do not mash them.
+Two blocks. Do not mix.
 
-1. **Company** — who Frank / Frobb Media is. List **every** build. This is identity.
-2. **Offer** — $5k/month agents. Short. Do not use RetireFire, Arya, My Place, or Context as reasons to buy the retainer.
-
-Internal model only: https://youtu.be/FIhj0yb9KPI — do not mention it publicly.
+1. **Company** — every build. Identity. Validation if someone looks.
+2. **Offer** — a regular retainer. Price, what they get, time. No product names in this block.
 
 | Profile | URL |
 |---------|-----|
 | Frank Peake | https://www.linkedin.com/in/frank-peake-09980411 |
 | Frobb Media | https://www.linkedin.com/in/frobb-media-63051b3a7 |
 
-DMs: `FROBB_MEDIA_OFFER.md` (tight). Do not paste the full company list into a sales close.
+DMs: `FROBB_MEDIA_OFFER.md` only.
 
 ---
 
@@ -20,7 +18,7 @@ DMs: `FROBB_MEDIA_OFFER.md` (tight). Do not paste the full company list into a s
 
 ### Headline
 ```
-Founder, Frobb Media | Operator tools + AI agents for businesses | RetireFire · My Place · Arya
+Founder, Frobb Media | AI agents for businesses | RetireFire · My Place · Arya
 ```
 
 ### Website
@@ -28,27 +26,27 @@ Founder, Frobb Media | Operator tools + AI agents for businesses | RetireFire ·
 
 ### About (replace all)
 ```
-I’m Frank Peake. I run Frobb Media out of Boca Raton / Miami.
+I’m Frank Peake. I run Frobb Media in Boca Raton / Miami.
 
 COMPANY
-Frobb Media builds products and operator tools — then we run them.
+What we have built and operate:
 
-• Hermes Max — autonomous computer-use agent we operate on our own ops every day
-• Frobbex — safety-first local computer-use (permission boundary, not a free-for-all)
-• Meta Operator — orchestration so multiple agents can see each other’s work
-• RetireFire.net — live FIRE calculators (Coast, Barista, Monte Carlo, 72(t), Stripe). Published math.
-• My Place — private family app (rooms, messaging, video). Not public social media.
-• Arya — science-verified health advocate (voice, visual, content system)
+• Hermes Max — autonomous computer-use agent we run on our own ops
+• Frobbex — safety-first local computer-use
+• Meta Operator — multi-agent orchestration
+• RetireFire.net — live FIRE calculators (Coast, Barista, Monte Carlo, 72(t), Stripe)
+• My Place — private family app (rooms, messaging, video)
+• Arya — science-verified health advocate (voice, visual, content)
 • Context — AI utilities and browser/work analysis
-• Permitting + insurance-claims workflows
-• Autonomous publishing pipeline (Drive, Telegram, X, Mac)
-• FGH Medical / Boca Skin and Body Med — an operating South Florida healthcare business
+• Construction permitting and insurance-claims workflows
+• Autonomous publishing pipeline
+• FGH Medical / Boca Skin and Body Med — operating South Florida healthcare business
 
 OFFER
-For businesses that have a real queue: $5,000/month. We install AI agents on leads, claims, permitting, or inbox and we run them. Unlimited agents and automations. Live in 24 hours. First automation in 7 days.
+$5,000/month. We install AI agents on a live business queue (leads, claims, permitting, or inbox) and we run them. Unlimited agents and automations. Support included. Agent live in 24 hours. First automation in 7 days. Weekly numbers on hours and throughput.
 
-If you want the retainer, message me about the queue.
-If you want the products, start at https://retirefire.net
+Message me about the queue.
+https://retirefire.net
 ```
 
 ### Featured
@@ -56,11 +54,11 @@ If you want the products, start at https://retirefire.net
 2. https://retirefire.net
 3. https://retirefire.net/methodology
 
-### Experience (Current — company, not a sales letter)
+### Experience (Current — company)
 
 **Founder — Frobb Media**
 ```
-AI operations studio. Products and operator tools. $5k/month agent install for businesses that want a queue run (leads, claims, permitting, inbox).
+Studio: products, operator tools, and a $5k/month AI-agent service for businesses.
 ```
 
 **Founder — Frobbex**
@@ -75,7 +73,7 @@ Orchestration: multiple agents that can see each other’s work.
 
 **Founder — RetireFire** · Jul 2026 – Present
 ```
-Live FIRE calculators. Coast, Barista, Monte Carlo, 72(t). Published math. https://retirefire.net
+Live FIRE calculators. https://retirefire.net
 ```
 
 **Founder — My Place**
@@ -101,7 +99,7 @@ AI utilities, browser analyzer, growth tools.
 
 ### Headline
 ```
-Frobb Media · Products + operator tools · AI agents for businesses ($5k/mo)
+Frobb Media · Products and operator tools · AI agents for businesses ($5k/mo)
 ```
 
 ### Website
@@ -111,13 +109,11 @@ Frobb Media · Products + operator tools · AI agents for businesses ($5k/mo)
 ```
 Frobb Media is Frank Peake’s studio. Boca Raton / Miami.
 
-We build:
-Hermes Max, Frobbex, Meta Operator, RetireFire.net, My Place, Arya, Context, permitting/claims automation, and an autonomous publishing pipeline. We also operate FGH Medical / Boca Skin.
+COMPANY
+Hermes Max, Frobbex, Meta Operator, RetireFire.net, My Place, Arya, Context, permitting/claims automation, publishing pipeline. We also operate FGH Medical / Boca Skin.
 
-We sell (separate from the products):
-$5,000/month — AI agents on a real business queue (leads, claims, permitting, inbox). Unlimited agents and automations. Live in 24 hours. First automation in 7 days. We run them.
-
-Products ≠ the retainer. The retainer is for operators. The products are what we ship.
+OFFER
+$5,000/month. AI agents on a live queue (leads, claims, permitting, inbox). Unlimited agents and automations. We run them. Live in 24 hours. First automation in 7 days.
 
 https://retirefire.net
 ```
@@ -128,42 +124,42 @@ Overwrite any “we help creators monetize short-form” copy.
 
 ## 3. Company Page (only if it already exists)
 
-Tagline: `Products, operator tools, and $5k/mo AI agents for businesses.`  
+Tagline: `Studio. Products. $5k/mo AI agents for businesses.`  
 About: section 2. Do not create a new page today.
 
 ---
 
-## 4. Posts (one each)
+## 4. Posts
 
-### Frank Peake — company (not a hard sell)
+### Frank Peake
 ```
-What I’m building under Frobb Media:
+Company: Frobb Media. We ship RetireFire.net, My Place, Arya, Frobbex, Meta Operator, Context.
 
-Operator layer: Frobbex (safe computer-use), Meta Operator (agents that can see each other), Hermes Max (we already run this).
+Offer, separate: $5k/month AI agents on a live queue (leads, claims, permits, inbox). Unlimited. We run them. 24-hour standup, 7-day first automation.
 
-Products: RetireFire.net (live), My Place, Arya, Context.
-
-We also install agents in businesses at $5k/month if you have a real queue (leads, claims, permits, inbox). That is a separate offer.
-
+If you want the queue run, message me.
 https://retirefire.net
 ```
 
-### Frobb Media — same split
+### Frobb Media
 ```
-Frobb Media is a studio.
+Frobb Media.
 
-We ship: RetireFire.net, My Place, Arya, Context, Frobbex, Meta Operator.
+Company: products and operator tools (RetireFire.net, My Place, Arya, Frobbex, Meta Operator, Context).
 
-We also run AI agents inside businesses: $5k/month, unlimited, 24-hour standup.
-
-Two different things. Same company.
+Offer: $5k/month AI agents for businesses. Unlimited on one queue. We run them.
 
 Frank Peake. Boca Raton.
 ```
 
-DM if they ask about agents (offer only — do not dump the product catalog):
+DM (offer only):
 ```
 $5k/month. Unlimited agents on one live queue. 24 hours to standing, 7 days to first automation. Which pile: leads, claims, permits, or inbox?
+```
+
+If they ask “have you actually built anything?”:
+```
+Yes — company list is on the LinkedIn. Happy to walk your queue now.
 ```
 
 Do **not** pitch $5k in Reddit or FIRE Facebook groups.
@@ -172,9 +168,8 @@ Do **not** pitch $5k in Reddit or FIRE Facebook groups.
 
 ## 5. Done check
 
-- [ ] About has COMPANY (all builds) then a short OFFER
-- [ ] RetireFire / Arya / My Place / Context are company, not the $5k close
-- [ ] Experience rows exist for the products
+- [ ] About = COMPANY (all builds) then a short OFFER with no product names inside it
+- [ ] Experience rows for the products
 - [ ] FGH still on the profile
 - [ ] One post each
 - [ ] Telegram Frank the URLs

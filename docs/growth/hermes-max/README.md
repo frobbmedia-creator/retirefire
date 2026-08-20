@@ -6,8 +6,8 @@
 |------|------|
 | `GO.txt` | One-screen start order |
 | `DAY1_EXECUTE.md` | **Run this first session** |
-| `LINKEDIN_UPDATE.md` | Company (all builds) then short $5k offer — do not mash |
-| `FROBB_MEDIA_OFFER.md` | $5k/mo model. Context = one line in “also a Frobb creation.” |
+| `LINKEDIN_UPDATE.md` | Company (all builds) + clean $5k offer. Do not mix. |
+| `FROBB_MEDIA_OFFER.md` | Offer only: price, queue, time. |
 | `MAX_READ_THIS_FIRST.md` | Accounts, rules, daily cadence |
 | `TARGETS.md` | Subreddits + Facebook groups |
 | `POSTS_READY.md` | Copy to rewrite 20%+ before posting |

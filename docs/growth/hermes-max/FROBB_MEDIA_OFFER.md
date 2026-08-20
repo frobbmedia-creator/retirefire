@@ -1,51 +1,52 @@
 # Frobb Media — $5k/month AI agents
 
-This is the **offer**. Keep it tight.  
-Company identity (every build) lives on **LinkedIn**, not in the close.
+**This file is the offer only.**  
+Builds, products, tools, and bios are **company info**. They are not the offer. If a prospect looks us up, the LinkedIn company block is the validation. Do not drag that list into the close.
 
-**Internal model:** https://youtu.be/FIhj0yb9KPI — use it, do not name-drop it.
+Internal model: https://youtu.be/FIhj0yb9KPI — use the cadence, do not name-drop it.
 
 ---
 
-## Offer (what they buy)
+## Offer
 
-**$5,000 / month**  
-Unlimited agents · unlimited automations · support  
-Agent live in **24 hours**. First real automation in **7 days**.  
-Queue: leads, insurance claims, construction permitting, or inbox.  
-We run it. Not a chatbot seat.
+**$5,000 / month**
+
+What they get:
+- Unlimited AI agents on one live queue
+- Unlimited automations on that queue
+- Support included
+- We run it (not a chatbot they babysit)
+
+Queue (pick one to start):
+- Leads / intake
+- Insurance claims
+- Construction permitting
+- Customer inbox
+
+Time:
+- Agent live in **24 hours**
+- First real automation in **7 days**
+- Weekly outcome numbers (hours saved, files moved, replies sent)
 
 Close:
 ```
-$5k/month. Unlimited agents on your queue. Live in 24 hours, first automation in 7 days. We run them.
+$5k/month. Unlimited agents on your queue. Live in 24 hours. First automation in 7 days. We run them.
 ```
 
 Do not discount on the first reply.  
-Do not pitch RetireFire, Arya, My Place, or Context as part of this sale.
+Do not mention RetireFire, Arya, My Place, Context, Frobbex, Meta Operator, or Hermes in the close unless they ask “have you built anything?”
+
+If they ask that: “Yes — look at the Frobb Media / Frank Peake LinkedIn. Happy to walk the queue now.”
 
 ---
 
-## Proof that belongs in the offer (only this)
-
-A claims/permits buyer cares that we can operate agents. They do not need the FIRE calculator.
-
-- **Hermes Max** — we already run an autonomous agent on our own ops
-- **Frobbex** — safe computer-use (the agent can actually drive a machine)
-- **Meta Operator** — agents that can see each other’s work
-- **Permitting + claims workflows** — same verticals
-- **We operate a real local business** (FGH / Boca Skin)
-
-That is enough “why $5k.” Stop there.
-
----
-
-## First itch
+## First itch (sales questions)
 
 1. What queue is overflowing — leads, claims, permits, or inbox?
 2. Where does that work live today?
-3. What is a win in 30 days?
+3. What is a win in 30 days (hours, response time, files moved)?
 4. Who can let an agent touch that queue this week?
 
 ## Channels
-- **LinkedIn + warm list** = $5k offer
+- **LinkedIn + warm list** = this offer
 - **Reddit / FIRE Facebook** = RetireFire value only. No $5k pitch.

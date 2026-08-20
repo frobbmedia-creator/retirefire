@@ -133,7 +133,7 @@ Open LINKEDIN_UPDATE.md in this folder. Paste. Do not invent new bios.
 1. Frank Peake: https://www.linkedin.com/in/frank-peake-09980411
 2. Frobb Media: https://www.linkedin.com/in/frobb-media-63051b3a7
 
-LinkedIn: COMPANY block lists every build. OFFER block is a short $5k agents paragraph. Do not treat RetireFire/Arya/My Place/Context as the retainer. Do not pitch $5k in Reddit or FIRE Facebook groups. Do not mention the YouTube playbook publicly.
+LinkedIn: COMPANY block = every build. OFFER block = clean $5k retainer (price, queue, time) with no product names. Do not pitch $5k in Reddit or FIRE Facebook groups.
 Then publish the two posts in LINKEDIN_UPDATE.md (one from each profile).
 
 ---
