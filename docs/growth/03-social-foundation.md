@@ -27,16 +27,22 @@ No paywall. No hype. Methodology published.
 
 **Headline:**
 ```
-Building transparent FIRE calculators at retirefire.net | Coast FIRE, Barista FIRE, sequence risk
+Building RetireFire.net — free FIRE calculators | Founder, Frobb Media | Boca Raton
 ```
 **About:**
 ```
-RetireFire makes free, evidence-based FIRE calculators — FIRE number, years to FI, Coast FIRE, and Barista FIRE — with published formulas and conservative defaults.
+I build tools and operating systems for businesses — and I got tired of retirement calculators that hide their math.
 
-We care about the assumptions behind the number: withdrawal rates, real returns, and free sequence-of-returns stress tests (1,000-path educational Monte Carlo on Coast & Years). Educational tools only — not financial advice.
+RetireFire (retirefire.net) is a free FIRE planning suite: FIRE number, years to FI, Coast FIRE, Barista FIRE, 72(t)/SEPP, and a 1,000-path educational Monte Carlo. No account for the core tools. Formulas published. Educational only — not financial advice.
 
-If you plan early retirement or semi-retirement, run the numbers with your own inputs: https://retirefire.net
+Coast FIRE is a stop-saving question, not a quit-your-job number.
+
+Frobb Media is the studio behind the products.
+
+If you plan early retirement or semi-retirement, run the numbers: https://retirefire.net
 ```
+
+Live paste pack for Max (Frank Peake + Frobb Media profiles): `hermes-max/LINKEDIN_UPDATE.md`
 
 ### Reddit strategy (value-first, never spam)
 

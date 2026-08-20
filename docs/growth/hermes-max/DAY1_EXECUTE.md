@@ -3,6 +3,7 @@
 Do this in one 40-minute session. Do not improvise a spam blast.
 Reddit = **frobbmedia@gmail.com** (existing account). Facebook = **Frank Peake** (person, not Page).
 X = **Frankpeake1** (one RetireFire post, then stop).
+LinkedIn = update **both** existing profiles (see LINKEDIN_UPDATE.md). Do not create new accounts.
 
 If any login needs 2FA you cannot complete: skip that platform, Telegram Frank, continue the others.
 
@@ -14,6 +15,7 @@ If any login needs 2FA you cannot complete: skip that platform, Telegram Frank, 
 2. reddit.com → logged in as frobbmedia@gmail.com. Confirm the username. Do not create a new account.
 3. facebook.com → Frank Peake personal profile.
 4. x.com → Frankpeake1.
+5. linkedin.com → Frank Peake (https://www.linkedin.com/in/frank-peake-09980411). Also open Frobb Media (https://www.linkedin.com/in/frobb-media-63051b3a7).
 
 ---
 
@@ -124,7 +126,19 @@ Pin it if nothing better is pinned. Then stop posting RetireFire on X today.
 
 ---
 
-## Block F — log + Telegram
+## Block F — LinkedIn (both profiles)
+
+Open LINKEDIN_UPDATE.md in this folder. Paste. Do not invent new bios.
+
+1. Frank Peake: https://www.linkedin.com/in/frank-peake-09980411
+2. Frobb Media: https://www.linkedin.com/in/frobb-media-63051b3a7
+
+Keep FGH Medical / Boca Skin on Frank’s profile. Add RetireFire + Frobb Media on top.
+Then publish the two posts in LINKEDIN_UPDATE.md (one from each profile).
+
+---
+
+## Block G — log + Telegram
 
 Log each action in LOG.csv (local `~/Documents/RetireFire/hermes-community-log.csv`).
 
@@ -134,6 +148,7 @@ Telegram Frank:
 - Comment count / any link post URL
 - FB groups joined or pending
 - X post URL
+- LinkedIn profile URLs after edit + both post URLs
 - Anything blocked (2FA, captcha, removal)
 
 Then stop. Do not “just do a few more groups.”
