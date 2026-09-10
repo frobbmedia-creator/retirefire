@@ -18,6 +18,17 @@ export function Footer() {
       ],
     },
     {
+      label: "Decisions",
+      links: [
+        ["/retire-at-50", "Retire at 50"],
+        ["/retire-at-62", "Retire at 62"],
+        ["/can-i-retire-with-1-million", "Retire with $1M"],
+        ["/can-i-retire-with-400k", "Retire with $400k"],
+        ["/fire-number-by-spending", "Number by spending"],
+        ["/#decisions", "All decision pages"],
+      ],
+    },
+    {
       label: "Learn",
       links: [
         ["/blog", "Blog"],
@@ -57,7 +68,7 @@ export function Footer() {
             <SupportEmailLink className="mt-3 inline-block text-sm text-zinc-400 hover:text-emerald-400" />
           </div>
 
-          <div className="grid gap-5 text-sm sm:grid-cols-3">
+          <div className="grid gap-5 text-sm sm:grid-cols-2 lg:grid-cols-4">
             {groups.map((group) => (
               <div key={group.label}>
                 <p className="text-xs font-semibold uppercase tracking-wide text-zinc-400">
