@@ -1,5 +1,5 @@
 import { calculateFireNumber } from "@/lib/calculations";
-import type { DecisionPage } from "@/content/decision-pages";
+import type { DecisionPage } from "@/content/decision-shared";
 
 const septBoost = "2026-09-10";
 
