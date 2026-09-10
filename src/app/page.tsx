@@ -1,5 +1,6 @@
 import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
+import { DecisionCluster } from "@/components/home/DecisionCluster";
 import { SeriesStrip } from "@/components/home/SeriesStrip";
 import { FaqSection, FaqJsonLd } from "@/components/home/FaqSection";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -8,6 +9,7 @@ import {
   pageMeta,
   webApplicationJsonLd,
   websiteJsonLd,
+  organizationJsonLd,
 } from "@/lib/seo";
 import type { Metadata } from "next";
 
@@ -26,6 +28,7 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={websiteJsonLd()} />
+      <JsonLd data={organizationJsonLd()} />
       <JsonLd
         data={webApplicationJsonLd({
           name: SITE.name,
@@ -37,6 +40,7 @@ export default function HomePage() {
 
       <Hero />
       <TrustStrip />
+      <DecisionCluster />
       <SeriesStrip />
       <FaqSection />
     </>
