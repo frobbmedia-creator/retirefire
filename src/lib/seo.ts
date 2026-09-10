@@ -77,6 +77,18 @@ export function websiteJsonLd() {
   };
 }
 
+export function organizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE.name,
+    url: absoluteUrl("/"),
+    logo: absoluteUrl("/brand/retirefire-icon.jpg"),
+    email: SITE.supportEmail,
+    description: SITE.description,
+  };
+}
+
 export function webApplicationJsonLd(opts?: {
   name?: string;
   description?: string;
@@ -201,7 +213,6 @@ export function webPageJsonLd(opts: {
     },
   };
 }
-
 
 export function faqPageJsonLd(
   items: readonly { question: string; answer: string }[],
