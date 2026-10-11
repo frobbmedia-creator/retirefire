@@ -13,8 +13,10 @@ export function CalculatorSeoSection({
       <JsonLd data={faqPageJsonLd(content.faq)} />
 
       <h2 className="text-2xl font-semibold tracking-tight text-zinc-50">
-        How this {content.title.replace(/ Calculator$/i, "").toLowerCase()}{" "}
-        calculator works
+        {content.seoHeadings?.howItWorks ??
+          `How this ${content.title
+            .replace(/ Calculator$/i, "")
+            .toLowerCase()} calculator works`}
       </h2>
       <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-zinc-400">
         {content.howItWorks.map((p) => (
@@ -22,7 +24,14 @@ export function CalculatorSeoSection({
         ))}
       </div>
 
-      <h3 className="mt-10 text-lg font-semibold text-zinc-100">Formula</h3>
+      <h3 className="mt-10 text-lg font-semibold text-zinc-100">
+        {content.seoHeadings?.formula ?? "Formula"}
+      </h3>
+      {content.formulaIntro && (
+        <p className="mt-3 text-[15px] leading-relaxed text-zinc-400">
+          {content.formulaIntro}
+        </p>
+      )}
       <pre className="mt-3 overflow-x-auto rounded-xl bg-zinc-900 p-4 font-mono text-sm text-emerald-300 ring-1 ring-zinc-800">
         {content.formula}
       </pre>
@@ -38,7 +47,9 @@ export function CalculatorSeoSection({
 
       <div className="mt-10 grid gap-8 sm:grid-cols-2">
         <div>
-          <h3 className="text-lg font-semibold text-zinc-100">When to use it</h3>
+          <h3 className="text-lg font-semibold text-zinc-100">
+            {content.seoHeadings?.whenToUse ?? "When to use it"}
+          </h3>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-zinc-400">
             {content.whenToUse.map((item) => (
               <li key={item}>{item}</li>
@@ -46,7 +57,9 @@ export function CalculatorSeoSection({
           </ul>
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-zinc-100">Limitations</h3>
+          <h3 className="text-lg font-semibold text-zinc-100">
+            {content.seoHeadings?.limitations ?? "Limitations"}
+          </h3>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-zinc-400">
             {content.limitations.map((item) => (
               <li key={item}>{item}</li>
@@ -71,7 +84,9 @@ export function CalculatorSeoSection({
         ))}
       </ul>
 
-      <h3 className="mt-10 text-lg font-semibold text-zinc-100">FAQ</h3>
+      <h3 className="mt-10 text-lg font-semibold text-zinc-100">
+        {content.seoHeadings?.faq ?? "FAQ"}
+      </h3>
       <dl className="mt-4 space-y-3">
         {content.faq.map((item) => (
           <div

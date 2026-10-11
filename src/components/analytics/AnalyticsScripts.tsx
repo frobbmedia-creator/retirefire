@@ -5,7 +5,8 @@ import Script from "next/script";
  * Vercel Analytics remains the default privacy-friendly baseline in layout.tsx.
  */
 export function AnalyticsScripts() {
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const gaId =
+    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-57V2SFN6JT";
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
   return (

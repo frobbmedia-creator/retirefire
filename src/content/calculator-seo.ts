@@ -10,6 +10,20 @@ export type CalculatorSeoContent = {
   description: string;
   metaTitle: string;
   metaDescription: string;
+  /** Visible H1 override (defaults to title). */
+  h1?: string;
+  /** Visible lede paragraph override (defaults to description). */
+  lede?: string;
+  /** Intro paragraph rendered under the formula heading. */
+  formulaIntro?: string;
+  /** Question-style heading overrides for the SEO section. */
+  seoHeadings?: {
+    howItWorks?: string;
+    formula?: string;
+    whenToUse?: string;
+    limitations?: string;
+    faq?: string;
+  };
   howItWorks: string[];
   formula: string;
   exampleTitle: string;
@@ -187,9 +201,20 @@ export const CALCULATOR_SEO: Record<
     title: "Coast FIRE Calculator",
     description:
       "Calculate how much you need today so compound growth alone may reach full FIRE by a chosen traditional retirement age — then you can “coast” on savings rate.",
-    metaTitle: "Coast FIRE Calculator (Free) — Exact Number + Stress Test",
+    metaTitle: "Coast FIRE Calculator: Find Your Coast Number",
     metaDescription:
-      "Free Coast FIRE calculator: find the portfolio that can grow to full FIRE by traditional retirement age with no further contributions. Includes sequence stress test.",
+      "Estimate the portfolio you may need today for Coast FIRE. Compare return assumptions, age tables, and a sequence stress test. Educational tool only.",
+    h1: "What Is a Coast FIRE Number?",
+    lede: "A Coast FIRE number is the portfolio you may need today for investments to grow to your full FIRE target by your chosen retirement age, assuming no new contributions and a stated real return.",
+    formulaIntro:
+      "The calculator estimates today's Coast FIRE target by dividing the full FIRE target by (1 + real return) raised to the years remaining.",
+    seoHeadings: {
+      howItWorks: "How does Coast FIRE work?",
+      formula: "What is the Coast FIRE formula?",
+      whenToUse: "When can Coast FIRE help with planning?",
+      limitations: "What are the limitations of Coast FIRE calculations?",
+      faq: "Coast FIRE calculator: common questions",
+    },
     howItWorks: [
       "Coast FIRE asks a different question than classic FIRE: do you already have enough invested that, with no further contributions, compound growth may reach full FIRE by a traditional retirement age?",
       "If yes, you might stop aggressive saving (or save only for near-term goals) while still working for lifestyle, purpose, or benefits. Coast FIRE is not permission to stop working tomorrow.",
@@ -199,8 +224,7 @@ export const CALCULATOR_SEO: Record<
       "Coast number ≈ Full FIRE ÷ (1 + r)^n\n\nT = full FIRE target\nr = real return\nn = years until traditional retirement age",
     exampleTitle: "Example: $1.5M full FIRE, 20 years runway, 5% real",
     exampleBody: [
-      "If full FIRE is $1,500,000, traditional retirement is 20 years away, and you assume 5% real growth, coast number ≈ $1,500,000 ÷ (1.05)^20 ≈ $565,000.",
-      "With about $565k invested today and no further contributions (under those assumptions), the model says the portfolio could grow to the full target by traditional retirement age.",
+      "For example, a $1,500,000 full FIRE target, 20 years until retirement, and an assumed 5% real return gives an estimated Coast FIRE number of about $565,000. This is an illustration under those assumptions, not a forecast.",
     ],
     whenToUse: [
       "You want to know when aggressive saving can slow without abandoning long-term FI.",
@@ -250,32 +274,32 @@ export const CALCULATOR_SEO: Record<
       {
         question: "What is a Coast FIRE number?",
         answer:
-          "It is the portfolio today that may grow to your full FIRE number by a chosen traditional retirement age without additional contributions, under an assumed real return.",
+          "It is the portfolio you may need today for investments to grow to your full FIRE target by a chosen retirement age, assuming no further contributions and a stated real return.",
       },
       {
         question: "Does Coast FIRE mean I can quit my job?",
         answer:
-          "Usually no. Coast FIRE means you may not need aggressive retirement contributions anymore. You typically still work to cover living expenses until full FIRE or another income plan.",
+          "Usually, no. Coast FIRE means you may be able to reduce retirement contributions while continuing to cover living expenses through work or another income source.",
       },
       {
         question: "How is Coast FIRE different from Barista FIRE?",
         answer:
-          "Coast focuses on stopping contributions while still working full-time (or not). Barista FIRE uses ongoing part-time income to shrink the portfolio needed to cover spending.",
+          "Coast FIRE focuses on reducing or stopping contributions while investments grow. Barista FIRE includes part-time income to help cover expenses.",
       },
       {
-        question: "Do you include a sequence-of-returns stress test?",
+        question: "Does the calculator include a sequence-of-returns stress test?",
         answer:
-          "Yes — a free basic Monte Carlo stress test (1,000 paths) is available on the Coast FIRE calculator. It is educational, not a forecast or historical backtest. See Methodology and the how-to stress-test guide.",
+          "Yes. It includes a basic simulation of different return paths. The results are educational illustrations, not forecasts or historical backtests.",
       },
       {
         question: "When can I stop saving for retirement?",
         answer:
-          "Under Coast math, when portfolio ≥ coast number and life gates pass (healthcare, emergency fund, partner alignment, stress cases). Prefer keeping a savings floor and re-running after major life changes. Use the free Coast checklist.",
+          "The calculator can estimate whether your current portfolio may reach a future FIRE target under its assumptions. Consider healthcare, emergencies, and other expenses separately.",
       },
       {
-        question: "Why does a lower assumed return raise my coast number?",
+        question: "Why does a lower assumed return raise my Coast FIRE number?",
         answer:
-          "Coast discounts full FIRE over n years at rate r. Lower r means less expected compounding, so you need more capital today for the same future target. Stress-test 4% real if your base case is 5%.",
+          "A lower assumed return means less modeled growth over time, so a larger portfolio is needed today to reach the same future target.",
       },
     ],
   },

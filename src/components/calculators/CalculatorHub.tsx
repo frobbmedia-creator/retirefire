@@ -21,12 +21,14 @@ const JUMP = [
 export function CalculatorHub({
   showHeading = true,
   tools,
+  assumptionsHeading,
 }: {
   showHeading?: boolean;
   /** Which tools to show; default all */
   tools?: Array<
     "fire" | "years" | "coast" | "barista" | "savings" | "compare"
   >;
+  assumptionsHeading?: string;
 }) {
   const set = new Set(
     tools ?? ["fire", "years", "coast", "barista", "compare", "savings"],
@@ -74,7 +76,10 @@ export function CalculatorHub({
       )}
 
       <CalculatorLifecycleAnalytics calculatorIds={calculatorIds.join(",")} />
-      <AssumptionsBar calculatorId={primaryCalculatorId} />
+      <AssumptionsBar
+        calculatorId={primaryCalculatorId}
+        heading={assumptionsHeading}
+      />
 
       {set.has("fire") && <FireNumberCalculator />}
       {set.has("years") && <YearsToFireCalculator />}

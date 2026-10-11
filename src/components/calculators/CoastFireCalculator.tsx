@@ -32,7 +32,8 @@ export function CoastFireCalculator() {
               <Waves className="h-5 w-5" aria-hidden />
             </div>
             <div>
-              <CardTitle>Coast FIRE Calculator</CardTitle>
+              <CardTitle>What does the Coast FIRE calculator show?</CardTitle>
+              <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">It estimates the portfolio you may need now for growth alone to reach your full FIRE target by your chosen retirement age.</p>
               <CardDescription>
                 Nest egg that can grow — with no further contributions — to full
                 FIRE by a traditional retirement age. Then you can stop
@@ -169,7 +170,10 @@ export function CoastFireCalculator() {
           }
         />
 
-        <HistoricalScenarioPanel />
+        <HistoricalScenarioPanel
+          heading="Does this calculator use historical returns?"
+          intro="No. Historical scenarios are unavailable because the source data has not been independently verified."
+        />
       </CardContent>
     </Card>
   );

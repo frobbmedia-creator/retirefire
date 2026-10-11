@@ -92,12 +92,12 @@ export function CoastAgeTable() {
           <thead className="bg-zinc-900 text-xs uppercase tracking-wide text-zinc-500">
             <tr>
               <th className="px-3 py-2.5 font-medium">Age</th>
-              <th className="px-3 py-2.5 font-medium">Years</th>
+              <th className="px-3 py-2.5 font-medium">Years until retirement</th>
               <th className="px-3 py-2.5 font-medium">
-                Coast @ {formatPercent(realReturn, 0)}
+                Coast number at 5% real return
               </th>
               <th className="px-3 py-2.5 font-medium">
-                Coast @ {formatPercent(altReturn, 0)}
+                Coast number at 4% real return
               </th>
             </tr>
           </thead>

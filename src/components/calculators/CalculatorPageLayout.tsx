@@ -24,6 +24,7 @@ export function CalculatorPageLayout({
   sharePath,
   tools,
   seo,
+  assumptionsHeading,
   children,
 }: {
   title: string;
@@ -31,6 +32,7 @@ export function CalculatorPageLayout({
   sharePath: string;
   tools: Tool[];
   seo?: CalculatorSeoContent;
+  assumptionsHeading?: string;
   children?: ReactNode;
 }) {
   const calculatorId = tools[0] === "savings" ? "savings-rate" : tools[0];
@@ -107,7 +109,11 @@ export function CalculatorPageLayout({
           </TrackedLink>
         </div>
         <PlannerShell sharePath={sharePath}>
-          <CalculatorHub showHeading={false} tools={tools} />
+          <CalculatorHub
+            showHeading={false}
+            tools={tools}
+            assumptionsHeading={assumptionsHeading}
+          />
         </PlannerShell>
         <FailureModes />
       </div>

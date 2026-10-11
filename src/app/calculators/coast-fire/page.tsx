@@ -17,11 +17,12 @@ export const metadata: Metadata = pageMeta(seo.path, {
 export default function CoastFirePage() {
   return (
     <CalculatorPageLayout
-      title={seo.title}
-      description={seo.description}
+      title={seo.h1 ?? seo.title}
+      description={seo.lede ?? seo.description}
       sharePath={seo.path}
       tools={["coast", "fire"]}
       seo={seo}
+      assumptionsHeading="Which assumptions does this calculator use?"
     />
   );
 }

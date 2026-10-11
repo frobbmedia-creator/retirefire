@@ -66,8 +66,12 @@ export function historicalPanelModel(
 
 export function HistoricalScenarioPanel({
   result,
+  heading = "Historical retirement scenarios",
+  intro,
 }: {
   result?: HistoricalScenarioResult;
+  heading?: string;
+  intro?: string;
 }) {
   const model = historicalPanelModel(historicalMetadata.status, result);
 
@@ -78,12 +82,16 @@ export function HistoricalScenarioPanel({
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h3 id="historical-scenarios-heading" className="text-base font-semibold text-zinc-100">
-          Historical retirement scenarios
+          {heading}
         </h3>
         <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">
           {model.state === "ready" ? "Verified data" : "Data gate"}
         </span>
       </div>
+
+      {intro && (
+        <p className="mt-3 text-sm leading-relaxed text-zinc-300">{intro}</p>
+      )}
 
       {model.state === "ready" ? (
         <dl className="mt-4 grid gap-3 sm:grid-cols-2">

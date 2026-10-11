@@ -16,7 +16,13 @@ import {
 } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-export function AssumptionsBar({ calculatorId }: { calculatorId: string }) {
+export function AssumptionsBar({
+  calculatorId,
+  heading = "Shared assumptions",
+}: {
+  calculatorId: string;
+  heading?: string;
+}) {
   const {
     state,
     setField,
@@ -129,7 +135,7 @@ export function AssumptionsBar({ calculatorId }: { calculatorId: string }) {
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-sm font-semibold text-zinc-100 sm:text-base">
-            Shared assumptions
+            {heading}
           </h2>
           <p className="mt-0.5 text-xs text-zinc-500 sm:text-sm">
             One set of inputs powers every calculator. Changes sync to the URL
