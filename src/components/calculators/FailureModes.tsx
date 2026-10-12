@@ -62,11 +62,24 @@ const MODES = [
   },
 ] as const;
 
+type FailureModeId = (typeof MODES)[number]["id"];
+
+/** Per-page copy overrides, keyed by mode id. Absent = default rendering. */
+export type FailureModeOverrides = Partial<
+  Record<FailureModeId, { title?: string; body?: string }>
+>;
+
 /**
  * Evidence-linked planning risks that sit next to calculator results.
  * Educational only — no new formulas and no outcome guarantees.
+ * Pass `overrides` to tailor copy per calculator page; default block is
+ * unchanged when omitted (shared layout + thin calculator pages).
  */
-export function FailureModes() {
+export function FailureModes({
+  overrides,
+}: {
+  overrides?: FailureModeOverrides;
+} = {}) {
   return (
     <section
       id="failure-modes"
@@ -106,6 +119,9 @@ export function FailureModes() {
       <ul className="mt-5 grid gap-3 sm:grid-cols-2">
         {MODES.map((mode) => {
           const Icon = mode.icon;
+          const override = overrides?.[mode.id];
+          const title = override?.title ?? mode.title;
+          const body = override?.body ?? mode.body;
           return (
             <li
               key={mode.id}
@@ -113,13 +129,13 @@ export function FailureModes() {
             >
               <p className="flex items-center gap-2 text-sm font-medium text-zinc-100">
                 <Icon className="h-4 w-4 text-zinc-400" aria-hidden />
-                <span>{mode.title}</span>
+                <span>{title}</span>
                 <span className="text-xs font-normal text-zinc-500">
                   Watch item
                 </span>
               </p>
               <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-                {mode.body}
+                {body}
               </p>
               {"external" in mode && mode.external ? (
                 <a

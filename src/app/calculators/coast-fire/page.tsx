@@ -23,6 +23,14 @@ export default function CoastFirePage() {
       tools={["coast", "fire"]}
       seo={seo}
       assumptionsHeading="Which assumptions does this calculator use?"
+      failureModesOverrides={{
+        sequence: {
+          body: "A coast number is a decades-long compounding bet. If real returns run below the assumed rate across a 20–30 year runway, the portfolio can land far short of the full FIRE target — re-run the number at 3%, 4%, and 5% real to see the spread.",
+        },
+        lifestyle: {
+          body: "Coast plans assume you keep working to cover spending. A job loss, health issue, or forced career break turns “no more saving needed” into “no income at all” — keep an emergency fund outside the coast math.",
+        },
+      }}
     />
   );
 }

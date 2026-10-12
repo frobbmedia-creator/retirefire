@@ -4,7 +4,7 @@ import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { PlannerShell } from "@/components/planner/PlannerShell";
 import { CalculatorHub } from "@/components/calculators/CalculatorHub";
 import { CalculatorSeoSection } from "@/components/calculators/CalculatorSeoSection";
-import { FailureModes } from "@/components/calculators/FailureModes";
+import { FailureModes, type FailureModeOverrides } from "@/components/calculators/FailureModes";
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { CalculatorSeoContent } from "@/content/calculator-seo";
 import {
@@ -25,6 +25,7 @@ export function CalculatorPageLayout({
   tools,
   seo,
   assumptionsHeading,
+  failureModesOverrides,
   children,
 }: {
   title: string;
@@ -33,6 +34,8 @@ export function CalculatorPageLayout({
   tools: Tool[];
   seo?: CalculatorSeoContent;
   assumptionsHeading?: string;
+  /** Page-specific FailureModes copy; omitted = default block (thin pages). */
+  failureModesOverrides?: FailureModeOverrides;
   children?: ReactNode;
 }) {
   const calculatorId = tools[0] === "savings" ? "savings-rate" : tools[0];
@@ -115,7 +118,7 @@ export function CalculatorPageLayout({
             assumptionsHeading={assumptionsHeading}
           />
         </PlannerShell>
-        <FailureModes />
+        <FailureModes overrides={failureModesOverrides} />
       </div>
 
       {seo && <CalculatorSeoSection content={seo} />}

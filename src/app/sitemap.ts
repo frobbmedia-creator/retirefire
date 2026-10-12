@@ -10,6 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const seoPass = new Date("2026-08-12");
   const aryaSeries = new Date("2026-08-20");
   const moneyBoost = new Date("2026-08-20");
+  // Pages with content edits after the 2026-08 passes (coast-fire AI-readiness
+  // rewrite + GA4, blog index retitle).
+  const contentRefresh = new Date("2026-10-11");
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: base, lastModified: moneyBoost, changeFrequency: "weekly", priority: 1 },
@@ -39,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${base}/calculators/coast-fire`,
-      lastModified: seoPass,
+      lastModified: contentRefresh,
       changeFrequency: "weekly",
       priority: 0.9,
     },
@@ -147,7 +150,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     {
       url: `${base}/blog`,
-      lastModified: seoPass,
+      lastModified: contentRefresh,
       changeFrequency: "weekly",
       priority: 0.75,
     },

@@ -22,6 +22,14 @@ export default function FireNumberPage() {
       sharePath={seo.path}
       tools={["fire", "savings"]}
       seo={seo}
+      failureModesOverrides={{
+        taxes: {
+          body: "The 25× multiple is pre-tax shorthand. A $1.5M traditional-IRA-heavy portfolio is not $1.5M of spending power — withdrawal taxes and account mix decide what the number actually buys.",
+        },
+        sequence: {
+          body: "The 4% rule survived historical backtests, not the future. Retiring into weak early years with rigid withdrawals is the classic failure mode — guardrails and spending flexibility matter more than the starting multiple.",
+        },
+      }}
     />
   );
 }
