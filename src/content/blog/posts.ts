@@ -371,7 +371,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "The strategic case for Lean FIRE is speed and optionality: a smaller target can be reached with fewer years of high savings, or with a lower required savings rate for the same timeline. That advantage evaporates if the $40k budget was fiction. Under-counted healthcare, housing shocks, family changes, or lifestyle creep turn a “Lean” FI date into a funding gap.",
+          "The strategic case for Lean FIRE is speed and optionality: a smaller target can be reached with fewer years of high savings, or with a lower required savings rate for the same timeline. That advantage evaporates if the $40k budget was fiction. Under-counted healthcare, housing shocks, family changes, or lifestyle creep turn a “Lean” FI date into a funding gap. [Plug your real spend into the FIRE number calculator](/calculators/fire-number)",
       },
       {
         type: "ul",
@@ -405,7 +405,7 @@ export const BLOG_POSTS: BlogPost[] = [
           "Sequence of returns: early bad markets plus thin discretionary buffer leave less room to cut without pain.",
           "Healthcare and insurance: premiums and coverage cliffs can dominate a Lean budget (especially pre-Medicare in the U.S.).",
           "HCOL housing: geo arbitrage or roommates may be load-bearing assumptions, not side notes.",
-          "Longevity + low SWR tension: long early-retirement horizons often argue for testing 3–3.5% — which raises the Lean number.",
+          "Longevity + low SWR tension: long early-retirement horizons often argue for testing 3–3.5% — which raises the Lean number. [See how Coast FIRE changes the savings math](/calculators/coast-fire)",
           "Behavioral risk: chronic under-spending that only works until resentment or a crisis arrives is not a plan.",
         ],
       },
