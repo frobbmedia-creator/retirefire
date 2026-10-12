@@ -142,36 +142,53 @@ export const evergreenPagesB: DecisionPage[] = [
     datePublished: published,
     dateModified: expanded,
     intro: [
-      "Healthcare is not a footnote in early retirement. Before Medicare eligibility, premiums and out-of-pocket costs can change the spending target by hundreds of thousands of dollars when converted into a portfolio requirement.",
-      "This page is a budgeting framework, not insurance or tax advice. Obtain current quotes for your household and state before making an employment decision.",
+      "Healthcare is the budget line most likely to break an early-retirement plan. A 45-year-old faces 20 years of private insurance before Medicare; a 55-year-old faces 10. Premiums reset every year, networks change, and one bad health year can cost the full out-of-pocket maximum on top of premiums. This page builds the bridge in phases so the number you carry into your FIRE target is honest.",
+      "This is a budgeting framework, not insurance or tax advice. Premiums, subsidy rules, and plan designs change yearly — get current quotes for your household, age band, and state before making an employment decision.",
     ],
     takeaway:
-      "Every permanent $10,000 of additional healthcare spending adds roughly $250,000 at 4% or $333,000 at 3% to a simple portfolio target.",
+      "Healthcare is the only budget line that can add $250,000–$500,000 to your number without changing your lifestyle. Price it in phases, bracket it in threes, and never let a single average stand in for your household's quotes.",
     sections: [
       {
-        heading: "Build the annual healthcare line",
-        bullets: [
-          "Twelve months of net premiums based on a current quote.",
-          "Expected deductibles, copays, prescriptions, dental, and vision.",
-          "A reserve for an out-of-network or high-utilization year.",
-          "Travel coverage or multi-state network needs.",
-          "Costs for every household member and the date each becomes Medicare-eligible.",
+        heading: "Phase the bridge: COBRA, marketplace, Medicare",
+        paragraphs: [
+          "The bridge has three segments with different economics. COBRA continues your exact employer plan for up to 18 months after you leave — same doctors, same network — but you pay the full premium plus an administrative fee, which makes it the most expensive option per month and the smoothest transition.",
+          "After COBRA, the marketplace covers the long middle: the years from your late 40s or 50s until 65. This is where income management matters most, because assistance is tied to household income and the unsubsidized price is the number you must be able to pay. At 65, Medicare replaces private insurance — but it does not make healthcare free, so the bridge ends with a cost step-down, not a cost elimination.",
         ],
       },
       {
-        heading: "Keep subsidies and taxes in the same model",
+        heading: "Manage MAGI like a budget line",
         paragraphs: [
-          "Marketplace assistance can depend on household income. Portfolio withdrawals, Roth conversions, capital gains, and earned income may affect that calculation. A tax move that looks attractive alone can raise healthcare costs.",
-          "Rules and plan pricing change. Use current official marketplace information and qualified advice for decisions.",
+          "Marketplace assistance keys off household income, which means your tax plan and your healthcare plan are the same decision. Roth conversions, capital-gains harvesting, and part-time earnings all raise recognized income — and each extra dollar can cost multiples in lost assistance. Run conversions and withdrawals through both lenses before executing either.",
+          "The practical move is to decide your income target first, then fit the tax strategy inside it — not the reverse. A Roth conversion that looks brilliant in isolation can be the most expensive transaction of your year once the subsidy math is included.",
+        ],
+      },
+      {
+        heading: "Use the HSA triple advantage while you still can",
+        bullets: [
+          "Contributions are deductible, growth is tax-free, and withdrawals for qualified medical expenses are tax-free — the only triple-advantaged account in the code.",
+          "Fund it aggressively in your final high-earning years, invest it rather than spending it, and keep receipts: qualified expenses can be reimbursed years later, turning the HSA into a stealth retirement account.",
+          "After 65 it functions like a traditional IRA for non-medical spending (taxed, no penalty), so nothing is wasted if your health costs come in low.",
+          "You can only contribute while enrolled in a qualifying high-deductible plan — once you retire onto marketplace coverage, check whether your chosen plan preserves eligibility.",
+        ],
+      },
+      {
+        heading: "Cost-bracket your healthcare number",
+        bullets: [
+          "Low bracket: subsidized premium plus routine care — the optimistic case, only if your income plan holds.",
+          "Base bracket: quoted unsubsidized premium plus expected deductibles, prescriptions, dental, and vision — this is the number that goes into your FIRE target.",
+          "High bracket: full premium plus the out-of-pocket maximum plus one high-utilization year per decade — hold this as contingency, not as target.",
+          "Convert each bracket to portfolio terms: every permanent $10,000 of annual healthcare spending needs roughly $250,000 at 4% or $333,000 at 3%.",
+          "Price every household member separately and note the year each becomes Medicare-eligible — a couple with a five-year age gap has two different bridge lengths.",
         ],
       },
       {
         heading: "Stress-test the bridge",
         bullets: [
-          "Model the quoted premium, quoted premium plus 20%, and the full unsubsidized premium.",
-          "Use at least one high out-of-pocket year.",
-          "Test the loss of a spouse’s employer plan or part-time benefit.",
-          "Do not assume Medicare eliminates premiums or out-of-pocket costs at 65.",
+          "Model the quoted premium, quoted premium plus 20%, and the full unsubsidized premium — subsidies are the first thing income changes take away.",
+          "Use at least one high out-of-pocket year per decade, not the average year.",
+          "Test the loss of a spouse's employer plan or part-time benefit mid-bridge.",
+          "Do not assume Medicare eliminates premiums or out-of-pocket costs at 65 — Part B, Part D, and supplemental coverage are real budget lines.",
+          "Recheck quotes annually: the bridge is 10–20 years long and pricing moves every single year.",
         ],
       },
     ],
