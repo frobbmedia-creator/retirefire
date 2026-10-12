@@ -5,11 +5,11 @@ import { getAllPosts } from "@/content/blog";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/blog", {
-  title: "FIRE Blog: Early Retirement Guides & Data · RetireFire",
+  title: "FIRE Blog: Early Retirement Guides & Data",
   description:
     "Evidence-oriented guides on FIRE numbers, Coast FIRE, Barista FIRE, safe withdrawal rates, and transparent retirement math — from RetireFire.",
   openGraph: {
-    title: "FIRE Blog: Early Retirement Guides & Data · RetireFire",
+    title: "FIRE Blog: Early Retirement Guides & Data",
     description:
       "Evidence-oriented FIRE explainers — pair with free calculators.",
   },
