@@ -1,5 +1,5 @@
 import type { DecisionPage } from "@/content/decision-shared";
-import { expanded, money, published } from "@/content/decision-shared";
+import { expanded, published } from "@/content/decision-shared";
 
 export const evergreenPagesB: DecisionPage[] = [
   {
