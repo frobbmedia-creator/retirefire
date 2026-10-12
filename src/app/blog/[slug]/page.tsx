@@ -12,6 +12,35 @@ import {
 
 type Props = { params: Promise<{ slug: string }> };
 
+const INLINE_LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/;
+
+/** Render markdown-style [label](href) inline links inside body text. */
+function renderInline(text: string, keyPrefix: string) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return parts.map((part, j) => {
+    const m = part.match(INLINE_LINK_RE);
+    if (!m || m[0] !== part) return <span key={`${keyPrefix}-${j}`}>{part}</span>;
+    const [, label, href] = m;
+    const cls =
+      "text-emerald-400 hover:text-emerald-300 underline decoration-emerald-400/30 underline-offset-2";
+    return href.startsWith("http") ? (
+      <a
+        key={`${keyPrefix}-${j}`}
+        href={href}
+        className={cls}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {label}
+      </a>
+    ) : (
+      <Link key={`${keyPrefix}-${j}`} href={href} className={cls}>
+        {label}
+      </Link>
+    );
+  });
+}
+
 const TAG_CALCULATOR: Record<string, { href: string; label: string }> = {
   "lean-fire": {
     href: "/calculators/fire-number",
@@ -170,15 +199,15 @@ export default async function BlogPostPage({ params }: Props) {
           if (block.type === "ul") {
             return (
               <ul key={i} className="list-disc space-y-2 pl-5 text-zinc-400">
-                {(block.content as string[]).map((item) => (
-                  <li key={item}>{item}</li>
+                {(block.content as string[]).map((item, k) => (
+                  <li key={item}>{renderInline(item, `b${i}-li${k}`)}</li>
                 ))}
               </ul>
             );
           }
           return (
             <p key={i} className="text-zinc-400">
-              {block.content as string}
+              {renderInline(block.content as string, `b${i}`)}
             </p>
           );
         })}
