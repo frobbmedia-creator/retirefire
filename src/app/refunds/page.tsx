@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
 import { SupportEmailLink } from "@/components/support/SupportEmailLink";
-export const metadata: Metadata = { title: "Refund and Cancellation Policy" };
+import { pageMeta } from "@/lib/seo";
+export const metadata: Metadata = pageMeta("/refunds", { title: "Refund and Cancellation Policy", description: "RetireFire refund and cancellation policy: cancel subscriptions via the Stripe billing portal, request a refund within 14 days, and see what is not refundable." });
 export default function RefundsPage() { return <main className="mx-auto max-w-3xl px-4 py-16"><h1 className="text-4xl font-semibold">Refund and cancellation policy</h1><div className="mt-8 space-y-5 text-zinc-300 leading-relaxed"><p>Subscriptions may be canceled at any time through the Stripe billing portal and remain active through the paid billing period.</p><p>If a paid feature is unavailable or materially fails to match its description, email <SupportEmailLink className="text-emerald-400 hover:text-emerald-300" /> from the address used for the purchase. Eligible refund requests made within 14 days will be reviewed promptly. One-time reports already substantially used or downloaded may not be refundable except where required by law.</p><p>Stripe receipts identify the merchant as Frobb Media LLC, the operator of RetireFire.</p></div></main>; }
