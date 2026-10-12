@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPost } from "@/content/blog";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { LeadCapture } from "@/components/leads/LeadCapture";
 import { SITE } from "@/lib/constants";
 import {
   blogPostingJsonLd,
@@ -211,6 +212,14 @@ export default async function BlogPostPage({ params }: Props) {
             </p>
           );
         })}
+      </div>
+
+      <div className="mt-10">
+        <LeadCapture
+          source="blog_newsletter"
+          heading="The FIRE notes"
+          blurb="One short email when we publish something worth your time — new calculators, guides, data. No spam, unsubscribe anytime."
+        />
       </div>
 
       <footer className="mt-12 space-y-4">
