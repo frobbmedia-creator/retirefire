@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { currentUser } from "@/lib/auth";
+import { pageMeta } from "@/lib/seo";
 import { activeEntitlements } from "@/lib/entitlements";
 import { SupportEmailLink } from "@/components/support/SupportEmailLink";
 
-export const metadata = { title: "Your RetireFire account", robots: { index: false } };
+export const metadata = pageMeta("/account", { title: "Your RetireFire account", robots: { index: false } });
 export default async function AccountPage({ searchParams }: { searchParams: Promise<{ recovered?: string; error?: string }> }) {
   const user = await currentUser().catch(() => null);
   if (!user) redirect("/account/login?returnTo=/account");
