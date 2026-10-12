@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Flame } from "lucide-react";
 import { SITE } from "@/lib/constants";
 import { SupportEmailLink } from "@/components/support/SupportEmailLink";
+import { LeadCapture } from "@/components/leads/LeadCapture";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -66,6 +67,13 @@ export function Footer() {
               financial, tax, or investment advice.
             </p>
             <SupportEmailLink className="mt-3 inline-block text-sm text-zinc-400 hover:text-emerald-400" />
+            <div className="mt-4">
+              <LeadCapture
+                source="footer_newsletter"
+                heading="The FIRE notes"
+                blurb="One short email when we publish something worth your time — new calculators, guides, data. No spam, unsubscribe anytime."
+              />
+            </div>
           </div>
 
           <div className="grid gap-5 text-sm sm:grid-cols-2 lg:grid-cols-4">
