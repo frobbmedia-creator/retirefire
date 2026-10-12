@@ -2,6 +2,8 @@ export const LEAD_SOURCES = [
   "coast_checklist",
   "sequence_guide",
   "checkup_results",
+  "footer_newsletter",
+  "blog_newsletter",
 ] as const;
 
 export type LeadSource = (typeof LEAD_SOURCES)[number];
