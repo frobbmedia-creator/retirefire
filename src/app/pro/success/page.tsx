@@ -4,11 +4,12 @@ import { CheckCircle2 } from "lucide-react";
 import { getStripe } from "@/lib/stripe/client";
 import { STRIPE_PLANS, type PlanId } from "@/lib/stripe/config";
 import { SupportEmailLink } from "@/components/support/SupportEmailLink";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta("/pro/success", {
   title: "Purchase confirmed",
   robots: { index: false, follow: false },
-};
+});
 
 type Props = {
   searchParams: Promise<{ session_id?: string }>;
