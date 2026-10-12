@@ -82,7 +82,7 @@ export default function CouplesFirePage() {
             different schedules: Social Security benefits start at different
             ages and amounts, pensions may or may not survive the first death,
             and Medicare starts years apart. A household target built on one
-            person's timeline understates all of it.
+            person&apos;s timeline understates all of it.
           </p>
           <p>
             Use one household target, but keep two timelines visible. That is
@@ -118,9 +118,9 @@ Anchor the horizon to the younger spouse, not the average.`}
           <p>
             Alex reaches Medicare at 65 in about 20 years; Jordan gets there 7
             years later — seven extra years of marketplace or COBRA premiums to
-            price. If Alex's Social Security is the larger benefit, Jordan as
+            price. If Alex&apos;s Social Security is the larger benefit, Jordan as
             survivor keeps that larger amount, but only after Alex is gone. And
-            the portfolio doesn't need to last until Alex is 90; it needs to
+            the portfolio doesn&apos;t need to last until Alex is 90; it needs to
             last until Jordan is 90-plus.
           </p>
         </div>
@@ -137,7 +137,7 @@ Anchor the horizon to the younger spouse, not the average.`}
             <tbody>
               <tr><td className={td}>Medicare at 65</td><td className={td}>~20 years out</td><td className={td}>~27 years out</td><td className={td}>7 extra bridge years to fund</td></tr>
               <tr><td className={td}>Social Security</td><td className={td}>Larger benefit</td><td className={td}>Smaller benefit</td><td className={td}>Survivor keeps the larger one</td></tr>
-              <tr><td className={td}>Planning horizon</td><td className={td}>~45 years</td><td className={td}>~55+ years</td><td className={td}>Anchor to Jordan's timeline</td></tr>
+              <tr><td className={td}>Planning horizon</td><td className={td}>~45 years</td><td className={td}>~55+ years</td><td className={td}>Anchor to Jordan&apos;s timeline</td></tr>
               <tr><td className={td}>RMDs</td><td className={td}>Early 70s</td><td className={td}>7 years later</td><td className={td}>Staggered forced withdrawals</td></tr>
             </tbody>
           </table>
@@ -165,7 +165,7 @@ Anchor the horizon to the younger spouse, not the average.`}
               <li>Big age or earnings gaps — timelines diverge sharply.</li>
               <li>Pensions without survivor options — income dies with the pensioner.</li>
               <li>Ignoring whose name is on which account — ownership, not math, governs inheritance.</li>
-              <li>One spouse's health suggests very different life expectancies.</li>
+              <li>One spouse&apos;s health suggests very different life expectancies.</li>
             </ul>
           </div>
         </div>
