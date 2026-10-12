@@ -4,8 +4,9 @@ import { redirect } from "next/navigation";
 import { ProReportBuilder } from "@/components/pro/ProReportBuilder";
 import { currentUser } from "@/lib/auth";
 import { activeEntitlements } from "@/lib/entitlements";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Your Pro Workspace", robots: { index: false, follow: false } };
+export const metadata: Metadata = pageMeta("/pro/workspace", { title: "Your Pro Workspace", robots: { index: false, follow: false } });
 
 export default async function ProWorkspacePage() {
   const user = await currentUser().catch(() => null);
