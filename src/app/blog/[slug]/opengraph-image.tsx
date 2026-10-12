@@ -1,5 +1,5 @@
 import { generatedOgImage, ogImageSize } from "@/components/seo/GeneratedOgImage";
-import { getPost } from "@/content/blog/posts";
+import { getPost } from "@/content/blog";
 
 export const alt = "RetireFire educational guide";
 export const size = ogImageSize;

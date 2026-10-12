@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
-import { getAllPosts } from "@/content/blog/posts";
+import { getAllPosts } from "@/content/blog";
 import { DECISION_PAGES } from "@/content/decision-pages";
 
 export default function sitemap(): MetadataRoute.Sitemap {

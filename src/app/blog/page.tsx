@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
-import { getAllPosts } from "@/content/blog/posts";
+import { getAllPosts } from "@/content/blog";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta("/blog", {
