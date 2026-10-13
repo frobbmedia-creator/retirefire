@@ -73,10 +73,9 @@ export function calculateRetirementCheckup(input: RetirementCheckupInput) {
     annualReturn: input.realReturn,
     years: yearsToPlannedRetirement,
   });
-  const annualSavingsChange = Math.max(
-    0,
-    requiredContribution - input.annualContribution,
-  );
+  const annualSavingsChange = Number.isFinite(requiredContribution)
+    ? Math.max(0, requiredContribution - input.annualContribution)
+    : null;
   const annualSpendingChange = Math.max(
     0,
     input.annualSpending - supportedAnnualSpending,
