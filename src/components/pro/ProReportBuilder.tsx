@@ -37,7 +37,14 @@ export function ProReportBuilder() {
         <Metric label="Estimated retirement age" value={result.estimatedRetirementAge?.toFixed(0) ?? "Not reached"} />
         <Metric label="Projected portfolio" value={formatCurrency(result.projectedPortfolio)} />
         <Metric label="Supported annual spending" value={formatCurrency(result.supportedAnnualSpending)} />
-        <Metric label="Annual savings adjustment" value={formatCurrency(result.annualSavingsChange)} />
+        <Metric
+          label="Annual savings adjustment"
+          value={
+            result.annualSavingsChange == null
+              ? "Not possible by chosen age"
+              : formatCurrency(result.annualSavingsChange)
+          }
+        />
         <Metric label="Annual spending adjustment" value={formatCurrency(result.annualSpendingChange)} />
       </div>
       <div className="mt-7 rounded-2xl bg-zinc-950/60 p-5 text-sm leading-relaxed text-zinc-400"><strong className="text-zinc-200">Assumptions:</strong> 5% real growth and a 4% starting withdrawal rate. This educational report excludes taxes, fees, long-term care, account-access rules, and individualized advice.</div>

@@ -39,6 +39,11 @@ const close = calculateRetirementCheckup({
   withdrawalRate: 0.04,
 });
 assert.equal(close.status, "close");
+assert.equal(
+  close.annualSavingsChange,
+  null,
+  "a same-age shortfall has no finite annual savings change",
+);
 
 const needsWork = calculateRetirementCheckup({
   currentAge: 60,
@@ -51,6 +56,7 @@ const needsWork = calculateRetirementCheckup({
   withdrawalRate: 0.04,
 });
 assert.equal(needsWork.status, "needs-work");
+assert.ok(needsWork.annualSavingsChange != null);
 assert.ok(needsWork.annualSavingsChange > 0);
 assert.ok(needsWork.annualSpendingChange > 0);
 

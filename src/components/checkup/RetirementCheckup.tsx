@@ -369,7 +369,9 @@ function Results({
             number="1"
             title="Save more each year"
             body={
-              result.annualSavingsChange > 0
+              result.annualSavingsChange == null
+                ? "There are no saving years left before your chosen retirement age. Consider lowering spending or choosing a later date."
+                : result.annualSavingsChange > 0
                 ? `Adding about ${formatCurrency(result.annualSavingsChange)} more each year could close the estimated gap by age ${answers.retirementAge}.`
                 : "Your current yearly savings are enough for this estimate. Keep reviewing the amount as life changes."
             }
