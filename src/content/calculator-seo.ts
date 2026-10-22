@@ -203,9 +203,9 @@ export const CALCULATOR_SEO: Record<
       "Calculate how much you need today so compound growth alone may reach full FIRE by a chosen traditional retirement age — then you can “coast” on savings rate.",
     metaTitle: "Coast FIRE Calculator: Find Your Coast Number",
     metaDescription:
-      "Estimate the portfolio you may need today for Coast FIRE. Compare return assumptions, age tables, and a sequence stress test. Educational tool only.",
-    h1: "What Is a Coast FIRE Number?",
-    lede: "A Coast FIRE number is the portfolio you may need today for investments to grow to your full FIRE target by your chosen retirement age, assuming no new contributions and a stated real return.",
+      "Calculate how much you need invested today to Coast FIRE. Compare retirement ages, return assumptions, and risk scenarios. Free, no signup.",
+    h1: "Coast FIRE Calculator: How Much Do You Need Today?",
+    lede: "Find your Coast FIRE number: estimate the portfolio needed today to reach your retirement target without further contributions. Compare ages and inflation-adjusted return assumptions, then stress-test the result.",
     formulaIntro:
       "The calculator estimates today's Coast FIRE target by dividing the full FIRE target by (1 + real return) raised to the years remaining.",
     seoHeadings: {
