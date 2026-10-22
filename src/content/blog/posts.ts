@@ -2440,10 +2440,11 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "coast-fire-number-formula-examples",
-    title: "Coast FIRE number: formula and examples",
+    title: "How to Calculate Your Coast FIRE Number: Formula & Examples",
     description:
-      "How to calculate a Coast FI number, with a clear discount formula and numeric examples you can re-run in the calculator.",
+      "Learn how to calculate your Coast FIRE number with real-return assumptions, worked examples, and a free calculator to test your own retirement age.",
     date: "2026-07-12",
+    dateModified: "2026-10-22",
     readingMinutes: 7,
     tags: ["coast-fire", "basics"],
     body: [
@@ -2454,12 +2455,12 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         type: "h2",
-        content: "The discount formula",
+        content: "How to calculate your Coast FIRE number",
       },
       {
         type: "p",
         content:
-          "If full FIRE is T, real return is r, and years until traditional retirement is n: coast number ≈ T ÷ (1+r)^n. You are discounting the future target back to today.",
+          "First estimate your full FIRE target: annual retirement spending divided by your assumed withdrawal rate. Then calculate Coast FIRE = full FIRE target ÷ (1 + r)^n, where r is the annual inflation-adjusted (real) investment return and n is years until retirement. Keep both spending and return assumptions in today’s dollars; do not mix nominal returns with inflation-adjusted spending.",
       },
       {
         type: "h2",
@@ -2503,7 +2504,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         type: "p",
         content:
-          "Run your own numbers in the Coast FIRE calculator (age table + free sequence stress test), walk the Coast checklist, compare full FIRE and Barista, and read Methodology for model details. Guides: how to stress-test Coast, when can you stop saving. Educational only.",
+          "Try the free Coast FIRE calculator at /calculators/coast-fire with your age, target retirement age, spending, and return assumptions. Compare the age examples at /coast-fire-by-age and read /methodology for calculation details. These scenarios assume no new retirement contributions and are educational illustrations, not promises.",
       },
     ],
   },
