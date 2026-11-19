@@ -2440,11 +2440,11 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "coast-fire-number-formula-examples",
-    title: "How to Calculate Your Coast FIRE Number: Formula & Examples",
+    title: "How to Calculate Coast Fire Number",
     description:
-      "Learn how to calculate your Coast FIRE number with real-return assumptions, worked examples, and a free calculator to test your own retirement age.",
+      "How to calculate Coast Fire Number by hand — every input labeled, a worked example with the math shown, and a free calculator to run your own numbers.",
     date: "2026-07-12",
-    dateModified: "2026-10-22",
+    dateModified: "2026-11-19",
     readingMinutes: 7,
     tags: ["coast-fire", "basics"],
     body: [
@@ -2455,12 +2455,36 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         type: "h2",
-        content: "How to calculate your Coast FIRE number",
+        content: "How to Calculate Coast Fire Number — the steps",
       },
       {
         type: "p",
         content:
           "First estimate your full FIRE target: annual retirement spending divided by your assumed withdrawal rate. Then calculate Coast FIRE = full FIRE target ÷ (1 + r)^n, where r is the annual inflation-adjusted (real) investment return and n is years until retirement. Keep both spending and return assumptions in today’s dollars; do not mix nominal returns with inflation-adjusted spending.",
+      },
+      {
+        type: "h2",
+        content: "Worked example — calculated by hand",
+      },
+      {
+        type: "p",
+        content:
+          "Say you are 35, plan to retire at 65, and want to know what you need invested today so you can stop contributing and let growth finish the job. Here is the whole calculation on paper, with every input labeled:",
+      },
+      {
+        type: "ul",
+        content: [
+          "Step 1 — Retirement spending (input): $50,000 a year, in today’s dollars.",
+          "Step 2 — Withdrawal rate (input): 4%. Full FIRE target = $50,000 ÷ 0.04 = $1,250,000. That is the nest egg you need at retirement.",
+          "Step 3 — Years for growth to work (input): 65 − 35 = 30 years (n = 30).",
+          "Step 4 — Real return (input): 5% a year after inflation (r = 5%). Growth factor over 30 years: (1.05)^30 ≈ 4.322.",
+          "Step 5 — Discount the target back to today: Coast Fire Number = $1,250,000 ÷ 4.322 ≈ $289,200.",
+        ],
+      },
+      {
+        type: "p",
+        content:
+          "Check it forward: $289,200 growing at 5% real for 30 years is $289,200 × 4.322 ≈ $1,250,000 — the target. So invest roughly $289,000 today, add nothing more, and under these assumptions growth alone carries the portfolio to full FIRE by 65. Change any one input and the answer moves — so run your own inputs in the [Coast FIRE calculator](/calculators/coast-fire).",
       },
       {
         type: "h2",
