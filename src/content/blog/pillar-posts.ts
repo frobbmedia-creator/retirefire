@@ -4,9 +4,9 @@ import type { BlogPost } from "./posts";
 export const PILLAR_POSTS: BlogPost[] = [
   {
     slug: "the-complete-coast-fire-guide",
-    title: "The Complete Coast FIRE Guide: the math, the mistakes, and whether you're already there",
+    title: "The Complete Coast FIRE Guide",
     description:
-      "The definitive Coast FIRE guide: the discount formula, worked examples at every age, return sensitivity, Coast vs Barista vs full FIRE, the five biggest mistakes, and FAQ.",
+      "The complete Coast FIRE guide: discount formula, worked examples at every age, return sensitivity, five big mistakes, and Coast vs Barista vs full FIRE.",
     date: "2026-10-11",
     readingMinutes: 15,
     tags: ["coast-fire", "basics"],
@@ -253,9 +253,9 @@ export const PILLAR_POSTS: BlogPost[] = [
   },
   {
     slug: "the-complete-barista-fire-guide",
-    title: "The Complete Barista FIRE Guide: the gap math, healthcare, and picking work that pays",
+    title: "The Complete Barista FIRE Guide",
     description:
-      "The definitive Barista FIRE guide: the spending-gap formula, worked examples, why healthcare is the number-one risk, how to pick barista work, the Coast vs Barista decision framework, and FAQ.",
+      "The complete Barista FIRE guide: spending-gap formula, worked examples, why healthcare is the top risk, how to pick part-time work, and Barista vs Coast.",
     date: "2026-10-11",
     readingMinutes: 15,
     tags: ["barista-fire", "semi-retirement"],

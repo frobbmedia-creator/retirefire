@@ -10,7 +10,7 @@ export const QUEUE_B_POSTS: BlogPost[] = [
     slug: "when-can-you-stop-saving-for-retirement",
     title: "When can you stop saving for retirement?",
     description:
-      "The coast point: how to know your portfolio can finish the job without another contribution — the discount formula in plain English, three tests to run first, and what “stop saving” actually means.",
+      "The coast point: how to know your portfolio can finish the job without another contribution — the discount formula in plain English, plus three tests to run.",
     date: "2026-10-11",
     readingMinutes: 10,
     tags: ["coast-fire", "basics", "fire-number"],
@@ -216,9 +216,9 @@ export const QUEUE_B_POSTS: BlogPost[] = [
   },
   {
     slug: "fire-calculator-with-pension",
-    title: "How to integrate a pension into your early retirement model",
+    title: "How to Add a Pension to Your FIRE Calculator",
     description:
-      "A pension is a bond-like income floor that changes every FIRE calculation: how to value it, handle the bridge years before it starts, weigh lump sum vs annuity, and adjust for inflation.",
+      "How a pension changes your FIRE math: valuing the income floor, the bridge years before it starts, lump sum vs annuity, and inflation adjustments.",
     date: "2026-10-11",
     readingMinutes: 10,
     tags: ["fire-number", "basics"],

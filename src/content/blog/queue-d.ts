@@ -8,9 +8,9 @@ import type { BlogPost } from "./posts";
 export const QUEUE_D_POSTS: BlogPost[] = [
   {
     slug: "coast-fire-explained",
-    title: "What Is Coast FIRE? The Math, the Trade-offs, and How It Works",
+    title: "What Is Coast FIRE? Math, Examples & How It Works",
     description:
-      "Coast FIRE explained: the discount formula, worked examples at 30 and 45, how it differs from full and Barista FIRE, the pros, the risks, and the transition checklist.",
+      "Coast FIRE explained: the discount formula, worked examples at 30 and 45, pros and risks, and how it differs from full and Barista FIRE.",
     date: "2026-10-11",
     readingMinutes: 10,
     tags: ["coast-fire", "basics"],

@@ -19,14 +19,27 @@ const groups = [
   {
     title: "Retire by age",
     description: "Bridge healthcare and later income without hiding the timeline.",
-    slugs: ["retire-at-50", "retire-at-55", "retire-at-60", "fire-number-by-age"],
+    slugs: [
+      "retire-at-40",
+      "retire-at-45",
+      "retire-at-50",
+      "retire-at-55",
+      "retire-at-60",
+      "retire-at-62",
+      "fire-number-by-age",
+    ],
   },
   {
     title: "Start with a portfolio or lifestyle",
     description: "Translate balances and annual spending into a tested range.",
     slugs: [
+      "can-i-retire-with-400k",
+      "can-i-retire-with-500k",
+      "can-i-retire-with-750k",
       "can-i-retire-with-1-million",
+      "can-i-retire-with-1-5-million",
       "can-i-retire-with-2-million",
+      "can-i-retire-with-3-million",
       "fire-number-by-spending",
     ],
   },
@@ -44,6 +57,15 @@ const groups = [
     title: "Coast FIRE",
     description: "See how time changes the amount required today.",
     slugs: ["coast-fire-by-age"],
+  },
+  {
+    title: "Pressure-test the plan",
+    description: "Check the assumptions before you trust the number.",
+    slugs: [
+      "why-fire-calculators-disagree",
+      "one-year-of-waiting-fire-number",
+      "retire-at-50-vs-55-vs-60",
+    ],
   },
 ] as const;
 

@@ -4,9 +4,9 @@ import type { BlogPost } from "./posts";
 export const QUEUE_C_POSTS: BlogPost[] = [
   {
     slug: "retiring-early-at-45",
-    title: "Retiring Early at 45 With a 45-Year Portfolio Horizon",
+    title: "Retiring at 45: Planning a 45-Year Horizon",
     description:
-      "Why 45 is the hardest early-retirement age: the three-phase model, withdrawal-rate humility for 45-year horizons, sequence risk, the 20-year healthcare bridge, and a worked $70k example.",
+      "Why retiring at 45 is the hardest case: a three-phase model, sequence risk, the 20-year healthcare bridge, and a worked $70k example.",
     date: "2026-10-11",
     readingMinutes: 12,
     tags: ["fire-number", "sequence-risk", "basics"],
