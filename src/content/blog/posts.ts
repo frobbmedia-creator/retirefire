@@ -292,9 +292,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "lean-fire-explained",
-    title: "Lean FIRE explained: definition, math, path, and risks",
+    title: "Lean FIRE Explained: Math, Numbers & Risks",
     description:
-      "Lean FIRE is a spending-based FI target, not a personality test. Core formula, $25k–$50k tables, 3–4% SWR grids, path math, vs other FIRE styles, and free calculators — educational only.",
+      "Lean FIRE explained: the core formula, $25k–$50k spending tables, 3–4% withdrawal grids, path math, and how Lean compares with other FIRE styles.",
     date: "2026-07-21",
     readingMinutes: 14,
     tags: ["lean-fire", "fire-number", "basics"],
@@ -2238,9 +2238,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "safe-withdrawal-rate-3-vs-4-percent",
-    title: "Safe withdrawal rate: 3% vs 3.5% vs 4% (early retirement deep dive)",
+    title: "Safe Withdrawal Rate: 3% vs 3.5% vs 4%",
     description:
-      "SWR for FIRE and early retirees: research lineage of 4%, why 3–3.5% is common for long horizons, worked multiples, flexibility rules, and how to stress-test without false precision.",
+      "Safe withdrawal rates for early retirement: where the 4% rule came from, why 3–3.5% is common on long horizons, worked multiples, and flexibility rules.",
     date: "2026-07-14",
     readingMinutes: 12,
     tags: ["swr", "fire-number", "sequence-risk"],
@@ -2377,7 +2377,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "how-many-years-until-fire",
     title: "How many years until FIRE?",
     description:
-      "The levers that move your timeline to financial independence: savings rate, spending, portfolio, and return assumptions — plus links to deeper lever analysis and stress tests.",
+      "What moves your timeline to financial independence: savings rate, spending, portfolio, and return assumptions — plus stress tests and deeper lever analysis.",
     date: "2026-07-13",
     readingMinutes: 8,
     tags: ["years-to-fire", "basics"],
@@ -2988,7 +2988,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "first-100-days-after-fire",
-    title: "The first 100 days after FIRE: a plan for time, brain, and identity",
+    title: "The First 100 Days After FIRE: A Practical Plan",
     description:
       "Your portfolio can fund retirement without designing it. Use this 100-day plan to replace the structure, challenge, connection, and purpose work provided.",
     date: "2026-07-28",

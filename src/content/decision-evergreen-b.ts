@@ -135,7 +135,7 @@ export const evergreenPagesB: DecisionPage[] = [
   },
   {
     slug: "early-retirement-health-insurance",
-    title: "Early-retirement health insurance: build an honest FIRE budget",
+    title: "Early Retirement Health Insurance Before Medicare",
     description:
       "Plan the health-insurance bridge before Medicare using premiums, out-of-pocket exposure, household income, plan changes, and a dedicated contingency.",
     eyebrow: "Healthcare before Medicare",

@@ -7,9 +7,9 @@ import type { BlogPost } from "./posts";
 export const QUEUE_A_POSTS: BlogPost[] = [
   {
     slug: "barista-fire-vs-coast-fire",
-    title: "Barista FIRE vs Coast FIRE: differences, math, and which fits you",
+    title: "Barista FIRE vs Coast FIRE: Which Fits You?",
     description:
-      "The definitive Barista vs Coast comparison: both formulas side by side, a worked $60k example, return and income sensitivity, a 5-question decision framework, and when each wins.",
+      "Barista FIRE vs Coast FIRE: both formulas side by side, a worked $60k example, income and return sensitivity, and a 5-question framework for choosing.",
     date: "2026-10-11",
     readingMinutes: 12,
     tags: ["barista-fire", "coast-fire", "comparison"],
